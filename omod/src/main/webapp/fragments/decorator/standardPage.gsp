@@ -19,9 +19,9 @@
 		config.beforeContent += ui.includeFragment("kenyaemr", "header/visitHeader", [ visit: config.visit ])
 	}
 
-	config.pageTitle = "KenyaEMR"
+	config.pageTitle = "KeyPopSystem"
 	config.faviconIco = ui.resourceLink("kenyaemr", "images/logos/favicon.ico")
-	config.faviconPng = ui.resourceLink("kenyaemr", "images/logos/favicon.png")
+	config.faviconPng = ui.resourceLink("kenyaemr", "images/help/job_aids_icon.png")
 	config.angularApp = "kenyaemr"
 	
 	ui.decorateWith("kenyaui", "standardPage", config)
