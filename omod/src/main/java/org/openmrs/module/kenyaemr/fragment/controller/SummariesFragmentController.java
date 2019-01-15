@@ -11,64 +11,9 @@ package org.openmrs.module.kenyaemr.fragment.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.joda.time.DateTime;
-import org.joda.time.Years;
-import org.openmrs.Concept;
-import org.openmrs.ConceptName;
-import org.openmrs.DrugOrder;
-import org.openmrs.Obs;
 import org.openmrs.Patient;
-import org.openmrs.PatientIdentifier;
-import org.openmrs.PatientIdentifierType;
-import org.openmrs.PatientProgram;
-import org.openmrs.PersonName;
-import org.openmrs.Program;
-import org.openmrs.api.PatientService;
-import org.openmrs.api.context.Context;
-import org.openmrs.calculation.patient.PatientCalculationContext;
-import org.openmrs.calculation.patient.PatientCalculationService;
-import org.openmrs.calculation.result.CalculationResult;
-import org.openmrs.calculation.result.CalculationResultMap;
-import org.openmrs.calculation.result.ListResult;
-import org.openmrs.module.kenyacore.CoreConstants;
-import org.openmrs.module.kenyacore.calculation.CalculationUtils;
-import org.openmrs.module.kenyacore.calculation.Calculations;
-import org.openmrs.module.kenyaemr.Dictionary;
-import org.openmrs.module.kenyaemr.api.KenyaEmrService;
-import org.openmrs.module.kenyaemr.calculation.EmrCalculationUtils;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.LastReturnVisitDateCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.LastWhoStageCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.CD4AtARTInitiationCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.CurrentArtRegimenCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.InitialArtRegimenCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.InitialArtStartDateCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.LastCd4CountDateCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.TransferInDateCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.TransferOutDateCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.ViralLoadAndLdlCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.WeightAtArtInitiationCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.WhoStageAtArtStartCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.models.PatientSummary;
-import org.openmrs.module.kenyaemr.calculation.library.rdqa.DateOfDeathCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.rdqa.PatientProgramEnrollmentCalculation;
-import org.openmrs.module.kenyaemr.metadata.HivMetadata;
-import org.openmrs.module.kenyaemr.regimen.RegimenOrder;
-import org.openmrs.module.metadatadeploy.MetadataUtils;
 import org.openmrs.ui.framework.annotation.FragmentParam;
 import org.openmrs.ui.framework.fragment.FragmentModel;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by codehub on 10/30/15.
@@ -79,10 +24,10 @@ public class SummariesFragmentController {
 
     public void controller(@FragmentParam("patient") Patient patient,
                            FragmentModel model){
-        PatientSummary patientSummary = new PatientSummary();
+        /*PatientSummary patientSummary = new PatientSummary();
         PatientService patientService = Context.getPatientService();
         KenyaEmrService kenyaEmrService = Context.getService(KenyaEmrService.class);
-        Program hivProgram = MetadataUtils.existing(Program.class, HivMetadata._Program.HIV);
+        Program hivProgram = MetadataUtils.existing(Program.class, KpMetadata._Program.HIV);
         Date artStartDate = null;
 
         patientSummary.setDateOfReport(formatDate(new Date()));
@@ -97,7 +42,7 @@ public class SummariesFragmentController {
         //gender
         patientSummary.setGender(patient.getGender());
 
-        PatientIdentifierType type = MetadataUtils.existing(PatientIdentifierType.class, HivMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
+        PatientIdentifierType type = MetadataUtils.existing(PatientIdentifierType.class, KpMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
         List<PatientIdentifier> upn = patientService.getPatientIdentifiers(null, Arrays.asList(type), null, Arrays.asList(patient), false);
         if(upn.size() > 0){
             patientSummary.setUpn(upn.get(0).getIdentifier());
@@ -604,11 +549,11 @@ public class SummariesFragmentController {
         model.addAttribute("allergies", allergies);
         model.addAttribute("iosResults", iosResults);
         model.addAttribute("clinicValues", clinicValues);
-        model.addAttribute("firstRegimen", firstRegimen);
+        model.addAttribute("firstRegimen", firstRegimen);*/
 
     }
 
-    private String formatDate(Date date) {
+   /* private String formatDate(Date date) {
         DateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
         return date == null?"":dateFormatter.format(date);
     }
@@ -920,5 +865,5 @@ public class SummariesFragmentController {
         }
         return value;
     }
-
+*/
 }

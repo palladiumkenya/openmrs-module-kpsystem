@@ -19,11 +19,8 @@ import org.openmrs.module.kenyacore.identifier.IdentifierManager;
 import org.openmrs.module.kenyacore.program.ProgramManager;
 import org.openmrs.module.kenyacore.test.TestUtils;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
-import org.openmrs.module.kenyaemr.metadata.HivMetadata;
-import org.openmrs.module.kenyaemr.metadata.IPTMetadata;
-import org.openmrs.module.kenyaemr.metadata.MchMetadata;
+import org.openmrs.module.kenyaemr.metadata.KpMetadata;
 import org.openmrs.module.kenyaemr.metadata.SecurityMetadata;
-import org.openmrs.module.kenyaemr.metadata.TbMetadata;
 import org.openmrs.module.metadatadeploy.bundle.MetadataBundle;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.openmrs.test.SkipBaseSetup;
@@ -44,16 +41,7 @@ public class MetadataIntegrationTest extends BaseModuleContextSensitiveTest {
 	private CommonMetadata commonMetadata;
 
 	@Autowired
-	private HivMetadata hivMetadata;
-
-	@Autowired
-	private TbMetadata tbMetadata;
-
-	@Autowired
-	private MchMetadata mchMetadata;
-
-	@Autowired
-	private IPTMetadata iptMetadata;
+	private KpMetadata kpMetadata;
 
 	@Autowired
 	private IdentifierManager identifierManager;
@@ -86,10 +74,7 @@ public class MetadataIntegrationTest extends BaseModuleContextSensitiveTest {
 	public void loadAllMetadataProvidersAndRefreshManagers() throws Exception {
 		installBundleWithFlush(securityMetadata);
 		installBundleWithFlush(commonMetadata);
-		installBundleWithFlush(hivMetadata);
-		installBundleWithFlush(tbMetadata);
-		installBundleWithFlush(mchMetadata);
-		installBundleWithFlush(iptMetadata);
+		installBundleWithFlush(kpMetadata);
 
 		// Easiest way to check that we're not missing any identifiers, programs, forms or encounter types
 		identifierManager.refresh();
@@ -99,9 +84,7 @@ public class MetadataIntegrationTest extends BaseModuleContextSensitiveTest {
 		// And then load them again to simulate startup on an up-to-date database
 		installBundleWithFlush(securityMetadata);
 		installBundleWithFlush(commonMetadata);
-		installBundleWithFlush(hivMetadata);
-		installBundleWithFlush(tbMetadata);
-		installBundleWithFlush(mchMetadata);
+		installBundleWithFlush(kpMetadata);
 	}
 
 	protected void installBundleWithFlush(MetadataBundle bundle) throws Exception {

@@ -13,7 +13,7 @@ import org.openmrs.Location;
 import org.openmrs.Patient;
 import org.openmrs.module.kenyacore.wrapper.AbstractPatientWrapper;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
-import org.openmrs.module.kenyaemr.metadata.HivMetadata;
+import org.openmrs.module.kenyaemr.metadata.KpMetadata;
 
 /**
  * Wrapper class for patients. Unfortunately this can't extend both AbstractPatientWrapper and PersonWrapper so we add a
@@ -71,7 +71,7 @@ public class PatientWrapper extends AbstractPatientWrapper {
 	 * @return the identifier value
 	 */
 	public String getUniquePatientNumber() {
-		return getAsIdentifier(HivMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
+		return getAsIdentifier(KpMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class PatientWrapper extends AbstractPatientWrapper {
 	 * @param location the identifier location
 	 */
 	public void setUniquePatientNumber(String value, Location location) {
-		setAsIdentifier(HivMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER, value, location);
+		setAsIdentifier(KpMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER, value, location);
 	}
 
 	/**

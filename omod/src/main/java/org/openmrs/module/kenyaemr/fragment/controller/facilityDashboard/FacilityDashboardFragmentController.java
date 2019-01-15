@@ -11,7 +11,6 @@ package org.openmrs.module.kenyaemr.fragment.controller.facilityDashboard;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.module.kenyaemr.reporting.builder.hiv.DashBoardCohorts;
 import org.openmrs.module.kenyaui.KenyaUiUtils;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
 import org.openmrs.ui.framework.UiUtils;
@@ -25,7 +24,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Facility dashboard page controller
@@ -61,7 +59,7 @@ public class FacilityDashboardFragmentController {
 		evaluationContext.addParameterValue("enrolledOnOrBefore", endDate);
 
 
-		Set<Integer> all = DashBoardCohorts.allPatients(evaluationContext).getMemberIds();
+		/*Set<Integer> all = DashBoardCohorts.allPatients(evaluationContext).getMemberIds();
 		allPatients = all != null? all.size(): 0;
 
 		Set<Integer> onArt = DashBoardCohorts.onART(evaluationContext).getMemberIds();
@@ -105,7 +103,7 @@ public class FacilityDashboardFragmentController {
 
 		Set<Integer> htsTotalLinked = DashBoardCohorts.htsTotalLinked(evaluationContext).getMemberIds();
 		htsLinked = htsTotalLinked != null? htsTotalLinked.size(): 0;
-
+*/
 		model.addAttribute("allPatients", allPatients);
 		model.addAttribute("inCare", patientsInCare);
 		model.addAttribute("onArt", patientsOnArt);

@@ -10,7 +10,6 @@
 package org.openmrs.module.kenyaemr.reporting.cohort.definition;
 
 import org.openmrs.Encounter;
-import org.openmrs.module.reporting.cohort.definition.BaseCohortDefinition;
 import org.openmrs.module.reporting.common.Localized;
 import org.openmrs.module.reporting.definition.configuration.ConfigurationProperty;
 import org.openmrs.module.reporting.definition.configuration.ConfigurationPropertyCachingStrategy;

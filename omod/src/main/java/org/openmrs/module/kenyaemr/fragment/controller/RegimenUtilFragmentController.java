@@ -261,12 +261,12 @@ public class RegimenUtilFragmentController {
 
 
 				if (changeReason != null) {
-					Concept otherNonCoded = Dictionary.getConcept(Dictionary.OTHER_NON_CODED);
+					//Concept otherNonCoded = Dictionary.getConcept(Dictionary.OTHER_NON_CODED);
 
 
-					if (changeReason.equals(otherNonCoded)) {
+					/*if (changeReason.equals(otherNonCoded)) {
 						require(errors, "changeReasonNonCoded");
-					}
+					}*/
 				}
 			}
 			

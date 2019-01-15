@@ -26,14 +26,14 @@ import java.util.Set;
 /**
  * regimens.xml contains regimen groups that can be used to aid order groups. This chore populates order sets from regimens.xml
  */
-@Component("kenyaemr.chore.voidDuplicateIdentifiers")
+@Component("kenyaemr.chore.voidDuplicateIdentifiers2")
 public class VoidDuplicateIdentifiers extends AbstractChore {
 
 	@Autowired
 	private PatientService patientService;
 
 	/**
-	 * @see org.openmrs.module.kenyacore.chore.AbstractChore#perform(java.io.PrintWriter)
+	 * @see AbstractChore#perform(PrintWriter)
 	 */
 	@Override
 	public void perform(PrintWriter output) {

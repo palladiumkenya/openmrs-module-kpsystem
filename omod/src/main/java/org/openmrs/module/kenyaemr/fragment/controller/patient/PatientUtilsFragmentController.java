@@ -30,7 +30,7 @@ import org.openmrs.module.kenyacore.calculation.PatientFlagCalculation;
 import org.openmrs.module.kenyaemr.EmrConstants;
 import org.openmrs.module.kenyaemr.calculation.library.ScheduledVisitOnDayCalculation;
 import org.openmrs.module.kenyaemr.calculation.library.VisitsOnDayCalculation;
-import org.openmrs.module.kenyaemr.metadata.HivMetadata;
+import org.openmrs.module.kenyaemr.metadata.KpMetadata;
 import org.openmrs.module.kenyaemr.regimen.RegimenChange;
 import org.openmrs.module.kenyaemr.regimen.RegimenChangeHistory;
 import org.openmrs.module.kenyaemr.regimen.RegimenManager;
@@ -189,7 +189,7 @@ public class PatientUtilsFragmentController {
 	/**
 	 * Look for the mothers name for an infant from the relationship defined
 	 * @param patient
-	 * @param now
+	 * @param
 	 * @return list of mothers
 	 */
 	public SimpleObject[] getMothers(@RequestParam("patientId") Patient patient,UiUtils ui) {
@@ -212,7 +212,7 @@ public class PatientUtilsFragmentController {
 	/**
 	 * Look for the fathers name for an infant from the relationship defined
 	 * @param patient
-	 * @param now
+	 * @param
 	 * @return list of fathers
 	 */
 	public SimpleObject[] getFathers(@RequestParam("patientId") Patient patient,UiUtils ui) {
@@ -234,7 +234,7 @@ public class PatientUtilsFragmentController {
 	/**
 	 * Look for the guardians name for an infant from the relationship defined
 	 * @param patient
-	 * @param now
+	 * @param
 	 * @return list of guardians
 	 */
 	public SimpleObject[] getGuardians(@RequestParam("patientId") Patient patient,UiUtils ui) {
@@ -252,7 +252,7 @@ public class PatientUtilsFragmentController {
 	/**
 	 * Check mothers is alive for an infant from the relationship defined
 	 * @param patient
-	 * @param now
+	 * @param
 	 * @return list of mothers
 	 */
 	public SimpleObject[] getMothersLiveStatus(@RequestParam("patientId") Patient patient,UiUtils ui) {
@@ -278,7 +278,7 @@ public class PatientUtilsFragmentController {
 	/**
 	 * Check mothers is CCC number for an infant from the relationship defined
 	 * @param patient
-	 * @param now
+	 * @param
 	 * @return list of mothers
 	 */
 
@@ -295,7 +295,7 @@ public String getMothersUniquePatientNumber(@RequestParam("patientId") Patient p
 						//Patient mother = Context.getPatientService().getPatient(personId);
 						if(Context.getPatientService().getPatient(personId) != null) {
 							Patient mother = Context.getPatientService().getPatient(personId);
-							PatientIdentifierType pit = MetadataUtils.existing(PatientIdentifierType.class, HivMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
+							PatientIdentifierType pit = MetadataUtils.existing(PatientIdentifierType.class, KpMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
 							PatientIdentifier cccObject = mother.getPatientIdentifier(pit);
 							cccNumber = cccObject.getIdentifier();
 						}
@@ -310,7 +310,7 @@ public String getMothersUniquePatientNumber(@RequestParam("patientId") Patient p
 						//Patient mother = Context.getPatientService().getPatient(personId);
 						if(Context.getPatientService().getPatient(personId) != null){
 							Patient mother = Context.getPatientService().getPatient(personId);
-							PatientIdentifierType pit = MetadataUtils.existing(PatientIdentifierType.class, HivMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
+							PatientIdentifierType pit = MetadataUtils.existing(PatientIdentifierType.class, KpMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
 						    PatientIdentifier cccObject = mother.getPatientIdentifier(pit);
 						     cccNumber = cccObject.getIdentifier();
 

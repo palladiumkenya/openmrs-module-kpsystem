@@ -21,17 +21,9 @@ import org.openmrs.PatientIdentifierType;
 import org.openmrs.Person;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.context.Context;
-import org.openmrs.calculation.result.CalculationResult;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.kenyaemr.Dictionary;
-import org.openmrs.module.kenyaemr.calculation.EmrCalculationUtils;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.GreenCardVelocityCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.StablePatientsCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.OnArtCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.ipt.OnIptProgramCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.tb.PatientDueForTbProgramEnrollmentCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.tb.PatientInTbProgramCalculation;
-import org.openmrs.module.kenyaemr.metadata.HivMetadata;
+import org.openmrs.module.kenyaemr.metadata.KpMetadata;
 import org.openmrs.module.metadatadeploy.MetadataUtils;
 import org.openmrs.module.reporting.common.DateUtil;
 
@@ -45,7 +37,7 @@ import java.util.List;
 public class EmrVelocityFunctions {
 
 	private FormEntrySession session;
-	protected static final Log log = LogFactory.getLog(StablePatientsCalculation.class);
+	protected static final Log log = LogFactory.getLog(EmrVelocityFunctions.class);
 	/**
 	 * Constructs a new functions provider
 	 * @param session the form entry session
@@ -62,7 +54,7 @@ public class EmrVelocityFunctions {
 		if (session.getPatient() == null) {
 			return false;
 		} else {
-			PatientIdentifierType pit = MetadataUtils.existing(PatientIdentifierType.class, HivMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
+			PatientIdentifierType pit = MetadataUtils.existing(PatientIdentifierType.class, KpMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
 			return session.getPatient().getPatientIdentifier(pit) != null;
 		}
 	}
@@ -82,87 +74,7 @@ public class EmrVelocityFunctions {
 	 * @return true if patient is stable
 	 */
 
-	public Boolean patientIsStable() {
 
-		CalculationResult stablePatient = EmrCalculationUtils.evaluateForPatient(StablePatientsCalculation.class, null,session.getPatient());
-		return 	(Boolean) stablePatient.getValue();
-
-
-	}
-	/**
-	 * Checks whether the patient is current on ART
-	 * @return true if patient is current on ART
-	 *
-	 * */
-
-	public Boolean currentInArt() {
-
-		CalculationResult patientCurrentInART = EmrCalculationUtils.evaluateForPatient(OnArtCalculation.class, null,session.getPatient());
-		return 	(Boolean) patientCurrentInART.getValue();
-
-	}
-	/**
-	 * Checks whether the patient started ART today
-	 * @return true if patient started ART today
-	 *
-	 * */
-
-//	public Boolean startedArtToday() {
-//
-//		CalculationResult currentStartDate = EmrCalculationUtils.evaluateForPatient(CurrentARTStartDateCalculation.class, null,session.getPatient());
-//
-//		return 	(Boolean) patientStartedARTtoday.getValue();
-//
-//	}
-	/**
-	 * Checks whether the patient in TB program
-	 * @return true if patient is enrolled in TB program
-	 *
-	 * */
-
-	public Boolean patientInTbProgram() {
-
-		CalculationResult patientEnrolledInTbProgram = EmrCalculationUtils.evaluateForPatient(PatientInTbProgramCalculation.class, null,session.getPatient());
-		return 	(Boolean) patientEnrolledInTbProgram.getValue();
-
-	}
-	/**
-	 * Checks whether the patient is eligible to be enrolled in TB program
-	 * @return true if patient is eligible to be enrolled in TB program
-	 *
-	 * */
-
-	public Boolean patientDueForTbProgramEnrollment() {
-
-		CalculationResult patientEligibleForEnrollmentTbProgram = EmrCalculationUtils.evaluateForPatient(PatientDueForTbProgramEnrollmentCalculation.class, null,session.getPatient());
-		return 	(Boolean) patientEligibleForEnrollmentTbProgram.getValue();
-
-	}
-	/**
-	 * Checks whether the patient in IPT program
-	 * @return true if patient is enrolled in TB program
-	 *
-	 * */
-
-	public Boolean currentInIPT() {
-
-		CalculationResult patientEnrolledInIPTProgram = EmrCalculationUtils.evaluateForPatient(OnIptProgramCalculation.class, null,session.getPatient());
-		return 	(Boolean) patientEnrolledInIPTProgram.getValue();
-
-	}
-	/**
-	 * Checks whether the patient in IPT program
-	 * @return true if patient is enrolled in TB program
-	 *
-	 * */
-
-	public String GreenCardVelocityCalculation() {
-
-		CalculationResult greenCardVelocity = EmrCalculationUtils.evaluateForPatient(GreenCardVelocityCalculation.class, null,session.getPatient());
-		return 	(String) greenCardVelocity.getValue();
-
-
-	}
 	/**
 		 * Fetches a global property value by property name
 		 * @param name the property name

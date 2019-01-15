@@ -18,7 +18,6 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.kenyacore.test.TestUtils;
 import org.openmrs.module.kenyaemr.Dictionary;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
-import org.openmrs.module.kenyaemr.metadata.TbMetadata;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,8 +36,8 @@ public class EmrUtilsTest extends BaseModuleContextSensitiveTest {
 	@Autowired
 	private CommonMetadata commonMetadata;
 
-	@Autowired
-	private TbMetadata tbMetadata;
+	/*@Autowired
+	private TbMetadata tbMetadata;*/
 
 	/**
 	 * Setup each test
@@ -48,7 +47,7 @@ public class EmrUtilsTest extends BaseModuleContextSensitiveTest {
 		executeDataSet("dataset/test-concepts.xml");
 
 		commonMetadata.install();
-		tbMetadata.install();
+		//tbMetadata.install();
 	}
 
 	@Test
@@ -78,14 +77,6 @@ public class EmrUtilsTest extends BaseModuleContextSensitiveTest {
 		Assert.assertFalse(EmrUtils.isToday(TestUtils.date(2012, 1, 1)));
 	}
 
-	@Test
-	public void whoStage_shouldConvertConceptToInteger() {
-		Assert.assertNull(EmrUtils.whoStage(Dictionary.getConcept(Dictionary.CD4_COUNT)));
-		Assert.assertEquals(new Integer(1), EmrUtils.whoStage(Dictionary.getConcept(Dictionary.WHO_STAGE_1_PEDS)));
-		Assert.assertEquals(new Integer(2), EmrUtils.whoStage(Dictionary.getConcept(Dictionary.WHO_STAGE_2_ADULT)));
-		Assert.assertEquals(new Integer(3), EmrUtils.whoStage(Dictionary.getConcept(Dictionary.WHO_STAGE_3_PEDS)));
-		Assert.assertEquals(new Integer(4), EmrUtils.whoStage(Dictionary.getConcept(Dictionary.WHO_STAGE_4_ADULT)));
-	}
 
 	/**
 	 * @see EmrUtils#parseCsv(String)

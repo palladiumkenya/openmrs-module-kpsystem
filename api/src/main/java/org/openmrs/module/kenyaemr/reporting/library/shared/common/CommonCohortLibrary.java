@@ -15,14 +15,9 @@ import org.openmrs.Program;
 import org.openmrs.api.PatientSetService;
 import org.openmrs.module.kenyacore.report.ReportUtils;
 import org.openmrs.module.kenyacore.report.cohort.definition.CalculationCohortDefinition;
-import org.openmrs.module.kenyacore.report.cohort.definition.DateObsValueBetweenCohortDefinition;
-import org.openmrs.module.kenyaemr.Dictionary;
 import org.openmrs.module.kenyaemr.calculation.library.DeceasedPatientsCalculation;
 import org.openmrs.module.kenyaemr.calculation.library.InProgramCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.IsPregnantCalculation;
 import org.openmrs.module.kenyaemr.calculation.library.RecordedDeceasedCalculation;
-import org.openmrs.module.kenyaemr.metadata.HivMetadata;
-import org.openmrs.module.metadatadeploy.MetadataUtils;
 import org.openmrs.module.reporting.cohort.definition.AgeCohortDefinition;
 import org.openmrs.module.reporting.cohort.definition.CodedObsCohortDefinition;
 import org.openmrs.module.reporting.cohort.definition.CohortDefinition;
@@ -37,7 +32,6 @@ import org.openmrs.module.reporting.evaluation.parameter.Parameter;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 
 /**
@@ -174,7 +168,7 @@ public class CommonCohortLibrary {
 	 * Patients who transferred in between ${onOrAfter} and ${onOrBefore}
 	 * @return the cohort definition
 	 */
-	public CohortDefinition transferredIn() {
+	/*public CohortDefinition transferredIn() {
 		Concept transferInDate = Dictionary.getConcept(Dictionary.TRANSFER_IN_DATE);
 
 		DateObsValueBetweenCohortDefinition cd = new DateObsValueBetweenCohortDefinition();
@@ -183,13 +177,13 @@ public class CommonCohortLibrary {
 		cd.addParameter(new Parameter("onOrAfter", "After Date", Date.class));
 		cd.addParameter(new Parameter("onOrBefore", "Before Date", Date.class));
 		return cd;
-	}
+	}*/
 
 	/**
 	 * Patients who transferred out between ${onOrAfter} and ${onOrBefore}
 	 * @return the cohort definition
 	 */
-	public CohortDefinition transferredOut() {
+	/*public CohortDefinition transferredOut() {
 		Concept reasonForDiscontinue = Dictionary.getConcept(Dictionary.REASON_FOR_PROGRAM_DISCONTINUATION);
 		Concept transferredOut = Dictionary.getConcept(Dictionary.TRANSFERRED_OUT);
 
@@ -202,7 +196,7 @@ public class CommonCohortLibrary {
 		cd.setOperator(SetComparator.IN);
 		cd.setValueList(Collections.singletonList(transferredOut));
 		return cd;
-	}
+	}*/
 
 	/**
 	 * Patients who were enrolled on the given programs between ${enrolledOnOrAfter} and ${enrolledOnOrBefore}
@@ -231,7 +225,7 @@ public class CommonCohortLibrary {
 		cd.addParameter(new Parameter("onOrAfter", "After Date", Date.class));
 		cd.addParameter(new Parameter("onOrBefore", "Before Date", Date.class));
 		cd.addSearch("enrolled", ReportUtils.map(enrolled(programs), "enrolledOnOrAfter=${onOrAfter},enrolledOnOrBefore=${onOrBefore}"));
-		cd.addSearch("transferIn", ReportUtils.map(transferredIn(), "onOrBefore=${onOrBefore}"));
+		//cd.addSearch("transferIn", ReportUtils.map(transferredIn(), "onOrBefore=${onOrBefore}"));
 		cd.addSearch("completeProgram", ReportUtils.map(compltedProgram(), "completedOnOrBefore=${onOrBefore}"));
 		cd.setCompositionString("enrolled AND NOT (transferIn OR completeProgram)");
 		return cd;
@@ -247,7 +241,7 @@ public class CommonCohortLibrary {
 		cd.setName("enrolled excluding transfers in program on date in this facility");
 		cd.addParameter(new Parameter("onOrBefore", "Before Date", Date.class));
 		cd.addSearch("enrolled", ReportUtils.map(enrolled(programs), "enrolledOnOrBefore=${onOrBefore}"));
-		cd.addSearch("transferIn", ReportUtils.map(transferredIn(), "onOrBefore=${onOrBefore}"));
+		//cd.addSearch("transferIn", ReportUtils.map(transferredIn(), "onOrBefore=${onOrBefore}"));
 		cd.setCompositionString("enrolled AND NOT transferIn");
 		return cd;
 
@@ -257,12 +251,12 @@ public class CommonCohortLibrary {
 	 * Patients who are pregnant on ${onDate}
 	 * @return the cohort definition
 	 */
-	public CohortDefinition pregnant() {
+	/*public CohortDefinition pregnant() {
 		CalculationCohortDefinition cd = new CalculationCohortDefinition(new IsPregnantCalculation());
 		cd.setName("pregnant on date");
 		cd.addParameter(new Parameter("onDate", "On Date", Date.class));
 		return cd;
-	}
+	}*/
 
 	/**
 	 * Patients who are in the specified program on ${onDate}
@@ -288,7 +282,7 @@ public class CommonCohortLibrary {
 		cd.addParameter(new Parameter("onOrAfter", "After Date", Date.class));
 		cd.addParameter(new Parameter("onOrBefore", "Before Date", Date.class));
 		cd.setTimeModifier(PatientSetService.TimeModifier.ANY);
-		cd.setQuestion(Dictionary.getConcept(Dictionary.MEDICATION_ORDERS));
+		//cd.setQuestion(Dictionary.getConcept(Dictionary.MEDICATION_ORDERS));
 		cd.setValueList(Arrays.asList(concepts));
 		cd.setOperator(SetComparator.IN);
 		return cd;
@@ -302,7 +296,7 @@ public class CommonCohortLibrary {
 		ProgramEnrollmentCohortDefinition cd = new ProgramEnrollmentCohortDefinition();
 		cd.setName("Those patients who completed program on date");
 		cd.addParameter(new Parameter("completedOnOrBefore", "Complete Date", Date.class));
-		cd.setPrograms(Arrays.asList(MetadataUtils.existing(Program.class, HivMetadata._Program.HIV)));
+		//cd.setPrograms(Arrays.asList(MetadataUtils.existing(Program.class, KpMetadata._Program.HIV)));
 		return cd;
 	}
 

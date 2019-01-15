@@ -14,12 +14,9 @@ import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.calculation.patient.PatientCalculationContext;
 import org.openmrs.calculation.patient.PatientCalculationService;
-import org.openmrs.calculation.result.CalculationResultMap;
 import org.openmrs.module.kenyacore.CoreUtils;
 import org.openmrs.module.kenyacore.report.ReportDescriptor;
 import org.openmrs.module.kenyacore.report.ReportManager;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.DateOfEnrollmentArtCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.InitialArtStartDateCalculation;
 import org.openmrs.module.kenyaui.KenyaUiUtils;
 import org.openmrs.module.kenyaui.annotation.SharedPage;
 import org.openmrs.module.reporting.dataset.DataSetColumn;
@@ -83,18 +80,18 @@ public class CohortDialogPageController {
         Date endDate = (Date) reportRequest.getReportDefinition().getParameterMappings().get("endDate");
         calculationContext.setNow(endDate);
 
-        DateOfEnrollmentArtCalculation dateOfEnrollmentArtCalculation = new DateOfEnrollmentArtCalculation();
+        /*DateOfEnrollmentArtCalculation dateOfEnrollmentArtCalculation = new DateOfEnrollmentArtCalculation();
         CalculationResultMap enrollmentDates = dateOfEnrollmentArtCalculation.evaluate(cohort.getMemberIds(), null, calculationContext);
 
         InitialArtStartDateCalculation initialArtStartDateCalculation = new InitialArtStartDateCalculation();
         CalculationResultMap artInitializationDates = initialArtStartDateCalculation.evaluate(cohort.getMemberIds(), null, calculationContext);
-
+*/
         model.addAttribute("column", dataSetColumn);
         model.addAttribute("reportRequest", reportRequest);
         model.addAttribute("dataSet", dataSetName);
         model.addAttribute("cohort", cohort);
         model.addAttribute("patients", ui.simplifyCollection(patients));
-        model.addAttribute("enrollmentDates", enrollmentDates);
-        model.addAttribute("artInitializationDates", artInitializationDates);
+       /* model.addAttribute("enrollmentDates", enrollmentDates);
+        model.addAttribute("artInitializationDates", artInitializationDates);*/
     }
 }
