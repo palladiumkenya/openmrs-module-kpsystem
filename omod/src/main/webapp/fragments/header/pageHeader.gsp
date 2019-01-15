@@ -1,7 +1,7 @@
 <div class="ke-page-header">
 	<div style="float: left; padding-right: 3px">
 		<a href="/${ contextPath }/index.htm?<% if (config.context) { %>${ config.context }<% } %>">
-			<img src="${ ui.resourceLink("kenyaemr", "images/logos/kenyaemr.png") }" width="48" height="48" />
+			<img src="${ ui.resourceLink("kenyaemr", "images/help/job_aids_icon.png") }" width="48" height="48" />
 		</a>
 	</div>
 	<div style="float: left">
@@ -16,7 +16,7 @@
 	</div>
 
 	<div style="float: right; text-align: right">
-		<img src="${ ui.resourceLink("kenyaemr", "images/logos/moh.png") }" width="48" height="48" />
+		<img src="${ ui.resourceLink("kenyaemr", "images/help/job_aids_icon.png") }" width="48" height="48" />
 	</div>
 	<div style="float: right; text-align: right; font-size: 13px; font-weight: bold; padding: 9px 5px 0 0; color: #7f7b72;">
 		${ ui.message("kenyaemr.subtitle") }
