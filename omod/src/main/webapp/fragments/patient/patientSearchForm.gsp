@@ -1,5 +1,5 @@
 <%
-	ui.decorateWith("kenyaui", "panel", [ heading: "Search for a Patient" ])
+	ui.decorateWith("kenyaui", "panel", [ heading: "Search for a Client" ])
 
 	ui.includeJavascript("kenyaemr", "controllers/patient.js")
 
@@ -8,7 +8,7 @@
 	def id = config.id ?: ui.generateId();
 %>
 <form id="${ id }" ng-controller="PatientSearchForm" ng-init="init('${ defaultWhich }')">
-	<label  class="ke-field-label">Which patients</label>
+	<label  class="ke-field-label">Which clients</label>
 	<span class="ke-field-content">
 		<input type="radio" ng-model="which" ng-change="updateSearch()" value="all" /> All
 		&nbsp;&nbsp;

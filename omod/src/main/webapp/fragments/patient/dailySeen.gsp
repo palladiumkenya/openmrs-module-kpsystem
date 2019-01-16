@@ -1,7 +1,7 @@
 <%
     ui.includeJavascript("kenyaemr", "controllers/patient.js")
 
-    def heading = "patients seen on "
+    def heading = "Clients seen on "
     if (isToday)
         heading += "Today"
     else if (isYesterday)

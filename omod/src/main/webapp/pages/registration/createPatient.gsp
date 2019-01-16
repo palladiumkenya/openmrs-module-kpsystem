@@ -9,20 +9,20 @@
 %>
 
 <div class="ke-page-sidebar">
-	${ ui.includeFragment("kenyaui", "widget/panelMenu", [ heading: "Create Patient", items: menuItems ]) }
+	${ ui.includeFragment("kenyaui", "widget/panelMenu", [ heading: "Create Client", items: menuItems ]) }
 
 	<div class="ke-panel-frame">
 		<div class="ke-panel-heading">Help</div>
 		<div class="ke-panel-content">
 			<div id="new">
 				<h3><u>Register new Client</u></h3>
-				Use this option if you are registering the patient for the first time in the system.
+				Use this option if you are registering the client for the first time in the system.
 
 			</div>
 
 
 			<div id="existing">
-				<h3><u>Register Existing User to Patient</u></h3>
+				<h3><u>Register Existing User to Client</u></h3>
 			If the registrant has worked at this facility then you should search to see if they already exist as a
 			person in the EMR and create the patient record from that.
 			</div>
@@ -50,12 +50,12 @@
 			<tr>
 				<td style="width: 50%; text-align: left; vertical-align: middle">
 					<button type="button" onclick="ke_useNewPerson()">
-						<img src="${ ui.resourceLink("kenyaui", "images/buttons/account_add.png") }" /> Register new Patient
+						<img src="${ ui.resourceLink("kenyaui", "images/buttons/account_add.png") }" /> Register new Client
 					</button>
 				</td>
 				<td style="width: 50%; text-align: right; vertical-align: middle">
 					<button type="button" onclick="ke_useExistingPerson()">
-						<img src="${ ui.resourceLink("kenyaui", "images/buttons/account_add.png") }" /> Register Existing User to Patient
+						<img src="${ ui.resourceLink("kenyaui", "images/buttons/account_add.png") }" /> Register Existing User to Client
 					</button>
 				</td>
 
