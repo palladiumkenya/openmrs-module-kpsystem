@@ -10,7 +10,7 @@
 					icon: "buttons/patient_overview.png"
 			],
 			[
-					label: "MOH 257",
+					label: "Record Previous Visit",
 					href: ui.pageLink("kenyaemr", "chart/chartViewPatient", [ patientId: currentPatient.id, section: "moh257" ]),
 					active: (selection == "section-moh257"),
 					iconProvider: "kenyaui",

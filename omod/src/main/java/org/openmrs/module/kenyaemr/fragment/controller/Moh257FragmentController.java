@@ -74,121 +74,17 @@ public class Moh257FragmentController {
 			}
 		}
 
-		/*Form moh257VisitForm = MetadataUtils.existing(Form.class, KpMetadata._Form.MOH_257_VISIT_SUMMARY);
+/*		Form moh257VisitForm = MetadataUtils.existing(Form.class, KpMetadata._Form.MOH_257_VISIT_SUMMARY);
 		List<Encounter> moh257VisitSummaryEncounters = patientWrapper.allEncounters(moh257VisitForm);
-		Collections.reverse(moh257VisitSummaryEncounters);
+		Collections.reverse(moh257VisitSummaryEncounters);*/
 
 		model.addAttribute("page1AvailableForms", page1AvailableForms);
 		model.addAttribute("page1Encounters", page1Encounters);
-		model.addAttribute("page2Form", moh257VisitForm);
-		model.addAttribute("page2Encounters", moh257VisitSummaryEncounters);*/
+		model.addAttribute("page2Form", null);
+		model.addAttribute("page2Encounters", null);
+		model.addAttribute("inHivProgram", false);
 
-		/*Concept masterSet = regimenManager.getMasterSetConcept("ARV");
-		RegimenChangeHistory arvHistory = RegimenChangeHistory.forPatient(patient, masterSet);
-		model.addAttribute("arvHistory", arvHistory);
-*/
-		List<SimpleObject> arvHistory = getRegimenHistoryFromObservations(patient, "ARV");
-		model.put("arvHistory", arvHistory);
-		/*Program hivProgram = MetadataUtils.existing(Program.class, KpMetadata._Program.HIV);
-		model.addAttribute("inHivProgram", Context.getProgramWorkflowService().getPatientPrograms(patient, hivProgram, null, null, null, null, true));
-*/	}
-	public List<SimpleObject> getRegimenHistoryFromObservations (Patient patient, String category) {
 
-		FormService formService = Context.getFormService();
-		EncounterService encounterService = Context.getEncounterService();
-		String ARV_TREATMENT_PLAN_EVENT_CONCEPT = "1255AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-		String TB_TREATMENT_PLAN_CONCEPT = "1268AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-		List<SimpleObject> history = new ArrayList<SimpleObject>();
-		String categoryConceptUuid = category.equals("ARV")? ARV_TREATMENT_PLAN_EVENT_CONCEPT : TB_TREATMENT_PLAN_CONCEPT;
-
-		EncounterType et = encounterService.getEncounterTypeByUuid(CommonMetadata._EncounterType.DRUG_REGIMEN_EDITOR);
-		Form form = formService.getFormByUuid(CommonMetadata._Form.DRUG_REGIMEN_EDITOR);
-
-		List<Encounter> regimenChangeHistory = EmrUtils.AllEncounters(patient, et, form);
-		if (regimenChangeHistory != null && regimenChangeHistory.size() > 0) {
-			for (Encounter e : regimenChangeHistory) {
-				Set<Obs> obs = e.getObs();
-				if (programEncounterMatching(obs, categoryConceptUuid)) {
-					SimpleObject object = buildRegimenChangeObject(obs, e);
-					if (object != null)
-						history.add(object);
-				}
-			}
-			return history;
-		}
-		return null;
 	}
 
-	public SimpleObject getLastRegimenFromObservations (Patient patient, String category) {
-
-		FormService formService = Context.getFormService();
-		EncounterService encounterService = Context.getEncounterService();
-		String ARV_TREATMENT_PLAN_EVENT_CONCEPT = "1255AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-		String TB_TREATMENT_PLAN_CONCEPT = "1268AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-		List<SimpleObject> history = new ArrayList<SimpleObject>();
-		String categoryConceptUuid = category.equals("ARV")? ARV_TREATMENT_PLAN_EVENT_CONCEPT : TB_TREATMENT_PLAN_CONCEPT;
-
-		EncounterType et = encounterService.getEncounterTypeByUuid(CommonMetadata._EncounterType.DRUG_REGIMEN_EDITOR);
-		Form form = formService.getFormByUuid(CommonMetadata._Form.DRUG_REGIMEN_EDITOR);
-
-		Encounter e = EmrUtils.lastEncounter(patient, et, form);
-		if (e != null) {
-			Set<Obs> obs = e.getObs();
-			if (programEncounterMatching(obs, categoryConceptUuid)) {
-				SimpleObject object = buildRegimenChangeObject(obs, e);
-				if (object != null)
-					return object;
-			}
-		}
-		return null;
-	}
-
-
-	private boolean programEncounterMatching(Set<Obs> obs, String conceptUuidToMatch) {
-		for (Obs o : obs) {
-			if (o.getConcept().getUuid().equals(conceptUuidToMatch)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private SimpleObject buildRegimenChangeObject(Set<Obs> obsList, Encounter e) {
-
-		String CURRENT_DRUGS = "1193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-		String START_DRUGS = "1256AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-		String STOP_DRUGS = "1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-		String CHANGE_REGIMEN = "1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-
-
-		String regimen = null;
-		String regimenShort = null;
-		String regimenUuid = null;
-		String endDate = null;
-		String startDate = e != null? DATE_FORMAT.format(e.getEncounterDatetime()) : "";
-		String changeReason = null;
-
-
-		for(Obs obs:obsList) {
-
-			if (obs.getConcept().getUuid().equals(CURRENT_DRUGS) ) {
-				regimen = obs.getValueCoded() != null ? obs.getValueCoded().getFullySpecifiedName(CoreConstants.LOCALE).getName() : "";
-				regimenShort = obs.getValueCoded() != null && obs.getValueCoded().getShortNameInLocale(CoreConstants.LOCALE) != null ? obs.getValueCoded().getShortNameInLocale(CoreConstants.LOCALE).getName() : null;
-				regimenUuid = obs.getValueCoded() != null ? obs.getValueCoded().getUuid() : "";
-			}
-		}
-		if(regimen != null) {
-			return SimpleObject.create(
-					"startDate", startDate,
-					"endDate", "",
-					"regimenShortDisplay", regimenShort != null ? regimenShort : regimen,
-					"regimenLongDisplay", regimen,
-					"changeReasons", "",
-					"regimenUuid", regimenUuid,
-					"current",false
-
-			);
-		}
-		return null;
-	}
 }

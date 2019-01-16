@@ -43,29 +43,9 @@
 		<%}%>
 		<% if (!(inHivProgram)) { %>
 			<div class="ke-warning" align="center">
-				You need to enroll the patient into HIV program before completing visit summary and regimen
+				You need to enroll the patient into KP program before completing visit summary
 			</div>
 		<%}%>
 	</div>
 </div>
 
-<div class="ke-panel-frame">
-	<div class="ke-panel-heading">ARV Regimen History</div>
-	<div class="ke-panel-content" style="background-color: #F3F9FF">
-		${ ui.includeFragment("kenyaemr", "regimenHistory", [ history: arvHistory ]) }
-		<br />
-		<% if (inHivProgram) { %>
-			<div align="center">
-				${ ui.includeFragment("kenyaui", "widget/button", [
-						label: "Edit History",
-						extra: "Go to editor",
-						iconProvider: "kenyaui",
-						icon: "buttons/regimen.png",
-						classes: [ "padded" ],
-						href: ui.pageLink("kenyaemr", "regimenEditor", [ appId: currentApp.id, patientId: currentPatient, category: "ARV", returnUrl: ui.thisUrl() ])
-				]) }
-			</div>
-		<%}%>
-	</div>
-
-</div>
