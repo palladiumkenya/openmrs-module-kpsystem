@@ -8,7 +8,7 @@
 	]
 %>
 <div class="ke-page-sidebar">
-	${ ui.includeFragment("kenyaui", "widget/panelMenu", [ heading: "Create Patient", items: menuItems ]) }
+	${ ui.includeFragment("kenyaui", "widget/panelMenu", [ heading: "Create Client", items: menuItems ]) }
 
 	<% if (!person) { %>
 	<div class="ke-panel-frame" id="ng-similarpatients" ng-controller="SimilarPatients" ng-init="init('${ currentApp.id }', 'kenyaemr', 'registration/registrationViewPatient')">
@@ -26,7 +26,7 @@
 				});
 			});
 		</script>
-		<div class="ke-panel-heading">Similar Patients</div>
+		<div class="ke-panel-heading">Similar Clients</div>
 		<div class="ke-panel-content">
 			<div class="ke-stack-item ke-navigable" ng-repeat="patient in results" ng-click="onResultClick(patient)">
 				${ ui.includeFragment("kenyaemr", "patient/result.mini") }
@@ -38,5 +38,5 @@
 </div>
 
 <div class="ke-page-content">
-	${ ui.includeFragment("kenyaemr", "patient/editPatient", [ person: person, heading: "Step 2: Register Patient" ]) }
+	${ ui.includeFragment("kenyaemr", "patient/editPatient", [ person: person, heading: "Step 2: Register Client" ]) }
 </div>

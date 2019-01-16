@@ -31,7 +31,7 @@
     });
 </script>
 <div class="ke-page-sidebar">
-    ${ ui.decorate("kenyaui", "panel", [ heading: "Select Day to View Seen Patients" ], """<div id="calendar"></div>""") }
+    ${ ui.decorate("kenyaui", "panel", [ heading: "Select Day to View Seen Clients" ], """<div id="calendar"></div>""") }
 </div>
 <div class="ke-page-content">
     ${ ui.includeFragment("kenyaemr", "patient/dailySeen", [ pageProvider: "kenyaemr", page: "clinician/clinicianHome", date: seenDate ]) }
