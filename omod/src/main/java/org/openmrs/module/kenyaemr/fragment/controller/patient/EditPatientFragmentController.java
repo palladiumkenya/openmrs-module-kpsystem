@@ -16,12 +16,16 @@ import org.openmrs.Obs;
 import org.openmrs.Patient;
 import org.openmrs.PatientIdentifier;
 import org.openmrs.PatientIdentifierType;
+import org.openmrs.PatientProgram;
 import org.openmrs.Person;
 import org.openmrs.PersonAddress;
 import org.openmrs.PersonName;
+import org.openmrs.Program;
+import org.openmrs.api.ProgramWorkflowService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.kenyaemr.Dictionary;
+import org.openmrs.module.kenyaemr.Metadata;
 import org.openmrs.module.kenyaemr.api.KenyaEmrService;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
 import org.openmrs.module.kenyaemr.metadata.KpMetadata;
@@ -75,9 +79,9 @@ public class EditPatientFragmentController {
 
 		model.addAttribute("command", newEditPatientForm(existing));
 
-		/*model.addAttribute("civilStatusConcept", Dictionary.getConcept(Dictionary.CIVIL_STATUS));
+		model.addAttribute("civilStatusConcept", Dictionary.getConcept(Dictionary.CIVIL_STATUS));
 		model.addAttribute("occupationConcept", Dictionary.getConcept(Dictionary.OCCUPATION));
-		model.addAttribute("educationConcept", Dictionary.getConcept(Dictionary.EDUCATION));*/
+		model.addAttribute("educationConcept", Dictionary.getConcept(Dictionary.EDUCATION));
 
 		// create list of counties
 
@@ -97,8 +101,8 @@ public class EditPatientFragmentController {
 
 		List<String> nextOfKinRelationshipOptions = Arrays.asList(
 			new String("Partner"),
-			new String("Spouse")
-			/*Dictionary.getConcept(Dictionary.FATHER).getName().getName(),
+			new String("Spouse"),
+			Dictionary.getConcept(Dictionary.FATHER).getName().getName(),
 			Dictionary.getConcept(Dictionary.MOTHER).getName().getName(),
 			Dictionary.getConcept(Dictionary.GRANDMOTHER).getName().getName(),
 			Dictionary.getConcept(Dictionary.GRANDFATHER).getName().getName(),
@@ -108,50 +112,50 @@ public class EditPatientFragmentController {
 			Dictionary.getConcept(Dictionary.UNCLE).getName().getName(),
 			Dictionary.getConcept(Dictionary.GUARDIAN).getName().getName(),
 			Dictionary.getConcept(Dictionary.FRIEND).getName().getName(),
-			Dictionary.getConcept(Dictionary.CO_WORKER).getName().getName()*/
+			Dictionary.getConcept(Dictionary.CO_WORKER).getName().getName()
 		);
 
 		model.addAttribute("nextOfKinRelationshipOptions", nextOfKinRelationshipOptions);
 
 		// Create list of education answer concepts
 		List<Concept> educationOptions = new ArrayList<Concept>();
-		/*educationOptions.add(Dictionary.getConcept(Dictionary.NONE));
+		educationOptions.add(Dictionary.getConcept(Dictionary.NONE));
 		educationOptions.add(Dictionary.getConcept(Dictionary.PRIMARY_EDUCATION));
 		educationOptions.add(Dictionary.getConcept(Dictionary.SECONDARY_EDUCATION));
-		educationOptions.add(Dictionary.getConcept(Dictionary.COLLEGE_UNIVERSITY_POLYTECHNIC));*/
+		educationOptions.add(Dictionary.getConcept(Dictionary.COLLEGE_UNIVERSITY_POLYTECHNIC));
 		model.addAttribute("educationOptions", educationOptions);
 
 		/*Create list of occupation answer concepts  */
 		List<Concept> occupationOptions = new ArrayList<Concept>();
-		/*occupationOptions.add(Dictionary.getConcept(Dictionary.FARMER));
+		occupationOptions.add(Dictionary.getConcept(Dictionary.FARMER));
 		occupationOptions.add(Dictionary.getConcept(Dictionary.TRADER));
 		occupationOptions.add(Dictionary.getConcept(Dictionary.EMPLOYEE));
 		occupationOptions.add(Dictionary.getConcept(Dictionary.STUDENT));
 		occupationOptions.add(Dictionary.getConcept(Dictionary.DRIVER));
 		occupationOptions.add(Dictionary.getConcept(Dictionary.NONE));
-		occupationOptions.add(Dictionary.getConcept(Dictionary.OTHER_NON_CODED));*/
+		occupationOptions.add(Dictionary.getConcept(Dictionary.OTHER_NON_CODED));
 		model.addAttribute("occupationOptions", occupationOptions);
 
 
 		// Create a list of marital status answer concepts
 		List<Concept> maritalStatusOptions = new ArrayList<Concept>();
-		/*maritalStatusOptions.add(Dictionary.getConcept(Dictionary.MARRIED_POLYGAMOUS));
+		maritalStatusOptions.add(Dictionary.getConcept(Dictionary.MARRIED_POLYGAMOUS));
 		maritalStatusOptions.add(Dictionary.getConcept(Dictionary.MARRIED_MONOGAMOUS));
 		maritalStatusOptions.add(Dictionary.getConcept(Dictionary.DIVORCED));
 		maritalStatusOptions.add(Dictionary.getConcept(Dictionary.WIDOWED));
 		maritalStatusOptions.add(Dictionary.getConcept(Dictionary.LIVING_WITH_PARTNER));
-		maritalStatusOptions.add(Dictionary.getConcept(Dictionary.NEVER_MARRIED));*/
+		maritalStatusOptions.add(Dictionary.getConcept(Dictionary.NEVER_MARRIED));
 		model.addAttribute("maritalStatusOptions", maritalStatusOptions);
 
 		// Create a list of cause of death answer concepts
 		List<Concept> causeOfDeathOptions = new ArrayList<Concept>();
-		//causeOfDeathOptions.add(Dictionary.getConcept(Dictionary.UNKNOWN));
+		causeOfDeathOptions.add(Dictionary.getConcept(Dictionary.UNKNOWN));
 		model.addAttribute("causeOfDeathOptions", causeOfDeathOptions);
 
 		// Create a list of yes_no options
 		List<Concept> yesNoOptions = new ArrayList<Concept>();
-		/*yesNoOptions.add(Dictionary.getConcept(Dictionary.YES));
-		yesNoOptions.add(Dictionary.getConcept(Dictionary.NO));*/
+		yesNoOptions.add(Dictionary.getConcept(Dictionary.YES));
+		yesNoOptions.add(Dictionary.getConcept(Dictionary.NO));
 		model.addAttribute("yesNoOptions", yesNoOptions);
 	}
 
@@ -290,7 +294,7 @@ public class EditPatientFragmentController {
 			guardianFirstName = wrapper.getGuardianFirstName();
 			guardianLastName = wrapper.getGuardianLastName();
 
-			/*savedMaritalStatus = getLatestObs(patient, Dictionary.CIVIL_STATUS);
+			savedMaritalStatus = getLatestObs(patient, Dictionary.CIVIL_STATUS);
 			if (savedMaritalStatus != null) {
 				maritalStatus = savedMaritalStatus.getValueCoded();
 			}
@@ -311,7 +315,7 @@ public class EditPatientFragmentController {
 			savedOrphan = getLatestObs(patient, Dictionary.ORPHAN);
 			if (savedOrphan != null) {
 				orphan = savedOrphan.getValueCoded();
-			}*/
+			}
 
 		}
 
@@ -487,13 +491,12 @@ public class EditPatientFragmentController {
 			List<Obs> obsToSave = new ArrayList<Obs>();
 			List<Obs> obsToVoid = new ArrayList<Obs>();
 
-			/*handleOncePerPatientObs(ret, obsToSave, obsToVoid, Dictionary.getConcept(Dictionary.CIVIL_STATUS), savedMaritalStatus, maritalStatus);
+			handleOncePerPatientObs(ret, obsToSave, obsToVoid, Dictionary.getConcept(Dictionary.CIVIL_STATUS), savedMaritalStatus, maritalStatus);
 			handleOncePerPatientObs(ret, obsToSave, obsToVoid, Dictionary.getConcept(Dictionary.OCCUPATION), savedOccupation, occupation);
 			handleOncePerPatientObs(ret, obsToSave, obsToVoid, Dictionary.getConcept(Dictionary.EDUCATION), savedEducation, education);
 			handleOncePerPatientObs(ret, obsToSave, obsToVoid, Dictionary.getConcept(Dictionary.IN_SCHOOL), savedInSchool, inSchool);
 			handleOncePerPatientObs(ret, obsToSave, obsToVoid, Dictionary.getConcept(Dictionary.ORPHAN), savedOrphan, orphan);
 
-*/
 			for (Obs o : obsToVoid) {
 				Context.getObsService().voidObs(o, "KenyaEMR edit patient");
 			}
@@ -562,19 +565,19 @@ public class EditPatientFragmentController {
 				}
 			}
 		}
-		/*public boolean isInHivProgram() {
+		public boolean isInHivProgram() {
 			if (original == null || !original.isPatient()) {
 				return false;
 			}
 			ProgramWorkflowService pws = Context.getProgramWorkflowService();
-			Program hivProgram = MetadataUtils.existing(Program.class, KpMetadata._Program.HIV);
+			Program hivProgram = MetadataUtils.existing(Program.class, Metadata.Program.KP);
 			for (PatientProgram pp : pws.getPatientPrograms((Patient) original, hivProgram, null, null, null, null, false)) {
 				if (pp.getActive()) {
 					return true;
 				}
 			}
 			return false;
-		}*/
+		}
 
 		/**
 		 * @return the original

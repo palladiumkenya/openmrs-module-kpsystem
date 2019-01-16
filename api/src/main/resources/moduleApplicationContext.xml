@@ -18,6 +18,7 @@
 	<!-- ===================== Content ===================== -->
 
 	<import resource="content/kenyaemr.common.xml" />
+	<import resource="content/kenyaemr.kp.xml" />
 
 	<!-- ===================== App descriptors ===================== -->
 
