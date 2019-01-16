@@ -82,7 +82,7 @@
                     <td class="ke-field-label">Unique Patient Number</td>
                     <td>${
                             ui.includeFragment("kenyaui", "widget/field", [object: command, property: "uniquePatientNumber"])}</td>
-                    <td class="ke-field-instructions">(HIV program<% if (!command.uniquePatientNumber) { %>, if assigned<%
+                    <td class="ke-field-instructions">(KP program<% if (!command.uniquePatientNumber) { %>, if assigned<%
                             } %>)</td>
                 </tr>
                 <% } %>
