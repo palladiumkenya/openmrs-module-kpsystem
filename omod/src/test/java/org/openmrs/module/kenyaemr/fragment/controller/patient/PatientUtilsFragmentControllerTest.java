@@ -17,9 +17,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.kenyacore.calculation.CalculationManager;
 import org.openmrs.module.kenyacore.test.TestUtils;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
-import org.openmrs.module.kenyaemr.metadata.HivMetadata;
-import org.openmrs.module.kenyaemr.metadata.MchMetadata;
-import org.openmrs.module.kenyaemr.metadata.TbMetadata;
+import org.openmrs.module.kenyaemr.metadata.KpMetadata;
 import org.openmrs.module.kenyaemr.test.TestUiUtils;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
@@ -42,13 +40,7 @@ public class PatientUtilsFragmentControllerTest extends BaseModuleWebContextSens
 	private CommonMetadata commonMetadata;
 
 	@Autowired
-	private HivMetadata hivMetadata;
-
-	@Autowired
-	private TbMetadata tbMetadata;
-
-	@Autowired
-	private MchMetadata mchMetadata;
+	private KpMetadata kpMetadata;
 
 	@Autowired
 	private CalculationManager calculationManager;
@@ -66,9 +58,7 @@ public class PatientUtilsFragmentControllerTest extends BaseModuleWebContextSens
 		executeDataSet("dataset/test-concepts.xml");
 
 		commonMetadata.install();
-		hivMetadata.install();
-		tbMetadata.install();
-		mchMetadata.install();
+		kpMetadata.install();
 
 		controller = new PatientUtilsFragmentController();
 

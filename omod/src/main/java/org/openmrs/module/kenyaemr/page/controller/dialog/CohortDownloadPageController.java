@@ -16,16 +16,12 @@ import org.openmrs.PatientIdentifierType;
 import org.openmrs.api.context.Context;
 import org.openmrs.calculation.patient.PatientCalculationContext;
 import org.openmrs.calculation.patient.PatientCalculationService;
-import org.openmrs.calculation.result.CalculationResult;
-import org.openmrs.calculation.result.CalculationResultMap;
 import org.openmrs.module.kenyacore.CoreUtils;
 import org.openmrs.module.kenyacore.report.ReportDescriptor;
 import org.openmrs.module.kenyacore.report.ReportManager;
 import org.openmrs.module.kenyaemr.api.impl.CsvMaker;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.DateOfEnrollmentArtCalculation;
-import org.openmrs.module.kenyaemr.calculation.library.hiv.art.InitialArtStartDateCalculation;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
-import org.openmrs.module.kenyaemr.metadata.HivMetadata;
+import org.openmrs.module.kenyaemr.metadata.KpMetadata;
 import org.openmrs.module.kenyaui.KenyaUiUtils;
 import org.openmrs.module.kenyaui.annotation.SharedPage;
 import org.openmrs.module.metadatadeploy.MetadataUtils;
@@ -92,12 +88,12 @@ public class CohortDownloadPageController {
         Date endDate = (Date) reportRequest.getReportDefinition().getParameterMappings().get("endDate");
         calculationContext.setNow(endDate);
 
-        DateOfEnrollmentArtCalculation dateOfEnrollmentArtCalculation = new DateOfEnrollmentArtCalculation();
+        /*DateOfEnrollmentArtCalculation dateOfEnrollmentArtCalculation = new DateOfEnrollmentArtCalculation();
         CalculationResultMap enrollmentDates = dateOfEnrollmentArtCalculation.evaluate(cohort.getMemberIds(), null, calculationContext);
 
         InitialArtStartDateCalculation initialArtStartDateCalculation = new InitialArtStartDateCalculation();
         CalculationResultMap artInitializationDates = initialArtStartDateCalculation.evaluate(cohort.getMemberIds(), null, calculationContext);
-
+*/
 
         List<Object> data = new ArrayList<Object>();
         List<Object> headerRow = new ArrayList<Object>();
@@ -116,21 +112,21 @@ public class CohortDownloadPageController {
             row.add(patient.getGender());
             row.add(getUpn(patient));
 
-            String enrollmentDate = null;
+            /*String enrollmentDate = null;
             CalculationResult enrollmentDateCalcResult = enrollmentDates.get(patient.getId());
             if (enrollmentDateCalcResult != null && enrollmentDateCalcResult.getValue() != null) {
                 enrollmentDate = DATE_FORMAT.format((Date) enrollmentDateCalcResult.getValue());
             }
-            row.add(enrollmentDate);
+            row.add(enrollmentDate);*/
 
-            String artInitializationDate = null;
+            /*String artInitializationDate = null;
             CalculationResult artInitializationDateCalcResult = artInitializationDates.get(patient.getId());
             if (artInitializationDateCalcResult != null && artInitializationDateCalcResult.getValue() != null) {
                 artInitializationDate = DATE_FORMAT.format((Date) artInitializationDateCalcResult.getValue());
             }
             row.add(artInitializationDate);
 
-            data.add(row.toArray());
+            data.add(row.toArray());*/
         }
         String filename =  "Cohort.csv";
         FileDownload fileDownload = new FileDownload(filename, "text/csv", csvMaker.createCsv(data, header));
@@ -139,7 +135,7 @@ public class CohortDownloadPageController {
 
     private PatientIdentifier getUpn(Patient patient) {
         PatientIdentifierType clinicNoIdType = MetadataUtils.existing(PatientIdentifierType.class, CommonMetadata._PatientIdentifierType.PATIENT_CLINIC_NUMBER);
-        PatientIdentifierType upnIdType = MetadataUtils.existing(PatientIdentifierType.class, HivMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
+        PatientIdentifierType upnIdType = MetadataUtils.existing(PatientIdentifierType.class, KpMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
 
         for (PatientIdentifier patientIdentifier : patient.getIdentifiers()) {
             if (patientIdentifier.getIdentifierType().equals(upnIdType)) {

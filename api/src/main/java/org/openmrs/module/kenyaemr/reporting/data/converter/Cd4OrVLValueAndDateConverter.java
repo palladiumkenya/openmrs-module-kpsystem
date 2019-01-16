@@ -11,7 +11,6 @@ package org.openmrs.module.kenyaemr.reporting.data.converter;
 
 import org.openmrs.calculation.result.CalculationResult;
 import org.openmrs.module.kenyaemr.calculation.library.models.CD4VLValueAndDate;
-import org.openmrs.module.kenyaemr.calculation.library.models.Cd4ValueAndDate;
 import org.openmrs.module.reporting.data.converter.DataConverter;
 
 import java.text.DateFormat;

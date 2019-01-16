@@ -21,7 +21,6 @@ import org.openmrs.api.ConceptService;
 import org.openmrs.api.ObsService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.kenyaemr.Dictionary;
-import org.openmrs.module.kenyaemr.Metadata;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.annotation.FragmentParam;
 import org.openmrs.ui.framework.fragment.FragmentModel;
@@ -48,9 +47,9 @@ public class CurrentVisitSummaryFragmentController {
 	ConceptService conceptService = Context.getConceptService();
 	SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
-	// triage concepts
-	Concept WEIGHT = Dictionary.getConcept(Metadata.Concept.WEIGHT_KG);
-	Concept HEIGHT = Dictionary.getConcept(Metadata.Concept.HEIGHT_CM);
+	// triage concepts TODO: change weight and height concepts
+	Concept WEIGHT = Dictionary.getConcept("5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+	Concept HEIGHT = Dictionary.getConcept("5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	Concept TEMP = Dictionary.getConcept("5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	Concept PULSE_RATE = Dictionary.getConcept("5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	Concept BP_SYSTOLIC = Dictionary.getConcept("5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");

@@ -20,7 +20,7 @@ import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.kenyacore.CoreConstants;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
-import org.openmrs.module.kenyaemr.metadata.HivMetadata;
+import org.openmrs.module.kenyaemr.metadata.KpMetadata;
 import org.openmrs.module.kenyaemr.regimen.RegimenManager;
 import org.openmrs.module.kenyaemr.util.EmrUtils;
 import org.openmrs.module.kenyaemr.wrapper.PatientWrapper;
@@ -54,7 +54,7 @@ public class Moh257FragmentController {
 		String[] page1FormUuids = {
 				/*HivMetadata._Form.MOH_257_FACE_PAGE,
 				HivMetadata._Form.MOH_257_ARV_THERAPY,*/
-				HivMetadata._Form.FAMILY_HISTORY
+				//KpMetadata._Form.FAMILY_HISTORY
 		};
 
 		List<SimpleObject> page1AvailableForms = new ArrayList<SimpleObject>();
@@ -74,14 +74,14 @@ public class Moh257FragmentController {
 			}
 		}
 
-		Form moh257VisitForm = MetadataUtils.existing(Form.class, HivMetadata._Form.MOH_257_VISIT_SUMMARY);
+		/*Form moh257VisitForm = MetadataUtils.existing(Form.class, KpMetadata._Form.MOH_257_VISIT_SUMMARY);
 		List<Encounter> moh257VisitSummaryEncounters = patientWrapper.allEncounters(moh257VisitForm);
 		Collections.reverse(moh257VisitSummaryEncounters);
 
 		model.addAttribute("page1AvailableForms", page1AvailableForms);
 		model.addAttribute("page1Encounters", page1Encounters);
 		model.addAttribute("page2Form", moh257VisitForm);
-		model.addAttribute("page2Encounters", moh257VisitSummaryEncounters);
+		model.addAttribute("page2Encounters", moh257VisitSummaryEncounters);*/
 
 		/*Concept masterSet = regimenManager.getMasterSetConcept("ARV");
 		RegimenChangeHistory arvHistory = RegimenChangeHistory.forPatient(patient, masterSet);
@@ -89,9 +89,9 @@ public class Moh257FragmentController {
 */
 		List<SimpleObject> arvHistory = getRegimenHistoryFromObservations(patient, "ARV");
 		model.put("arvHistory", arvHistory);
-		Program hivProgram = MetadataUtils.existing(Program.class, HivMetadata._Program.HIV);
+		/*Program hivProgram = MetadataUtils.existing(Program.class, KpMetadata._Program.HIV);
 		model.addAttribute("inHivProgram", Context.getProgramWorkflowService().getPatientPrograms(patient, hivProgram, null, null, null, null, true));
-	}
+*/	}
 	public List<SimpleObject> getRegimenHistoryFromObservations (Patient patient, String category) {
 
 		FormService formService = Context.getFormService();

@@ -11,6 +11,7 @@ package org.openmrs.module.kenyaemr.calculation.library;
 
 import org.openmrs.Concept;
 import org.openmrs.api.PatientSetService.TimeModifier;
+import org.openmrs.api.context.Context;
 import org.openmrs.calculation.patient.PatientCalculationContext;
 import org.openmrs.calculation.result.CalculationResultMap;
 import org.openmrs.module.kenyacore.calculation.AbstractPatientCalculation;
@@ -43,7 +44,7 @@ public class ScheduledVisitOnDayCalculation extends AbstractPatientCalculation {
 
 		Date startOfDay = DateUtil.getStartOfDay(date);
 		Date endOfDay = DateUtil.getEndOfDay(date);
-		Concept returnVisitDate = Dictionary.getConcept(Dictionary.RETURN_VISIT_DATE);
+		Concept returnVisitDate = Context.getConceptService().getConcept(5096); //TODO: check this
 
 		DateObsCohortDefinition cd = new DateObsCohortDefinition();
 		cd.setTimeModifier(TimeModifier.ANY);

@@ -13,7 +13,6 @@ import org.openmrs.PatientIdentifierType.LocationBehavior;
 import org.openmrs.PersonAttributeType;
 import org.openmrs.module.idgen.validator.LuhnMod25IdentifierValidator;
 import org.openmrs.module.kenyaemr.EmrConstants;
-import org.openmrs.module.kenyaemr.Metadata;
 import org.openmrs.module.kenyaemr.datatype.FormDatatype;
 import org.openmrs.module.kenyaemr.datatype.LocationDatatype;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
@@ -44,13 +43,10 @@ public class CommonMetadata extends AbstractMetadataBundle {
 	}
 
 	public static final class _Form {
-		public static final String CLINICAL_ENCOUNTER = Metadata.Form.CLINICAL_ENCOUNTER;
-		public static final String LAB_RESULTS = Metadata.Form.LAB_RESULTS;
-		public static final String OBSTETRIC_HISTORY = Metadata.Form.OBSTETRIC_HISTORY;
-		public static final String OTHER_MEDICATIONS = Metadata.Form.OTHER_MEDICATIONS;
-		public static final String PROGRESS_NOTE = Metadata.Form.PROGRESS_NOTE;
-		public static final String SURGICAL_AND_MEDICAL_HISTORY = Metadata.Form.SURGICAL_AND_MEDICAL_HISTORY;
-		public static final String TRIAGE = Metadata.Form.TRIAGE;
+		public static final String CLINICAL_ENCOUNTER = "e958f902-64df-4819-afd4-7fb061f59308";
+		public static final String LAB_RESULTS = "7e603909-9ed5-4d0c-a688-26ecb05d8b6e";
+		public static final String PROGRESS_NOTE = "0038a296-62f8-4099-80e5-c9ea7590c157";
+		public static final String TRIAGE = "37f6bd8d-586a-4169-95fa-5781f987fe62";
 		public static final String HTS_INITIAL_TEST = "402dc5d7-46da-42d4-b2be-f43ea4ad87b0";
 		public static final String HTS_CONFIRMATORY_TEST = "b08471f6-0892-4bf7-ab2b-bf79797b8ea4";
 		public static final String REFERRAL_AND_LINKAGE = "050a7f12-5c52-4cad-8834-863695af335d";
@@ -64,12 +60,12 @@ public class CommonMetadata extends AbstractMetadataBundle {
 	}
 
 	public static final class _PatientIdentifierType {
-		public static final String NATIONAL_ID = Metadata.IdentifierType.NATIONAL_ID;
-		public static final String OLD_ID = Metadata.IdentifierType.OLD;
-		public static final String OPENMRS_ID = Metadata.IdentifierType.MEDICAL_RECORD_NUMBER;
-		public static final String PATIENT_CLINIC_NUMBER = Metadata.IdentifierType.PATIENT_CLINIC_NUMBER;
-		public static final String NATIONAL_UNIQUE_PATIENT_IDENTIFIER = Metadata.IdentifierType.NATIONAL_UNIQUE_PATIENT_IDENTIFIER;
-		public static final String CWC_NUMBER = Metadata.IdentifierType.CWC_NUMBER;
+		public static final String NATIONAL_ID = "49af6cdc-7968-4abb-bf46-de10d7f4859f";
+		public static final String OLD_ID = "8d79403a-c2cc-11de-8d13-0010c6dffd0f";
+		public static final String OPENMRS_ID = "dfacd928-0370-4315-99d7-6ec1c9f7ae76";
+		public static final String PATIENT_CLINIC_NUMBER = "b4d66522-11fc-45c7-83e3-39a1af21ae0d";
+		public static final String UNIQUE_PATIENT_NUMBER = "05ee9cf4-7242-4a17-b4d4-00f707265c8a";
+		public static final String NATIONAL_UNIQUE_PATIENT_IDENTIFIER = "f85081e2-b4be-4e48-b3a4-7994b69bb101";
 	}
 
 	public static final class _PersonAttributeType {
@@ -119,10 +115,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 
 		install(form("Clinical Encounter", null, _EncounterType.CONSULTATION, "1", _Form.CLINICAL_ENCOUNTER));
 		install(form("Lab Results", null, _EncounterType.LAB_RESULTS, "1", _Form.LAB_RESULTS));
-		install(form("Obstetric History", null, _EncounterType.REGISTRATION, "1", _Form.OBSTETRIC_HISTORY));
-		install(form("Medications", "Recording of non-regimen medications", _EncounterType.CONSULTATION, "1", _Form.OTHER_MEDICATIONS));
 		install(form("Progress Note", "For additional information - mostly complaints and examination findings.", _EncounterType.CONSULTATION, "1", _Form.PROGRESS_NOTE));
-		install(form("Surgical and Medical History", null, _EncounterType.REGISTRATION, "1", _Form.SURGICAL_AND_MEDICAL_HISTORY));
 		install(form("Triage", null, _EncounterType.TRIAGE, "1", _Form.TRIAGE));
 		install(form("HTS Initial Form", "Form for HTS testing services ", _EncounterType.HTS, "1", _Form.HTS_INITIAL_TEST));
 		install(form("HTS Retest Form", "Form for HTS retest Services", _EncounterType.HTS, "1", _Form.HTS_CONFIRMATORY_TEST));
@@ -155,9 +148,6 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(patientIdentifierType("National Unique patient identifier", "National Unique patient identifier",
 				".{1,14}", "At most 14 characters long", null,
 				LocationBehavior.NOT_USED, false, _PatientIdentifierType.NATIONAL_UNIQUE_PATIENT_IDENTIFIER));
-		install(patientIdentifierType("CWC Number", "Assigned to a child patient when enrolling into the Child Welfare Clinic (CWC)",
-				".{1,14}", "Should take the format (CWC-MFL code-serial number) e.g CWC-15007-00001", null,
-				LocationBehavior.REQUIRED, false, _PatientIdentifierType.CWC_NUMBER));
 		
 		install(personAttributeType("Telephone contact", "Telephone contact number",
 				String.class, null, false, 1.0, _PersonAttributeType.TELEPHONE_CONTACT));
