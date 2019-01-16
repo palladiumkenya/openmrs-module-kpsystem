@@ -85,20 +85,6 @@
 			</li>
 
 			<li class="float-left" style="margin-top: 7px">
-				<a href="${ ui.pageLink("kenyaemrpsmart", "kenyaemrpsmarthome", [patientId: currentPatient.patientId]) }" class="float-left">
-					<i class="fa fa-plus-square fa-2x"></i>
-					P-Smart Data
-				</a>
-			</li>
-
-			<li class="float-left" style="margin-top: 7px">
-				<a href="${ ui.pageLink("hivtestingservices", "patientContactList", [patientId: currentPatient.patientId]) }" class="float-left">
-					<i class="fa fa-list-ul fa-2x"></i>
-					Contact Listing
-				</a>
-			</li>
-
-			<li class="float-left" style="margin-top: 7px">
 				<a href="${ ui.pageLink("kenyaemrorderentry", "drugOrders", [patient: currentPatient]) }" class="float-left">
 					<i class="fa fa-medkit fa-2x"></i>
 					Drug Orders
