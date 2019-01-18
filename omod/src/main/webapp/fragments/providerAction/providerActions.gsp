@@ -85,6 +85,20 @@
 			</li>
 
 			<li class="float-left" style="margin-top: 7px">
+				<a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/triage.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
+					<i class="fa fa-plus-square fa-2x"></i>
+					Triage
+				</a>
+			</li>
+
+			<li class="float-left" style="margin-top: 7px">
+				<a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithStandardUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/simpleVisitNote.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
+					<i class="fa fa-plus-square fa-2x"></i>
+					Visit Note
+				</a>
+			</li>
+
+			<li class="float-left" style="margin-top: 7px">
 				<a href="${ ui.pageLink("kenyaemrorderentry", "drugOrders", [patient: currentPatient]) }" class="float-left">
 					<i class="fa fa-medkit fa-2x"></i>
 					Drug Orders

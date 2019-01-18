@@ -198,6 +198,22 @@
                 </includeIf>
             </table>
         </fieldset>
+        <fieldset>
+            <legend>Diagnoses</legend>
+            <div id="data-collection">
+
+                <encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>
+
+                <p>
+                    <label><uimessage code="coreapps.consult.freeTextComments"/></label>
+                    <obs conceptId="CIEL:162169" style="textarea" rows="5"/>
+                </p>
+
+            </div>
+
+            <div id="encounter-diagnoses-target">
+            </div>
+        </fieldset>
     </div>
 
     <div class="ke-form-footer">
