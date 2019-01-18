@@ -21,7 +21,7 @@
 
 	config.pageTitle = "KeyPopSystem"
 	config.faviconIco = ui.resourceLink("kenyaemr", "images/logos/favicon.ico")
-	config.faviconPng = ui.resourceLink("kenyaemr", "images/help/job_aids_icon.png")
+	config.faviconPng = ui.resourceLink("kenyaemr", "images/keypop.png")
 	config.angularApp = "kenyaemr"
 	
 	ui.decorateWith("kenyaui", "standardPage", config)
