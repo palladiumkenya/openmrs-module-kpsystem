@@ -1826,7 +1826,7 @@ form#retrospectiveCheckin div#error-message {
   font-size: 0.8em;
 }
 .simple-form-ui section, .simple-form-ui #confirmation, .simple-form-ui form section, .simple-form-ui form #confirmation {
-  width: 730px;
+  width: 1030px;
   display: none;
   border-left: 3px solid #eeeeee;
   text-align: left;
@@ -1868,6 +1868,13 @@ form#retrospectiveCheckin div#error-message {
 .simple-form-ui section fieldset select.error, .simple-form-ui section fieldset input.error, .simple-form-ui section #confirmationQuestion select.error, .simple-form-ui section #confirmationQuestion input.error, .simple-form-ui #confirmation fieldset select.error, .simple-form-ui #confirmation fieldset input.error, .simple-form-ui #confirmation #confirmationQuestion select.error, .simple-form-ui #confirmation #confirmationQuestion input.error, .simple-form-ui form section fieldset select.error, .simple-form-ui form section fieldset input.error, .simple-form-ui form section #confirmationQuestion select.error, .simple-form-ui form section #confirmationQuestion input.error, .simple-form-ui form #confirmation fieldset select.error, .simple-form-ui form #confirmation fieldset input.error, .simple-form-ui form #confirmation #confirmationQuestion select.error, .simple-form-ui form #confirmation #confirmationQuestion input.error {
   border-color: #ff6666;
 }
+.ke-toolbar-item a {
+
+  font-weight: bold;
+  color: white !important ;
+  text-decoration: none;
+
+}
 
 #confirmation #dataCanvas {
   margin-bottom: 20px;
@@ -1880,6 +1887,7 @@ ul#formBreadcrumb {
   float: left;
   vertical-align: top;
   width: 220px;
+  padding-left: 50px;
 }
 ul#formBreadcrumb li {
   border: 1px solid #eeeeee;
