@@ -66,6 +66,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String PATIENT_CLINIC_NUMBER = "b4d66522-11fc-45c7-83e3-39a1af21ae0d";
 		public static final String UNIQUE_PATIENT_NUMBER = "05ee9cf4-7242-4a17-b4d4-00f707265c8a";
 		public static final String NATIONAL_UNIQUE_PATIENT_IDENTIFIER = "f85081e2-b4be-4e48-b3a4-7994b69bb101";
+		public static final String PASSPORT_NUMBER = "aec1b20e-1d8a-11e9-ab14-d663bd873d93";
 	}
 
 	public static final class _PersonAttributeType {
@@ -80,6 +81,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String NEAREST_HEALTH_CENTER = "27573398-4651-4ce5-89d8-abec5998165c";
 		public static final String GUARDIAN_FIRST_NAME = "8caf6d06-9070-49a5-b715-98b45e5d427b";
 		public static final String GUARDIAN_LAST_NAME = "0803abbd-2be4-4091-80b3-80c6940303df";
+		public static final String CLIENT_ALIAS = "aec1b592-1d8a-11e9-ab14-d663bd873d93";
 	}
 
 	public static final class _Provider {
@@ -148,7 +150,10 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(patientIdentifierType("National Unique patient identifier", "National Unique patient identifier",
 				".{1,14}", "At most 14 characters long", null,
 				LocationBehavior.NOT_USED, false, _PatientIdentifierType.NATIONAL_UNIQUE_PATIENT_IDENTIFIER));
-		
+
+		install(patientIdentifierType("Passport Number", "Patient/Client passport number",
+				null, null, null,
+				LocationBehavior.NOT_USED, false, _PatientIdentifierType.PASSPORT_NUMBER));
 		install(personAttributeType("Telephone contact", "Telephone contact number",
 				String.class, null, false, 1.0, _PersonAttributeType.TELEPHONE_CONTACT));
 		install(personAttributeType("Email address", "Email address of person",
@@ -174,6 +179,9 @@ public class CommonMetadata extends AbstractMetadataBundle {
 				String.class, null, false, 4.3, _PersonAttributeType.GUARDIAN_FIRST_NAME));
 		install(personAttributeType("Guardian Last Name", "Guardian's last name",
 				String.class, null, false, 4.3, _PersonAttributeType.GUARDIAN_LAST_NAME));
+
+		install(personAttributeType("Client Alias", "A client's local name",
+				String.class, null, true, 4.3, _PersonAttributeType.CLIENT_ALIAS));
 
 
 		install(relationshipType("Guardian", "Dependant", "One that guards, watches over, or protects", _RelationshipType.GUARDIAN_DEPENDANT));

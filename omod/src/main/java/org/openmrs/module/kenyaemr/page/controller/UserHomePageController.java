@@ -38,6 +38,7 @@ public class UserHomePageController {
 		}
 
 		// Get apps for the current user
+		//TODO: process app configurations defined for reference app. they result in errors on userHome page
 		List<AppDescriptor> apps = Context.getService(AppFrameworkService.class).getAppsForCurrentUser();
 
 		// Sort by order property

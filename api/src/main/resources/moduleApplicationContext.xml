@@ -25,7 +25,7 @@
 	<bean id="kenyaemr.app.registration" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.registration" />
 		<constructor-arg value="Registration" />
-		<constructor-arg value="kenyaemr/registration/registrationHome.page" />
+		<constructor-arg value="registrationapp/registerPatient.page?appId=referenceapplication.registrationapp.registerPatient" />
 		<constructor-arg value="kenyaui:apps/registration.png" />
 		<constructor-arg value="100" />
 	</bean>

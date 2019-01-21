@@ -78,6 +78,7 @@
 			</li>
 
 			<li class="float-left" style="margin-top: 7px">
+
 			<a href="${ ui.pageLink("kenyaemr", "registration/registrationSearch") }" class="float-left">
 				<i class="fa fa-plus-square fa-2x"></i>
 					Register Client
