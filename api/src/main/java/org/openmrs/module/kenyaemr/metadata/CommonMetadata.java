@@ -40,6 +40,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String TRIAGE = "d1059fb9-a079-4feb-a749-eedd709ae542";
 		public static final String HTS = "9c0a7a57-62ff-4f75-babe-5835b0e921b7";
 		public static final String DRUG_REGIMEN_EDITOR = "7dffc392-13e7-11e9-ab14-d663bd873d93";
+		public static final String SOCIAL_STATUS = "f02eea5e-1f42-11e9-ab14-d663bd873d93";
 	}
 
 	public static final class _Form {
@@ -53,6 +54,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String CONTACT_LISTING = "d4493a7c-49fc-11e8-842f-0ed5f89f718b";
 		public static final String BASIC_REGISTRATION = "add7abdc-59d1-11e8-9c2d-fa7ae01bbebc";
 		public static final String DRUG_REGIMEN_EDITOR = "da687480-e197-11e8-9f32-f2801f1b9fd1";
+		public static final String SOCIAL_STATUS = "f02ee7e8-1f42-11e9-ab14-d663bd873d93";
 	}
 
 	public static final class _OrderType {
@@ -114,6 +116,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(encounterType("Triage", "Collection of limited data prior to a more thorough examination", _EncounterType.TRIAGE));
 		install(encounterType("HTS", "HTS Services", _EncounterType.HTS));
 		install(encounterType("Drug Regimen Editor", "Handles patient regimen events", _EncounterType.DRUG_REGIMEN_EDITOR));
+		install(encounterType("Social Status", "Collection of social status data", _EncounterType.SOCIAL_STATUS));
 
 		install(form("Clinical Encounter", null, _EncounterType.CONSULTATION, "1", _Form.CLINICAL_ENCOUNTER));
 		install(form("Lab Results", null, _EncounterType.LAB_RESULTS, "1", _Form.LAB_RESULTS));
@@ -125,6 +128,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(form("Contact Listing Form", "Lists all contacts for a patient", _EncounterType.HTS, "1", _Form.CONTACT_LISTING));
 		install(form("Registration Form", "Initial data collection for a patient/client, not specific to any program", _EncounterType.REGISTRATION, "1", _Form.BASIC_REGISTRATION));
 		install(form("Drug Regimen Editor", null, _EncounterType.DRUG_REGIMEN_EDITOR, "1", _Form.DRUG_REGIMEN_EDITOR));
+		install(form("Social Status", null, _EncounterType.SOCIAL_STATUS, "1", _Form.SOCIAL_STATUS));
 
 
 		install(globalProperty(EmrConstants.GP_DEFAULT_LOCATION, "The facility for which this installation is configured",
