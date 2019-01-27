@@ -1,0 +1,233 @@
+<!--
+  ~ The contents of this file are subject to the OpenMRS Public License
+  ~ Version 1.0 (the "License"); you may not use this file except in
+  ~ compliance with the License. You may obtain a copy of the License at
+  ~ http://license.openmrs.org
+  ~
+  ~ Software distributed under the License is distributed on an "AS IS"
+  ~ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+  ~ License for the specific language governing rights and limitations
+  ~ under the License.
+  ~
+  ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+-->
+<htmlform>
+
+    <script type="text/javascript">
+
+
+    </script>
+
+
+    <div class="ke-form-header">
+        <table style="width: 100%">
+            <tr>
+                <td align="left">Enrolment Date:
+                    <encounterDate id="encounter-date" showTime="true"/>
+                </td>
+                <td align="right">Location:
+                    <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="ke-form-content">
+
+        <fieldset>
+            <legend>Client Enrolment Social Status</legend>
+
+            <table>
+                <tr>
+                    <td>Have you been contacted by a peer educator or an outreach worker for any prevention services?</td>
+                    <td>
+                        <obs id="peer-educator" conceptId="164951"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Peer Educator/Outreach Worker name</td>
+                    <td>
+                        <obs id="peer" conceptId="5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Do you have a regular(Non-Paying) sexual partner?</td>
+                    <td>
+                        <obs id="regular-sex-partner" conceptId="164951"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>If yes, partners name</td>
+                    <td>
+                        <obs id="pName" conceptId="5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                    </td>
+                    <td>Alias Name</td>
+                    <td>
+                        <obs id="pAlias" conceptId="5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                    </td>
+                    <td>Contact Number</td>
+                    <td>
+                        <obs id="pNumber" conceptId="5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Could we contact your regular sexual partner(s) for prevention services?</td>
+                    <td>
+                        <obs id="contact-regular-sex-partner" conceptId="164951"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Historical Status</legend>
+
+            <table>
+                <tr>
+                    <td>Which year did you start sex work?</td>
+                    <td>
+                        <obs id="startSex" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Which year did you start having sex with men?</td>
+                    <td>
+                        <obs id="sexWithMen" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Which Year Did You Start Using Drugs (Injecting Or Smoking?</td>
+                    <td>
+                        <obs id="usingDrugs" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ever experienced sexual violence?</td>
+                    <td>
+                        <obs id="exprienced-sex-violence" conceptId="164951"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+                    <td>If yes, describe the ordeal</td>
+                    <td>
+                        <obs id="sOrdeal" conceptId="160430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="2" cols="80"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ever experienced physical violence?</td>
+                    <td>
+                        <obs id="exprienced-physical-violence" conceptId="164951"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+                    <td>If yes, describe the ordeal</td>
+                    <td>
+                        <obs id="hOrdeal" conceptId="160430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="2" cols="80" />
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Client Support</legend>
+
+            <table>
+                <tr>
+                    <td>Would you like to be contacted incase you are due for a clinical appointment?</td>
+                    <td>
+                        <obs id="contacted-incase-of-appointment" conceptId="164951"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>If yes, How would you like to be contacted</td>
+                    <td>
+                        <obs id="cContacted" conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ever experienced physical violence?</td>
+                    <td>
+                        <obs id="exprienced-cphysical-violence" conceptId="164951"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+                    <td>If yes, describe the ordeal</td>
+                    <td>
+                        <obs id="cOrdeal" conceptId="160430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="2" cols="80"/>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+        <legend>Treatment Buddy Contact Information</legend>
+
+        <table>
+            <tr>
+                <td>First Name</td>
+                <td>
+                    <obs id="fname" conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                </td>
+                <td>Middle Name</td>
+                <td>
+                    <obs id="middleName" conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                </td>
+                <td>Last Name</td>
+                <td>
+                    <obs id="lName" conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                </td>
+                <td>Alias Name</td>
+                <td>
+                    <obs id="alias" conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Mobile Number</td>
+                <td>
+                    <obs id="mobile" conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                </td>
+                <td> Alternative Mobile Number</td>
+                <td>
+                    <obs id="alterNumber" conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Enrolment Notes</td>
+                <td>
+                    <obs id="enNotes" conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Completed by:</td>
+                <td>
+                    <obs id="completedBy" conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+
+    </div>
+
+    <div class="ke-form-footer">
+        <submit/>
+    </div>
+
+</htmlform>

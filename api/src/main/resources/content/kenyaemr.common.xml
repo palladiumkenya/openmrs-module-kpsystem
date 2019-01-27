@@ -29,6 +29,7 @@
 				<ref bean="kenyaemr.common.form.referralAndLinkage"/>
 				<ref bean="kenyaemr.common.form.htsinitialtest"/>
 				<ref bean="kenyaemr.common.form.htsconfirmatorytest"/>
+				<ref bean="kenyaemr.common.form.kpClientEnrolment"/>
 			</set>
 		</property>
 	</bean>
@@ -164,6 +165,21 @@
 		<property name="icon" value="kenyaui:forms/generic.png" />
 		<property name="htmlform" value="kenyaemr:hts/referralAndLinkage.html" />
 		<property name="order" value="201002" />
+	</bean>
+	<!-- kp -->
+	<bean id="kenyaemr.common.form.kpClientEnrolment" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="c7f47cea-207b-11e9-ab14-d663bd873d93" />
+		<property name="apps">
+			<set>
+				<ref bean="kenyaemr.app.registration" />
+				<ref bean="kenyaemr.app.intake" />
+				<ref bean="kenyaemr.app.clinician" />
+				<ref bean="kenyaemr.app.chart" />
+			</set>
+		</property>
+		<property name="icon" value="kenyaui:forms/generic.png" />
+		<property name="htmlform" value="kenyaemr:kpClientEnrolment.html" />
+		<property name="order" value="201003" />
 	</bean>
 
 	<!-- ===================== Reports ===================== -->
