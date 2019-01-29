@@ -69,6 +69,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String UNIQUE_PATIENT_NUMBER = "05ee9cf4-7242-4a17-b4d4-00f707265c8a";
 		public static final String NATIONAL_UNIQUE_PATIENT_IDENTIFIER = "f85081e2-b4be-4e48-b3a4-7994b69bb101";
 		public static final String PASSPORT_NUMBER = "aec1b20e-1d8a-11e9-ab14-d663bd873d93";
+        public static final String KP_UNIQUE_PATIENT_NUMBER = "b7bfefd0-239b-11e9-ab14-d663bd873d93";
 	}
 
 	public static final class _PersonAttributeType {
@@ -158,6 +159,10 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(patientIdentifierType("Passport Number", "Patient/Client passport number",
 				null, null, null,
 				LocationBehavior.NOT_USED, false, _PatientIdentifierType.PASSPORT_NUMBER));
+
+        install(patientIdentifierType("KP unique Number", "Patient/Client number",
+                null, null, null,
+                LocationBehavior.NOT_USED, false, _PatientIdentifierType.KP_UNIQUE_PATIENT_NUMBER));
 		install(personAttributeType("Telephone contact", "Telephone contact number",
 				String.class, null, false, 1.0, _PersonAttributeType.TELEPHONE_CONTACT));
 		install(personAttributeType("Email address", "Email address of person",
