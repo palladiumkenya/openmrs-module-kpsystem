@@ -19,7 +19,7 @@
 	<bean id="kenyaemr.kp.program" class="org.openmrs.module.kenyacore.program.ProgramDescriptor">
 		<property name="targetUuid" value="${metadata.program.KP}" />
 		<property name="eligibilityCalculation" value="org.openmrs.module.kenyaemr.calculation.library.kp.EligibleForKPProgramCalculation" />
-		<property name="defaultEnrollmentForm" ref="kenyaemr.ipt.form.enrollment" />
+		<property name="defaultEnrollmentForm" ref="kenyaemr.common.form.kpClientEnrolment" />
 		<property name="defaultCompletionForm" ref="kenyaemr.ipt.form.completion" />
 		<property name="visitForms" >
 			<set>
@@ -66,6 +66,21 @@
 		</property>
 		<property name="icon" value="kenyaui:forms/generic.png" />
 		<property name="htmlform" value="kenyaemr:ipt/iptInitiation.html" />
+	</bean>
+	<!-- kp  enrolment<ref bean="kenyaemr.common.form.kpClientEnrolment"/>-->
+	<bean id="kenyaemr.common.form.kpClientEnrolment" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="c7f47cea-207b-11e9-ab14-d663bd873d93" />
+		<property name="apps">
+			<set>
+				<ref bean="kenyaemr.app.registration" />
+				<ref bean="kenyaemr.app.intake" />
+				<ref bean="kenyaemr.app.clinician" />
+				<ref bean="kenyaemr.app.chart" />
+			</set>
+		</property>
+		<property name="icon" value="kenyaui:forms/generic.png" />
+		<property name="htmlform" value="kenyaemr:kpClientEnrolment.html" />
+
 	</bean>
 
 	<!--IPT Completion -->

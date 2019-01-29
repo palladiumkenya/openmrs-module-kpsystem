@@ -43,7 +43,7 @@
 	margin-top: 5px;
 }
 .action-section ul {
-	background: #7f7b72;
+	background:  #363463;
 	color: white;
 	padding: 5px;
 }

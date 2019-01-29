@@ -29,6 +29,7 @@
 				<ref bean="kenyaemr.common.form.referralAndLinkage"/>
 				<ref bean="kenyaemr.common.form.htsinitialtest"/>
 				<ref bean="kenyaemr.common.form.htsconfirmatorytest"/>
+
 			</set>
 		</property>
 	</bean>
@@ -165,6 +166,7 @@
 		<property name="htmlform" value="kenyaemr:hts/referralAndLinkage.html" />
 		<property name="order" value="201002" />
 	</bean>
+
 
 	<!-- ===================== Reports ===================== -->
 
