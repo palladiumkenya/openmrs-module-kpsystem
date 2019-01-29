@@ -1,0 +1,153 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="f02ee7e8-1f42-11e9-ab14-d663bd873d93" formName="Social Status"
+          formEncounterType="f02eea5e-1f42-11e9-ab14-d663bd873d93" formVersion="1.0">
+    <style>
+
+
+    </style>
+
+    <!-- only show BMI if patient is more than 5 years old (on the encounterDate) -->
+    <includeIf velocityTest="$patient.getAge($encounter.getEncounterDatetime()) > 5">
+
+        <script type="text/javascript">
+
+        </script>
+
+        <ifMode mode="ENTER">
+            <script type="text/javascript">
+
+
+            </script>
+        </ifMode>
+
+        <script>
+
+        </script>
+
+        <ifMode mode="VIEW">
+            <script type="text/javascript">
+
+
+
+            </script>
+        </ifMode>
+
+    </includeIf>
+
+    <div class="hidden" id="encounter-details">
+        <fieldset>
+            <legend>Encounter Details</legend>
+            <label>Date</label>
+
+            <encounterDate default="now" showTime="false"/>
+
+            <label>Provider</label>
+
+            <encounterProvider default="currentUser"/>
+
+            <label>Location</label>
+
+            <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation"/>
+
+
+        </fieldset>
+
+
+    </div>
+
+    <section id="social_status" sectionTag="section" headerStyle="title" headerLabel="Social Status">
+        <fieldset>
+            <legend>
+                Key Population Type
+            </legend>
+            <h3>
+                Client's Key Population Type
+            </h3>
+
+            <p class="left">
+                <obs conceptId="164930"
+                     answerConceptIds="164982,160578,164981,160666,157351"
+                     answerLabels="Female sex worker, Male who have sex with Men, Male sex worker, People who use drugs, People who inject drugs"
+                     id="kpType"/>
+            </p>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                Hotspot
+            </legend>
+            <h3>
+                Which outreach (hotspot) do you mostly frequent?
+            </h3>
+
+            <p class="left">
+                <obs conceptId="164984" id="hotspot_frequented" />
+            </p>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                Sex Acts
+            </legend>
+            <h3>
+                Number of sex acts per week?
+            </h3>
+
+            <p class="left">
+                <obs conceptId="164986"/>
+            </p>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                Anal sex acts
+            </legend>
+            <h3>
+                Number of anal sex acts per week
+            </h3>
+
+            <p>
+                <obs conceptId="164987"/>
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                Weekly Drug Injections
+            </legend>
+            <h3>
+                Number of drug injection times per day?
+            </h3>
+
+            <p>
+                <obs conceptId="164988" />
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Average drug injections</legend>
+            <h3>Average Number of drug injection episodes per wekk</h3>
+
+            <p class="left">
+                <obs conceptId="164989" />
+            </p>
+        </fieldset>
+
+    </section>
+
+    <submit/>
+
+</htmlform>
