@@ -160,4 +160,25 @@
 		</sql>
 	</changeSet>
 
+	<changeSet id="20190129-1855-insert-peer-educator-encounter-role" author="aojwang">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				select count(*) from encounter_role where uuid = 'ca3cb266-23db-11e9-ab14-d663bd873d93'
+			</sqlCheck>
+		</preConditions>
+		<comment>Inserting the peer educator encounter role</comment>
+		<insert tableName="encounter_role">
+			<column name="name" value="Peer Educator"/>
+			<column name="description" value="A role for peer educators"/>
+			<column name="creator" valueNumeric="1"/>
+			<column name="date_created" valueDate="2019-01-29T14:00:00.0" />
+			<column name="retired" valueBoolean="false" />
+			<column name="uuid" value="ca3cb266-23db-11e9-ab14-d663bd873d93" />
+		</insert>
+		<!-- Update postgres sequence correctly as it is incorrect after initial bulk inserts -->
+		<modifySql dbms="postgresql">
+			<prepend value="SELECT setval('encounter_role_encounter_role_id_seq', (SELECT MAX(encounter_role_id) FROM encounter_role)+1);"/>
+		</modifySql>
+	</changeSet>
+
 </databaseChangeLog>

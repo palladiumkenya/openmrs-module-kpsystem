@@ -51,6 +51,7 @@ public class SecurityMetadata extends AbstractMetadataBundle {
 		public static final String REGISTRATION = "Registration";
 		public static final String SYSTEM_ADMIN = "System Administrator";
 		public static final String SYSTEM_DEVELOPER = "System Developer";
+		public static final String PEER_EDUCATOR = "Peer Educator";
 	}
 
 	/**
@@ -167,6 +168,7 @@ public class SecurityMetadata extends AbstractMetadataBundle {
 						app(EmrConstants.APP_FACILITY_DASHBOARD)
 				)
 		));
+
 	}
 
 	/**

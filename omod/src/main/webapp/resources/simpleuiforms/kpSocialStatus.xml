@@ -20,6 +20,8 @@
     <includeIf velocityTest="$patient.getAge($encounter.getEncounterDatetime()) > 5">
 
         <script type="text/javascript">
+            var peer_educator_role = <lookup expression="kenyaemr.getRoleUuidByName('Peer Educator')" />;
+
 
         </script>
 
@@ -79,6 +81,22 @@
                      answerConceptIds="164982,160578,164981,160666,157351"
                      answerLabels="Female sex worker, Male who have sex with Men, Male sex worker, People who use drugs, People who inject drugs"
                      id="kpType"/>
+            </p>
+
+        </fieldset>
+
+
+
+        <fieldset>
+            <legend>
+                Peer Educator
+            </legend>
+            <h3>
+                Please select peer educator
+            </h3>
+
+            <p class="left">
+                <encounterProviderAndRole  encounterRole="ca3cb266-23db-11e9-ab14-d663bd873d93" />
             </p>
 
         </fieldset>
