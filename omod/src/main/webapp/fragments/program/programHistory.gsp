@@ -1,6 +1,3 @@
-<%
-	ui.decorateWith("kenyaui", "panel", [ heading: ui.format(program), frameOnly: true ])
-%>
 <% if (enrollments) { %>
 <div class="ke-panel-content">
 	<% enrollments.reverse().each { enrollment -> %>
@@ -39,13 +36,13 @@
 <div class="ke-panel-footer">
 	<% if (currentEnrollment) { %>
 
-	<button type="button" onclick="ui.navigate('${ ui.pageLink("kenyaemr", "enterForm", [ patientId: patient.id, formUuid: defaultCompletionForm.targetUuid, appId: currentApp.id, returnUrl: ui.thisUrl() ]) }')">
+	<button type="button" onclick="ui.navigate('${ ui.pageLink("kenyaemr", "enterForm", [ patientId: patient.id, formUuid: defaultCompletionForm.targetUuid, appId: currentApp != null ? currentApp.id : "kenyaemr.medicalEncounter", returnUrl: ui.thisUrl() ]) }')">
 		<img src="${ ui.resourceLink("kenyaui", "images/glyphs/discontinue.png") }" /> Discontinue
 	</button>
 
 	<% } else if (patientIsEligible) { %>
 
-	<button type="button" onclick="ui.navigate('${ ui.pageLink("kenyaemr", "enterForm", [ patientId: patient.id, formUuid: defaultEnrollmentForm.targetUuid, appId: currentApp.id, returnUrl: ui.thisUrl() ]) }')">
+	<button type="button" onclick="ui.navigate('${ ui.pageLink("kenyaemr", "enterForm", [ patientId: patient.id, formUuid: defaultEnrollmentForm.targetUuid, appId: currentApp != null ? currentApp.id : "kenyaemr.medicalEncounter", returnUrl: ui.thisUrl() ]) }')">
 		<img src="${ ui.resourceLink("kenyaui", "images/glyphs/enroll.png") }" /> Enroll
 	</button>
 
