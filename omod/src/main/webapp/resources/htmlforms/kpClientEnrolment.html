@@ -12,10 +12,227 @@
   ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
 -->
 <htmlform>
-
+    <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
     <script type="text/javascript">
 
+        $(document).ready(function () {
 
+            jq("#NonePayingSex").hide();
+            jq("#clientphysiaclViolence").hide();
+            jq("#historicalPhysicalViolence").hide();
+            jq("#sexuaViolence").hide();
+
+            var sexViolenceckbox = $('#w35_0');
+            var x = document.getElementById("w35_0");
+            $('input').on('click',function () {
+                if (sexViolenceckbox.is(':checked')) {
+
+                    x.style.display = "block";
+                    jq("#sexuaViolence").show();
+
+                } else {
+                    jq("#sexuaViolence").hide();
+
+                }
+            });
+
+            var physicalViolenceckbox = $('#w39_0');
+            var x = document.getElementById("w39_0");
+            $('input').on('click',function () {
+                if (physicalViolenceckbox.is(':checked')) {
+
+                    x.style.display = "block";
+                    jq("#historicalPhysicalViolence").show();
+
+                } else {
+                    jq("#historicalPhysicalViolence").hide();
+
+                }
+            });
+
+            var nonepaying_ckbox = $('#w19_0');
+            var x = document.getElementById("w19_0");
+            $('input').on('click',function () {
+                if (nonepaying_ckbox.is(':checked')) {
+
+                    x.style.display = "block";
+                    jq("#NonePayingSex").show();
+
+                } else {
+                    jq("#NonePayingSex").hide();
+
+                }
+            });
+            var clientphysiaclViolence = $('#w47_0');
+            var x = document.getElementById("w47_0");
+            $('input').on('click',function () {
+                if (clientphysiaclViolence.is(':checked')) {
+
+                    x.style.display = "block";
+                    jq("#clientphysiaclViolence").show();
+
+                } else {
+                    jq("#clientphysiaclViolence").hide();
+
+                }
+            });
+
+
+        });
+
+        beforeSubmit.push(function() {
+            var gender_identity = getField('gender-identity').val();
+            var mobile = getField('mobile').val();
+            var peer_educator = getField('peer-educator').val();
+            var peer = getField('peer').val();
+            var regular-sex-partner = getField('regular-sex-partner').val();
+            var peer_name = getField('pName').val();
+            var peer_alias = getField('pAlias').val();
+            var peer_number = getField('pNumber').val();
+            var contact_regular_sex_partner = getField("contact-regular-sex-partner").val();
+            var start_sex = getField("startSex").val();
+
+            var sex_with_men = getField("sexWithMen").val();
+            var using_drugs = getField("usingDrugs").val();
+            var experience_sex_violence = getField("exprienced-sex-violence").val();
+            var sex_violence_ordeal = getField("sOrdeal").val();
+            var physical_ordeal = getField("exprienced-physical-violence").val();
+            var historical_ordeal = getField("hOrdeal").val();
+            var contatcted_incase_of_appointment = getField("contacted-incase-of-appointment").val();
+            var clinical_contatcted = getField("cContacted").val();
+            var experience_phy_violence = getField("exprienced-cphysical-violence").val();
+            var cordeal = getField("cOrdeal").val();
+
+
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (gender_identity == false ) {      //check hiv test 1 results mandatory
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+
+
+        });
     </script>
 
 
@@ -92,20 +309,26 @@
                              style="radio" />
                     </td>
                 </tr>
-                <tr>
-                    <td>If yes, partners name</td>
-                    <td>
-                        <obs id="pName" conceptId="161135"/>
-                    </td>
-                    <td>Alias Name</td>
-                    <td>
-                        <obs id="pAlias" conceptId="165007"/>
-                    </td>
-                    <td>Contact Number</td>
-                    <td>
-                        <obs id="pNumber" conceptId="159635"/>
-                    </td>
-                </tr>
+                <div >
+                    <table id="NonePayingSex" >
+                    <tr>
+
+                        <td>If yes, partners name</td>
+                        <td>
+                            <obs id="pName" conceptId="161135"/>
+                        </td>
+                        <td>Alias Name</td>
+                        <td>
+                            <obs id="pAlias" conceptId="165007"/>
+                        </td>
+                        <td>Contact Number</td>
+                        <td>
+                            <obs id="pNumber" conceptId="159635"/>
+                        </td>
+                    </tr>
+                    </table>
+                </div>
+
                 <tr>
                     <td>Could we contact your regular sexual partner(s) for prevention services?</td>
                     <td>
@@ -149,10 +372,14 @@
                              answerLabels="Yes,No"
                              style="radio" />
                     </td>
+                    <table id="sexuaViolence" >
+
+
                     <td>If yes, describe the ordeal</td>
                     <td>
                         <obs id="sOrdeal" conceptId="165012" rows="2" cols="80"/>
                     </td>
+                    </table>
                 </tr>
                 <tr>
                     <td>Ever experienced physical violence?</td>
@@ -162,10 +389,12 @@
                              answerLabels="Yes,No"
                              style="radio" />
                     </td>
+                    <table id="historicalPhysicalViolence">
                     <td>If yes, describe the ordeal</td>
                     <td>
                         <obs id="hOrdeal" conceptId="165014" rows="2" cols="80" />
                     </td>
+                    </table>
                 </tr>
             </table>
         </fieldset>
@@ -199,10 +428,14 @@
                              answerLabels="Yes,No"
                              style="radio" />
                     </td>
+                    <table id="clientphysiaclViolence">
+
+
                     <td>If yes, describe the ordeal</td>
                     <td>
                         <obs id="cOrdeal" conceptId="165014" rows="2" cols="80"/>
                     </td>
+                    </table>
                 </tr>
             </table>
         </fieldset>
