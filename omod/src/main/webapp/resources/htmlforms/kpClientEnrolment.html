@@ -12,10 +12,149 @@
   ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
 -->
 <htmlform>
-
+    <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
     <script type="text/javascript">
 
+        $(document).ready(function () {
 
+            jq("#NonePayingSex").hide();
+            jq("#clientphysiaclViolence").hide();
+            jq("#historicalPhysicalViolence").hide();
+            jq("#sexuaViolence").hide();
+
+            var sexViolenceckbox = $('#w35_0');
+            var x = document.getElementById("w35_0");
+            $('input').on('click',function () {
+                if (sexViolenceckbox.is(':checked')) {
+
+                    x.style.display = "block";
+                    jq("#sexuaViolence").show();
+
+                } else {
+                    jq("#sexuaViolence").hide();
+
+                }
+            });
+
+            var physicalViolenceckbox = $('#w39_0');
+            var x = document.getElementById("w39_0");
+            $('input').on('click',function () {
+                if (physicalViolenceckbox.is(':checked')) {
+
+                    x.style.display = "block";
+                    jq("#historicalPhysicalViolence").show();
+
+                } else {
+                    jq("#historicalPhysicalViolence").hide();
+
+                }
+            });
+
+            var nonepaying_ckbox = $('#w19_0');
+            var x = document.getElementById("w19_0");
+            $('input').on('click',function () {
+                if (nonepaying_ckbox.is(':checked')) {
+
+                    x.style.display = "block";
+                    jq("#NonePayingSex").show();
+
+                } else {
+                    jq("#NonePayingSex").hide();
+
+                }
+            });
+            var clientphysiaclViolence = $('#w47_0');
+            var x = document.getElementById("w47_0");
+            $('input').on('click',function () {
+                if (clientphysiaclViolence.is(':checked')) {
+
+                    x.style.display = "block";
+                    jq("#clientphysiaclViolence").show();
+
+                } else {
+                    jq("#clientphysiaclViolence").hide();
+
+                }
+            });
+
+
+        });
+
+        beforeSubmit.push(function() {
+            var gender_identity = getField('gender-identity').val();
+            var mobile = getField('mobile').val();
+            var peer_educator = getField('peer-educator').val();
+            var peer = getField('peer').val();
+            var regular-sex-partner = getField('regular-sex-partner').val();
+            var partner_name = getField('pName').val();
+            var partner_alias = getField('pAlias').val();
+            var partner_number = getField('pNumber').val();
+            var contact_regular_sex_partner = getField("contact-regular-sex-partner").val();
+            var start_sex = getField("startSex").val();
+
+            var sex_with_men = getField("sexWithMen").val();
+            var using_drugs = getField("usingDrugs").val();
+            var experience_sex_violence = getField("exprienced-sex-violence").val();
+            var sex_violence_ordeal = getField("sOrdeal").val();
+            var physical_ordeal = getField("exprienced-physical-violence").val();
+            var historical_ordeal = getField("hOrdeal").val();
+            var contatcted_incase_of_appointment = getField("contacted-incase-of-appointment").val();
+            var clinical_contatcted = getField("cContacted").val();
+            var experience_phy_violence = getField("exprienced-cphysical-violence").val();
+            var cordeal = getField("cOrdeal").val();
+
+
+            if (gender_identity == false ) {
+                getField('Please select gender.error').html('Please select gender.').show();
+                return false;
+            }else{
+                getField('Please select gender.error').html('Please select gender.').hide();
+            }
+            if (mobile == false ) {
+                getField('Please enter valid mobile number.error').html('Please enter valid mobile number.').show();
+                return false;
+            }else{
+                getField('Please enter valid mobile number.error').html('Please enter valid mobile number.').hide();
+            }
+            if (peer_educator == false ) {
+                getField('Please indicate whether you have been contacted or not.error').html('Please indicate whether you have been contacted or not').show();
+                return false;
+            }else{
+                getField('Please indicate whether you have been contacted or not.error').html('Please indicate whether you have been contacted or not').hide();
+            }
+            if (peer == false &amp;&amp; peer_educator != false  ) {
+                getField('Please enter peer educator name.error').html('Please enter peer educator name.').show();
+                return false;
+            }else{
+                getField('Please enter peer educator name.error').html('Please enter peer educator name.').hide();
+            }
+            if (regular-sex-partner == false ) {
+                getField('Please indicate if you have regular sex partner.error').html('Please indicate if you have regular sex partner.').show();
+                return false;
+            }else{
+                getField('Please indicate if you have regular sex partner.error').html('Please indicate if you have regular sex partner.').hide();
+            }
+            if (partner_name == false ) {
+                getField('Please enter partner name.error').html('Please enter partner name.').show();
+                return false;
+            }else{
+                getField('Please enter partner name.error').html('Please enter partner name.').hide();
+            }
+            if (partner_alias == false ) {
+                getField('Please enter partner alias.error').html('Please enter partner alias.').show();
+                return false;
+            }else{
+                getField('Please enter partner alias.error').html('Please enter partner alias.').hide();
+            }
+            if (start_sex == false ) {
+                getField('Please indicate when you started sex work.error').html('Please indicate when you started sex work.').show();
+                return false;
+            }else{
+                getField('Please indicate when you started sex work.error').html('Please indicate when you started sex sex_with_men.').hide();
+            }
+
+
+        });
     </script>
 
 
@@ -92,20 +231,26 @@
                              style="radio" />
                     </td>
                 </tr>
-                <tr>
-                    <td>If yes, partners name</td>
-                    <td>
-                        <obs id="pName" conceptId="161135"/>
-                    </td>
-                    <td>Alias Name</td>
-                    <td>
-                        <obs id="pAlias" conceptId="165007"/>
-                    </td>
-                    <td>Contact Number</td>
-                    <td>
-                        <obs id="pNumber" conceptId="159635"/>
-                    </td>
-                </tr>
+                <div >
+                    <table id="NonePayingSex" >
+                    <tr>
+
+                        <td>If yes, partners name</td>
+                        <td>
+                            <obs id="pName" conceptId="161135"/>
+                        </td>
+                        <td>Alias Name</td>
+                        <td>
+                            <obs id="pAlias" conceptId="165007"/>
+                        </td>
+                        <td>Contact Number</td>
+                        <td>
+                            <obs id="pNumber" conceptId="159635"/>
+                        </td>
+                    </tr>
+                    </table>
+                </div>
+
                 <tr>
                     <td>Could we contact your regular sexual partner(s) for prevention services?</td>
                     <td>
@@ -149,10 +294,14 @@
                              answerLabels="Yes,No"
                              style="radio" />
                     </td>
+                    <table id="sexuaViolence" >
+
+
                     <td>If yes, describe the ordeal</td>
                     <td>
                         <obs id="sOrdeal" conceptId="165012" rows="2" cols="80"/>
                     </td>
+                    </table>
                 </tr>
                 <tr>
                     <td>Ever experienced physical violence?</td>
@@ -162,10 +311,12 @@
                              answerLabels="Yes,No"
                              style="radio" />
                     </td>
+                    <table id="historicalPhysicalViolence">
                     <td>If yes, describe the ordeal</td>
                     <td>
                         <obs id="hOrdeal" conceptId="165014" rows="2" cols="80" />
                     </td>
+                    </table>
                 </tr>
             </table>
         </fieldset>
@@ -199,10 +350,14 @@
                              answerLabels="Yes,No"
                              style="radio" />
                     </td>
+                    <table id="clientphysiaclViolence">
+
+
                     <td>If yes, describe the ordeal</td>
                     <td>
                         <obs id="cOrdeal" conceptId="165014" rows="2" cols="80"/>
                     </td>
+                    </table>
                 </tr>
             </table>
         </fieldset>
