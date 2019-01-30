@@ -1,6 +1,4 @@
-<%
-	ui.decorateWith("kenyaui", "panel", [ heading: "Information", frameOnly: true ])
-%>
+
 <div class="ke-panel-content">
 	<div class="ke-stack-item">
 		<% if (recordedAsDeceased) { %>
@@ -18,22 +16,3 @@
 		<% } %>
 	</div>
 </div>
-<% if (forms) { %>
-<div class="ke-panel-footer">
-	<% forms.each { form -> %>
-		${ ui.includeFragment("kenyaui", "widget/button", [
-				iconProvider: form.iconProvider,
-				icon: form.icon,
-				label: form.name,
-				extra: "Edit form",
-				href: ui.pageLink("kenyaemr", "editPatientForm", [
-					appId: currentApp.id,
-					patientId: patient.id,
-					formUuid: form.formUuid,
-					returnUrl: ui.thisUrl()
-				])
-		]) }
-	<% } %>
-</div>
-
-<% } %>
