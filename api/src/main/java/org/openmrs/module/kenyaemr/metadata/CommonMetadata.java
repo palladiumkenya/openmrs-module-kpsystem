@@ -42,6 +42,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String DRUG_REGIMEN_EDITOR = "7dffc392-13e7-11e9-ab14-d663bd873d93";
 		public static final String SOCIAL_STATUS = "f02eea5e-1f42-11e9-ab14-d663bd873d93";
 		public static final String KP_CLIENT_ENROLMENT = "c7f47a56-207b-11e9-ab14-d663bd873d93";
+		public static final String KP_CLIENT_DISCONTINUATION = "d7142400-2495-11e9-ab14-d663bd873d93";
 
 	}
 
@@ -58,6 +59,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String DRUG_REGIMEN_EDITOR = "da687480-e197-11e8-9f32-f2801f1b9fd1";
 		public static final String SOCIAL_STATUS = "f02ee7e8-1f42-11e9-ab14-d663bd873d93";
 		public static final String KP_CLIENT_ENROLMENT = "c7f47cea-207b-11e9-ab14-d663bd873d93";
+		public static final String KP_CLIENT_DISCONTINUATION = "1f76643e-2495-11e9-ab14-d663bd873d93";
 
 	}
 
@@ -123,6 +125,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(encounterType("Drug Regimen Editor", "Handles patient regimen events", _EncounterType.DRUG_REGIMEN_EDITOR));
 		install(encounterType("Social Status", "Collection of social status data", _EncounterType.SOCIAL_STATUS));
 		install(encounterType("KP Enrollment", "Handles KP client enrollment", _EncounterType.KP_CLIENT_ENROLMENT));
+		install(encounterType("KP Discontinuation", "Records information about KP client discontinuation", _EncounterType.KP_CLIENT_DISCONTINUATION));
 
 		install(form("Clinical Encounter", null, _EncounterType.CONSULTATION, "1", _Form.CLINICAL_ENCOUNTER));
 		install(form("Lab Results", null, _EncounterType.LAB_RESULTS, "1", _Form.LAB_RESULTS));
@@ -136,6 +139,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(form("Drug Regimen Editor", null, _EncounterType.DRUG_REGIMEN_EDITOR, "1", _Form.DRUG_REGIMEN_EDITOR));
 		install(form("Social Status", null, _EncounterType.SOCIAL_STATUS, "1", _Form.SOCIAL_STATUS));
 		install(form("Client Enrollment", null, _EncounterType.KP_CLIENT_ENROLMENT, "1", _Form.KP_CLIENT_ENROLMENT));
+		install(form("Client Discontinuation", null, _EncounterType.KP_CLIENT_DISCONTINUATION, "1", _Form.KP_CLIENT_DISCONTINUATION));
 
 
 		install(globalProperty(EmrConstants.GP_DEFAULT_LOCATION, "The facility for which this installation is configured",
