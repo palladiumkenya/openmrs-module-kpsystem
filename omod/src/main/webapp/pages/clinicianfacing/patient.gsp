@@ -1,127 +1,157 @@
 <%
-    ui.decorateWith("appui", "standardEmrPage")
-    ui.includeCss("coreapps", "clinicianfacing/patient.css")
-    ui.includeJavascript("coreapps", "custom/deletePatient.js")
+    ui.decorateWith("kenyaemr", "standardPage", [ patient: currentPatient ])
+    ui.includeCss("kenyaemr", "referenceapplication.css", 100)
+    ui.includeCss("kenyaemrorderentry", "font-awesome.css")
+    ui.includeCss("kenyaemrorderentry", "font-awesome.min.css")
+    ui.includeCss("kenyaemrorderentry", "font-awesome.css.map")
+    ui.includeCss("kenyaemrorderentry", "fontawesome-webfont.svg")
 %>
 <script type="text/javascript">
-    var breadcrumbs = [
-        { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
-        { label: "${ ui.escapeJs(ui.encodeHtmlContent(ui.format(patient.patient))) }" ,
-            link: '${ ui.urlBind("/" + contextPath + baseDashboardUrl, [ patientId: patient.patient.id ] ) }'}
-    ];
 
-    // add on breadcrumb if it has been defined in messages.properties
-    <% if (ui.message(dashboard + ".breadcrumb") != dashboard + ".breadcrumb") { %>
-        breadcrumbs.push({ label: "${ ui.message(dashboard + ".breadcrumb") }"})
-    <% } %>
 
     jq(function(){
-        jq(".tabs").tabs();
 
-        // make sure we reload the page if the location is changes; this custom event is emitted by by the location selector in the header
-        jq(document).on('sessionLocationChanged', function() {
-            window.location.reload();
-        });
     });
 
-    var patient = { id: ${ patient.id } };
+
 </script>
 
-<% if(includeFragments){
 
-    includeFragments.each {
-        // create a base map from the fragmentConfig if it exists, otherwise just create an empty map
-        def configs = [:];
-        if(it.extensionParams.fragmentConfig != null){
-            configs = it.extensionParams.fragmentConfig;
-        }
-
-        configs.patient = patient;   // add the patient to the map %>
-        ${ui.includeFragment(it.extensionParams.provider, it.extensionParams.fragment, configs)}
-    <%}
-} %>
-
-${ ui.includeFragment("coreapps", "patientHeader", [ patient: patient.patient, activeVisit: activeVisit, appContextModel: appContextModel ]) }
 
 
 <div class="clear"></div>
-<div class="container">
-    <div class="dashboard clear">
-        <!-- only show the title div if a title has been defined in the messages.properties -->
-        <% if (ui.message(dashboard + ".custom.title") != dashboard + ".custom.title") { %>
-        <div class="title">
-            <h3>${ ui.message(dashboard + ".custom.title") }</h3>
-        </div>
-        <% } %>
-        <div class="info-container column">
-            <% if (firstColumnFragments) {
-			    firstColumnFragments.each {
-                    // create a base map from the fragmentConfig if it exists, otherwise just create an empty map
-                    def configs = [:];
-                    if(it.extensionParams.fragmentConfig != null){
-                        configs = it.extensionParams.fragmentConfig;
-                    }
-                    configs << [ patient: patient, patientId: patient.patient.id, app: it.appId ]
-            %>
-			        ${ ui.includeFragment(it.extensionParams.provider, it.extensionParams.fragment, configs)}
-			<%  }
-			} %>
 
-        </div>
-        <div class="info-container column">
-            <% if (secondColumnFragments) {
-			    secondColumnFragments.each {
-                    // create a base map from the fragmentConfig if it exists, otherwise just create an empty map
-                    def configs = [:];
-                    if(it.extensionParams.fragmentConfig != null){
-                        configs = it.extensionParams.fragmentConfig;
-                    }
-                    configs << [ patient: patient, patientId: patient.patient.id, app: it.appId ]
-            %>
-			        ${ ui.includeFragment(it.extensionParams.provider, it.extensionParams.fragment, configs)}
-			<%   }
-			} %>
-			
-        </div>
-        <% if ((visitActions && visitActions.size() > 0) || (overallActions && overallActions.size() > 0) || (otherActions && otherActions.size() > 0))  { %>
+<div id="content" class="container">
+
+    <div class="clear"></div>
+    <div class="container">
+        <div class="dashboard clear">
+            <div class="info-container column">
+
+                <div class="info-section">
+                    <div class="info-header">
+                        <i class="icon-diagnosis"></i>
+                        <h3>Registration Info</h3>
+                    </div>
+                    <div class="info-body">
+                        ${ ui.includeFragment("kenyaemr", "patient/patientSummary", [ patient: currentPatient ]) }
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-header">
+                        <i class="icon-calendar"></i>
+                        <h3>Social Status</h3>
+                        <i class="icon-pencil edit-action right" title="Edit" onclick="location.href = '/openmrs/coreapps/conditionlist/manageConditions.page?patientId=f83f4a1c-cc28-4a85-a8fb-bdf98130ec0e&amp;'"></i>
+                    </div>
+                    <div class="info-body">
+                        None
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-header">
+                        <i class="icon-calendar"></i>
+                        <h3>Program History</h3>
+                    </div>
+                    <div class="info-body">
+                        ${ ui.includeFragment("kenyaemr", "program/programHistories", [ patient: currentPatient, showClinicalData: true ]) }
+                    </div>
+                </div>
+
+            </div>
+            <div class="info-container column">
+
+                <div class="info-section">
+                    <div class="info-header">
+                        <i class="icon-calendar"></i>
+                        <h3>Recent Visits</h3>
+                    </div>
+                    <div class="info-body">
+                        None
+                    </div>
+                </div>
+
+                <div class="info-section allergies">
+                    <div class="info-header">
+                        <i class="icon-medical"></i>
+                        <h3>Vitals</h3>
+                    </div>
+                    <div class="info-body">
+                        None
+                    </div>
+                </div>
+
+                <div class="info-section allergies">
+                    <div class="info-header">
+                        <i class="icon-medical"></i>
+                        <h3>Diagnoses</h3>
+                    </div>
+                    <div class="info-body">
+                        None
+                    </div>
+                </div>
+
+                <div class="info-section allergies">
+                    <div class="info-header">
+                        <i class="icon-medical"></i>
+                        <h3>Medications</h3>
+                    </div>
+                    <div class="info-body">
+                        No Medications
+                    </div>
+                </div>
+
+
+            </div>
+
             <div class="action-container column">
                 <div class="action-section">
-                    <% if (activeVisit && visitActions && visitActions.size() > 0) { %>
-                        <ul class="float-left">
-                            <h3 >${ ui.message("coreapps.clinicianfacing.activeVisitActions") }</h3>
-                            <% visitActions.each { ext -> %>
-                            <li class="float-left">
-                                <a href="${ ui.escapeJs(ext.url("/" + ui.contextPath(), appContextModel, ui.thisUrl())) }" id="${ ext.id }" class="float-left">
-                                    <i class="${ ext.icon } float-left"></i>
-                                    ${ ui.message(ext.label) }
-                                </a>
-                            </li>
-                            <% } %>
-                        </ul>
-                    <% } %>
-                    <% if (overallActions && overallActions.size() > 0) { %>
-                        <ul class="float-left">
-                            <h3>${ ui.message("coreapps.clinicianfacing.overallActions") }</h3>
-                            <%
-                                overallActions.each { ext -> %>
-                                    <li class="float-left">
-                                        <a href="${ ui.escapeJs(ext.url("/" + ui.contextPath(), appContextModel, ui.thisUrl())) }" id="${ ext.id }" class="float-left">
-                                            <i class="${ ext.icon } float-left"></i>
-                                            ${ ui.message(ext.label) }
-                                        </a>
-                                    </li>
-                            <% } %>
-                        </ul>
-                    <% } %>
-                    <%
-                     def cxtModel = [ patientId: patient.id, activeVisitId: activeVisit ? activeVisit.visit.id : null]
-                     otherActions.each { action -> %>
-                    <a id="${ action.id }" class="button medium" href="${ ui.escapeJs(action.url("/" + ui.contextPath(), cxtModel)) }" class="float-left">
-                        <i class="${ action.icon } float-left"></i>${ ui.message(action.label) }
-                    </a>
-                    <% } %>
+
+                    <ul class="float-left">
+                        <h3>General Actions</h3>
+                        <li class="float-left" style="margin-top: 7px">
+                            <a href="${ ui.pageLink("registrationapp", "registerPatient", [appId:"referenceapplication.registrationapp.registerPatient"]) }" class="float-left">
+                                <i class="fa fa-search fa-2x"></i>
+                                Register Client
+                            </a>
+                        </li>
+                    </ul>
+
+
+                    <ul>
+                        <h3>Visit Actions</h3>
+                        <li class="float-left" style="margin-top: 7px">
+                            <a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/triage.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
+                                <i class="fa fa-plus-square fa-2x"></i>
+                                Triage
+                            </a>
+                        </li>
+
+                        <li class="float-left" style="margin-top: 7px">
+                            <a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithStandardUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/simpleVisitNote.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
+                                <i class="fa fa-plus-square fa-2x"></i>
+                                Visit Note
+                            </a>
+                        </li>
+
+                        <li class="float-left" style="margin-top: 7px">
+                            <a href="${ ui.pageLink("kenyaemrorderentry", "drugOrders", [patient: currentPatient]) }" class="float-left">
+                                <i class="fa fa-medkit fa-2x"></i>
+                                Drug Orders
+                            </a>
+                        </li>
+
+                        <li class="float-left" style="margin-top: 7px">
+                            <a href="${ ui.pageLink("kenyaemrorderentry", "labOrders", [patient: currentPatient]) }" class="float-left">
+                                <i class="fa fa-flask fa-2x"></i>
+                                Lab Orders
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        <% } %>
+
+        </div>
     </div>
 </div>
