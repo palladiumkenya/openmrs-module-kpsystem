@@ -5,6 +5,8 @@
     ui.includeCss("kenyaemrorderentry", "font-awesome.min.css")
     ui.includeCss("kenyaemrorderentry", "font-awesome.css.map")
     ui.includeCss("kenyaemrorderentry", "fontawesome-webfont.svg")
+
+    def addSocialStatusFormLink = ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/kpSocialStatus.xml", returnUrl: ui.thisUrl()])
 %>
 <script type="text/javascript">
 
@@ -42,10 +44,10 @@
                     <div class="info-header">
                         <i class="icon-calendar"></i>
                         <h3>Social Status</h3>
-                        <i class="icon-pencil edit-action right" title="Edit" onclick="location.href = '/openmrs/coreapps/conditionlist/manageConditions.page?patientId=f83f4a1c-cc28-4a85-a8fb-bdf98130ec0e&amp;'"></i>
+                        <i class="icon-pencil edit-action right" title="Add" onclick="location.href = '${addSocialStatusFormLink}'"></i>
                     </div>
                     <div class="info-body">
-                        None
+                        ${ ui.includeFragment("kenyaemr", "program/kp/socialStatus", [ patient: currentPatient]) }
                     </div>
                 </div>
 
