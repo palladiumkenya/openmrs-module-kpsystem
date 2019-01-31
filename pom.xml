@@ -51,7 +51,7 @@
         <cielVersion>20150123</cielVersion>
 
         <!-- Dependency modules -->
-        <appframeworkVersion>2.2.1</appframeworkVersion>
+        <appframeworkVersion>2.9</appframeworkVersion>
         <calculationVersion>1.1</calculationVersion>
         <groovyVersion>2.2.4</groovyVersion>
         <htmlformentryVersion>2.4</htmlformentryVersion>
@@ -67,9 +67,8 @@
         <metadatasharingVersion>1.1.8</metadatasharingVersion>
         <reportingVersion>0.9.8.1</reportingVersion>
         <serializationxstreamVersion>0.2.7</serializationxstreamVersion>
-        <uiframeworkVersion>3.8</uiframeworkVersion><!--
-        <kenyaemrChartsVersion>1.0</kenyaemrChartsVersion>
-        <kenyaemrHivTestingVersion>1.0</kenyaemrHivTestingVersion>-->
+        <uiframeworkVersion>3.8</uiframeworkVersion>
+
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
@@ -198,12 +197,6 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        <dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>hivtestingservices-api</artifactId>
-            <version>${kenyaemrHivTestingVersion}</version>
-            <scope>provided</scope>
-        </dependency>-->
 
         <!-- End OpenMRS modules -->
 
