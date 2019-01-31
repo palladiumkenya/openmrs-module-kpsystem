@@ -39,7 +39,7 @@ public class HivEnrollmentSummaryFragmentController {
 
 			Obs o = wrapper.firstObs(Dictionary.getConcept(Dictionary.METHOD_OF_ENROLLMENT));
 			if (o != null) {
-				dataPoints.put("Entry point", o.getValueCoded());
+				dataPoints.put("Service Area", o.getValueCoded());
 			}
 		}
 

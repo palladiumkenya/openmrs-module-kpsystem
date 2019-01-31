@@ -144,7 +144,7 @@
 
         <fieldset>
             <legend>
-                Weekly Drug Injections
+                Daily Drug Injections
             </legend>
             <h3>
                 Number of drug injection times per day?
@@ -157,7 +157,7 @@
 
         <fieldset>
             <legend>Average drug injections</legend>
-            <h3>Average Number of drug injection episodes per wekk</h3>
+            <h3>Average Number of drug injection episodes per week</h3>
 
             <p class="left">
                 <obs conceptId="164989" />
