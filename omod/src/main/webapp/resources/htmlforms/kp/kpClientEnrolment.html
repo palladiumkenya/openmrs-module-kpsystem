@@ -21,138 +21,116 @@
             jq("#clientphysiaclViolence").hide();
             jq("#historicalPhysicalViolence").hide();
             jq("#sexuaViolence").hide();
+            jq("#peer_work_name").hide();
+
 
             var sexViolenceckbox = $('#w35_0');
-            var x = document.getElementById("w35_0");
             $('input').on('click',function () {
                 if (sexViolenceckbox.is(':checked')) {
-
-                    x.style.display = "block";
                     jq("#sexuaViolence").show();
 
                 } else {
                     jq("#sexuaViolence").hide();
-
                 }
             });
 
             var physicalViolenceckbox = $('#w39_0');
-            var x = document.getElementById("w39_0");
             $('input').on('click',function () {
                 if (physicalViolenceckbox.is(':checked')) {
-
-                    x.style.display = "block";
                     jq("#historicalPhysicalViolence").show();
-
                 } else {
                     jq("#historicalPhysicalViolence").hide();
-
                 }
             });
 
             var nonepaying_ckbox = $('#w19_0');
-            var x = document.getElementById("w19_0");
             $('input').on('click',function () {
                 if (nonepaying_ckbox.is(':checked')) {
-
-                    x.style.display = "block";
                     jq("#NonePayingSex").show();
-
                 } else {
                     jq("#NonePayingSex").hide();
-
                 }
             });
+
             var clientphysiaclViolence = $('#w47_0');
-            var x = document.getElementById("w47_0");
             $('input').on('click',function () {
                 if (clientphysiaclViolence.is(':checked')) {
-
-                    x.style.display = "block";
                     jq("#clientphysiaclViolence").show();
-
                 } else {
                     jq("#clientphysiaclViolence").hide();
-
                 }
             });
 
+
+            var peer_work_name = $('#w15_0');
+            $('input').on('click',function () {
+                if (peer_work_name.is(':checked')) {
+                    jq("#peer_work_name").show();
+                } else {
+                    jq("#peer_work_name").hide();
+                }
+            });
+
+
+            $('input').on('click',function () {
+                var partnerNumber = getField('pNumber.value').val();
+                if (partnerNumber !== "") {
+
+                    var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                    if (partnerNumber.match(phoneNum)) {
+                        getField('pNumber.error').html('Please enter valid phone number.').hide();
+                    } else {
+                        getField('pNumber.error').html('Please enter valid phone number.').show();
+                        $('#w25').val('');
+                        return false;
+                    }
+                }
+            });
+
+            $('input').on('click',function () {
+
+                var mobileNumber = getField('mobile.value').val();
+                if (mobileNumber !== "") {
+
+                    var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                    if (mobileNumber.match(phoneNum)) {
+                        getField('mobile.error').html('Please enter valid phone number.').hide();
+                    } else {
+                        getField('mobile.error').html('Please enter valid phone number.').show();
+                        $('#w55').val('');
+                        return false;
+                    }
+                }
+            });
+
+            $('input').on('click',function () {
+
+                var alternateNumber = getField('alterNumber.value').val();
+                if (alternateNumber !== "") {
+
+                    var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                    if (alternateNumber.match(phoneNum)) {
+                        getField('alterNumber.error').html('Please enter valid phone number.').hide();
+                    } else {
+                        getField('alterNumber.error').html('Please enter valid phone number.').show();
+                        $('#w57').val('');
+                        return false;
+                    }
+                }
+            });
 
         });
 
         beforeSubmit.push(function() {
-            var gender_identity = getField('gender-identity').val();
-            var mobile = getField('mobile').val();
-            var peer_educator = getField('peer-educator').val();
-            var peer = getField('peer').val();
-            var regular-sex-partner = getField('regular-sex-partner').val();
-            var partner_name = getField('pName').val();
-            var partner_alias = getField('pAlias').val();
-            var partner_number = getField('pNumber').val();
-            var contact_regular_sex_partner = getField("contact-regular-sex-partner").val();
-            var start_sex = getField("startSex").val();
 
-            var sex_with_men = getField("sexWithMen").val();
-            var using_drugs = getField("usingDrugs").val();
-            var experience_sex_violence = getField("exprienced-sex-violence").val();
-            var sex_violence_ordeal = getField("sOrdeal").val();
-            var physical_ordeal = getField("exprienced-physical-violence").val();
-            var historical_ordeal = getField("hOrdeal").val();
-            var contatcted_incase_of_appointment = getField("contacted-incase-of-appointment").val();
-            var clinical_contatcted = getField("cContacted").val();
-            var experience_phy_violence = getField("exprienced-cphysical-violence").val();
-            var cordeal = getField("cOrdeal").val();
+            var start_sex = getField("startSex.value").val();
 
-
-            if (gender_identity == false ) {
-                getField('Please select gender.error').html('Please select gender.').show();
-                return false;
-            }else{
-                getField('Please select gender.error').html('Please select gender.').hide();
-            }
-            if (mobile == false ) {
-                getField('Please enter valid mobile number.error').html('Please enter valid mobile number.').show();
-                return false;
-            }else{
-                getField('Please enter valid mobile number.error').html('Please enter valid mobile number.').hide();
-            }
-            if (peer_educator == false ) {
-                getField('Please indicate whether you have been contacted or not.error').html('Please indicate whether you have been contacted or not').show();
-                return false;
-            }else{
-                getField('Please indicate whether you have been contacted or not.error').html('Please indicate whether you have been contacted or not').hide();
-            }
-            if (peer == false &amp;&amp; peer_educator != false  ) {
-                getField('Please enter peer educator name.error').html('Please enter peer educator name.').show();
-                return false;
-            }else{
-                getField('Please enter peer educator name.error').html('Please enter peer educator name.').hide();
-            }
-            if (regular-sex-partner == false ) {
-                getField('Please indicate if you have regular sex partner.error').html('Please indicate if you have regular sex partner.').show();
-                return false;
-            }else{
-                getField('Please indicate if you have regular sex partner.error').html('Please indicate if you have regular sex partner.').hide();
-            }
-            if (partner_name == false ) {
-                getField('Please enter partner name.error').html('Please enter partner name.').show();
-                return false;
-            }else{
-                getField('Please enter partner name.error').html('Please enter partner name.').hide();
-            }
-            if (partner_alias == false ) {
-                getField('Please enter partner alias.error').html('Please enter partner alias.').show();
-                return false;
-            }else{
-                getField('Please enter partner alias.error').html('Please enter partner alias.').hide();
-            }
             if (start_sex == false ) {
                 getField('Please indicate when you started sex work.error').html('Please indicate when you started sex work.').show();
                 return false;
             }else{
                 getField('Please indicate when you started sex work.error').html('Please indicate when you started sex sex_with_men.').hide();
             }
-
 
         });
     </script>
@@ -181,7 +159,7 @@
                 <td>Unique Client Number</td>
                 <td>
                     <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
-                    <input type="button" id="generate-kp-id" value="Generate"/>
+
                 </td>
                 </tr>
                 <tr>
@@ -189,14 +167,14 @@
                     <td>
                         <obs id="gender-identity" conceptId="1533"
                              answerConceptIds="1534,1535,163163"
-                             answerLabels="Male,Female,Transgender"
+                             answerLabels="Male,Female,Transgender" required="true"
                              style="radio" />
                     </td>
                 </tr>
                 <tr>
                     <td>Enrolment Service Areas</td>
                     <td>
-                        <obs id="mobile" conceptId="160540"/>
+                        <obs id="enrolment_area" conceptId="160540"/>
                     </td>
                 </tr>
             </table>
@@ -216,11 +194,13 @@
                     </td>
                 </tr>
                 <tr>
+                    <table id="peer_work_name" >
                     <td>Peer Educator/Outreach Worker name</td>
                     <td>
                         <obs id="peer" conceptId="1473"/>
 
                     </td>
+                    </table>
                 </tr>
                 <tr>
                     <td>Do you have a regular(Non-Paying) sexual partner?</td>
@@ -231,9 +211,8 @@
                              style="radio" />
                     </td>
                 </tr>
-                <div >
+                <tr>
                     <table id="NonePayingSex" >
-                    <tr>
 
                         <td>If yes, partners name</td>
                         <td>
@@ -247,11 +226,12 @@
                         <td>
                             <obs id="pNumber" conceptId="159635"/>
                         </td>
-                    </tr>
-                    </table>
-                </div>
 
+                    </table>
+
+                </tr>
                 <tr>
+                    <table>
                     <td>Could we contact your regular sexual partner(s) for prevention services?</td>
                     <td>
                         <obs id="contact-regular-sex-partner" conceptId="165008"
@@ -259,6 +239,7 @@
                              answerLabels="Yes,No"
                              style="radio" />
                     </td>
+                    </table>
                 </tr>
             </table>
         </fieldset>
