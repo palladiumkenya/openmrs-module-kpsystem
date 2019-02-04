@@ -13,6 +13,9 @@
 -->
 <htmlform>
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
+
+
+
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -22,6 +25,26 @@
             jq("#historicalPhysicalViolence").hide();
             jq("#sexuaViolence").hide();
             jq("#peer_work_name").hide();
+            jq("#year_sarted_sex").hide();
+            jq("#yearStartedSexWithMen").hide();
+
+            var male = $('#w11_0');
+            var female = $('#w11_1');
+            var transgender = $('#w11_2');
+            $('input').on('click',function () {
+                if (male.is(':checked')) {
+                    jq("#year_sarted_sex").hide();
+                    jq("#yearStartedSexWithMen").show();
+                }
+                if (female.is(':checked')) {
+                    jq("#yearStartedSexWithMen").hide();
+                    jq("#year_sarted_sex").show();
+                }
+                if(transgender.is(':checked')) {
+                    jq("#year_sarted_sex").hide();
+                    jq("#yearStartedSexWithMen").hide();
+                }
+            });
 
 
             var sexViolenceckbox = $('#w35_0');
@@ -119,17 +142,128 @@
                 }
             });
 
+            $('input').on('click',function () {
+
+                var year_startSex_work = getField('startSex.value').val();
+                var year_start_having_sex_with_men = getField('sexWithMen.value').val();
+                var year_stared_using_drugs = getField('usingDrugs.value').val();
+
+                yearValidation(year_startSex_work, 'startSex')
+                yearValidation(year_start_having_sex_with_men,  'sexWithMen')
+                yearValidation(year_stared_using_drugs, 'usingDrugs')
+
+
+            });
+
+            function yearValidation(year, textfield) {
+
+                if (year != 0) {
+                    var test=year;
+                    if (year.length != 4) {
+                        getField(textfield+'.error').html('Please enter valid year.').show();
+                        getField(textfield+'.value').val('');
+                        return false;
+                    }
+
+                    var current_year = new Date().getFullYear();
+                    if ((year > current_year)) {
+                        getField(textfield+'.error').html('Year should not be greater than current year.').show();
+                        getField(textfield+'.value').val('');
+                        return false;
+                    }
+                    getField(textfield+'.error').html('Please enter valid year.').hide();
+                }
+            }
         });
 
         beforeSubmit.push(function() {
+            var gender_identity = getField('gender-identity.value').val();
 
+            //var gender_identity_name = jq('.gender_selected input').val();
+            var enrolment_area = getField('enrolment_area.value').val();
+            var peer_educator = getField('peer-educator.value').val();
+            var peer = getField('peer.value').val();
+            var regular_sex_partner = getField('regular-sex-partner.value').val();
+            var partner_name = getField('pName.value').val();
+            var partner_alias = getField('pAlias.value').val();
+            var partner_number = getField('pNumber.value').val();
+            var contact_regular_sex_partner = getField("contact-regular-sex-partner.value").val();
             var start_sex = getField("startSex.value").val();
 
-            if (start_sex == false ) {
-                getField('Please indicate when you started sex work.error').html('Please indicate when you started sex work.').show();
+            var sex_with_men = getField("sexWithMen.value").val();
+            var using_drugs = getField("usingDrugs.value").val();
+            var experience_sex_violence = getField("exprienced-sex-violence.value").val();
+            var sex_violence_ordeal = getField("sOrdeal.value").val();
+            var physical_ordeal = getField("exprienced-physical-violence.value").val();
+            var historical_ordeal = getField("hOrdeal.value").val();
+            var contatcted_incase_of_appointment = getField("contacted-incase-of-appointment.value").val();
+            var clinical_contatcted = getField("cContacted.value").val();
+            var experience_phy_violence = getField("exprienced-cphysical-violence.value").val();
+            var cordeal = getField("cOrdeal.value").val();
+
+            //Gender validation
+
+            var male = $('#w11_0');
+            var female = $('#w11_1');
+            var transgender = $('#w11_2');
+
+                if (male.is(':checked') || female.is(':checked') || transgender.is(':checked')) {
+                    getField('gender-identity.error').html('Please select gender.').hide();
+                } else {
+                    getField('gender-identity.error').html('Please select gender.').show();
+                    return false;
+                }
+
+                // validate enrollment
+            if (enrolment_area == "" ) {
+                getField('enrolment_area.error').html('Please select enrollment service area.').show();
                 return false;
             }else{
-                getField('Please indicate when you started sex work.error').html('Please indicate when you started sex sex_with_men.').hide();
+                getField('enrolment_area.error').html('Please select enrollment service area.').hide();
+            }
+
+            var contacted_by_eductaor = $('#w15_0');
+            var notContacted = $('#w15_1');
+
+
+            if (contacted_by_eductaor.is(':checked') || notContacted.is(':checked')) {
+                getField('peer-educator.error').html('Please indicate whether you have been contacted or not').hide();
+            } else {
+                getField('peer-educator.error').html('Please indicate whether you have been contacted or not').show()
+                return false;
+            }
+
+
+
+            var has_regular_sex_partner = $('#w19_0');
+            var doesnot_regular_sex_partner = $('#w19_1');
+
+
+            if (has_regular_sex_partner.is(':checked') || doesnot_regular_sex_partner.is(':checked')) {
+                getField('regular-sex-partner.error').html('Please indicate if you have regular sex partner.').hide();
+            } else {
+                getField('regular-sex-partner.error').html('Please indicate if you have regular sex partner.').show()
+                return false;
+            }
+
+
+            if (partner_number != "") {
+
+                var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                if (partner_number.value.match(phoneNum)) {
+                    getField('pName.error').html('Please enter partner name.').hide();
+                } else {
+                    getField('pNumber.error').html('Please enter valid phone number.').show();
+                    return false;
+                }
+
+
+                if (start_sex == false) {
+                    getField('Please indicate when you started sex work.error').html('Please indicate when you started sex work.').show();
+                    return false;
+                } else {
+                    getField('Please indicate when you started sex work.error').html('Please indicate when you started sex sex_with_men.').hide();
+                }
             }
 
         });
@@ -165,7 +299,7 @@
                 <tr>
                     <td>Gender Identifty</td>
                     <td>
-                        <obs id="gender-identity" conceptId="1533"
+                        <obs id="gender-identity" class="gender_selected" conceptId="1533"
                              answerConceptIds="1534,1535,163163"
                              answerLabels="Male,Female,Transgender" required="true"
                              style="radio" />
@@ -248,13 +382,13 @@
             <legend>Historical Status</legend>
 
             <table>
-                <tr>
+                <tr id="year_sarted_sex">
                     <td>Which year did you start sex work?</td>
                     <td>
                         <obs id="startSex" conceptId="165009"/>
                     </td>
                 </tr>
-                <tr>
+                <tr id="yearStartedSexWithMen">
                     <td>Which year did you start having sex with men?</td>
                     <td>
                         <obs id="sexWithMen" conceptId="165010"/>
