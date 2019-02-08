@@ -12,13 +12,19 @@
   ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
 -->
 <htmlform>
+
+
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
-
-
-
     <script type="text/javascript">
 
         $(document).ready(function () {
+            $("#date").datepicker({
+                changeMonth: false,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy',
+                duration: 'fast',
+                stepMonths: 0
+            });
 
             jq("#NonePayingSex").hide();
             jq("#clientphysiaclViolence").hide();
@@ -398,6 +404,7 @@
                     <td>Which Year Did You Start Using Drugs (Injecting Or Smoking?</td>
                     <td>
                         <obs id="usingDrugs" conceptId="165011"/>
+
                     </td>
                 </tr>
                 <tr>
