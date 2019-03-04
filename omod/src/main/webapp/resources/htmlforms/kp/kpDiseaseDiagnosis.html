@@ -48,9 +48,9 @@
                  }
 
              if ((diagnosedPastDisease == 1065 )&amp;&amp;(nature_of_disease!=false)) {
-                getField('nature_of_disease..error').html('Required.').hide();
+                getField('nature_of_disease.error').html('Required.').hide();
             } else {
-                getField('nature_of_disease..error').html('Required.').show();
+                getField('nature_of_disease.error').html('Required.').show();
                 return false;
             }
         });
@@ -102,7 +102,11 @@
                     <td width="156" valign="top"><p> <obs id="expiry-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
                     /></p></td>
                     <td width="156" valign="top"><p>Specify the treatment medication in use</p></td>
-                    <td width="156" valign="top"><p> <obs id="treatmentMedication" conceptId="159367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></p></td>
+
+                    <td width="156" valign="top"><p>  <obs class="remarks" conceptId="160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
+                    /></p></td>
+
                 </tr>
             </table>
         </fieldset>

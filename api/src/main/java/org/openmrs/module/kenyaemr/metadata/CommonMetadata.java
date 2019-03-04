@@ -71,6 +71,7 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String KP_APPOINTMENT = "1f64fc1a-35db-11e9-b210-d663bd873d93";
 		public static final String KP_CLIENTEXAMANDOBSERVATION = "2c3cf500-3676-11e9-b210-d663bd873d93";
 
+
 	}
 
 	public static final class _OrderType {
@@ -138,9 +139,9 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(encounterType("KP Discontinuation", "Records information about KP client discontinuation", _EncounterType.KP_CLIENT_DISCONTINUATION));
 		install(encounterType("KP Disease Diagnosis", "Handles KP client Disease Diagnosis", _EncounterType.KP_DISEASDIAGNOSIS));
 		install(encounterType("KP immunization and vaccination", "Handles KP client Immunization and vaccination", _EncounterType.KP_IMMUNIZATIONANDVACCINATION));
-		install(encounterType("KP Current medication", "Handles KP client Immunization and vaccination", _EncounterType.KP_CURRENTMEDICATION));
-		install(encounterType("KP Appointment", "Handles KP client Immunization and vaccination", _EncounterType.KP_APPOINTMENT));
-		install(encounterType("KP Client exam and observation", "Handles KP client Immunization and vaccination", _EncounterType.KP_CLIENTEXAMANDOBSERVATION));
+		install(encounterType("KP Current medication", "Handles KP client current medication", _EncounterType.KP_CURRENTMEDICATION));
+		install(encounterType("KP Appointment", "Handles KP client Appointment", _EncounterType.KP_APPOINTMENT));
+		install(encounterType("KP Client exam and observation", "Handles KP client exam oan observation", _EncounterType.KP_CLIENTEXAMANDOBSERVATION));
 
 
 		install(form("Clinical Encounter", null, _EncounterType.CONSULTATION, "1", _Form.CLINICAL_ENCOUNTER));

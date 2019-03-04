@@ -34,18 +34,6 @@
 				<ref bean="kenyaemr.common.form.kpCurrentMedication"/>
 				<ref bean="kenyaemr.common.form.kpAppointmentCreation"/>
 				<ref bean="kenyaemr.common.form.kpClientExamandObservation"/>
-			</set>
-		</property>
-	</bean>
-
-	<bean id="kenyaemr.config.report" class="org.openmrs.module.kenyacore.report.ReportConfiguration">
-		<property name="commonReports">
-			<set>
-
-			</set>
-		</property>
-	</bean>
-
 	<bean id="kenyaemr.config.regimen" class="org.openmrs.module.kenyaemr.regimen.RegimenConfiguration">
 		<property name="definitionsPath" value="regimens.xml" />
 	</bean>
@@ -237,5 +225,7 @@
 		<property name="htmlform" value="kenyaemr:kp/kpClientExamandObservation.html" />
 		<property name="order" value="201006" />
 	</bean>
+
 	<!-- ===================== Reports ===================== -->
+
 </beans>

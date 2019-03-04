@@ -77,7 +77,7 @@
                             });
                         </script>
                     </ifMode>
-                    Observation date: <encounterDate id="encounter-date" showTime="true" required="true"/>
+                    Encounter date: <encounterDate id="encounter-date" showTime="true" required="true"/>
                 </td>
                 <td>Provider : <encounterProvider default="currentUser" /></td>
                 <td>Location: <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" /></td>
@@ -88,39 +88,61 @@
     <div class="ke-form-content">
 
         <fieldset>
-            <legend>Client Exam and Observation</legend>
+            <legend>Client Tracing</legend>
             <table border="0" width="100%" cellspacing="0" cellpadding="0">
-
                 <tr>
-                    <td width="156" valign="top"><p>Do you have any presenting complaints:</p></td>
-                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="5853AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                           style="yes_no" required="true" /></p></td>
-                    <td width="156" valign="top"><p>Describe the nature of complaints</p></td>
-                    <td width="156" valign="top"><p><obs class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="5" cols="40"/></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="156" valign="top"><p>select complaits area:</p></td>
-                    <td width="156" valign="top"><p>   <obs id="tetenus_selected" conceptId="124957AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                            answerConceptIds="125182AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                                            120749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                                            118962AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                                            1808AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                                            1236AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                                            79AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                            style="dropdown" /></p></td>
-                    <td width="156" valign="top"><p>When is the on set date</p></td>
+                    <td width="156" valign="top"><p>Tracing Attempt Date</p></td>
                     <td width="156" valign="top"><p> <obs id="expiry-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
                     /></p></td>
+                    <td width="156" valign="top"><p>Type of tracing attempt:</p></td>
+                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="a55f9516-ddb6-47ec-b10d-cb99d1d0bd41"
+                                                           answerConceptIds="164965,
+                                                            1650"
+                                                            /></p></td>
                 </tr>
                 <tr>
-                    <td width="156" valign="top"><p>Duration of the complains in days</p></td>
-                    <td width="156" valign="top"><p><obs class="remarks" conceptId="1730AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
-                    <td width="156" valign="top"><p>Complait notes</p></td>
-                    <td width="156" valign="top"><p><obs class="remarks" conceptId="160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="5" cols="40"/></p>
-                    </td>
-                </tr>
 
+                    <td width="156" valign="top"><p>Tracing outcome</p></td>
+                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="eb113c76-aef8-4890-a611-fe22ba003123"
+                                                           answerConceptIds="1065,
+                                                            1066"  answerLabels="Reached,Not Reached"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>Reason for negative tracing outcome:</p></td>
+                    <td width="156" valign="top"><p>   <obs id="tetenus_selected" conceptId="124957AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                            answerConceptIds="124953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                            124954AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                            128163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                            152276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                            17AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,"
+                                                            style="dropdown" /></p></td>
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>Description for the negative tracing outcome</p></td>
+                    <td width="156" valign="top"><p>  <obs class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="5" cols="40"
+                    /></p></td>
+
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top">
+                    </td>
+                    <td width="156" valign="top">
+                        <p> <b> Initiate Tracing Of Treatment Buddies</b>
+                        </p>
+                    </td>
+
+
+                </tr>
+                <tr>
+
+                    <td width="156" valign="top"><p>Schedule Next Tracing Attempt</p></td>
+                    <td width="156" valign="top"><p> <obs id="expiry-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
+                    /></p></td>
+                    <td width="156" valign="top"><p>Client Final Tracing Status</p></td>
+                    <td width="156" valign="top"><p> <obs id="treatmentMedication" conceptId="159367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></p></td>
+
+                </tr>
             </table>
 
         </fieldset>
