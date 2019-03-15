@@ -36,7 +36,7 @@
 
             //Consent validation
             jq('#tetenus_selected input').prop("disabled", true);
-            jq("#couple-testing input").change(tetenus_selected);
+            jq("#couple-teexam_sting input").change(tetenus_selected);
 
         });
         //Before Submit
@@ -77,9 +77,9 @@
                             });
                         </script>
                     </ifMode>
-                    HTS date: <encounterDate id="encounter-date" showTime="true" required="true"/>
+                    Appointment date: <encounterDate id="encounter-date" showTime="true" required="true"/>
                 </td>
-                <td>HTS Provider : <encounterProvider default="currentUser" /></td>
+                <td>Appointment Provider : <encounterProvider default="currentUser" /></td>
                 <td>Location: <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" /></td>
             </tr>
         </table>
@@ -88,13 +88,13 @@
     <div class="ke-form-content">
 
         <fieldset>
-            <legend>Immunization and Vaccination</legend>
+            <legend>Appointment Creation</legend>
             <table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td width="156" valign="top"><p>Have you received any vaccination/ immunization</p></td>
-                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="5853AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                           style="yes_no" /></p></td>
-                    <td width="156" valign="top"><p>Specify immunization/ vaccine given:</p></td>
+                    <td width="156" valign="top"><p>Appointment date</p></td>
+                    <td width="156" valign="top"><p> <obs id="expiry-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
+                    /></p></td>
+                    <td width="156" valign="top"><p>Specify Appointment type:</p></td>
                     <td width="156" valign="top"><p>
                         <obs id="hiv-test1-result" conceptId="984"
                              answerConceptIds="5665AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
@@ -126,43 +126,14 @@
 
                     </p></td>
                 </tr>
+
                 <tr>
-                    <td width="156" valign="top"><p>If tetanus is selected, specify the category of vaccination    given:</p></td>
-                    <td width="156" valign="top"><p>   <obs id="tetenus_selected" conceptId="124957AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                            answerConceptIds="124953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                                            124954AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                                            128163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                                            152276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                                            17AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,"
-                                                            style="dropdown" /></p></td>
-                    <td width="156" valign="top"><p>Date Given</p></td>
-                    <td width="156" valign="top"><p> <obs id="expiry-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
+                    <td width="156" valign="top"><p>Apointment Notes</p></td>
+                    <td width="156" valign="top"><p>  <obs class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="5" cols="80"
                     /></p></td>
+
                 </tr>
-                <tr>
-                    <td width="156" valign="top"><p>Any adverse event after immunization /    vaccination</p></td>
-                    <td width="156" valign="top"><p><obs class="consent" conceptId="1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" required="true"
-                                                         style="yes_no" /></p></td>
-                    <td width="156" valign="top"><table border="0" cellpadding="0">
-                        <tr>
-                            <td></td>
-                            <td><p>Describe the adverse event(s)</p></td>
-                        </tr>
-                    </table></td>
-                    <td width="156" valign="top"><p>  <obs class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="5" cols="40"
-                    /></p></td>
-                </tr>
-                <tr>
-                    <td width="156" valign="top"><p>What is the vaccination/immunization validity</p></td>
-                    <td width="156" valign="top"><p> <obs id="treatmentMedication" conceptId="159367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></p></td>
-                    <td width="156" valign="top"><table border="0" cellpadding="0">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table></td>
-                    <td width="156" valign="top"><p></p></td>
-                </tr>
+
             </table>
 
         </fieldset>

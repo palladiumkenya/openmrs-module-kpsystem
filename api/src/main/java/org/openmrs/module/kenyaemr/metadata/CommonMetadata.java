@@ -46,6 +46,8 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String KP_DISEASDIAGNOSIS = "d7cfa460-2944-11e9-b210-d663bd873d93";
 		public static final String KP_IMMUNIZATIONANDVACCINATION = "9b8c17cc-3420-11e9-b210-d663bd873d93";
 		public static final String KP_CURRENTMEDICATION = "66609dee-3438-11e9-b210-d663bd873d93";
+		public static final String KP_APPOINTMENT = "1f64f968-35db-11e9-b210-d663bd873d93";
+		public static final String KP_CLIENTEXAMANDOBSERVATION = "2c3cf276-3676-11e9-b210-d663bd873d93";
 
 	}
 
@@ -66,6 +68,8 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		public static final String KP_DISEASDIAGNOSIS = "6660a096-3438-11e9-b210-d663bd873d93";
 		public static final String KP_IMMUNIZATIONANDVACCINATION = "9b8c1a88-3420-11e9-b210-d663bd873d93";
 		public static final String KP_CURRENTMEDICATION = "66609b50-3438-11e9-b210-d663bd873d93";
+		public static final String KP_APPOINTMENT = "1f64fc1a-35db-11e9-b210-d663bd873d93";
+		public static final String KP_CLIENTEXAMANDOBSERVATION = "2c3cf500-3676-11e9-b210-d663bd873d93";
 
 	}
 
@@ -135,6 +139,8 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(encounterType("KP Disease Diagnosis", "Handles KP client Disease Diagnosis", _EncounterType.KP_DISEASDIAGNOSIS));
 		install(encounterType("KP immunization and vaccination", "Handles KP client Immunization and vaccination", _EncounterType.KP_IMMUNIZATIONANDVACCINATION));
 		install(encounterType("KP Current medication", "Handles KP client Immunization and vaccination", _EncounterType.KP_CURRENTMEDICATION));
+		install(encounterType("KP Appointment", "Handles KP client Immunization and vaccination", _EncounterType.KP_APPOINTMENT));
+		install(encounterType("KP Client exam and observation", "Handles KP client Immunization and vaccination", _EncounterType.KP_CLIENTEXAMANDOBSERVATION));
 
 
 		install(form("Clinical Encounter", null, _EncounterType.CONSULTATION, "1", _Form.CLINICAL_ENCOUNTER));
@@ -153,6 +159,8 @@ public class CommonMetadata extends AbstractMetadataBundle {
 		install(form("Client Disease Diagnosis", null, _EncounterType.KP_DISEASDIAGNOSIS, "1", _Form.KP_DISEASDIAGNOSIS));
 		install(form("Client Immunization and vaccination", null, _EncounterType.KP_IMMUNIZATIONANDVACCINATION, "1", _Form.KP_IMMUNIZATIONANDVACCINATION));
 		install(form("Client Current medication", null, _EncounterType.KP_CURRENTMEDICATION, "1", _Form.KP_CURRENTMEDICATION));
+		install(form("Kp Appointment", null, _EncounterType.KP_APPOINTMENT, "1", _Form.KP_APPOINTMENT));
+		install(form("Kp Client exam and observation", null, _EncounterType.KP_CLIENTEXAMANDOBSERVATION, "1", _Form.KP_CLIENTEXAMANDOBSERVATION));
 
 
 		install(globalProperty(EmrConstants.GP_DEFAULT_LOCATION, "The facility for which this installation is configured",

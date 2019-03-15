@@ -32,7 +32,8 @@
 				<ref bean="kenyaemr.common.form.kpDiseaseDiagnosis"/>
 				<ref bean="kenyaemr.common.form.kpImmunizationAndVaccination"/>
 				<ref bean="kenyaemr.common.form.kpCurrentMedication"/>
-
+				<ref bean="kenyaemr.common.form.kpAppointmentCreation"/>
+				<ref bean="kenyaemr.common.form.kpClientExamandObservation"/>
 			</set>
 		</property>
 	</bean>
@@ -162,7 +163,7 @@
 		<property name="order" value="201002" />
 	</bean>
 
-	<!-- kp  kpDisease Diagnosis -->
+	<!-- kpDisease Diagnosis -->
 	<bean id="kenyaemr.common.form.kpDiseaseDiagnosis" class="org.openmrs.module.kenyacore.form.FormDescriptor">
 		<property name="targetUuid" value="6660a096-3438-11e9-b210-d663bd873d93" />
 		<property name="apps">
@@ -177,7 +178,7 @@
 		<property name="order" value="201003" />
 	</bean>
 
-	<!-- kp  kpImmunization and vaccination -->
+	<!-- kpImmunization and vaccination -->
 	<bean id="kenyaemr.common.form.kpImmunizationAndVaccination" class="org.openmrs.module.kenyacore.form.FormDescriptor">
 		<property name="targetUuid" value="9b8c1a88-3420-11e9-b210-d663bd873d93" />
 		<property name="apps">
@@ -193,7 +194,7 @@
 	</bean>
 
 
-	<!-- kp  kp current medication -->
+	<!-- kp  current medication -->
 	<bean id="kenyaemr.common.form.kpCurrentMedication" class="org.openmrs.module.kenyacore.form.FormDescriptor">
 		<property name="targetUuid" value="66609b50-3438-11e9-b210-d663bd873d93" />
 		<property name="apps">
@@ -206,6 +207,35 @@
 		<property name="icon" value="kenyaui:forms/generic.png" />
 		<property name="htmlform" value="kenyaemr:kp/kpCurrentMedication.html" />
 		<property name="order" value="201004" />
+	</bean>
+	<!-- kp Appointments -->
+	<bean id="kenyaemr.common.form.kpAppointmentCreation" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="1f64fc1a-35db-11e9-b210-d663bd873d93" />
+		<property name="apps">
+			<set>
+				<ref bean="kenyaemr.app.registration" />
+				<ref bean="kenyaemr.app.clinician" />
+				<ref bean="kenyaemr.app.chart" />
+			</set>
+		</property>
+		<property name="icon" value="kenyaui:forms/generic.png" />
+		<property name="htmlform" value="kenyaemr:kp/kpAppointmentCreation.html" />
+		<property name="order" value="201006" />
+	</bean>
+
+	<!-- kp Exam and observation -->
+	<bean id="kenyaemr.common.form.kpClientExamandObservation" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="2c3cf500-3676-11e9-b210-d663bd873d93" />
+		<property name="apps">
+			<set>
+				<ref bean="kenyaemr.app.registration" />
+				<ref bean="kenyaemr.app.clinician" />
+				<ref bean="kenyaemr.app.chart" />
+			</set>
+		</property>
+		<property name="icon" value="kenyaui:forms/generic.png" />
+		<property name="htmlform" value="kenyaemr:kp/kpClientExamandObservation.html" />
+		<property name="order" value="201006" />
 	</bean>
 	<!-- ===================== Reports ===================== -->
 </beans>
