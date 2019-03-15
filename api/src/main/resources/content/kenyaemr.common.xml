@@ -34,18 +34,11 @@
 				<ref bean="kenyaemr.common.form.kpCurrentMedication"/>
 				<ref bean="kenyaemr.common.form.kpAppointmentCreation"/>
 				<ref bean="kenyaemr.common.form.kpClientExamandObservation"/>
+				<ref bean="kenyaemr.common.form.kpClientTracing"/>
+				<ref bean="kenyaemr.common.form.kpClientVisit"/>
 			</set>
 		</property>
 	</bean>
-
-	<bean id="kenyaemr.config.report" class="org.openmrs.module.kenyacore.report.ReportConfiguration">
-		<property name="commonReports">
-			<set>
-
-			</set>
-		</property>
-	</bean>
-
 	<bean id="kenyaemr.config.regimen" class="org.openmrs.module.kenyaemr.regimen.RegimenConfiguration">
 		<property name="definitionsPath" value="regimens.xml" />
 	</bean>
@@ -237,5 +230,36 @@
 		<property name="htmlform" value="kenyaemr:kp/kpClientExamandObservation.html" />
 		<property name="order" value="201006" />
 	</bean>
+
+	<!-- kp client tracing -->
+	<bean id="kenyaemr.common.form.kpClientTracing" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="63917c60-3fea-11e9-b210-d663bd873d93" />
+		<property name="apps">
+			<set>
+				<ref bean="kenyaemr.app.registration" />
+				<ref bean="kenyaemr.app.clinician" />
+				<ref bean="kenyaemr.app.chart" />
+			</set>
+		</property>
+		<property name="icon" value="kenyaui:forms/generic.png" />
+		<property name="htmlform" value="kenyaemr:kp/kpClientTracing.html" />
+		<property name="order" value="201006" />
+	</bean>
+
+	<!-- kp client visit -->
+	<bean id="kenyaemr.common.form.kpClientVisit" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="639182e6-3fea-11e9-b210-d663bd873d93" />
+		<property name="apps">
+			<set>
+				<ref bean="kenyaemr.app.registration" />
+				<ref bean="kenyaemr.app.clinician" />
+				<ref bean="kenyaemr.app.chart" />
+			</set>
+		</property>
+		<property name="icon" value="kenyaui:forms/generic.png" />
+		<property name="htmlform" value="kenyaemr:kp/kpClientVisit.html" />
+		<property name="order" value="201009" />
+	</bean>
 	<!-- ===================== Reports ===================== -->
+
 </beans>
