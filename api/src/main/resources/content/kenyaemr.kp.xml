@@ -21,6 +21,7 @@
 		<property name="eligibilityCalculation" value="org.openmrs.module.kenyaemr.calculation.library.kp.EligibleForKPProgramCalculation" />
 		<property name="defaultEnrollmentForm" ref="kenyaemr.kp.form.kpClientEnrolment" />
 		<property name="defaultCompletionForm" ref="kenyaemr.kp.form.completion" />
+
 		<property name="visitForms" >
 			<set>
 				<!--<ref bean="kenyaemr.ipt.form.followup" />
@@ -83,9 +84,5 @@
 		<property name="icon" value="kenyaui:forms/completion.png" />
 		<property name="htmlform" value="kenyaemr:kp/kpDiscontinuation.html" />
 	</bean>
-
-
-	<!-- ===================== Reports ===================== -->
-
 
 </beans>
