@@ -25,9 +25,27 @@
                 if (pastDiseaseYes == 1065 )
                 {
                     jq('#diagnosis-type input').prop("disabled", false);
+                    jq('#nature_of_disease input').prop("disabled", false);
+                    jq('#disease_status input').prop("disabled", false);
+                    jq('#expiry-date input').prop("disabled", false);
+                    jq('#medication_in_use input').prop("disabled", false);
+
+
+
+
                 }else{
                     jq('#diagnosis-type input').prop("disabled", true);
                     jq('#diagnosis-type input').val('');
+                    jq('#nature_of_disease input').prop("disabled", true);
+                    jq('#nature_of_disease input').val('');
+                    jq('#disease_status input').prop("disabled", true);
+                    jq('#disease_status input').val('');
+                    jq('#expiry-date input').prop("disabled", true);
+                    jq('#expiry-date input').val('');
+                    jq('#medication_in_use input').prop("disabled", true);
+                    jq('#medication_in_use input').val('');
+
+
                 }
 
             });
@@ -36,22 +54,27 @@
         beforeSubmit.push(function() {
 
             var diagnosedPastDisease = getValue("past_or_current_diseases.value");
-            var enrolment_area = getField('diagnosis-type.value').val();
+            var diagnosis = getField('diagnosis-type.value').val();
             var nature_of_disease = getValue("nature_of_disease.value");
-            if ((diagnosedPastDisease == 1065 )&amp;&amp;(enrolment_area==""))
+            if(diagnosedPastDisease == 1066){
+
+                return false;
+            }
+            if ((diagnosedPastDisease == 1065 )&amp;&amp;(diagnosis==""))
             {
                 getField('diagnosis-type.error').html('Required.').show();
-                 return false;
-             }
-             else {
-                 getField('diagnosis-type.error').html('Required.').hide();
-                 }
+                return false;
+            }
+            else {
+                getField('diagnosis-type.error').html('Required.').hide();
+            }
 
-             if ((diagnosedPastDisease == 1065 )&amp;&amp;(nature_of_disease!=false)) {
-                getField('nature_of_disease.error').html('Required.').hide();
-            } else {
+            if ((diagnosedPastDisease == 1065 )&amp;&amp;(nature_of_disease==false)) {
                 getField('nature_of_disease.error').html('Required.').show();
                 return false;
+
+            } else {
+                getField('nature_of_disease.error').html('Required.').hide();
             }
         });
     </script>
@@ -103,7 +126,7 @@
                     /></p></td>
                     <td width="156" valign="top"><p>Specify the treatment medication in use</p></td>
 
-                    <td width="156" valign="top"><p>  <obs class="remarks" conceptId="160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    <td width="156" valign="top"><p>  <obs class="remarks" id="medication_in_use" conceptId="160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
                     /></p></td>
 
