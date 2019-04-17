@@ -96,42 +96,311 @@
     <div class="ke-form-content">
 
         <fieldset>
-            <legend>Disease Diagnosis Form</legend>
+            <legend>Present and Past Medical History</legend>
+            <div id="greencard" class="swMain">
 
-            <table border="0" width="100%" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td width="156" valign="top"><p>Have you ever been diagnosed with any past or current diseases?</p></td>
-                    <td width="156" valign="top"><p>  <obs id="past_or_current_diseases" name="pastCurrentDisease" conceptId="165018"
-                                                           answerConceptIds="1065,1066"
-                                                           answerLabels="Yes,No"
-                                                           style="radio" /></p></td>
-                    <td width="156" valign="top"><p>If yes, Disease name</p></td>
-                    <td width="156" valign="top"><p><obs  conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerClasses="Diagnosis" id="diagnosis-type" style="autocomplete"/></p></td>
-                </tr>
-                <tr>
-                    <td width="156" valign="top"><p>Nature Of the disease</p></td>
-                    <td width="156" valign="top"><p>  <obs id="nature_of_disease" conceptId="1284"
-                                                           answerConceptIds="145439AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,149854AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                           answerLabels="Chronic,Acute"
-                                                           style="radio" /></p></td>
-                    <td width="156" valign="top"><p>Disease status</p></td>
-                    <td width="156" valign="top"><p>  <obs id="disease_status" conceptId="165018"
-                                                           answerConceptIds="145439AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,149854AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                                           answerLabels="Current,Past"
-                                                           style="radio" /></p></td>
-                </tr>
-                <tr>
-                    <td width="156" valign="top"><p>If current, Specify start date</p></td>
-                    <td width="156" valign="top"><p> <obs id="expiry-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
-                    /></p></td>
-                    <td width="156" valign="top"><p>Specify the treatment medication in use</p></td>
+                <ifMode mode="EDIT">
+                    <ul class="patient-details">
 
-                    <td width="156" valign="top"><p>  <obs class="remarks" id="medication_in_use" conceptId="160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                        <li><a href="#step-2">
+                            <label class="stepNumber">2</label>
+                            <span class="stepDesc">
+             History<br />
+          </span>
+                        </a></li>
 
-                    /></p></td>
 
-                </tr>
-            </table>
+                    </ul>
+                </ifMode>
+
+                <div class="ke-form-content">
+                    <!--Wizard Step 1-->
+
+                    <!--.step 2-->
+                    <div id="step-2">
+
+                        <!-- Additional History  -->
+                        <fieldset class="patient-details">
+                            <legend>Complaints and History of complaints</legend>
+                            <div>
+                                Patient having complaint(s) today?
+                                <obs id="complaints-today" conceptId="1154AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="yes_no"/>
+                                <span style="color:red;"><strong>*</strong></span>
+                            </div>
+                            <table cellspacing="5" id="tbl-complaints-today">
+                                <tr>
+                                    <th style="color: #888">Complaint</th>
+                                    <th style="color: #888; text-align: center">Onset Date</th>
+                                    <th style="color: #888; text-align: center">Duration (Days)</th>
+
+                                </tr>
+                                <repeat>
+                                    <template>
+                                        <obsgroup groupingConceptId="160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+                                            <tr>
+                                                <td>
+                                                    <obs class="complaint" conceptId="5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerConceptIds="151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119537AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148035AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131021AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120345AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119574AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113054AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,206AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,143264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,143129AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142412AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,122496AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118789AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141830AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                            141585AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,114399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162626AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140070AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142247AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135462AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139084AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117698AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,116214AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,879AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,116558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,114395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135595AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                             121657AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,144576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,116334AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131015AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,111721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133028AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5978AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133469AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133027AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,132653AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,125225AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127777AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113224AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131032AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,126535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                               141597AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,158843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140941AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,125198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112200AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160208AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,111525AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,122983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                         answerLabels="Abdominal pain,Abnormal Uterine Bleeding,Anxiety,Depression,Back pain,Bloody Urine,Breast Pain,Chest Pain,Cold and Chills,Confusion,Delirium,Convulsions,Seizure,Cough,Crying Infant,Diarrhea,Difficult in breathing,Difficulty in swallowing,Dizziness,Ear Pain,Epigastric Pain,Eye apin,Facial Pain,Fatigue/weakness,Fever,Flank Pain,Vaginal Discharge,Discharge from Penis,Genital Ulcer,Headache,Hearing Loss,Hypotension,Shock,Itchiness/Pruritus,Joint Pain,Leg Pain,Loss of Appetite,Lymphadenopathy,Memory Loss,Coma,Lethargy,Mouth Pain,Mouth Ulceration,Muscle cramps,Muscle Pain,Nausea,Neck Pain,Night sweats,Numbness,Pain when Swallowing,Pelvic Pain,Poor Vision,Rash,Red Eye,Running/Blocked nose,Scrotal Pain,Shoulder Pain,
+                                                       Sleep Disturbance,Sore Throat,Excessive Sweating,Swollen Legs,Tremors,Urinary Symptoms,Vertigo,Vomiting,Weight Loss,Other"
+                                                         style="dropdown" id="complaint-field"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <obs class="complaint-date" conceptId="159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false"/>
+                                                </td>
+                                                <td><obs class="complaint-time" conceptId="159368AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id ="complaint-duration" size="10" /></td>
+
+                                            </tr>
+                                        </obsgroup>
+                                    </template>
+                                    <render n="1" concept="complaint"/>
+                                    <render n="2" concept="complaint"/>
+                                    <render n="3" concept="complaint"/>
+                                    <render n="4" concept="complaint"/>
+                                    <render n="5" concept="complaint"/>
+                                </repeat>
+                            </table>
+                            <table>
+                                <tr>
+                                    <th  style="color: #888" >HPI</th>
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <obs conceptId="160430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="3" cols="80" id="clinical-notes"/>
+                                    </td>
+                                    <td>
+                                        <span class="value"><recentObs conceptId="160430AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+
+                        <!--Acute Illnesses-->
+                        <fieldset class="patient-details">
+                            <legend>Acute Illnesses</legend>
+                            <div>
+                                Patient has any chronic illnesse(s)? &#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                <obs id="chronic-illness" conceptId="162747AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     style="radio" answerLabels="Yes,No"
+                                />
+                                <span style="color:red;"><strong>*</strong></span>
+                            </div>
+                            <table id="tbl-chronic-illness">
+                                <tr>
+                                    <th style="color: #888">Illness</th>
+                                    <th style="color: #888; text-align: center">Onset Date</th>
+                                    <th style="color: #888">Drug</th>
+
+                                    <th style="color: #888; text-align: center">Active</th>
+
+                                </tr>
+                                <repeat>
+                                    <template>
+                                        <obsgroup groupingConceptId="159392AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+                                            <tr>
+                                                <td>
+                                                    <obs id="hepattisbtxt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                    />
+                                                </td>
+                                                <td><obs class="onset-date-chronic-illness" conceptId="159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false" /></td>
+                                                <td><obs class= "drug-chronic-illness" conceptId="1282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerClasses="Drug" style="autocomplete" /></td>
+
+
+                                                <td><obs class="duration-chronic-illness" conceptId="159368AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+
+                                            </tr>
+                                        </obsgroup>
+                                    </template>
+                                    <render n="1" concept="Drug"/>
+                                    <render n="2" concept="Drug"/>
+                                    <render n="3" concept="Drug"/>
+                                    <render n="4" concept="Drug"/>
+                                    <render n="5" concept="Drug"/>
+                                </repeat>
+                            </table>
+                        </fieldset>
+                        <!--Chronic Illnesses-->
+                        <fieldset class="patient-details">
+                            <legend>Chronic Illnesses and Cormobidities</legend>
+                            <div>
+                                Patient has any chronic illnesse(s)? &#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                <obs id="chronic-illness" conceptId="162747AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                     style="radio" answerLabels="Yes,No"
+                                />
+                                <span style="color:red;"><strong>*</strong></span>
+                            </div>
+                            <table id="tbl-chronic-illness">
+                                <tr>
+                                    <th style="color: #888">Illness</th>
+                                    <th style="color: #888; text-align: center">Onset Date</th>
+                                    <th style="color: #888">Drug</th>
+
+                                    <th style="color: #888; text-align: center">Active</th>
+
+                                </tr>
+                                <repeat>
+                                    <template>
+                                        <obsgroup groupingConceptId="159392AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+                                            <tr>
+                                                <td>
+                                                    <obs
+                                                            conceptId="1284AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" class="illness-chronic"
+                                                            answerConceptIds="149019AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,153754AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159351AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119270AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120637AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,145438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1295AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119692AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120291AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117855AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117789AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139071AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,115728AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117321AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,151342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133687AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,115115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,114662AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118976AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                            answerLabels="Alzheimer's Disease and other Dementias,Arthritis,Asthma,Cancer,Cardiovascular diseases,Chronic Hepatitis,Chronic Kidney Disease,Chronic Obstructive Pulmonary Disease(COPD),Chronic Renal Failure,Cystic Fibrosis,Deafness and Hearing impairment,Diabetes,Endometriosis,Epilepsy,Glaucoma,Heart Disease,Hyperlipidaemia,Hypertension,Hypothyroidism,Mental illness,Multiple Sclerosis,Obesity,Osteoporosis,Sickle Cell Anaemia,Thyroid disease"
+                                                            style="dropdown" id="chronic"
+                                                    />
+                                                </td>
+                                                <td><obs class="onset-date-chronic-illness" conceptId="159948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false" /></td>
+                                                <td><obs class= "drug-chronic-illness" conceptId="1282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerClasses="Drug" style="autocomplete" /></td>
+
+
+                                                <td><obs class="duration-chronic-illness" conceptId="159368AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+
+                                            </tr>
+                                        </obsgroup>
+                                    </template>
+                                    <render n="1" concept="Drug"/>
+                                    <render n="2" concept="Drug"/>
+                                    <render n="3" concept="Drug"/>
+                                    <render n="4" concept="Drug"/>
+                                    <render n="5" concept="Drug"/>
+                                </repeat>
+                            </table>
+                        </fieldset>
+                        <!-- Known allergies   -->
+                        <fieldset class="patient-details">
+                            <legend>Known Allergies</legend>
+                            <div>
+                                Patient has any known allergie(s)? &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                <obs id="known-allergies" conceptId="160557AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  style="yes_no"/>
+                                <span style="color:red;"><strong>*</strong></span>
+                            </div>
+                            <table id="tbl-known-allergies">
+                                <tr>
+                                    <td colspan="2">Record any known allergies<br/>
+                                        <table>
+                                            <tr>
+                                                <th>Causative agent</th>
+                                                <th>Reaction</th>
+                                                <th>Severity</th>
+                                                <th>Date of Onset</th>
+                                            </tr>
+                                            <repeat>
+                                                <template>
+                                                    <obsgroup groupingConceptId="121689AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+                                                        <tr>
+                                                            <td><obs class="allergen" conceptId="160643AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                     answerConceptIds="162543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,72609AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162544AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162545AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162171AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162546AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162547AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162172AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162175AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                                            162176AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162548AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162177AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162537AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162539AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                                              	162541AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                     answerLabels="Beef,Caffeine,Chocolate,Dairy Food,Eggs,Fish,Milk Protein,Peanuts,Shellfish,Soy,Strawberries,Wheat,Adhesive Tape,Bee Stings,Dust,Latex,Mold,Pollen,Ragweed,Other"
+                                                                     style="dropdown" id="allergy-field"
+                                                            />
+                                                            </td>
+                                                            <td><obs class="reaction" conceptId="159935AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                     answerConceptIds="1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121629AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148888AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148787AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,108AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,143264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142412AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118773AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140039AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139084AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159098AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                                            111061AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,879AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121677AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159347AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                     answerLabels="Unknown,Anaemia,Anaphylaxis,Angioedema,Arrhythmia,Bronchospasm,Cough,Diarrhea,Dystonia,Fever,Flushing,GI upset,Headache,Hepatotoxicity,Hives,Hypertension,Itching,Mental status change,Musculoskeletal pain,Myalgia,Rash,Other"
+                                                                     style="dropdown"
+                                                            /></td>
+                                                            <td><obs class="severity" conceptId="162760AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptIds="160754AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160755AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160756AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160758AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Mild,Moderate,Severe,Fatal,Unknown" /></td>
+                                                            <td><obs class="allergy-date" conceptId="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  allowFutureDates="false" labelText=" " /></td>
+                                                        </tr>
+                                                    </obsgroup>
+                                                </template>
+                                                <render n="1" concept=" " />
+                                                <render n="2" concept=" " />
+                                                <render n="3" concept=" " />
+                                                <render n="4" concept=" " />
+                                                <render n="5" concept=" " />
+                                            </repeat>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <fieldset class="patient-details">
+                            <legend>Adverse Drug Reactions</legend>
+                            <div>
+                                Patient has adverse drug reaction(s)? &#160;&#160;&#160;&#160;
+                                <obs id="adverse-reactions" conceptId="121764AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  style="yes_no"/>
+                                <span style="color:red;"><strong>*</strong></span>
+                            </div>
+                            <table id="tbl-adverse-reactions">
+                                <tr>
+                                    <td colspan="2">Record any Adverse Drug Reactions since the last visit<br/>
+                                        <table>
+                                            <tr>
+                                                <th>Medicine Causing Reaction</th>
+                                                <th>Reaction</th>
+                                                <th>Severity</th>
+                                                <th>Date of Onset</th>
+                                                <th>Action taken</th>
+                                            </tr>
+                                            <repeat>
+                                                <template>
+                                                    <obsgroup groupingConceptId="121760AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+                                                        <tr>
+                                                            <td><obs class="medicine-causing"
+                                                                     conceptId="1193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                     answerConceptIds="70056AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162298AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,70878AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,155060AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162299AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,103727AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,71647AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,72822AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162301AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,73300AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,73667AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,74807AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,75523AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162302AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                                            75948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,77164AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162305AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,77675AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,78280AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,794AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,80106AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,80586AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,80696AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162306AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,81723AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,81724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,81959AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,82023AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                                               	82559AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,82900AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,83018AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,767AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162307AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,84309AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162170AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,84795AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,84893AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,86663AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                     answerLabels="Abicavir,ACE inhibitors,Allopurinol,Aminoglycosides,ARBs (angiotensin II receptor blockers),Aspirin,Atazanavir,Carbamazepine,Cephalosporins,Chloroquine,Codeine,Didanosine,Efavirenz,Erythromycins,Ethambutol,Griseofulvin,Heparins,Hydralazine,Isoniazid,Lopinavir/ritonavir,Morphine,Nevirapine,Nitrofurans,Non-steroidal anti-inflammatory drugs,Penicillamine,Penicillin,Phenolphthaleins,Phenytoin,Procainamide,Pyrazinamide,Quinidine,Rifampin,Statins,Stavudine,Sulfonamides,Tenofovir,Tetracycline,Zidovudine,Other"
+                                                                     style="dropdown" id="adverse"
+                                                            />
+                                                            </td>
+                                                            <td><obs class ="reaction"
+                                                                     conceptId="159935AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                     answerConceptIds="1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121629AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148888AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148787AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,108AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,143264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142412AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118773AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140039AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139084AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159098AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                                            111061AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,879AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121677AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159347AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                     answerLabels="Unknown,Anaemia,Anaphylaxis,Angioedema,Arrhythmia,Bronchospasm,Cough,Diarrhea,Dystonia,Fever,Flushing,GI upset,Headache,Hepatotoxicity,Hives,Hypertension,Itching,Mental status change,Musculoskeletal pain,Myalgia,Rash,Other"
+                                                                     style="dropdown"
+                                                            /></td>
+                                                            <td><obs  class="severity"
+                                                                      conceptId="162760AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                      answerConceptIds="1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162819AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                      answerLabels="Mild,Moderate,Severe,Fatal,Unknown" /></td>
+                                                            <td><obs class="adverse-events-onset-date" conceptId="160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false" labelText=" " /></td>
+                                                            <td>
+                                                                <obs class="action-taken"
+                                                                     conceptId="1255AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                     answerConceptIds="1257AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                                                     answerLabels="CONTINUE REGIMEN,SWITCHED REGIMEN,CHANGED DOSE,SUBSTITUTED DRUG,NONE,STOP,OTHER"
+                                                                     style="dropdown"
+                                                                />
+                                                            </td>
+                                                        </tr>
+                                                    </obsgroup>
+                                                </template>
+                                                <render n="1" concept=" " />
+                                                <render n="2" concept=" " />
+                                                <render n="3" concept=" " />
+                                                <render n="4" concept=" " />
+                                                <render n="5" concept=" " />
+                                            </repeat>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+
+
+
+                    </div>
+                    <!--.step 2  System Examination step 3 -->
+
+                </div>
+            </div>
         </fieldset>
 
 
