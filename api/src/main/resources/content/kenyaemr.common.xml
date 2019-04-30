@@ -295,7 +295,7 @@
     </bean>
 
 
-    <!-- kp sti treatment -->
+    <!-- kp sti vilence screening -->
     <bean id="kenyaemr.common.form.Screening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
         <property name="targetUuid" value="318ffdb6-5473-11e9-8647-d663bd873d93" />
         <property name="apps">
