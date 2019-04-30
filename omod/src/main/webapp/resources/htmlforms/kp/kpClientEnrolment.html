@@ -17,6 +17,33 @@
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
     <script type="text/javascript">
 
+        function onHistoricalStatusDateChange() {
+
+            var today = new Date()//.getTime();        //get current date
+            var patientId = <lookup expression="patient.patientId"/>;
+
+
+            /*this data should not be in Future */
+            if (ENC_DATE &gt; today) {
+                getField('encounter-date.error').html('Should not be greater than the Current date').show();
+            }
+            else if(ENC_DATE &lt; bithYear)
+            {
+                /* Encounter Date should be greater than the Patients's date of Birth    */
+                getField('encounter-date.error').html('Should not be less than the date of Birth').show();
+            }
+            else
+            {
+                getField('encounter-date.error').hide();
+            }
+
+            jq.getJSON('/' + OPENMRS_CONTEXT_PATH + '/kenyaemr/patient/patientUtils/age.action', { patientId: patientId, now: encDate })
+                .done(function(data) {
+                    onPatientAgeUpdate(data.age);
+                });
+
+
+        }
         $(document).ready(function () {
             $("#date").datepicker({
                 changeMonth: false,
@@ -158,9 +185,11 @@
                 yearValidation(year_start_having_sex_with_men,  'sexWithMen')
                 yearValidation(year_stared_using_drugs, 'usingDrugs')
 
+
             });
 
             function yearValidation(year, textfield) {
+
 
                 if (year != 0) {
                     var test=year;
@@ -168,6 +197,20 @@
                         getField(textfield+'.error').html('Please enter valid year.').show();
                         getField(textfield+'.value').val('');
                         return false;
+                    }
+
+                    var birthDate= ('(<lookup expression="patient.birthdate"/>)');
+                    var bithYear = birthDate.substring(8);
+                    if(year &lt; bithYear)
+                    {
+                        /* Encounter Date should be greater than the Patients's date of Birth    */
+                        getField(textfield+'.error').html('Should not be less than the date of Birth').show();
+                        getField(textfield+'.value').val('');
+                        return false;
+                    }
+                    else
+                    {
+                        getField(textfield+'.error').hide();
                     }
 
                     var current_year = new Date().getFullYear();
@@ -212,14 +255,14 @@
             var female = $('#w11_1');
             var transgender = $('#w11_2');
 
-                if (male.is(':checked') || female.is(':checked') || transgender.is(':checked')) {
-                    getField('gender-identity.error').html('Please select gender.').hide();
-                } else {
-                    getField('gender-identity.error').html('Please select gender.').show();
-                    return false;
-                }
+            if (male.is(':checked') || female.is(':checked') || transgender.is(':checked')) {
+                getField('gender-identity.error').html('Please select gender.').hide();
+            } else {
+                getField('gender-identity.error').html('Please select gender.').show();
+                return false;
+            }
 
-                // validate enrollment
+            // validate enrollment
             if (enrolment_area == "" ) {
                 getField('enrolment_area.error').html('Please select enrollment service area.').show();
                 return false;
@@ -255,25 +298,53 @@
             if (partner_number != "") {
 
                 var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-                if (partner_number.value.match(phoneNum)) {
-                    getField('pName.error').html('Please enter partner name.').hide();
+                if (partner_number.match(phoneNum)) {
+                    getField('pName.error').html('Please enter partner number.').hide();
                 } else {
                     getField('pNumber.error').html('Please enter valid phone number.').show();
                     return false;
                 }
 
-
-                if (start_sex == false) {
-                    getField('Please indicate when you started sex work.error').html('Please indicate when you started sex work.').show();
-                    return false;
-                } else {
-                    getField('Please indicate when you started sex work.error').html('Please indicate when you started sex sex_with_men.').hide();
-                }
+                //
+                // if (start_sex == false) {
+                //     getField('Please indicate when you started sex work.error').html('Please indicate when you started sex work.').show();
+                //     return false;
+                // } else {
+                //     getField('Please indicate when you started sex work.error').html('Please indicate when you started sex sex_with_men.').hide();
+                // }
             }
 
         });
     </script>
+    <ifMode mode="VIEW" include="true">
+        <div>
+            <table style="width: 100%">
+                <tr>
+                    <td align="left">
+                        Observation Date:
+                    </td>
+                    <td>
+                        Unique Client Number
+                    </td>
+                    <td align="right">
+                        Gender Identity:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        16-Jan-2019
+                    </td>
+                    <td>
+                        Test
+                    </td>
+                    <td align="right">
+                        Test
+                    </td>
+                </tr>
+            </table>
+        </div>
 
+    </ifMode>
 
     <div class="ke-form-header">
         <table style="width: 100%">
@@ -295,11 +366,11 @@
             <table>
                 <tr>
 
-                <td>Unique Client Number</td>
-                <td>
-                    <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
+                    <td>Unique Client Number</td>
+                    <td>
+                        <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
 
-                </td>
+                    </td>
                 </tr>
                 <tr>
                     <td>Gender Identity</td>
@@ -334,11 +405,11 @@
                 </tr>
                 <tr>
                     <table id="peer_work_name" >
-                    <td>Peer Educator/Outreach Worker name</td>
-                    <td>
-                        <obs id="peer" conceptId="1473"/>
+                        <td>Peer Educator/Outreach Worker name</td>
+                        <td>
+                            <obs id="peer" conceptId="1473"/>
 
-                    </td>
+                        </td>
                     </table>
                 </tr>
                 <tr>
@@ -371,13 +442,13 @@
                 </tr>
                 <tr>
                     <table>
-                    <td>Could we contact your regular sexual partner(s) for prevention services?</td>
-                    <td>
-                        <obs id="contact-regular-sex-partner" conceptId="165008"
-                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabels="Yes,No"
-                             style="radio" />
-                    </td>
+                        <td>Could we contact your regular sexual partner(s) for prevention services?</td>
+                        <td>
+                            <obs id="contact-regular-sex-partner" conceptId="165008"
+                                 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Yes,No"
+                                 style="radio" />
+                        </td>
                     </table>
                 </tr>
             </table>
@@ -418,10 +489,10 @@
                     <table id="sexuaViolence" >
 
 
-                    <td>If yes, describe the ordeal</td>
-                    <td>
-                        <obs id="sOrdeal" conceptId="165012" rows="2" cols="80"/>
-                    </td>
+                        <td>If yes, describe the ordeal</td>
+                        <td>
+                            <obs id="sOrdeal" conceptId="165012" rows="2" cols="80"/>
+                        </td>
                     </table>
                 </tr>
                 <tr>
@@ -433,10 +504,10 @@
                              style="radio" />
                     </td>
                     <table id="historicalPhysicalViolence">
-                    <td>If yes, describe the ordeal</td>
-                    <td>
-                        <obs id="hOrdeal" conceptId="165014" rows="2" cols="80" />
-                    </td>
+                        <td>If yes, describe the ordeal</td>
+                        <td>
+                            <obs id="hOrdeal" conceptId="165014" rows="2" cols="80" />
+                        </td>
                     </table>
                 </tr>
             </table>
@@ -474,47 +545,47 @@
                     <table id="clientphysiaclViolence">
 
 
-                    <td>If yes, describe the ordeal</td>
-                    <td>
-                        <obs id="cOrdeal" conceptId="165014" rows="2" cols="80"/>
-                    </td>
+                        <td>If yes, describe the ordeal</td>
+                        <td>
+                            <obs id="cOrdeal" conceptId="165014" rows="2" cols="80"/>
+                        </td>
                     </table>
                 </tr>
             </table>
         </fieldset>
 
         <fieldset>
-        <legend>Treatment Buddy Contact Information</legend>
+            <legend>Treatment Buddy Contact Information</legend>
 
-        <table>
-            <tr>
-                <td>Treatment support Name</td>
-                <td>
-                    <obs id="fname" conceptId="160638"/>
-                </td>
-                <td>Alias Name</td>
-                <td>
-                    <obs id="alias" conceptId="165017"/>
-                </td>
-            </tr>
-            <tr>
-                <td>Mobile Number</td>
-                <td>
-                    <obs id="mobile" conceptId="160642"/>
-                </td>
-                <td> Alternative Mobile Number</td>
-                <td>
-                    <obs id="alterNumber" conceptId="159635"/>
-                </td>
-            </tr>
-            <tr>
-                <td>Enrolment Notes</td>
-                <td>
-                    <obs id="enNotes" conceptId="161011" rows="2" cols="80"/>
-                </td>
-            </tr>
-        </table>
-    </fieldset>
+            <table>
+                <tr>
+                    <td>Treatment support Name</td>
+                    <td>
+                        <obs id="fname" conceptId="160638"/>
+                    </td>
+                    <td>Alias Name</td>
+                    <td>
+                        <obs id="alias" conceptId="165017"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td>
+                        <obs id="mobile" conceptId="160642"/>
+                    </td>
+                    <td> Alternative Mobile Number</td>
+                    <td>
+                        <obs id="alterNumber" conceptId="159635"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Enrolment Notes</td>
+                    <td>
+                        <obs id="enNotes" conceptId="161011" rows="2" cols="80"/>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
 
         <enrollInProgram programId="7447305a-18a7-11e9-ab14-d663bd873d93"/>
     </div>

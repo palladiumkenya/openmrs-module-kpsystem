@@ -39,12 +39,44 @@
             jq("#couple-testing input").change(tetenus_selected);
 
         });
-        //Before Submit
+        //Before Submitsk
         beforeSubmit.push(function() {
 
 
         });
     </script>
+
+    <!--=============Work flow==================-->
+    <ifMode mode="VIEW" include="true">
+        <div>
+            <table style="width: 100%">
+                <tr>
+                    <td align="left">
+                        Immunization Date:
+                    </td>
+                    <td>
+                        Vaccine Given
+                    </td>
+                    <td align="right">
+                        Gender Identity:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Adverse Events
+                    </td>
+                    <td>
+                        Test
+                    </td>
+                    <td align="right">
+                        Test
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </ifMode>
+    <!-- ============ end work flow =================-->
 
     <div class="ke-form-header">
         <table style="width: 100%">
@@ -136,7 +168,7 @@
                                                             17AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,"
                                                             style="dropdown" /></p></td>
                     <td width="156" valign="top"><p>Date Given</p></td>
-                    <td width="156" valign="top"><p> <obs id="expiry-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
+                    <td width="156" valign="top"><p> <obs id="immunization-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false"
                     /></p></td>
                 </tr>
                 <tr>
@@ -154,7 +186,7 @@
                 </tr>
                 <tr>
                     <td width="156" valign="top"><p>What is the vaccination/immunization validity</p></td>
-                    <td width="156" valign="top"><p> <obs id="treatmentMedication" conceptId="159367AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></p></td>
+                    <td width="156" valign="top"><p> <obs id="treatmentMedication" conceptId="165047"/></p></td>
                     <td width="156" valign="top"><table border="0" cellpadding="0">
                         <tr>
                             <td></td>
