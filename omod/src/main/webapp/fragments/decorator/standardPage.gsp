@@ -19,7 +19,7 @@
 		config.beforeContent += ui.includeFragment("kenyaemr", "header/visitHeader", [ visit: config.visit ])
 	}
 
-	config.pageTitle = "KeyPopSystem"
+	config.pageTitle = "KPS"
 	config.faviconIco = ui.resourceLink("kenyaemr", "images/logos/favicon.ico")
 	config.faviconPng = ui.resourceLink("kenyaemr", "images/keypop.png")
 	config.angularApp = "kenyaemr"

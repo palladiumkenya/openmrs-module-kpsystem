@@ -3,7 +3,7 @@
 %>
 <style type="text/css">
 	body {
-		background-color: #e0d8cd;
+		background-color: #ffffff;
 	}
 </style>
 <script type="text/javascript">
