@@ -20,7 +20,7 @@
 	userMenuItems << """<a href="javascript:ke_showHelp()"><img src="${ ui.resourceLink("kenyaui", "images/toolbar/help.png") }" width="12" height="12" />&nbsp;&nbsp;Help</a>"""
 %>
 
-<div class="ke-toolbar">
+<div class="ke-toolbar" style="background-color: #0071BC;">
 	<div class="ke-apptoolbar">
 		<% appMenuItems.each { item -> %><div class="ke-toolbar-item">${ item }</div><% } %>
 	</div>
