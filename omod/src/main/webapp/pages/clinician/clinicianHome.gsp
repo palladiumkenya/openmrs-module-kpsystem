@@ -12,11 +12,11 @@
 </div>
 
 <div class="ke-page-content">
-	${ ui.includeFragment("kenyaemr", "patient/patientSearchResults", [ pageProvider: "kenyaemr", page: "clinician/clinicianViewPatient" ]) }
+	${ ui.includeFragment("kenyaemr", "patient/patientSearchResults", [ pageProvider: "kenyaemr", page: "clinicianfacing/patient" ]) }
 </div>
 
 <script type="text/javascript">
-	jQuery(function() {
-		jQuery('input[name="query"]').focus();
-	});
+    jQuery(function() {
+        jQuery('input[name="query"]').focus();
+    });
 </script>
