@@ -74,7 +74,7 @@
                         <h3>Recent Visits</h3>
                     </div>
                     <div class="info-body">
-                        None
+                        ${ ui.includeFragment("kenyaemr", "patient/recentVisits", [ patient: currentPatient, showClinicalData: true ]) }
                     </div>
                 </div>
 
