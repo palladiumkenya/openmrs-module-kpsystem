@@ -33,11 +33,11 @@ public class RecentVisitsFragmentController {
 
 	ObsService obsService = Context.getObsService();
 	ConceptService conceptService = Context.getConceptService();
-	SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MMM-yyyy");
 
 	public void controller(@FragmentParam(value = "visit", required = false) Visit visit, @FragmentParam("patient") Patient patient, FragmentModel model) {
 
-		 // date last seen (last 3 visits)
+		// date last seen (last 3 visits)
 
 		/**
 		 * Get list of recent visits - 6 months ago
@@ -55,7 +55,7 @@ public class RecentVisitsFragmentController {
 				null,
 				true,
 				false
-				);
+		);
 		if(recentVisits != null) {
 			model.put("recentVisits", getVisits(recentVisits));
 		} else {
@@ -75,7 +75,7 @@ public class RecentVisitsFragmentController {
 			} else {
 				visits.add(SimpleObject.create(
 						"visitDate", new StringBuilder().append(DATE_FORMAT.format(v.getStartDatetime()))
-						.append(" - ").append(DATE_FORMAT.format(v.getStopDatetime())),
+								.append(" - ").append(DATE_FORMAT.format(v.getStopDatetime())),
 						"active", false
 				));
 			}
