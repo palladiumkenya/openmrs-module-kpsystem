@@ -10,46 +10,46 @@
         <div class="clear"></div>
         <div class="container">
             <div class="dashboard clear">
-               <!-- <div class="info-container column">-->
-                    <div>
+                <!-- <div class="info-container column">-->
+                <div>
                     <div class="info-section">
-                      <div class="info-body">
+                        <div class="info-body">
 
                             <table >
 
-                            <% if(recentVisits) { %>
-                            <!--<ul >-->
+                                <% if(recentVisits) { %>
+                                <!--<ul >-->
 
-                            <% recentVisits.each { %>
+                                <% recentVisits.each { %>
                                 <tr>
-                                <td style="border: none;">
-                            <!--<li class="clear">-->
-                                ${it.visitDate}
-                               </td>
-                                <td style="border: none;">
-                                <div class="tag">
-                                    <% if(it.active) { %>
+                                    <td style="border: none;">
+                                        <!--<li class="clear">-->
+                                        ${it.visitDate}
+                                    </td>
+                                    <td style="border: none;">
+                                        <div class="tag">
+                                            <% if(it.active) { %>
 
-                                        Active -
+                                            Active -
+
+                                            <% } %>
+
+                                            Outpatient
+
+                                        </div>
+                                    </td>
+                                    <!-- </li>-->
 
                                     <% } %>
-
-                                    Outpatient
-
-                                </div>
-                                </td>
-                           <!-- </li>-->
-
-                            <% } %>
-                            </tr>
-                               <!-- </ul>-->
-                            <% } else { %>
-                               <tr>
-                                <td>
-                                No visit in the last six months
-                                </td>
                                 </tr>
-                            <% } %>
+                                <!-- </ul>-->
+                                <% } else { %>
+                                <tr>
+                                    <td>
+                                        No visit in the last six months
+                                    </td>
+                                </tr>
+                                <% } %>
 
                             </table>
                         </div>
