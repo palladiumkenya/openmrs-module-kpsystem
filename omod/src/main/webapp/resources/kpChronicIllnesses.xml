@@ -9,13 +9,13 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="da8a2442-5602-4bcd-986c-963f2a00bdcc" formName="KP Observations Form"
-          formEncounterType="2c3cf276-3676-11e9-b210-d663bd873d93" formVersion="1.0">
+<htmlform formUuid="d80d1c52-6a79-4c3d-b322-63eead834089" formName="Chronic Illness Form"
+          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
 
     <macros>
-        complaint_exists =5219
-        complaint_nature=163042
-        complaint_type=124957
+        illness_exists =162747
+        illness_type=1284
+        illness_nature=163042
         start_date=159948
         duration=1730
         remarks=160632
@@ -28,14 +28,13 @@
             <thead class="visit-table-header">
                 <tr>
                     <td width="156" valign="top"><p>Visit date</p></td>
-                    <td width="156" valign="top"><p>Complaint exists</p></td>
-                    <td width="156" valign="top"><p>Complaint type</p></td>
-                    <td width="156" valign="top"><p>Nature of complaint</p></td>
+                    <td width="156" valign="top"><p>Chronic Illness exists</p></td>
+                    <td width="156" valign="top"><p>Chronic illness type</p></td>
+                    <td width="156" valign="top"><p>Nature of illness</p></td>
                     <td width="156" valign="top"><p>Start date</p></td>
                     <td width="156" valign="top"><p>Duration</p></td>
                     <td width="156" valign="top"><p>Remarks</p></td>
-
-                </tr>
+                   </tr>
             </thead>
             <tbody class="visit-table-body">
                 <tr class="visit-table-row">
@@ -44,22 +43,22 @@
                         <encounterDate />
                     </td>
                     <td>
-                        <!-- COMPLAINT EXISTS-->
-                        <obs conceptId="$complaint_exists" id="complaint_exists"
+                        <!-- ILLNESS EXISTS-->
+                        <obs conceptId="$illness_exists" id="illness_exists"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Yes,No"
                              style="dropdown"/>
                     </td>
                     <td>
-                        <!-- COMPLAINT TYPE -->
-                        <obs conceptId="$complaint_type"
+                        <!-- ILLNESS TYPE -->
+                        <obs conceptId="$illness_type"
                                answerConceptIds="151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119537AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148035AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131021AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120345AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119574AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113054AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,206AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,143264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,143129AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142412AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,122496AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118789AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141830AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
                                                             141585AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,114399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162626AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140070AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142247AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135462AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139084AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117698AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,116214AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,879AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,116558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,114395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135595AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
                                                              121657AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,144576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,116334AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131015AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,111721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133028AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5978AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133469AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133027AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,132653AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,125225AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127777AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113224AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131032AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,126535AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
                                                                141597AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,158843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140941AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,125198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112200AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160208AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,111525AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,122983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                answerLabels="Abdominal pain,Abnormal Uterine Bleeding,Anxiety,Depression,Back pain,Bloody Urine,Breast Pain,Chest Pain,Cold and Chills,Confusion,Delirium,Convulsions,Seizure,Cough,Crying Infant,Diarrhea,Difficult in breathing,Difficulty in swallowing,Dizziness,Ear Pain,Epigastric Pain,Eye apin,Facial Pain,Fatigue/weakness,Fever,Flank Pain,Vaginal Discharge,Discharge from Penis,Genital Ulcer,Headache,Hearing Loss,Hypotension,Shock,Itchiness/Pruritus,Joint Pain,Leg Pain,Loss of Appetite,Lymphadenopathy,Memory Loss,Coma,Lethargy,Mouth Pain,Mouth Ulceration,Muscle cramps,Muscle Pain,Nausea,Neck Pain,Night sweats,Numbness,Pain when Swallowing,Pelvic Pain,Poor Vision,Rash,Red Eye,Running/Blocked nose,Scrotal Pain,Shoulder Pain,
                                                        Sleep Disturbance,Sore Throat,Excessive Sweating,Swollen Legs,Tremors,Urinary Symptoms,Vertigo,Vomiting,Weight Loss,Other"
-                               style="dropdown" id="complaint_type"/>
+                               style="dropdown" id="illness_type"/>
                     </td>
                     <td>
                         <!-- NATURE OF COMPLAINT -->
@@ -90,14 +89,15 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Complaint exists</th>
-                <td> <obs conceptId="$complaint_exists" id="complaint_exists_input"
+                <th>Illness exists</th>
+                <td>  <obs conceptId="$illness_exists" id="illness_exists"
                            answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                            answerLabel="Yes,No"
-                           style="dropdown"/></td>
+                           style="dropdown"/>
+                </td>
             </tr>
             <tr>
-                <th>Complaint type</th>
+                <th>Illness type</th>
                 <td><obs conceptId="$complaint_type"
                          answerConceptIds="151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119537AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148035AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,840AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131021AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120749AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,871AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120345AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119574AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,113054AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,206AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,143264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,143129AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142412AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,122496AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118789AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141830AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
                                                             141585AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,141128AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,114399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162626AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140070AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142247AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135462AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139084AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117698AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,116214AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,879AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,116558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,114395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135595AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
@@ -105,12 +105,12 @@
                                                                141597AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,158843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140941AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,125198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112200AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160208AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,111525AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,122983AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,832AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabels="Abdominal pain,Abnormal Uterine Bleeding,Anxiety,Depression,Back pain,Bloody Urine,Breast Pain,Chest Pain,Cold and Chills,Confusion,Delirium,Convulsions,Seizure,Cough,Crying Infant,Diarrhea,Difficult in breathing,Difficulty in swallowing,Dizziness,Ear Pain,Epigastric Pain,Eye apin,Facial Pain,Fatigue/weakness,Fever,Flank Pain,Vaginal Discharge,Discharge from Penis,Genital Ulcer,Headache,Hearing Loss,Hypotension,Shock,Itchiness/Pruritus,Joint Pain,Leg Pain,Loss of Appetite,Lymphadenopathy,Memory Loss,Coma,Lethargy,Mouth Pain,Mouth Ulceration,Muscle cramps,Muscle Pain,Nausea,Neck Pain,Night sweats,Numbness,Pain when Swallowing,Pelvic Pain,Poor Vision,Rash,Red Eye,Running/Blocked nose,Scrotal Pain,Shoulder Pain,
                                                        Sleep Disturbance,Sore Throat,Excessive Sweating,Swollen Legs,Tremors,Urinary Symptoms,Vertigo,Vomiting,Weight Loss,Other"
-                         style="dropdown" id="complaint_type_input"/>
+                         style="dropdown" id="illness_type_input"/>
 
                 </td>
             </tr>
             <tr>
-                <th>Nature of complaint</th>
+                <th>Nature of illness</th>
                 <td><obs conceptId="$complaint_nature" id="complaint_nature_input" /></td>
             </tr>
             <tr>
@@ -118,7 +118,7 @@
                 <td><obs conceptId="$start_date" id="start_date_input" allowFutureDates="false" /></td>
             </tr>
             <tr>
-                <th>Duration (Days)</th>
+                <th>Duration(Days)</th>
                 <td><obs conceptId="$duration" id="duration_input" /></td>
             </tr>
             <tr>

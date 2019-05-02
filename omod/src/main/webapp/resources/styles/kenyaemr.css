@@ -7,17 +7,16 @@
 /*** Page header ***/
 
 .ke-page-header {
-	
-	background-color: #00463f;;
+	background-color: #ffffff;
 }
 
 /*** Patient header ***/
 
 .ke-patientheader {
 	padding: 4px;
-	background-color: #7f7b72;
+	background-color: #d9edf7;
 	overflow: auto;
-	color: white;
+	color: #444;
 }
 
 .ke-patientheader .ke-patient-name {
@@ -26,11 +25,11 @@
 }
 
 .ke-patientheader .ke-identifier-type, .ke-patientheader .ke-patient-gender, .ke-patientheader .ke-patient-age, .ke-patientheader .ke-tip {
-	color: #dfdbd2;
+	color: #444;
 }
 
 .ke-patientheader .ke-identifier-value {
-	color: white;
+	color: #444;
 }
 
 .ke-patientheader button {

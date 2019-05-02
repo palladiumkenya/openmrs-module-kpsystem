@@ -17,7 +17,7 @@
         medication_nature=160742
         drug_name=1282
         start_date=162502
-        duration=1473
+        duration=159368
     </macros>
 
     <!-- Flowsheet table view -->
@@ -99,7 +99,7 @@
                 <td><obs conceptId="$start_date" id="start_date" /></td>
             </tr>
             <tr>
-                <th>Duration</th>
+                <th>Duration(Days)</th>
                 <td><obs conceptId="$duration" id="duration" /></td>
             </tr>
 
