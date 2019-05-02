@@ -10,29 +10,48 @@
         <div class="clear"></div>
         <div class="container">
             <div class="dashboard clear">
-                <div class="info-container column">
-
+               <!-- <div class="info-container column">-->
+                    <div>
                     <div class="info-section">
-                        <div class="info-body">
+                      <div class="info-body">
+
+                            <table >
+
                             <% if(recentVisits) { %>
-                            <ul>
+                            <!--<ul >-->
+
                             <% recentVisits.each { %>
-                            <li class="clear">
+                                <tr>
+                                <td style="border: none;">
+                            <!--<li class="clear">-->
                                 ${it.visitDate}
+                               </td>
+                                <td style="border: none;">
                                 <div class="tag">
                                     <% if(it.active) { %>
+
                                         Active -
+
                                     <% } %>
+
                                     Outpatient
+
                                 </div>
-                            </li>
+                                </td>
+                           <!-- </li>-->
 
                             <% } %>
-                                </ul>
+                            </tr>
+                               <!-- </ul>-->
                             <% } else { %>
+                               <tr>
+                                <td>
                                 No visit in the last six months
+                                </td>
+                                </tr>
                             <% } %>
 
+                            </table>
                         </div>
                     </div>
 
