@@ -1,0 +1,183 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="2c2f1dea-1715-442e-9abe-71bc89ace1af" formName="Immunization Form"
+          formEncounterType="9b8c17cc-3420-11e9-b210-d663bd873d93" formVersion="1.0">
+
+    <macros>
+        immunizations_done=5585
+        immunization_type=984
+        immunization_date=1410
+        immunization_effects_coded=160325
+        immunization_effects_text=163162
+        validity=165047
+    </macros>
+
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td width="156" valign="top"><p>Visit date</p></td>
+                    <td width="156" valign="top"><p>Immunization done</p></td>
+                    <td width="156" valign="top"><p>Immunization type</p></td>
+                    <td width="156" valign="top"><p>Immunization date</p></td>
+                    <td width="156" valign="top"><p>Side effects</p></td>
+                    <td width="156" valign="top"><p>Nature of side effects</p></td>
+                    <td width="156" valign="top"><p>Vaccine validity</p></td>
+
+                </tr>
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+                    <td>
+                        <!-- IMMUNIZATION DONE-->
+                        <obs conceptId="$immunizations_done" id="immunization_exists"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- IMMUNIZATION TYPE -->
+                        <obs id="vaccine-type" conceptId="984"
+                             answerConceptIds='5665AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               159711AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               73193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               73354AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               129850AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               78032AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               77424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               77429AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               159696AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               159708AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               79409AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               79554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               80193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               82215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               82243AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               83533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               83563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               129638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1656AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               83050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               129658AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               86022AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+
+                             style="autocomplete" answerLabels='ARV Prophylaxis, Cervical Cancer Vaccine, Chickenpox (Varicella), Cholera Vaccine, Diphtheria, Flu (Influenza), Hepatitis A, Hepatitis B,
+                             Hib, Human Papillomavirus (HPV), Measles, Meningococcal, Mumps, Pneumococcal, Polio, Rotavirus, Rubella, Tetanus, Whooping Cough (Pertussis), Rabies, Smallpox, Typhoid Fever,Yellow Fever'
+                                                      />
+                    </td>
+                    <td>
+                        <!-- IMMUNIZATION DATE -->
+                        <obs conceptId="$immunization_date" />
+
+                    </td> <td>
+                        <!-- SIDE EFFECTS EXIST -->
+                        <obs conceptId="$immunization_effects_coded" id="side_effects_exists"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td> <td>
+                        <!-- NATURE OF SIDE EFFECTS -->
+                    <obs conceptId="$immunization_effects_text" id="immunization_effects_text" />
+                    </td> <td>
+                        <!-- VACCINE VALIDITY -->
+                        <obs conceptId="$validity" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+
+        <table class="visit-edit-table">
+            <tr>
+                <th>Visit Date</th>
+                <td><encounterDate id="visitDate" size="20" default="today" /></td>
+            </tr>
+            <tr>
+                <th>Immunization done</th>
+                <td> <obs conceptId="$immunizations_done" id="immunization_exists_input"
+                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                          answerLabel="Yes,No"
+                          style="dropdown"/></td>
+            </tr>
+            <tr>
+                <th>Immunization type</th>
+                <td> <obs id="vaccine-type_input" conceptId="984"
+                          answerConceptIds='5665AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               159711AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               73193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               73354AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               129850AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               78032AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               77424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               77429AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               159696AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               159708AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               79409AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               79554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               80193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               82215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               82243AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               83533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               83563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               129638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1656AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               83050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               129658AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               86022AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               86556AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              124953AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              124954AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              128163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              152276AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              17AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+                          style="autocomplete" answerLabels='ARV Prophylaxis, Cervical Cancer Vaccine, Chickenpox (Varicella), Cholera Vaccine, Diphtheria, Flu (Influenza), Hepatitis A, Hepatitis B,
+                             Hib, Human Papillomavirus (HPV), Measles, Meningococcal, Mumps, Pneumococcal, Polio, Rotavirus, Rubella, Tetanus, Whooping Cough (Pertussis), Rabies, Smallpox, Typhoid Fever, and  Yellow Fever,
+                             Tetenus omphalitis,Tetenus neunatorum,Puerperal Tetenus,Obstetrical tetenus,Diptheria tetenus booster'
+                />
+
+                </td>
+            </tr>
+            <tr>
+                <th>Immunization date</th>
+                <td><obs conceptId="$immunization_date" id="immunization_date_input" /></td>
+            </tr>
+            <tr>
+                <th>Immunization side effects</th>
+                <td>
+                    <obs conceptId="$immunization_effects_coded" id="side_effects_exists_input"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Nature of side effects</th>
+                <td><obs conceptId="$immunization_effects_text" id="immunization_effects_text_input" /></td>
+            </tr>
+            <tr>
+                <th>Vaccine validity</th>
+                <td><obs conceptId="$validity" id="validity_input" /></td>
+            </tr>
+        </table>
+        <submit/>
+    </ifMode>
+</htmlform>
