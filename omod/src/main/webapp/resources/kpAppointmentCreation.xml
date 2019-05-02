@@ -1,9 +1,20 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
 <htmlform formUuid="6552497e-946c-11e7-9ae7-d567856360b8" formName="KP Appointment Form"
-		  formEncounterType="1f64fc1a-35db-11e9-b210-d663bd873d93" formVersion="1.0">
+		  formEncounterType="1f64f968-35db-11e9-b210-d663bd873d93" formVersion="1.0">
 
 	<macros>
-		appointment_date=162502
-		appointment_type=984
+		appointment_date=5096
+		appointment_type=160288
 		appointment_notes=163042
 	</macros>
 
@@ -15,8 +26,8 @@
 				<tr>
 					<td rowspan="2">Visit Date</td>
 					<td rowspan="2">Appointment Date</td>
-					<td rowspan="2">Appointent Type</td>
-					<td rowspan="2">Appointent Notes</td>
+					<td rowspan="2">Appointment Type</td>
+					<td rowspan="2">Appointment Notes</td>
 				</tr>
 			</thead>
 			<tbody class="visit-table-body">
@@ -31,7 +42,11 @@
 					</td>
 					<td>
 						<!-- Appointment Type -->
-						<obs conceptId="$appointment_type" />
+						<obs conceptId="$appointment_type"
+							 id="appointment_type_input"
+							 answerConceptIds="160523AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1283AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160521AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+							 answerLabels="Follow up,Lab tests,Counseling,Pharmacy Refill,Other,"
+							 style="dropdown" />
 					</td>
 					<td>
 						<!-- Appointment Notes -->
@@ -52,20 +67,15 @@
 				<td><encounterDate id="visitDate" size="20" default="today" /></td>
 			</tr>
 			<tr>
-				<th>Location</th>
-				<td><encounterLocation id="visitLocation" default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete" /></td>
-			</tr>
-			<tr>
-				<th>Provider</th>
-				<td><encounterProvider type="autocomplete" default="1" /></td>
-			</tr>
-			<tr>
 				<th>Appointment Date</th>
-				<td class="focus-field"><obs conceptId="$appointment_date" id="appointment_date_input" /></td>
+				<td class="focus-field"><obs conceptId="$appointment_date" id="appointment_date_input" allowFutureDates="true" /></td>
 			</tr>
 			<tr>
 				<th>Appointment Type</th>
-				<td><obs conceptId="$appointment_type" id="appointment_type_input" /></td>
+				<td><obs conceptId="$appointment_type" id="appointment_type_input"
+						 answerConceptIds="160523AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1283AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160521AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+						 answerLabels="Follow up,Lab tests,Counseling,Pharmacy Refill,Other"
+						 style="dropdown" /></td>
 			</tr>
 			<tr>
 				<th>Appointment Notes</th>
