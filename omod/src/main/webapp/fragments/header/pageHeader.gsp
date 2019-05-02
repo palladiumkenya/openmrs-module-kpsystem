@@ -5,12 +5,12 @@
 		</a>
 	</div>
 	<div style="float: left">
-		<span style="font-size: 24px; color:#FFFFFF;">${ ui.message("kenyaemr.title") }</span>
-		<span style="font-size: 10px; color: #7f7b72;">0.1, powered by OpenMRS</span>
+		<span style="font-size: 24px; color:#000000;">${ ui.message("kenyaemr.title") }</span>
+		<span style="font-size: 10px; color: #7f7b72;">1.0.0, powered by OpenMRS</span>
 		<br/>
 		<% if (systemLocation) { %>
-		<span style="font-weight: bold; margin-left: 12px; border-top: 1px gray solid;color:#FFFFFF;">${ ui.format(systemLocation) }</span>
-		<span style="font-size: 10px;color:#FFFFFF">(${ systemLocationCode })</span>
+		<span style="font-weight: bold; margin-left: 12px; border-top: 1px gray solid;color:#000000;">${ ui.format(systemLocation) }</span>
+		<span style="font-size: 10px;color:#000000">(${ systemLocationCode })</span>
 
 		<% } %>
 	</div>
