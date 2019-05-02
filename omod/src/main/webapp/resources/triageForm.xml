@@ -1,0 +1,147 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="8a060f1e-3599-4e2a-8d2f-793cc189396a" formName="Triage Form"
+          formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
+
+    <macros>
+        height=5090
+        weight=5089
+        diastolic=5086
+        systolic=5085
+        temperature=5088
+        pulseRate=5087
+        respiratoryRate=5242;
+        oxygenSaturation=5092;
+    </macros>
+
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td rowspan="2">Visit Date</td>
+                    <td rowspan="2">Height</td>
+                    <td rowspan="2">Weight</td>
+                    <td rowspan="2">Temperature</td>
+                    <td rowspan="2">Pulse Rate</td>
+                    <td rowspan="2">Respiratory Rate</td>
+                    <td rowspan="2">Blood Pressure(mmHg)</td>
+                    <td rowspan="2">Oxygen Saturation</td>
+
+                </tr>
+                <tr>
+                    <td><i style="font-size:.7em;">day month year</i></td>
+                    <td><i>cm</i></td>
+                    <td><i>kg</i></td>
+                </tr>
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+                    <td>
+                        <!-- Height -->
+                        <obs conceptId="$height" id="heightEntered"/>
+                    </td>
+                    <td>
+                        <!-- Weight -->
+                        <obs conceptId="$weight" />
+                    </td>
+                    <td>
+                        <!-- Temperature -->
+                        <obs conceptId="$temperature" />
+                    </td>
+                    <td>
+                        <!-- pulse_rate -->
+                        <obs conceptId="$pulseRate"/>
+                    </td>
+
+                    <td>
+                        <!-- Respiratory Rate -->
+                        <obs conceptId="5242"/>
+                    </td>
+
+                    <td>
+                        <!-- Blood Pressure -->
+                        <obs conceptId="$diastolic"/> /  <obs conceptId="$systolic"/>
+                    </td>
+                    <td>
+                        <!-- Oxygen Saturation-->
+                        <obs conceptId="5092" />
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+
+        <table class="visit-edit-table" style="margin-bottom:1%">
+            <tr>
+                <th>Visit Date</th>
+                <td><encounterDate id="visitDate" size="20" default="today" /></td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td><encounterLocation id="visitLocation" default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete" /></td>
+            </tr>
+            <tr>
+                <th>Provider</th>
+                <td><encounterProvider type="autocomplete" default="1" /></td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td class="focus-field"><obs conceptId="$height" id="heightInput" showUnits="true" /></td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td><obs conceptId="$weight" id="weightInput" showUnits="true" /></td>
+            </tr>
+            <tr>
+                <th>Temperature</th>
+                <td><obs conceptId="$temperature" id="temperatureInput" showUnits="true"  /></td>
+            </tr>
+            <tr>
+                <th>Pulse Rate</th>
+                <td><obs conceptId="$pulseRate" id="pulseRateInput" showUnits="true"/></td>
+            </tr>
+            <tr>
+                <th>Respiratory Rate</th>
+                <td><obs conceptId="5242" id="respiratoryRateInput" showUnits="true" /></td>
+            </tr>
+            <tr>
+                <th>Blood Pressure </th>
+                <td>
+                    <obs conceptId="$diastolic" id="diastolicInput" showUnits="true" />
+                    /
+                    <obs conceptId="$systolic" id="systolicInput" showUnits="true" /> </td>
+            </tr>
+
+            <tr>
+                <th>Oxygen Saturation</th>
+                <td>
+                    <obs conceptId="5092" id="oxygenSaturationInput"/>
+                </td>
+            </tr>
+        </table>
+
+        <submit/>
+
+    </ifMode>
+
+</htmlform>
