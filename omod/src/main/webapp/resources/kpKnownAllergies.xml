@@ -29,6 +29,7 @@
                 <td width="156" valign="top"><p>Causative Agent</p></td>
                 <td width="156" valign="top"><p>Reaction</p></td>
                 <td width="156" valign="top"><p>Severity</p></td>
+                <td width="156" valign="top"><p>Onset Date</p></td>
             </tr>
         </thead>
         <tbody class="visit-table-body">
@@ -67,6 +68,10 @@
                          answerConceptIds="1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162819AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Mild,Moderate,Severe,Fatal,Unknown"
                          style="dropdown" />
+                </td>
+                <td>
+                    <!-- Onset Date -->
+                    <obs class="onset-date" conceptId="164428AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                 </td>
             </tr>
 
@@ -114,6 +119,12 @@
                          answerConceptIds="1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162819AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Mild,Moderate,Severe,Fatal,Unknown"
                          style="dropdown" id="severity_input"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Onset Date</th>
+                <td>
+                    <obs class="onset-date" conceptId="164428AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  allowFutureDates="false" labelText=" " />
                 </td>
             </tr>
 
