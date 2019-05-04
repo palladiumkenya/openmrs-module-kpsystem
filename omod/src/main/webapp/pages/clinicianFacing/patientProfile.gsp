@@ -21,9 +21,6 @@
 
 </script>
 
-
-
-
 <div class="clear"></div>
 
 <div id="content" class="container">
@@ -108,55 +105,10 @@
                     </div>
                 </div>
 
-
             </div>
 
-            <div class="action-container column">
-                <div class="action-section">
+            ${ ui.includeFragment("kenyaemr", "patient/actionsPanel", [ patient: currentPatient, visit: visit]) }
 
-                    <ul class="float-left">
-                        <h3>General Actions</h3>
-                        <li class="float-left" style="margin-top: 7px">
-                            <a href="${ ui.pageLink("registrationapp", "registerPatient", [appId:"referenceapplication.registrationapp.registerPatient"]) }" class="float-left">
-                                <i class="fa fa-search fa-2x"></i>
-                                Register Client
-                            </a>
-                        </li>
-                    </ul>
-
-
-                    <ul>
-                        <h3>Visit Actions</h3>
-                        <li class="float-left" style="margin-top: 7px">
-                            <a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/triage.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
-                                <i class="fa fa-plus-square fa-2x"></i>
-                                Triage
-                            </a>
-                        </li>
-
-                        <li class="float-left" style="margin-top: 7px">
-                            <a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithStandardUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/simpleVisitNote.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
-                                <i class="fa fa-plus-square fa-2x"></i>
-                                Visit Note
-                            </a>
-                        </li>
-
-                        <li class="float-left" style="margin-top: 7px">
-                            <a href="${ ui.pageLink("kenyaemrorderentry", "drugOrders", [patient: currentPatient]) }" class="float-left">
-                                <i class="fa fa-medkit fa-2x"></i>
-                                Drug Orders
-                            </a>
-                        </li>
-
-                        <li class="float-left" style="margin-top: 7px">
-                            <a href="${ ui.pageLink("kenyaemrorderentry", "labOrders", [patient: currentPatient]) }" class="float-left">
-                                <i class="fa fa-flask fa-2x"></i>
-                                Lab Orders
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
         </div>
     </div>
