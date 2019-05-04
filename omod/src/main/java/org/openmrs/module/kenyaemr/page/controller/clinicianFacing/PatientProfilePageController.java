@@ -17,17 +17,26 @@ import org.openmrs.module.kenyaui.annotation.AppPage;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * Patient Profile page controller
  */
-@AppPage(EmrConstants.APP_CLINICIAN)
+/*@AppPage(EmrConstants.APP_CLINICIAN)*/
 public class PatientProfilePageController {
 
-    public void controller(/*@RequestParam("returnUrl") String returnUrl,*/
+    public void controller(@RequestParam("patientId") Patient patient,
                            PageModel model) {
-        Visit visit = Context.getVisitService().getVisit(5035);
+      /*  Visit visit = Context.getVisitService().getVisit(5040);
+       model.addAttribute("visit", visit);*/
+      //Patient patient = new Patient();
+        List<Visit> activeVisits = Context.getVisitService().getActiveVisitsByPatient(patient);
+        Visit lastVisit = null;
+        if (activeVisits.size() > 0) {
+            lastVisit = activeVisits.get(activeVisits.size() - 1);
+        }
+        model.addAttribute("visit", lastVisit);
 
-        model.addAttribute("visit", visit);
 
 
     }

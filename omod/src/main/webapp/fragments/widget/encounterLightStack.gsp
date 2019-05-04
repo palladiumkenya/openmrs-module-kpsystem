@@ -17,9 +17,6 @@
 	<input type="hidden" name="encounterId" value="${ encounter.encounterId }"/>
 	<i class="fa fa-plus-square fa-2x"></i>
 	<b>${ title }</b> by ${ providers }<br/>
-	<div class="ke-extra">
-		Entered by ${ ui.format(encounter.creator) } on ${ kenyaui.formatDateTime(encounter.dateCreated) }<% if (encounter.dateChanged) { %>, last edit by ${ ui.format(encounter.changedBy) } on ${ kenyaui.formatDateTime(encounter.dateChanged) }<% } %>
-	</div>
 </div>
 <%
 		}

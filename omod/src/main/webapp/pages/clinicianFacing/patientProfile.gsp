@@ -107,7 +107,8 @@
 
             </div>
 
-            ${ ui.includeFragment("kenyaemr", "patient/actionsPanel", [ patient: currentPatient, visit: visit]) }
+            ${ ui.includeFragment("kenyaemr", "patient/actionsPanel", [visit: visit]) }
+
 
 
         </div>
