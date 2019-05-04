@@ -1,0 +1,112 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="c18987d9-1a7a-4fbf-96d9-7b9b62ec26e0" formName="Current Medication"
+          formEncounterType="d7cfa460-2944-11e9-b210-d663bd873d93" formVersion="1.0">
+
+    <macros>
+        currently_on_drugs=160666
+        medication_nature=160742
+        drug_name=1282
+        start_date=162502
+        duration=159368
+    </macros>
+
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td rowspan="2">Visit Date</td>
+                    <td rowspan="2">Currently on drugs</td>
+                    <td rowspan="2">Nature of medication</td>
+                    <td rowspan="2">Drugs name</td>
+                    <td rowspan="2">Start date</td>
+                    <td rowspan="2">Duration (Days)</td>
+                </tr>
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+                    <td>
+                        <!-- Currently on drugs -->
+                        <obs conceptId="$currently_on_drugs" id="currently_on_drugs"/>
+                    </td>
+                    <td>
+                        <!-- Drugs Type -->
+                        <obs conceptId="$medication_nature "
+                             id="$medication_nature_input"
+                             answerConceptIds="1574AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,978AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Prescription,Over the counter"
+                             style="dropdown" />
+                    </td>
+                    <td>
+                        <!-- Drugs Name-->
+                       <obs class ="drug-prescribed" conceptId="$drug_name" style="autocomplete" answerClasses="Drug" id="drug-drug_name" />
+                    </td>
+                    <td>
+                        <!-- Start Date -->
+                        <obs conceptId="$start_date" />
+                    </td>
+                    <td>
+                        <!-- Duration -->
+                        <obs conceptId="$duration" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+
+        <table class="visit-edit-table">
+            <tr>
+                <th>Visit Date</th>
+                <td><encounterDate id="visitDate" size="20" default="today" /></td>
+            </tr>
+            <tr>
+                <th>Currently on drugs</th>
+                <td class="focus-field"><obs conceptId="$currently_on_drugs" id="currently_on_drugs" /></td>
+            </tr>
+            <tr>
+                <th>Nature of medication</th>
+                <td><obs conceptId="$medication_nature" id="medication_nature"
+                         answerConceptIds="1574AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,978AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabels="Prescription,Over the counter"
+                         style="dropdown"
+                /></td>
+            </tr>
+            <tr>
+                <th>Drugs Name</th>
+                <td><obs class ="drug-prescribed" conceptId="$drug_name" style="autocomplete" answerClasses="Drug" id="drug-drug_name" /></td>
+            </tr>
+            <tr>
+                <th>Start Date</th>
+                <td><obs conceptId="$start_date" id="start_date" /></td>
+            </tr>
+            <tr>
+                <th>Duration(Days)</th>
+                <td><obs conceptId="$duration" id="duration" /></td>
+            </tr>
+
+        </table>
+
+        <submit/>
+
+    </ifMode>
+
+</htmlform>

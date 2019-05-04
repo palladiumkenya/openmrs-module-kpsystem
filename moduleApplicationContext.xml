@@ -19,7 +19,6 @@
 
 	<import resource="content/kenyaemr.common.xml" />
 	<import resource="content/kenyaemr.kp.xml" />
-	<import resource="content/kenyaemr.tb.xml" />
 
 	<!-- ===================== App descriptors ===================== -->
 
@@ -185,7 +184,7 @@
 	<!-- External requirements -->
 
 	<bean id="cielRequirement" class="org.openmrs.module.kenyaemr.system.CielRequirement">
-		<property name="requiredVersion" value="${cielVersion}" />
+		<property name="requiredVersion" value="20150123" />
 	</bean>
 
 	<!-- Build properties -->
@@ -195,13 +194,13 @@
 	</bean>
 
 	<bean id="kenyaEmrBuildProperties" class="org.openmrs.module.kenyaemr.util.BuildProperties">
-		<property name="version" value="${project.version}" />
+		<property name="version" value="17.0.0-beta" />
 		<property name="buildDate">
 			<bean factory-bean="iso8601DateFactory" factory-method="parse">
-				<constructor-arg value="${moduleBuildDate}" />
+				<constructor-arg value="2019-05-02T08:38:12+0000" />
 			</bean>
 		</property>
-		<property name="developer" value="${user.name}"/>
+		<property name="developer" value="sosewe"/>
 	</bean>
 
 </beans>
