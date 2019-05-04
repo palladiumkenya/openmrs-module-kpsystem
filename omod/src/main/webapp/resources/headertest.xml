@@ -12,16 +12,16 @@
 <htmlform formUuid="6552497e-946c-11e7-9ae7-d567856360b8" formName="Header Form Test"
           formEncounterType="d1059fb9-a079-4feb-a749-eedd709ae542" formVersion="1.0">
 
-    <h3>This is my header form</h3>
+    <!--<h3>This is my header form</h3>-->
 
-    Date: <encounterDate/><br/>
-    Enrolled by: <encounterProvider default="currentUser" />
-    Enrolled at: <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" />
-    <br/>
-    Weight:  <obs conceptId="5089"/>
-    <br/>
-    Height: <obs conceptId="5090"/>
-    <br/>
+    <!--Date: <encounterDate/><br/>-->
+    <!--Enrolled by: <encounterProvider default="currentUser" />-->
+    <!--Enrolled at: <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" />-->
+    <!--<br/>-->
+    <!--Weight:  <obs conceptId="5089"/>-->
+    <!--<br/>-->
+    <!--Height: <obs conceptId="5090"/>-->
+    <!--<br/>-->
 
     <ifMode mode="VIEW" include="false">
         <div id="buttons" style="margin-top:10px;">
