@@ -1,0 +1,200 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="c534e64c-698f-47a9-b551-56e59ea5c6a0" formName="Pregnancy and Family Planning"
+          formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
+
+    <macros>
+        lmp=1427
+        pregnant=5272
+        edd=5596
+        family_planning_status=160653
+        family_planning_method=374
+        eligible=165067
+        referred=165069
+    </macros>
+
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                   <td>Visit Date</td>
+                    <td>LMP</td>
+                    <td>Pregnant</td>
+                    <td>EDD</td>
+                    <td>Family Planning Status</td>
+                    <td>Eligible for Family planning </td>
+                    <td>Family Planning Method</td>
+                    <td>Referred For FP</td>
+                </tr>
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+                    <td><obs conceptId="$lmp" id="LMPInput" /></td>
+                    <td>
+                        <obs conceptId="$pregnant" id="pregnantInput"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+                    <td><obs conceptId="$edd" id="EDDInput" /> </td>
+                    <td>
+                        <obs conceptId="$family_planning_status" id="family_planning_statusInput"
+                             answerConceptIds="965AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160652AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="On Family Planning,Not using Family Planning,Wants Family Planning"
+                             style="checkbox"/>
+
+                    </td>
+                    <td>
+                        <obs conceptId="$eligible" id="eligibleInput"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <obs conceptId="$family_planning_method" id="family_planning_methodInput"
+                             answerConceptIds="160570AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,780AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5279AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5275AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5278AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1472AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,190AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162332AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Emergency contraceptive pills,Oral Contraceptives Pills,Injectible,Implant,Intrauterine Device,Lactational Amenorhea Method,Diaphram/Cervical Cap,Fertility Awareness,Tubal Ligation,Condoms,Vasectomy(Partner),Undecided"
+                             style="checkbox"/>
+                    </td>
+                    <td>
+                        <obs conceptId="$referred" id="referredInput"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+        <table class="visit-edit-table">
+            <tr>
+                <th>Visit Date</th>
+                <td><encounterDate id="visitDate" size="20" default="today" /></td>
+
+            </tr>
+            <tr>
+                <th>LMP</th>
+                <td><obs conceptId="$lmp" id="LMPInput" showUnits="false" /></td>
+            </tr>
+            <tr>
+                <th>Pregnant ?</th>
+                <td> <obs conceptId="$pregnant" id="$pregnantInput"
+                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                          answerLabel="Yes,No"
+                          style="dropdown"/></td>
+            </tr>
+            <tr>
+                <th>EDD</th>
+                <td><obs conceptId="$edd" id="EDDInput" showUnits="false" /></td>
+            </tr>
+            <tr>
+                <th>Family Planning Status</th>
+                <td>
+                    <obs conceptId="$family_planning_status" id="family_planning_statusInput"
+                         answerConceptIds="965AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160652AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabels="On Family Planning,Not using Family Planning,Wants Family Planning"
+                         style="checkbox"/>
+                </td>
+
+            </tr>
+
+            <tr>
+                <th>Eligible for Family Planning ?</th>
+                <td>
+                    <obs conceptId="$eligible" id="eligibleInput"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Family Planning Method </th>
+                <td>
+
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="160570AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Emergency contraceptive pills" style="checkbox"
+                    />
+                    <br />
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="780AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Oral Contraceptives Pills" style="checkbox"/>
+                    <br />
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="5279AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Injectible" style="checkbox"/>
+                    <br />
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="1359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Implant" style="checkbox"/>
+                    <br />
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="5275AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Intrauterine Device" style="checkbox"/>
+                    <br />
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="136163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Lactational Amenorhea Method" style="checkbox"/>
+                    <br />
+
+
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="5278AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Diaphram/Cervical Cap" style="checkbox"/>
+                    <br />
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="5277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Fertility Awareness"
+                         style="checkbox"/>
+                    <br />
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="1472AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Tubal Ligation" style="checkbox"/>
+                    <br />
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="190AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Condoms" style="checkbox"/>
+                    <br />
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="1489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Vasectomy(Partner)" style="checkbox"/>
+                    <br />
+                    <obs conceptId="$family_planning_method"
+                         answerConceptId="162332AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Undecided" style="checkbox" id="fp-error"/>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <th>Referred For FP ?</th>
+                <td>
+                    <obs conceptId="$referred" id="referredInput"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
+            </tr>
+
+        </table>
+    </ifMode>
+    <submit/>
+</htmlform>
