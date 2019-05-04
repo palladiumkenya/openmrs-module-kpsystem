@@ -9,15 +9,15 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="84d6627c-c1f2-406b-bf71-013b1079e338" formName="Hepatitis B Screening Form"
+<htmlform formUuid="01d46fa8-a648-461c-a66f-5e8a125c8a54" formName="Risk reduction counselling form"
           formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
 
     <macros>
-        hepatitisB_screened =165019
-        hepatitisB_results=1322
-        treated=165038
-        referred=1272
-        remarks=160632
+        risk_screened =165025
+        risk_results=165036
+        risk_treated=165039
+        risk_referred=1272
+        risk_remarks=161595
     </macros>
 
     <!-- Flowsheet table view -->
@@ -27,11 +27,11 @@
             <thead class="visit-table-header">
                 <tr>
                     <td width="156" valign="top"><p>Visit date</p></td>
-                    <td width="156" valign="top"><p>Screened for Hepatitis B</p></td>
+                    <td width="156" valign="top"><p>Screened for risk</p></td>
                     <td width="156" valign="top"><p>Results</p></td>
                     <td width="156" valign="top"><p>Treated</p></td>
                     <td width="156" valign="top"><p>Referred</p></td>
-                    <td width="156" valign="top"><p>Remarks</p></td>
+                    <td width="156" valign="top"><p>Action done</p></td>
                    </tr>
             </thead>
             <tbody class="visit-table-body">
@@ -42,35 +42,38 @@
                     </td>
                     <td>
                         <!-- SCREENED-->
-                        <obs conceptId="$hepatitisB_screened" id="hepatitisB_screened"
+                        <obs conceptId="$risk_screened" id="$risk_screened"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Yes,No"
                              style="dropdown"/>
                     </td>
                     <td>
                         <!-- RESULTS -->
-                        <obs conceptId="$hepatitisB_results"
-                             answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabels="Negative,Positive,Vaccinated"
+                        <obs conceptId="$risk_results"
+                             answerConceptIds="165067,165064"
+                             answerLabels="Eligible,Not Eligible"
                              style="dropdown"/>
                     </td>
                     <td>
                         <!-- TREATED-->
-                        <obs conceptId="$treated"
+                        <obs conceptId="$risk_treated"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabel="Yes,No"
+                             answerLabel="Supported,Not supported"
                              style="dropdown"/>
                     </td>
                     <td>
                         <!-- REFERRED -->
-                        <obs conceptId="$referred"
+                        <obs conceptId="$risk_referred"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Yes,No"
                              style="dropdown"/>
                     </td>
                     <td>
-                        <!-- REMARKS -->
-                        <obs conceptId="$remarks" />
+                        <!-- ACTION -->
+                        <obs conceptId="$risk_remarks"
+                             answerConceptIds="165056,165055"
+                             answerLabels="Counselling,EBl Provided"
+                             style="dropdown" />
                     </td>
                 </tr>
             </tbody>
@@ -87,8 +90,8 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Screened for Hepatitis B</th>
-                <td>  <obs conceptId="$hepatitisB_screened" id="hepatitisB_screened_input"
+                <th>Screened for risk</th>
+                <td>  <obs conceptId="$risk_screened" id="risk_screened_input"
                            answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                            answerLabel="Yes,No"
                            style="dropdown"/>
@@ -96,16 +99,16 @@
             </tr>
             <tr>
                 <th>Results</th>
-                <td> <obs conceptId="$hepatitisB_results"
-                          answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                          answerLabels="Negative,Positive,Vaccinated"
+                <td> <obs conceptId="$risk_results"
+                          answerConceptIds="165067,165064"
+                          answerLabels="Eligible,Not Eligible"
                           style="dropdown"/>
                 </td>
             </tr>
             <tr>
                 <th>Treated</th>
                 <td>
-                    <obs conceptId="$treated"
+                    <obs conceptId="$risk_treated"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
@@ -114,15 +117,20 @@
             <tr>
                 <th>Referred</th>
                 <td>
-                    <obs conceptId="$referred"
+                    <obs conceptId="$risk_referred"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
                 </td>
             </tr>
             <tr>
-                <th>Remarks</th>
-                <td><obs conceptId="$remarks" id="remarks_input" /></td>
+                <th>Action done</th>
+                <td>
+                    <obs conceptId="$risk_remarks"
+                         answerConceptIds="165056,165055"
+                         answerLabels="Counselling,EBl Provided"
+                         style="dropdown" />
+                </td>
             </tr>
         </table>
         <submit/>

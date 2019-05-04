@@ -9,15 +9,15 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="84d6627c-c1f2-406b-bf71-013b1079e338" formName="Hepatitis B Screening Form"
+<htmlform formUuid="721c1c74-f54d-447a-9b10-66bf364eec04" formName="Abcess Screening Form"
           formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
 
     <macros>
-        hepatitisB_screened =165019
-        hepatitisB_results=1322
-        treated=165038
-        referred=1272
-        remarks=160632
+        abscess_screened =165024
+        abscess_results=165037
+        abscess_treated=165038
+        abscess_referred=1272
+        abscess_remarks=160632
     </macros>
 
     <!-- Flowsheet table view -->
@@ -27,7 +27,7 @@
             <thead class="visit-table-header">
                 <tr>
                     <td width="156" valign="top"><p>Visit date</p></td>
-                    <td width="156" valign="top"><p>Screened for Hepatitis B</p></td>
+                    <td width="156" valign="top"><p>Screened for Abscess</p></td>
                     <td width="156" valign="top"><p>Results</p></td>
                     <td width="156" valign="top"><p>Treated</p></td>
                     <td width="156" valign="top"><p>Referred</p></td>
@@ -42,35 +42,35 @@
                     </td>
                     <td>
                         <!-- SCREENED-->
-                        <obs conceptId="$hepatitisB_screened" id="hepatitisB_screened"
+                        <obs conceptId="$abscess_screened" id="$abscess_screened"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Yes,No"
                              style="dropdown"/>
                     </td>
                     <td>
                         <!-- RESULTS -->
-                        <obs conceptId="$hepatitisB_results"
-                             answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabels="Negative,Positive,Vaccinated"
+                        <obs conceptId="$abscess_results"
+                             answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Negative,Positive"
                              style="dropdown"/>
                     </td>
                     <td>
                         <!-- TREATED-->
-                        <obs conceptId="$treated"
+                        <obs conceptId="$abscess_treated"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Yes,No"
                              style="dropdown"/>
                     </td>
                     <td>
                         <!-- REFERRED -->
-                        <obs conceptId="$referred"
+                        <obs conceptId="$abscess_referred"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Yes,No"
                              style="dropdown"/>
                     </td>
                     <td>
                         <!-- REMARKS -->
-                        <obs conceptId="$remarks" />
+                        <obs conceptId="$abscess_remarks" />
                     </td>
                 </tr>
             </tbody>
@@ -87,8 +87,8 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Screened for Hepatitis B</th>
-                <td>  <obs conceptId="$hepatitisB_screened" id="hepatitisB_screened_input"
+                <th>Screened for Abscess</th>
+                <td>  <obs conceptId="$abscess_screened" id="abscess_screened_input"
                            answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                            answerLabel="Yes,No"
                            style="dropdown"/>
@@ -96,16 +96,16 @@
             </tr>
             <tr>
                 <th>Results</th>
-                <td> <obs conceptId="$hepatitisB_results"
-                          answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                          answerLabels="Negative,Positive,Vaccinated"
+                <td> <obs conceptId="$abscess_results"
+                          answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                          answerLabels="Negative,Positive"
                           style="dropdown"/>
                 </td>
             </tr>
             <tr>
                 <th>Treated</th>
                 <td>
-                    <obs conceptId="$treated"
+                    <obs conceptId="$abscess_treated"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
@@ -114,7 +114,7 @@
             <tr>
                 <th>Referred</th>
                 <td>
-                    <obs conceptId="$referred"
+                    <obs conceptId="$abscess_referred"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
@@ -122,7 +122,7 @@
             </tr>
             <tr>
                 <th>Remarks</th>
-                <td><obs conceptId="$remarks" id="remarks_input" /></td>
+                <td><obs conceptId="$abscess_remarks" id="remarks_input" /></td>
             </tr>
         </table>
         <submit/>
