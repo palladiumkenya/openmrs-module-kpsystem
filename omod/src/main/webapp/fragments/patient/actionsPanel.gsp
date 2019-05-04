@@ -50,8 +50,6 @@
 
 					<%
 
-						config.require("visit")
-
 						def onFormClick = { form ->
 							def visitId = currentVisit ? currentVisit.id : activeVisit.id
 							def opts = [ appId: currentApp.id, visitId: visitId, formUuid: form.formUuid, returnUrl: ui.thisUrl() ]
