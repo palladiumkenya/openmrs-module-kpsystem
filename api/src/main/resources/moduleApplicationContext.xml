@@ -19,7 +19,7 @@
 
 	<import resource="content/kenyaemr.common.xml" />
 	<import resource="content/kenyaemr.kp.xml" />
-	<import resource="content/kenyaemr.tb.xml" />
+	<!--<import resource="content/kenyaemr.tb.xml" />-->
 
 	<!-- ===================== App descriptors ===================== -->
 
