@@ -1,0 +1,288 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="10cd2ca0-8d25-4876-b97c-b568a912957e" formName="Violence screening Form"
+          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+
+    <macros>
+        violence_exists =141814
+        violence_location=162721
+        incidence_date=160753
+        target=165013
+        perpetrator=160658
+        intervention_date=162869
+        referrals_ordered=1272
+        referral_location=161550
+        referral_date=163181
+        outcome_status=160433
+        action_plan=164378
+        resolution_date=161561
+        program_officer=164141
+
+    </macros>
+
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td width="156" valign="top"><p>Visit date</p></td>
+                    <td width="156" valign="top"><p>Form of violence</p></td>
+                    <td width="156" valign="top"><p>Place of violence</p></td>
+                    <td width="156" valign="top"><p>Date of incidence</p></td>
+                    <td width="156" valign="top"><p>Target</p></td>
+                    <td width="156" valign="top"><p>Perpetrator</p></td>
+                    <td width="156" valign="top"><p>Intervention date</p></td>
+                    <td width="156" valign="top"><p>Referral ordered</p></td>
+                    <td width="156" valign="top"><p>Place of referral</p></td>
+                    <td width="156" valign="top"><p>Referral date</p></td>
+                    <td width="156" valign="top"><p>Outcome status</p></td>
+                    <td width="156" valign="top"><p>Action plan</p></td>
+                    <td width="156" valign="top"><p>Resolution date</p></td>
+                    <td width="156" valign="top"><p>Program officer name</p></td>
+                   </tr>
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+                    <td>
+                        <!-- VIOLENCE EXISTS-->
+                        <obs conceptId="$violence_exists" id="violence_exists"
+                             answerConceptIds="123007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               152292AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                126312AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                152370AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                156761AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Verbal abuse,Physical abuse,Discrimination,Sexual abuse/Rape,illegal arrest,other"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- PLACE OF VIOLENCE -->
+                        <obs conceptId="$violence_location" />
+                    </td>
+                    <td>
+                        <!-- DATE OF VIOLENCE -->
+                        <obs conceptId="$incidence_date"/>
+                    </td>
+                    <td>
+                        <!-- TARGET -->
+                        <obs conceptId="$target"
+                             answerConceptIds="978AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Self,Group"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- PERPETRATOR -->
+                        <obs conceptId="$perpetrator"
+                             answerConceptIds="123163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                5620AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                110360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                1540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                163096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                159928AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                133651AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Police,Family,Religeous group,Clients,Health care provider, Education institution,Local gangs"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- DATE OF INTERVENTION -->
+                        <obs conceptId="$intervention_date"/>
+                    </td>
+                    <td>
+                    <!-- REFERRALS ORDERED-->
+                    <obs conceptId="$referrals_ordered" id="referrals_ordered"
+                         answerConceptIds="1370AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           160570AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           162978AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           5490AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           1691AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           163559AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           163559AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           162717AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           123157AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabels="HIV Testing service,Emergency contraception,Reported to police,Psychosocial counselling,Pep provided,STI Screening and treatment,Legal support,Medical examination,Post rape care form filled,other"
+                         style="dropdown"/>
+                   </td>
+                    <td>
+                        <!-- PLACE OF REFERRAL -->
+                        <obs conceptId="$referral_location" />
+                    </td>
+                    <td>
+                        <!-- REFERRAL DATE -->
+                        <obs conceptId="$referral_date"/>
+                    </td>
+                    <td>
+                        <!-- OUTCOME STATUS-->
+                        <obs conceptId="$outcome_status" id="outcome_status"
+                             answerConceptIds="159AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               163321AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               5485AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Dead,In prison,At home,In safe space,Hospitalized,other"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- ACTION PLAN -->
+                        <obs conceptId="$action_plan" />
+                    </td>
+                    <td>
+                        <!-- RESOLUTION DATE-->
+                        <obs conceptId="$resolution_date"/>
+                    </td>
+                    <td>
+                        <!-- PROGRAM OFFICER -->
+                        <obs conceptId="$program_officer" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+
+        <table class="visit-edit-table">
+            <tr>
+                <th>Visit Date</th>
+                <td><encounterDate id="visitDate" size="20" default="today" /></td>
+            </tr>
+            <tr>
+                <th>Form of violence</th>
+                <td>  <obs conceptId="$violence_exists" id="violence_exists"
+                           answerConceptIds="123007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               152292AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                126312AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                152370AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                156761AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                           answerLabels="Verbal abuse,Physical abuse,Discrimination,Sexual abuse/Rape,illegal arrest,other"
+                           style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Place of violence</th>
+                <td> <obs conceptId="$violence_location" />
+                </td>
+            </tr>
+            <tr>
+                <th>Date of incidence</th>
+                <td>
+                    <obs conceptId="$incidence_date"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Target</th>
+                <td>
+                    <obs conceptId="$target"
+                         answerConceptIds="978AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabels="Self,Group"
+                         style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Perpetrators</th>
+                <td>
+                    <obs conceptId="$perpetrator"
+                         answerConceptIds="123163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                5620AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                110360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                1540AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                163096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                159928AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                133651AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabels="Police,Family,Religeous group,Clients,Health care provider, Education institution,Local gangs,Others"
+                         style="dropdown"/>
+
+                </td>
+            </tr>
+            <tr>
+                <th>Date of intervention</th>
+                <td>
+                    <obs conceptId="$intervention_date"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Referrals ordered</th>
+                <td>
+                    <obs conceptId="$referrals_ordered" id="referrals_ordered"
+                         answerConceptIds="1370AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           160570AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           162978AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           5490AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           1691AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           163559AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           163559AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           162717AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           123157AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                           5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabels="HIV Testing service,Emergency contraception,Reported to police,Psychosocial counselling,Pep provided,STI Screening and treatment,Legal support,Medical examination,Post rape care form filled,other"
+                         style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Place of referral</th>
+                <td> <obs conceptId="$referral_location" />
+                </td>
+            </tr>
+            <tr>
+                <th>Referral date</th>
+                <td>
+                    <obs conceptId="$referral_date"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Outcome status</th>
+                <td>
+                    <obs conceptId="$outcome_status" id="outcome_status"
+                         answerConceptIds="159AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               163321AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               5485AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabels="Dead,In prison,At home,In safe space,Hospitalized,other"
+                         style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Action plan</th>
+                <td>
+                    <obs conceptId="$action_plan"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Resolution date</th>
+                <td>
+                    <obs conceptId="$resolution_date"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Program officer name</th>
+                <td>
+                    <obs conceptId="$program_officer"/>
+                </td>
+            </tr>
+        </table>
+        <submit/>
+    </ifMode>
+</htmlform>

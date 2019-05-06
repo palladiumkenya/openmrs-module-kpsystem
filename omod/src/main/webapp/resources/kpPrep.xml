@@ -1,0 +1,112 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="84426230-a538-48f0-acd6-4456fdbb351c" formName="Prep Screening Form"
+          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+
+    <macros>
+        prep_screening =165062
+        prep_eligible=165065
+        prep_referred=1272
+        prep_remarks=160632
+    </macros>
+
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td width="156" valign="top"><p>Visit date</p></td>
+                    <td width="156" valign="top"><p>Screened for Prep</p></td>
+                    <td width="156" valign="top"><p>Status</p></td>
+                    <td width="156" valign="top"><p>Referred</p></td>
+                    <td width="156" valign="top"><p>Remarks</p></td>
+                   </tr>
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+                    <td>
+                        <!-- SCREENED-->
+                        <obs conceptId="$prep_screening" id="prep_screening"
+                             answerConceptIds="165063,165064,165065,165066"
+                             answerLabels="Not screened,Not Eligible Eligible, Ongoing"
+                             style="dropdown" />
+                    </td>
+                    <td>
+                        <!-- STATUS -->
+                        <obs conceptId="$prep_eligible"
+                             answerConceptIds="1065,1066"
+                             answerLabels="Initiated,Not Initiated"
+                             style="dropdown" />
+                    </td>
+                    <td>
+                        <!-- REFERRED -->
+                        <obs conceptId="$prep_referred"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- REMARKS -->
+                        <obs conceptId="$prep_remarks" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+
+        <table class="visit-edit-table">
+            <tr>
+                <th>Visit Date</th>
+                <td><encounterDate id="visitDate" size="20" default="today" /></td>
+            </tr>
+            <tr>
+                <th>Screened for Prep</th>
+                <td>   <obs conceptId="$prep_screening" id="$prep_screening"
+                            answerConceptIds="165063,165064,165065,165066"
+                            answerLabels="Not screened,Not Eligible Eligible, Ongoing"
+                            style="dropdown" />
+                </td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td> <obs conceptId="$prep_eligible"
+                          answerConceptIds="1065,1066"
+                          answerLabels="Initiated,Not Initiated"
+                          style="dropdown" />
+                </td>
+            </tr>
+            <tr>
+                <th>Referred</th>
+                <td>
+                    <obs conceptId="$prep_referred"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Remarks</th>
+                <td><obs conceptId="$prep_remarks" id="remarks_input" /></td>
+            </tr>
+        </table>
+        <submit/>
+    </ifMode>
+</htmlform>
