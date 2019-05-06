@@ -15,7 +15,7 @@
 
 <div class="ke-panelbar" style="text-align: right">
 	<% if (visit) { %>
-	<button type="button" onclick="openVisitSummary();"><img src="${ ui.resourceLink("kenyaui", "images/buttons/summary.png") }" /> Visit Summary</button>
+
 	<%= ui.includeFragment("kenyaui", "widget/dialogForm", [
 			buttonConfig: [ label: "Check out of visit", iconProvider: "kenyaui", icon: "buttons/visit_end.png" ],
 			dialogConfig: [ heading: "Check Out", width: 50, height: 30 ],

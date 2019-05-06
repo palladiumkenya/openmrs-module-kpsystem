@@ -22,7 +22,7 @@
 		<span class="ke-patient-gender">{{ patient.gender | keGender }}</span>,
 		<span class="ke-patient-age">{{ patient.age }} <small>(${ kenyaui.formatPersonBirthdate(patient) })</small></span>
 	</div>
-	
+
 	<div style="float: left; width: 30%; text-align: center">
 		<div ng-repeat="identifier in patient.identifiers">
 			<span class="ke-identifier-type">{{ identifier.identifierType }}</span>
@@ -45,9 +45,8 @@
 		<span ng-repeat="flag in flags" class="ke-flagtag" style="margin-right: 5px">{{ flag.message }}</span>
 	</div>
 
-	<div style="width: 50%; float: right; overflow: auto; text-align: right">
-		<span class="ke-tip">Current visit</span>
-		<span ng-if="patient.activeVisit" class="ke-visittag">{{ patient.activeVisit.visitType }} since <strong>{{ patient.activeVisit.startDatetime | keDateAuto }}</strong></span>
+	<div style="width: 20%; float: right; overflow: auto; text-align: right">
+		<span ng-if="patient.activeVisit" class="ke-visittag"> ${ ui.includeFragment("kenyaemr", "visitMenu", [ patient: currentPatient, visit: activeVisit ]) }{{ patient.activeVisit.visitType }} since <strong>{{ patient.activeVisit.startDatetime | keDateAuto }}</strong></span>
 		<span ng-if="!patient.activeVisit" style="font-style: italic">${ ui.message("general.none") }</span>
 	</div>
 </div>
