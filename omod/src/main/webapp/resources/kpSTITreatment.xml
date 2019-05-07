@@ -10,7 +10,7 @@
 
 -->
 <htmlform formUuid="d80d1c52-6a79-4c3d-b322-63eead834089" formName="STI Treatment Form"
-          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+          formEncounterType="83610d13-d4fc-42c3-8c1d-a403cd6dd073" formVersion="1.0">
 
     <macros>
         reason =1322

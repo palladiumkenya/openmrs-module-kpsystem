@@ -10,7 +10,7 @@
 
 -->
 <htmlform formUuid="84d6627c-c1f2-406b-bf71-013b1079e338" formName="Hepatitis B Screening Form"
-          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+          formEncounterType="27493d81-77c1-46ee-8148-ed75c13a24e8" formVersion="1.0">
 
     <macros>
         hepatitisB_screened =165019

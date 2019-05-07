@@ -10,7 +10,7 @@
 
 -->
 <htmlform formUuid="84426230-a538-48f0-acd6-4456fdbb351c" formName="Prep Screening Form"
-          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+          formEncounterType="68889c7f-2277-4509-a369-42df159de69b" formVersion="1.0">
 
     <macros>
         prep_screening =165062

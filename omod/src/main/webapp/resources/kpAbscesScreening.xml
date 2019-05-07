@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="721c1c74-f54d-447a-9b10-66bf364eec04" formName="Abcess Screening Form"
+<htmlform formUuid="721c1c74-f54d-447a-9b10-66bf364eec04" formName="Abscess Screening Form"
           formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
 
     <macros>

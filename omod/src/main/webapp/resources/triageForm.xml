@@ -9,8 +9,8 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="8a060f1e-3599-4e2a-8d2f-793cc189396a" formName="Triage Form"
-          formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
+<htmlform formUuid="37f6bd8d-586a-4169-95fa-5781f987fe62" formName="Triage Form"
+          formEncounterType="55e67467-bd0b-4940-82c2-3281938afde3" formVersion="1.0">
 
     <macros>
         height=5090
