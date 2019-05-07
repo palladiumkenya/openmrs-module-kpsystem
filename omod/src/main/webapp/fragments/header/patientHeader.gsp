@@ -44,9 +44,13 @@
 		<span ng-if="patient.voided" class="ke-voidedtag">Voided since <strong>{{ patient.dateVoided | keDateAuto }}</strong></span>
 		<span ng-repeat="flag in flags" class="ke-flagtag" style="margin-right: 5px">{{ flag.message }}</span>
 	</div>
+	</span>
 
 	<div style="width: 20%; float: right; overflow: auto; text-align: right">
-		<span ng-if="patient.activeVisit" class="ke-visittag"> ${ ui.includeFragment("kenyaemr", "visitMenu", [ patient: currentPatient, visit: activeVisit ]) }{{ patient.activeVisit.visitType }} since <strong>{{ patient.activeVisit.startDatetime | keDateAuto }}</strong></span>
+		<span class="ke-tip">Current visit</span>
+		<span ng-if="patient.activeVisit" class="ke-visittag">{{ patient.activeVisit.visitType }} since <strong>{{ patient.activeVisit.startDatetime | keDateAuto }}</strong></span>
 		<span ng-if="!patient.activeVisit" style="font-style: italic">${ ui.message("general.none") }</span>
 	</div>
+<div style="width: 15%; float: right; overflow: auto; text-align: right">
+</div>
 </div>

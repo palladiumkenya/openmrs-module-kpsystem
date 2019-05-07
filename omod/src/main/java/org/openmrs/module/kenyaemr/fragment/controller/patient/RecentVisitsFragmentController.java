@@ -11,76 +11,87 @@ package org.openmrs.module.kenyaemr.fragment.controller.patient;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.*;
+import org.openmrs.Patient;
+import org.openmrs.Visit;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.ObsService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.kenyaemr.Dictionary;
-import org.openmrs.module.kenyaemr.Metadata;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.annotation.FragmentParam;
 import org.openmrs.ui.framework.fragment.FragmentModel;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Visit summary fragment
  */
 public class RecentVisitsFragmentController {
 
-	protected static final Log log = LogFactory.getLog(RecentVisitsFragmentController.class);
+    protected static final Log log = LogFactory.getLog(RecentVisitsFragmentController.class);
 
-	ObsService obsService = Context.getObsService();
-	ConceptService conceptService = Context.getConceptService();
-	SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MMM-yyyy");
+    ObsService obsService = Context.getObsService();
+    ConceptService conceptService = Context.getConceptService();
+    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MMM-yyyy");
 
-	public void controller(@FragmentParam(value = "visit", required = false) Visit visit, @FragmentParam("patient") Patient patient, FragmentModel model) {
+    public void controller(@FragmentParam(value = "visit", required = false) Visit visit, @FragmentParam("patient") Patient patient, FragmentModel model) {
 
-		// date last seen (last 3 visits)
+        // date last seen (last 3 visits)
 
-		/**
-		 * Get list of recent visits - 6 months ago
-		 */
-		Calendar now = Calendar.getInstance();
-		now.add(Calendar.MONTH, -6);
-		List<Visit> recentVisits = Context.getVisitService().getVisits(null,
-				Collections.singleton(patient),
-				null,
-				null,
-				now.getTime(),
-				null,
-				null,
-				null,
-				null,
-				true,
-				false
-		);
-		if(recentVisits != null) {
-			model.put("recentVisits", getVisits(recentVisits));
-		} else {
-			model.put("recentVisits", null);
-		}
+        /**
+         * Get list of recent visits - 6 months ago
+         */
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.MONTH, -6);
+        List<Visit> recentVisits = Context.getVisitService().getVisits(null,
+                Collections.singleton(patient),
+                null,
+                null,
+                now.getTime(),
+                null,
+                null,
+                null,
+                null,
+                true,
+                false
+        );
+        if (recentVisits != null) {
+            model.put("recentVisits", getVisits(recentVisits));
+        } else {
+            model.put("recentVisits", null);
+        }
 
-	}
+    }
 
-	private List<SimpleObject> getVisits (List<Visit> visitList ) {
-		List<SimpleObject> visits = new ArrayList<SimpleObject>();
-		for(Visit v : visitList) {
-			if(v.getStopDatetime() == null) {
-				visits.add(SimpleObject.create(
-						"visitDate", new StringBuilder().append(DATE_FORMAT.format(v.getStartDatetime())).toString(),
-						"active", true
-				));
-			} else {
-				visits.add(SimpleObject.create(
-						"visitDate", new StringBuilder().append(DATE_FORMAT.format(v.getStartDatetime()))
-								.append(" - ").append(DATE_FORMAT.format(v.getStopDatetime())),
-						"active", false
-				));
-			}
-		}
-		return visits;
-	}
+    private List<SimpleObject> getVisits(List<Visit> visitList) {
+        List<SimpleObject> visits = new ArrayList<SimpleObject>();
+        for (Visit v : visitList) {
+
+            if (v.getStopDatetime() == null) {
+
+                visits.add(SimpleObject.create(
+                        "visitDate", new StringBuilder().append(DATE_FORMAT.format(v.getStartDatetime())).toString(),
+                        "active", true
+                ));
+            } else {
+
+                visits.add(SimpleObject.create(
+                        "visitDate", new StringBuilder().append(DATE_FORMAT.format(v.getStartDatetime()))
+                                .append(" - ").append(DATE_FORMAT.format(v.getStopDatetime())),
+                        "active", false
+                ));
+            }
+        }
+        //Return latest 5 visits within the last 6 months
+        if (visits.size() < 5) {
+            return visits;
+        } else {
+            return visits.subList(0, 5);
+        }
+
+    }
 
 }

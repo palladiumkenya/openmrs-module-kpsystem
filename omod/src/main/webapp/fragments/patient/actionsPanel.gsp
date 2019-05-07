@@ -23,6 +23,8 @@
 <div class="action-container column">
 	<div class="action-section">
 
+		${ ui.includeFragment("kenyaemr", "visitMenu", [ patient: currentPatient, visit: activeVisit ])}
+
 		<ul class="float-left">
 			<h3>General Actions</h3>
 			<li class="float-left" style="margin-top: 7px">
