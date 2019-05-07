@@ -54,6 +54,14 @@
 		<constructor-arg value="400" />
 	</bean>
 
+	<bean id="kenyaemr.app.inventory" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
+		<constructor-arg value="kenyaemr.inventory" />
+		<constructor-arg value="Inventory" />
+		<constructor-arg value="openhmis.inventory/inventoryLanding.page" />
+		<constructor-arg value="kenyaui:apps/chart.png" />
+		<constructor-arg value="401" />
+	</bean>
+
 	<bean id="kenyaemr.app.reports" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.reports" />
 		<constructor-arg value="Reports" />
