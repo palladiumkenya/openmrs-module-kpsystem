@@ -64,3 +64,26 @@
 	display: block;
 	margin: 5px 0 5px 0;
 }
+.ke-toolbar-item a:hover {
+	background-color: #d9edf7 !important;
+	color: #444 !important;
+}
+.ke-panelbar {
+	background-color: #E3E4E6 !important;
+	padding: 3px;
+	margin-bottom: 5px;
+}
+.ke-page-sidebar .ke-panel-frame {
+	background-color: #E3E4E6 !important;
+}
+.ke-panel-frame {
+	background-color: #E3E4E6 !important;
+	margin-bottom: 5px;
+	padding: 3px;
+}
+.ke-panel-heading {
+	color: #413c32;
+}
+.ke-page-sidebar .ke-panel-heading {
+	color: #413c32;
+}
