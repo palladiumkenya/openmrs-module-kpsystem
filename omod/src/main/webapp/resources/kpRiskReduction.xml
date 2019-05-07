@@ -9,8 +9,8 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="01d46fa8-a648-461c-a66f-5e8a125c8a54" formName="Risk reduction counselling form"
-          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+<htmlform formUuid="01d46fa8-a648-461c-a66f-5e8a125c8a54" formName="Risk Reduction Screening form"
+          formEncounterType="dd06ac5c-70b4-4d8e-96a3-05edc9019f8f" formVersion="1.0">
 
     <macros>
         risk_screened =165025

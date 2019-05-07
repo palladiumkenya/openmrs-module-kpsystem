@@ -9,11 +9,12 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="7167549f-196d-4b7c-81d4-bbd11df704b1" formName="Clinical notes"
-          formEncounterType="bcbf6e3f-a2fc-421b-90a3-473a3158c796" formVersion="1.0">
+<htmlform formUuid="30905fa8-5a35-4d11-a7a3-8e1016b8dc8f" formName="Diagnosis and Treatment Plan"
+          formEncounterType="928ea6b2-3425-4ee9-854d-daa5ceaade03" formVersion="1.0">
 
     <macros>
-               clinical_notes=160632
+               diagnosis=6042
+               treatment_plan=163104
     </macros>
 
     <!-- Flowsheet table view -->
@@ -23,7 +24,8 @@
             <thead class="visit-table-header">
                 <tr>
                     <td width="156" valign="top"><p>Visit date</p></td>
-                    <td width="156" valign="top"><p>Clinical notes</p></td>
+                    <td width="156" valign="top"><p>Diagnosis</p></td>
+                    <td width="156" valign="top"><p>Treatment plan</p></td>
                 </tr>
             </thead>
             <tbody class="visit-table-body">
@@ -33,8 +35,12 @@
                         <encounterDate />
                     </td>
                     <td>
-                        <!-- CLINICAL NOTES-->
-                        <obs conceptId="$clinical_notes" />
+                        <!-- DIAGNOSIS-->
+                        <obs conceptId="$diagnosis" answerClasses="Diagnosis" id="diagnosis-type" style="autocomplete"/>
+                    </td>
+                    <td>
+                        <!-- TREATMENT PLAN-->
+                        <obs conceptId="$treatment_plan" rows="1" cols="80" id="treatment-plan"/>
                     </td>
                 </tr>
             </tbody>
@@ -51,8 +57,14 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Screened for risk</th>
-                <td>  <obs conceptId="$clinical_notes" />
+                <th>Diagnosis</th>
+                <td> <obs conceptId="$diagnosis" answerClasses="Diagnosis" id="diagnosis-type" style="autocomplete"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Treatment plan</th>
+                <td>
+                    <obs conceptId="$treatment_plan" rows="1" cols="80" id="treatment-plan"/>
                 </td>
             </tr>
         </table>

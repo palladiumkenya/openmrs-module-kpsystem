@@ -10,7 +10,7 @@
 
 -->
 <htmlform formUuid="a455aef4-56c8-4386-902e-b599c572f33f" formName="Pep Screening Form"
-          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+          formEncounterType="b06625d4-dfe4-458c-93fa-e878c8370733" formVersion="1.0">
 
     <macros>
         pep_use =164845

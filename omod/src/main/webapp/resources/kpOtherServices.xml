@@ -9,8 +9,8 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="d80d1c52-6a79-4c3d-b322-63eead834089" formName="Other Services"
-          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+<htmlform formUuid="f78165e6-d2df-40ec-a0dd-2d63ef1cfc59" formName="Other Services Form"
+          formEncounterType="28883f27-dfd1-4ce5-89f0-2a4f87974d15" formVersion="1.0">
 
     <macros>
         condom_education=1357

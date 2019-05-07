@@ -10,7 +10,7 @@
 
 -->
 <htmlform formUuid="c18987d9-1a7a-4fbf-96d9-7b9b62ec26e0" formName="Current Medication"
-          formEncounterType="d7cfa460-2944-11e9-b210-d663bd873d93" formVersion="1.0">
+          formEncounterType="89767cca-13b9-411a-aa59-98656b096fd9" formVersion="1.0">
 
     <macros>
         currently_on_drugs=160666

@@ -9,8 +9,8 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="66369f42-a75b-4869-bc39-1ddbbff8cd92" formName="Alcohol Use Screening Form"
-          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+<htmlform formUuid="7ba743c8-d8e6-44ad-aeed-8d2ff9e985db" formName="Alcohol Screening Form"
+          formEncounterType="a3ce2705-d72d-458a-a76c-dae0f93398e7" formVersion="1.0">
 
     <macros>
         alcohol_screened =165023
