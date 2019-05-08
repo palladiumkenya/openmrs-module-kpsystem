@@ -59,7 +59,7 @@
 		<constructor-arg value="kenyaemr.inventory" />
 		<constructor-arg value="Inventory" />
 		<constructor-arg value="openhmis.inventory/inventoryLanding.page" />
-		<constructor-arg value="kenyaui:apps/chart.png" />
+		<constructor-arg value="kenyaui:apps/inventory.png" />
 		<constructor-arg value="410" />
 	</bean>
 
