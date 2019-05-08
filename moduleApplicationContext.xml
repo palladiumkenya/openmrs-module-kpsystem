@@ -54,6 +54,14 @@
 		<constructor-arg value="400" />
 	</bean>
 
+	<bean id="kenyaemr.app.inventory" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
+		<constructor-arg value="kenyaemr.inventory" />
+		<constructor-arg value="Inventory" />
+		<constructor-arg value="openhmis.inventory/inventoryLanding.page" />
+		<constructor-arg value="kenyaui:apps/inventory.png" />
+		<constructor-arg value="450" />
+	</bean>
+
 	<bean id="kenyaemr.app.reports" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.reports" />
 		<constructor-arg value="Reports" />
@@ -194,13 +202,13 @@
 	</bean>
 
 	<bean id="kenyaEmrBuildProperties" class="org.openmrs.module.kenyaemr.util.BuildProperties">
-		<property name="version" value="17.0.0-beta" />
+		<property name="version" value="${project.version}" />
 		<property name="buildDate">
 			<bean factory-bean="iso8601DateFactory" factory-method="parse">
-				<constructor-arg value="2019-05-02T08:38:12+0000" />
+				<constructor-arg value="${moduleBuildDate}" />
 			</bean>
 		</property>
-		<property name="developer" value="sosewe"/>
+		<property name="developer" value="${user.name}"/>
 	</bean>
 
 </beans>
