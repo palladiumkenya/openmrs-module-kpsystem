@@ -4,7 +4,7 @@
     ui.includeCss("kenyaemrorderentry", "font-awesome.css")
     ui.includeCss("kenyaemrorderentry", "font-awesome.min.css")
     ui.includeCss("kenyaemrorderentry", "font-awesome.css.map")
-    ui.includeCss("kenyaemrorderentry", "fontawesome-webfont.svg")
+    ui.includeCss("kenyaemrorderentry", "../fontawesome-webfont.svg")
 
     def addSocialStatusFormLink = ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/kpSocialStatus.xml", returnUrl: ui.thisUrl()])
     def editContactInfoLink =  ui.pageLink("registrationapp", "editSection", [ patientId: patient.id,sectionId: "contactInfo", appId:"referenceapplication.registrationapp.registerPatient", returnUrl: ui.thisUrl() ])
@@ -77,7 +77,7 @@
 
                 <div class="info-section allergies">
                     <div class="info-header">
-                        <i class="icon-medical"></i>
+                        <i class="icon-stethoscope"></i>
                         <h3>Vitals</h3>
                     </div>
                     <div class="info-body">
