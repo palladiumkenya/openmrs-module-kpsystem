@@ -26,6 +26,12 @@
                                         <!--<li class="clear">-->
                                         ${it.visitDate}
                                     </td>
+
+                                <td style="border: none;">
+                                    <!--<li class="clear">-->
+                                    ${it.service}
+                                </td>
+
                                     <td style="border: none;">
                                         <div class="tag">
                                             <% if(it.active) { %>
