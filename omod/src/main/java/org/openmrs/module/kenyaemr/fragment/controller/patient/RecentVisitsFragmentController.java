@@ -11,20 +11,26 @@ package org.openmrs.module.kenyaemr.fragment.controller.patient;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Encounter;
+import org.openmrs.Form;
 import org.openmrs.Patient;
 import org.openmrs.Visit;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.ObsService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.appframework.domain.AppDescriptor;
+import org.openmrs.module.kenyacore.form.FormDescriptor;
+import org.openmrs.module.kenyacore.form.FormManager;
+import org.openmrs.module.kenyaemr.fragment.controller.VisitCompletedFormsFragmentController;
+import org.openmrs.module.kenyaui.KenyaUiUtils;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.annotation.FragmentParam;
+import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.fragment.FragmentModel;
+import org.openmrs.ui.framework.page.PageRequest;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Visit summary fragment
@@ -37,7 +43,10 @@ public class RecentVisitsFragmentController {
     ConceptService conceptService = Context.getConceptService();
     SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MMM-yyyy");
 
-    public void controller(@FragmentParam(value = "visit", required = false) Visit visit, @FragmentParam("patient") Patient patient, FragmentModel model) {
+    public void controller(@FragmentParam(value = "visit",
+            required = false) Visit visit,
+                           @FragmentParam("patient") Patient patient,
+                           FragmentModel model) {
 
         // date last seen (last 3 visits)
 
@@ -58,6 +67,7 @@ public class RecentVisitsFragmentController {
                 true,
                 false
         );
+
         if (recentVisits != null) {
             model.put("recentVisits", getVisits(recentVisits));
         } else {
@@ -67,13 +77,23 @@ public class RecentVisitsFragmentController {
     }
 
     private List<SimpleObject> getVisits(List<Visit> visitList) {
+
         List<SimpleObject> visits = new ArrayList<SimpleObject>();
         for (Visit v : visitList) {
+            List<Encounter> allEncounters = new ArrayList<Encounter>(v.getEncounters());
+
+            for (Encounter encounter : allEncounters) {
+                String form = encounter.getForm().getName();
+
+                if (encounter.isVoided()) {
+                    continue;
+                }
 
             if (v.getStopDatetime() == null) {
 
                 visits.add(SimpleObject.create(
-                        "visitDate", new StringBuilder().append(DATE_FORMAT.format(v.getStartDatetime())).toString(),
+                        "visitDate", new StringBuilder().append(DATE_FORMAT.format(v.getStartDatetime())),
+                        "service", new StringBuilder(form),
                         "active", true
                 ));
             } else {
@@ -81,9 +101,11 @@ public class RecentVisitsFragmentController {
                 visits.add(SimpleObject.create(
                         "visitDate", new StringBuilder().append(DATE_FORMAT.format(v.getStartDatetime()))
                                 .append(" - ").append(DATE_FORMAT.format(v.getStopDatetime())),
+                        "service", new StringBuilder(form),
                         "active", false
                 ));
             }
+        }
         }
         //Return latest 5 visits within the last 6 months
         if (visits.size() < 5) {
