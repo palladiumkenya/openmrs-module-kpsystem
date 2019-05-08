@@ -284,9 +284,9 @@
         <property name="targetUuid" value="b8d1431a-4baa-11e9-8646-d663bd873d93" />
         <property name="apps">
             <set>
-                <ref bean="kenyaemr.app.registration" />
+
                 <ref bean="kenyaemr.app.clinician" />
-                <ref bean="kenyaemr.app.chart" />
+
             </set>
         </property>
         <property name="icon" value="kenyaui:forms/generic.png" />

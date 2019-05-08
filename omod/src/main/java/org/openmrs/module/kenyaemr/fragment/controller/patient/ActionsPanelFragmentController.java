@@ -11,10 +11,7 @@ package org.openmrs.module.kenyaemr.fragment.controller.patient;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.Encounter;
-import org.openmrs.Form;
-import org.openmrs.Patient;
-import org.openmrs.Visit;
+import org.openmrs.*;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.appframework.domain.AppDescriptor;
 import org.openmrs.module.appframework.service.AppFrameworkService;
@@ -33,10 +30,7 @@ import org.openmrs.ui.framework.fragment.FragmentModel;
 import org.openmrs.ui.framework.page.PageContext;
 import org.openmrs.ui.framework.page.PageRequest;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Patient forms
@@ -45,6 +39,28 @@ import java.util.List;
 public class ActionsPanelFragmentController {
 
     protected static final Log log = LogFactory.getLog(VisitAvailableFormsFragmentController.class);
+    //define user apps
+    static final String APP_CLINICIAN = "kenyaemr.medicalEncounter";
+    static final String APP_REGISTRATION = "kenyaemr.registration";
+    static final String APP_TRIAGE = "kenyaemr.intake";
+    static final String APP_DATA_CLERK = "kenyaemr.medicalChart";
+    static final String APP_MANAGER = "kenyaemr.medicalChart";
+    static final String APP_DIRECTORY = "kenyaemr.directory";
+    static final String APP_ADMIN = "kenyaemr.admin";
+    static final String APP_FACILITIES = "kenyaemr.facilities";
+
+
+    //define user roles
+    static final String ROLE_CLINICIAN = "Clinician";
+    static final String ROLE_REGISTRATION = "Registration";
+    static final String ROLE_TRIAGE = "Intake";
+    static final String ROLE_DATA_CLERK = "Data Clerk";
+    static final String ROLE_MANAGER = "Manager";
+    static final String ROLE_DIRECTORY = "kenyaemr.directory";
+    static final String ROLE_ADMIN = "kenyaemr.admin";
+    static final String ROLE_FACILITIES = "kenyaemr.facilities";
+    static final String ROLE_SYSTEM_DEVELOPER = "Manager";
+
 
     public void controller(FragmentModel model,
                            @FragmentParam(value = "visit", required = false) Visit visit,
@@ -54,9 +70,37 @@ public class ActionsPanelFragmentController {
                            @SpringBean FormManager formManager,
                            @SpringBean KenyaUiUtils kenyaUi) {
 
+
+        User loggedInUser = Context.getUserContext().getAuthenticatedUser();
+        Set<Role> userRoles = loggedInUser.getAllRoles();
+        String userApp = null;
+        Set<String> userRolesStr = new HashSet<String>();
+        for (Role userRole : userRoles ) {
+            userRolesStr.add(userRole.getName());
+        }
+
+        if (userRolesStr.contains(ROLE_SYSTEM_DEVELOPER)) {
+            userApp = APP_CLINICIAN;
+        } else if (userRolesStr.contains(ROLE_CLINICIAN)) {
+            userApp = APP_CLINICIAN;
+        } else if (userRolesStr.contains(ROLE_REGISTRATION)) {
+            userApp = APP_REGISTRATION;
+        } else if (userRolesStr.contains(ROLE_TRIAGE)) {
+            userApp = APP_TRIAGE;
+        } else if (userRolesStr.contains(ROLE_DATA_CLERK)) {
+            userApp = APP_DATA_CLERK;
+        }
+        else if (userRolesStr.contains(ROLE_DIRECTORY)) {
+            userApp = APP_DIRECTORY;
+        }else if (userRolesStr.contains(ROLE_ADMIN)) {
+            userApp = APP_ADMIN;
+        }else if (userRolesStr.contains(ROLE_FACILITIES)) {
+            userApp = APP_FACILITIES;
+        }
+
         AppDescriptor currentApp = kenyaUi.getCurrentApp(request);
         AppDescriptor app = null;
-        app = Context.getService(AppFrameworkService.class).getApp("kenyaemr.medicalEncounter");
+        app = Context.getService(AppFrameworkService.class).getApp(userApp);
         pageContext.getRequest().getRequest().setAttribute(KenyaUiConstants.REQUEST_ATTR_CURRENT_APP, app);
         pageContext.getModel().addAttribute(KenyaUiConstants.MODEL_ATTR_CURRENT_APP, app);
 
