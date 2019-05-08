@@ -11,6 +11,13 @@
 -->
 <htmlform formUuid="c75f120a-04ec-11e3-8780-2b40bef9a44b" formName="Visit Note" formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
 
+    <macros>
+        systems =164388
+        findings=1069
+        remarks=160632
+        clinical_note=162169
+    </macros>
+
     <style type="text/css">
         #who-when-where {
         margin-bottom: 6px;
@@ -50,45 +57,155 @@
             }
         </ifMode>
     </style>
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
 
-    <ifMode mode="VIEW" include="false">
-        <h2>Visit Notes</h2>
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td width="156" valign="top"><p>Visit date</p></td>
+                    <td width="156" valign="top"><p>Body systems</p></td>
+                    <td width="156" valign="top"><p>Findings</p></td>
+                    <td width="156" valign="top"><p>Findings notes</p></td>
+                    <td width="156" valign="top"><p>Diagnosis</p></td>
+                    <td width="156" valign="top"><p>Clinical notes</p></td>
+                </tr>
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+                    <td>
+                        <!-- BODY SYSTEMS-->
+                        <obs conceptId="$systems" id="systems"
+                             answerConceptIds="1120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               163309AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               164936,
+                                               1123AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1124AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               164937,
+                                               1126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Skin,Eyes,ENT,Chest,CVS,Abdomen,CNS,Genitourinary"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- FINDINGS -->
+                        <obs conceptId="$findings"
+                             answerConceptIds="150555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,125201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135591AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,507AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1249AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5244AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              123074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140940AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127777AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140827AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139100AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              148517AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,106AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,147230AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135841AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117698AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,138554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,507AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,152228AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,128055AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160285AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,110099AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,126423AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,126318AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,158843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5244AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5334AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123588AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,124601AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123919AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,111525AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              146893AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127640AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,145712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164440AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5209AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              140147AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,130560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              150915AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5008AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5103AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5009AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5105AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              118872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1836AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,150817AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120345AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,157498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              147241AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,154311AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123529AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,124087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Abscess,Swelling/Growth,Hair Loss,Itching,Kaposi Sarcoma,Skin eruptions/Rashes,Oral sores,
+                                           Visual Disturbance,Excessive tearing,Eye pain,Eye redness,Light sensitive,Itchy eyes,
+                                           Apnea,Hearing disorder,Dental caries,Erythema,Frequent colds,Gingival bleeding,Hairy cell leukoplakia,Hearing loss,Hoarseness,Kaposi Sarcoma,Masses,Nasal discharge,Nosebleed,Pain,Post nasal discharge,Sinus problems,Snoring,Sore thoat,Oral sores,Thrush,Tinnitus,Toothache,Ulcers,Vertigo,
+                                           Bronchial breathing,Crackles,Dullness,Reduced breathing,Respiratory distress,Wheezing,
+                                           Elevated blood pressure,Irregular heartbeat,Cardiac murmur,Cardiac rub,
+                                           Abdominal distension,Hepatomegaly,Abdominal mass,Splenomegaly,Abdominal tenderness,
+                                           Altered sensations,Bulging fontenelle,Abnormal reflexes,Confusion,Limb weakness,Stiff neck,Kernicterus,
+                                           Bleeding,Rectal discharge,Urethral discharge,Vaginal discharge,Ulceration"
+                             style="dropdown" id="findings"/>
+                    </td>
+                    <td>
+                        <!-- REMARKS -->
+                        <obs conceptId="$remarks" />
+                    </td>
+                    <td>
+                        <!-- DIAGNOSIS -->
+                        <obs conceptId="$remarks" />
+                    </td>
+                    <td>
+                        <!-- CLINICAL NOTES -->
+                        <obs conceptId="$clinical_note" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-        <div id="who-when-where">
-            <p id="who">
-                <label><uimessage code="coreapps.patientDashBoard.provider"/></label>
-                <span><encounterProvider default="currentUser" required="true"  /></span>
-            </p>
-            <p id="when">
-                <label><uimessage code="coreapps.patientDashBoard.location"/></label>
-                <span><encounterLocation default="SessionAttribute:emrContext.sessionLocationId"/></span>
-            </p>
-            <p id="where">
-                <label><uimessage code="coreapps.patientDashBoard.date"/></label>
-                <span><encounterDate id="encounterDate" default="now" /></span>
-            </p>
-        </div>
     </ifMode>
+    <ifMode mode="VIEW" include="false">
+        <h2>Systemic examination:</h2>
+        <table class="visit-edit-table">
+            <tr>
+                <th>Visit Date</th>
+                <td><encounterDate id="visitDate" size="20" default="today" /></td>
+            </tr>
+            <tr>
+                <th>Body systems</th>
+                <td>  <obs conceptId="$systems" id="systems"
+                           answerConceptIds="1120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               163309AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               164936,
+                                               1123AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1124AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               164937,
+                                               1126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                           answerLabel="Skin,Eyes,ENT,Chest,CVS,Abdomen,CNS,Genitourinary"
+                           style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Findings</th>
+                <td> <obs conceptId="$findings"
+                          answerConceptIds="150555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,125201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135591AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,507AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1249AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5244AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              123074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140940AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127777AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140827AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139100AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              148517AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,106AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,147230AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135841AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117698AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,138554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,507AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,152228AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,128055AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160285AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,110099AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,126423AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,126318AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,158843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5244AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5334AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123588AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,124601AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123919AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,111525AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              146893AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127640AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,145712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164440AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5209AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              140147AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,130560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              150915AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5008AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5103AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5009AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5105AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              118872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1836AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,150817AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120345AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,157498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                              147241AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,154311AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123529AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,124087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                          answerLabels="Abscess,Swelling/Growth,Hair Loss,Itching,Kaposi Sarcoma,Skin eruptions/Rashes,Oral sores,
+                                           Visual Disturbance,Excessive tearing,Eye pain,Eye redness,Light sensitive,Itchy eyes,
+                                           Apnea,Hearing disorder,Dental caries,Erythema,Frequent colds,Gingival bleeding,Hairy cell leukoplakia,Hearing loss,Hoarseness,Kaposi Sarcoma,Masses,Nasal discharge,Nosebleed,Pain,Post nasal discharge,Sinus problems,Snoring,Sore thoat,Oral sores,Thrush,Tinnitus,Toothache,Ulcers,Vertigo,
+                                           Bronchial breathing,Crackles,Dullness,Reduced breathing,Respiratory distress,Wheezing,
+                                           Elevated blood pressure,Irregular heartbeat,Cardiac murmur,Cardiac rub,
+                                           Abdominal distension,Hepatomegaly,Abdominal mass,Splenomegaly,Abdominal tenderness,
+                                           Altered sensations,Bulging fontenelle,Abnormal reflexes,Confusion,Limb weakness,Stiff neck,Kernicterus,
+                                           Bleeding,Rectal discharge,Urethral discharge,Vaginal discharge,Ulceration"
+                          style="dropdown" id="findings"/>
 
-    <div id="data-collection">
-
+                </td>
+            </tr>
+            <tr>
+                <th>Findings notes</th>
+                <td><obs conceptId="$remarks" id="remarks_input" /></td>
+            </tr>
+        </table>
+    <br />
+    <h2>Diagnosis:</h2>
+    <table>
+         <tr>
+             <td width="30%">
         <encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>
 
-        <p>
-            <label>Clinical Notes</label>
-            <obs conceptId="CIEL:162169" style="textarea" rows="5"/>
-        </p>
+             </td>
+            <td id="encounter-diagnoses-target">
 
-    </div>
-
-    <div id="encounter-diagnoses-target">
-    </div>
-
-    <ifMode mode="VIEW" include="false">
-        <div id="buttons">
-            <submit submitClass="confirm right" submitCode="general.save"/>
-            <button type="button" class="cancel"><uimessage code="general.cancel"/></button>
-        </div>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <h2>Notes:</h2>
+         <tr>
+                 <td>
+                     <label>Clinical Notes</label>
+                     <obs conceptId="$clinical_note" style="textarea" cols="60"/>
+                 </td>
+         </tr>
+    </table>
+    <!--<table id="buttons">-->
+            <!--<submit submitClass="confirm right" submitCode="general.save"/>-->
+            <!--<button type="button" class="cancel"><uimessage code="general.cancel"/></button>-->
+     <!--</table>-->
+        <submit/>
     </ifMode>
 
 </htmlform>
