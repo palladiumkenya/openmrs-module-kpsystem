@@ -16,7 +16,45 @@
                diagnosis=6042
                treatment_plan=163104
     </macros>
+    <style type="text/css">
+        #who-when-where {
+        margin-bottom: 6px;
+        border-bottom: 1px solid #ccc;
+        }
 
+        #who-when-where p {
+        display: inline-block;
+        padding-right: 20px;
+        }
+
+        #where > input[type=text] {
+        display: inline-block;
+        }
+
+        .field-error {
+        color: #ff6666;
+        font-size: 1.1em;
+        display: block;
+        }
+
+        <ifMode mode="VIEW" include="false">
+            #data-collection {
+            display: inline-block;
+            width: 58%;
+            vertical-align: top;
+            }
+
+            #encounter-diagnoses-target {
+            display: inline-block;
+            width: 40%;
+            vertical-align: top;
+            }
+
+            #encounter-diagnoses-app {
+            margin-bottom: 20px;
+            }
+        </ifMode>
+    </style>
     <!-- Flowsheet table view -->
     <ifMode mode="VIEW" include="true">
 
@@ -37,6 +75,7 @@
                     <td>
                         <!-- DIAGNOSIS-->
                         <obs conceptId="$diagnosis" answerClasses="Diagnosis" id="diagnosis-type" style="autocomplete"/>
+                        <!--<encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>-->
                     </td>
                     <td>
                         <!-- TREATMENT PLAN-->
@@ -45,7 +84,6 @@
                 </tr>
             </tbody>
         </table>
-
     </ifMode>
 
     <!-- Data entry view -->
@@ -58,6 +96,7 @@
             </tr>
             <tr>
                 <th>Diagnosis</th>
+
                 <td> <obs conceptId="$diagnosis" answerClasses="Diagnosis" id="diagnosis-type" style="autocomplete"/>
                 </td>
             </tr>
