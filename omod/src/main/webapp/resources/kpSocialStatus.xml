@@ -1,0 +1,172 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="6673d923-8d78-480f-a68d-d7e38474c3f5" formName="Client Enrolment Social Status Form"
+          formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
+
+    <macros>
+        peer_educator=164983
+        peer_worker_name=1473
+        regular_sex_partner=165006
+        partner_name=161135
+        partner_alias=165007
+        partner_contact=159635
+        contact-regular-sex-partner=165008
+
+    </macros>
+
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td>Visit Date</td>
+                    <td>Peer Educator</td>
+                    <td>Peer Worker Name</td>
+                    <td>Regular Sex Partner</td>
+                    <td>Partner Name</td>
+                    <td>Partner Alias</td>
+                    <td>Partner Contact</td>
+                    <td>Contact Regular Sex Partner</td>
+                </tr>
+
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+
+
+                    <td>
+                        <obs id="peer-educator" conceptId="$peer_educator"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Yes,No"
+                             style="dropdown" />
+                    </td>
+
+                    <td>
+                        <obs id="$peer_worker_name" conceptId="$peer_worker_name"/>
+
+                    </td>
+
+                    <td>
+                        <obs id="regular-sex-partner" conceptId="$regular_sex_partner"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Yes,No"
+                             style="dropdown" />
+                    </td>
+
+                                <td>
+                                    <obs id="partner_name" conceptId="$partner_name"/>
+                                </td>
+
+                                <td>
+                                    <obs id="partner_alias" conceptId="$partner_alias"/>
+                                </td>
+
+                                <td>
+                                    <obs id="partner_contact" conceptId="$partner_contact"/>
+                                </td>
+
+                    <td>
+                        <obs id="contact-regular-sex-partner" conceptId="$contact-regular-sex-partner"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Yes,No"
+                             style="dropdown" />
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+
+        <table class="visit-edit-table" style="margin-bottom:1%">
+            <tr class="visit-table-row">
+                <td class="nowrap visit-date">
+                    <!-- Encounter Date -->
+                    <encounterDate />
+                </td>
+            </tr>
+            <tr>
+                <td>Have you been contacted by a peer educator or an outreach worker for any prevention services?</td>
+                <td>
+                    <obs id="peer-educator" conceptId="$peer_educator"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabels="Yes,No"
+                         style="dropdown" />
+                </td>
+            </tr>
+            <tr>
+                    <td>Peer Educator/Outreach Worker name</td>
+                    <td>
+                        <obs id="$peer_worker_name" conceptId="1473"/>
+
+                    </td>
+            </tr>
+            <tr>
+                <td>Do you have a regular(Non-Paying) sexual partner?</td>
+                <td>
+                    <obs id="regular-sex-partner" conceptId="$regular_sex_partner"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabels="Yes,No"
+                         style="dropdown" />
+                </td>
+            </tr>
+            <tr>
+
+
+                    <td>If yes, partners name</td>
+                    <td>
+                        <obs id="partner_name" conceptId="$partner_name"/>
+                    </td>
+                    <td>Alias Name</td>
+                    <td>
+                        <obs id="partner_alias" conceptId="$partner_alias"/>
+                    </td>
+                    <td>Contact Number</td>
+                    <td>
+                        <obs id="partner_contact" conceptId="$partner_contact"/>
+                    </td>
+            </tr>
+            <tr>
+                <td>Could we contact your regular sexual partner(s) for prevention services?</td>
+                <td>
+                    <obs id="contact-regular-sex-partner" conceptId="$contact-regular-sex-partner"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabels="Yes,No"
+                         style="dropdown" />
+                </td>
+            </tr>
+        </table>
+
+        <submit/>
+
+    </ifMode>
+
+</htmlform>

@@ -1,0 +1,119 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="1530f634-3c07-48cd-9a50-59af23cd4e3e" formName="HIV Status Form"
+          formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
+
+    <macros>
+        ever_been_tested=165040
+        test_results=159427
+        testing_date=164400
+        current_in_care=159811
+        facility_name=162724
+
+    </macros>
+
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td>Ever Tested</td>
+                    <td>Test Results</td>
+                    <td>Testing Date</td>
+                    <td>Current In Care</td>
+                    <td>Facility Name</td>
+                </tr>
+
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+
+                    <td>
+                        <!-- Ever Been Tested -->
+                        <obs conceptId="$ever_been_tested" id="ever_been_tested"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+
+                    <td> <obs id="test_results" conceptId="$test_results" /> </td>
+                    <td><obs id="testing_date" conceptId="$testing_date" /> </td>
+                    <td>
+                        <!-- Ever Been Tested -->
+                        <obs conceptId="$current_in_care" id="current_in_care"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+
+                    <td><obs id="facility_name" conceptId="$facility_name" /> </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+
+        <table class="visit-edit-table" style="margin-bottom:1%">
+            <tr class="visit-table-row">
+                <td class="nowrap visit-date">
+                    <!-- Encounter Date -->
+                    <encounterDate />
+                </td>
+            </tr>
+
+            <tr>
+                <th>Ever been tested for HIV</th>
+                <td>
+                    <!-- Ever Been Tested -->
+                    <obs conceptId="$ever_been_tested" id="ever_been_tested"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Test results</th>
+                <td><obs id="test_results" conceptId="$test_results" /> </td>
+            </tr>
+            <tr>
+                <th>Date Of test</th>
+                <td><obs id="testing_date" conceptId="$testing_date" /> </td>
+            </tr>
+
+            <tr>
+                <th>Currently in care</th>
+                <td><obs id="current_in_care" conceptId="$current_in_care" /> </td>
+            </tr>
+
+            <tr>
+                <th>Facility Name</th>
+                <td>
+                    <td><obs id="facility_name" conceptId="$facility_name"  /> </td>
+                </td>
+            </tr>
+
+        </table>
+
+        <submit/>
+
+    </ifMode>
+
+</htmlform>

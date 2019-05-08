@@ -1,0 +1,102 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="6d830745-9465-4b61-8257-b4c010b2a072" formName="Treatment Buddy Contact Information Form"
+          formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
+
+    <macros>
+        supporter_name=160638
+        supporter_alias=165017
+        supporter_mobile=160642
+        supporter_mobile_alternative=159635
+        enrollment_notes=161011
+
+    </macros>
+
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td>Enrollment Date</td>
+                    <td>Supporter Name</td>
+                    <td>Supporter Alias</td>
+                    <td>Supporter Mobile No.</td>
+                    <td>Alternative Mobile No.</td>
+                    <td>Enrollment Notes</td>
+                </tr>
+
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+
+                    <td><obs id="supporter_name"  conceptId="$supporter_name" /> </td>
+                    <td> <obs id="supporter_alias" conceptId="$supporter_alias" /> </td>
+                    <td><obs id="supporter_mobile" conceptId="$supporter_mobile" /> </td>
+                    <td><obs id="supporter_mobile" conceptId="$supporter_mobile" /> </td>
+                    <td><obs id="enrollment_notes" conceptId="$enrollment_notes"  /> </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+
+        <table class="visit-edit-table" style="margin-bottom:1%">
+            <tr class="visit-table-row">
+                <td class="nowrap visit-date">
+                    <!-- Encounter Date -->
+                    <encounterDate />
+                </td>
+            </tr>
+
+            <tr>
+                <th>Treatment support Name</th>
+                <td>
+                    <obs id="supporter_name"  conceptId="$supporter_name" />
+                </td>
+            </tr>
+            <tr>
+                <th>Treatment supporter Alias</th>
+                <td> <obs id="supporter_alias" conceptId="$supporter_alias" /> </td>
+            </tr>
+            <tr>
+                <th>Treatment supporter mobile number</th>
+                <td><obs id="supporter_mobile" conceptId="$supporter_mobile" /> </td>
+            </tr>
+
+            <tr>
+                <th>Treatment supporter Alternative Mobile</th>
+                <td><obs id="supporter_mobile" conceptId="$supporter_mobile" /> </td>
+            </tr>
+
+            <tr>
+                <th>Enrollment Notes</th>
+                <td>
+                    <td><obs id="enrollment_notes" conceptId="$enrollment_notes"  /> </td>
+                </td>
+            </tr>
+
+        </table>
+
+        <submit/>
+
+    </ifMode>
+
+</htmlform>
