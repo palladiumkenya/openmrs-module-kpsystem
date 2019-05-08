@@ -383,7 +383,7 @@ a:visited, a.visited {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #00463f;
+  color: #000000;
   clear: both;
   margin: 10px 0;
   font-weight: normal;
@@ -2546,7 +2546,7 @@ ul.left-menu li .arrow {
 }
 .dashboard .info-header i {
   font-size: 1.3em;
-  color: #00463f;
+  color: #000000;
 }
 .dashboard .info-header h3 {
   display: inline-block;
