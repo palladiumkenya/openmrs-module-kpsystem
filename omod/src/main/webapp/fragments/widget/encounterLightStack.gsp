@@ -9,13 +9,19 @@
 
 			def providers = encounter.providersByRoles.values().collectAll { ui.format(it) }.flatten().join(", ")
 
-			def form = encounter.form ? ui.simplifyObject(encounter.form) : [ iconProvider : "kenyaemr", icon : "forms/generic.png" ]
-
 			def onClick = config.onEncounterClick instanceof Closure ? config.onEncounterClick(encounter) : config.onEncounterClick
 %>
-<div class="ke-stack-item ke-navigable" onclick="${ onClick }">
+<style>
+.ke-navigable-form {
+	cursor: pointer;
+}
+.ke-navigable-form:hover {
+	text-decoration: underline;
+}
+</style>
+<div class="ke-stack-item ke-navigable-form" onclick="${ onClick }" style="a ">
 	<input type="hidden" name="encounterId" value="${ encounter.encounterId }"/>
-	<i class="fa fa-plus-square fa-2x"></i>
+	<i class="fa fa-file-text" style="color:yellow"></i>
 	<b>${ title }</b> by ${ providers }<br/>
 </div>
 <%
