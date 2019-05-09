@@ -27,9 +27,7 @@ public class PatientProfilePageController {
 
     public void controller(@RequestParam("patientId") Patient patient,
                            PageModel model) {
-      /*  Visit visit = Context.getVisitService().getVisit(5040);
-       model.addAttribute("visit", visit);*/
-      //Patient patient = new Patient();
+
         List<Visit> activeVisits = Context.getVisitService().getActiveVisitsByPatient(patient);
         Visit lastVisit = null;
         if (activeVisits.size() > 0) {

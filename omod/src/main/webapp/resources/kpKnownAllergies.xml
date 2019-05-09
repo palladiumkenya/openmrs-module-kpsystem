@@ -9,8 +9,8 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="cdad5adb-e352-4ecf-882d-b76b71be9c9d" formName="Known Allergies"
-          formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
+<htmlform formUuid="cdad5adb-e352-4ecf-882d-b76b71be9c9d" formName="Allergies Screning Form"
+          formEncounterType="119362fb-6af6-4462-9fb2-7a09c43c9874" formVersion="1.0">
 
     <macros>
         complaint_exists =5219

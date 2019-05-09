@@ -9,8 +9,8 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="10cd2ca0-8d25-4876-b97c-b568a912957e" formName="Violence screening Form"
-          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+<htmlform formUuid="10cd2ca0-8d25-4876-b97c-b568a912957e" formName="Violence Screening Form"
+          formEncounterType="7b69daf5-b567-4384-9d29-f020c408d613" formVersion="1.0">
 
     <macros>
         violence_exists =141814

@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="2c2f1dea-1715-442e-9abe-71bc89ace1af" formName="Immunization Form"
+<htmlform formUuid="2c2f1dea-1715-442e-9abe-71bc89ace1af" formName="Immunization Screening Form"
           formEncounterType="9b8c17cc-3420-11e9-b210-d663bd873d93" formVersion="1.0">
 
     <macros>

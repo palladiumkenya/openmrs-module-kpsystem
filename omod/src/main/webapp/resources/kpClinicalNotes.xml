@@ -10,7 +10,7 @@
 
 -->
 <htmlform formUuid="7167549f-196d-4b7c-81d4-bbd11df704b1" formName="Clinical notes"
-          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+          formEncounterType="bcbf6e3f-a2fc-421b-90a3-473a3158c796" formVersion="1.0">
 
     <macros>
                clinical_notes=160632

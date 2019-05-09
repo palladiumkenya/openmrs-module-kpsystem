@@ -9,8 +9,13 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
+<<<<<<< HEAD
+<htmlform formUuid="fb9d9291-a84f-443f-a6b1-e955ccfaa07c" formName="Cervical Cancer Screening Form"
+          formEncounterType="a99e5f02-5101-4342-913a-8920971f9b84" formVersion="1.0">
+=======
 <htmlform formUuid="fb9d9291-a84f-443f-a6b1-e955ccfaa07c" formName="Cervical Cancer Screening"
           formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
+>>>>>>> aa75ee9fbdf6274ade33e675037d813b2fb97be4
 
     <macros>
         screened=164934

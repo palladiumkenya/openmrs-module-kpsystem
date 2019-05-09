@@ -9,54 +9,15 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="c75f120a-04ec-11e3-8780-2b40bef9a44b" formName="Visit Note" formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
+<htmlform formUuid="20cf6054-a119-4168-a49a-8ce09830899d" formName="Review of Body Systems Form"
+          formEncounterType="5568ab72-e951-4683-875e-c5781b6f7b81" formVersion="1.0">
 
     <macros>
         systems =164388
         findings=1069
         remarks=160632
-        clinical_note=162169
     </macros>
 
-    <style type="text/css">
-        #who-when-where {
-        margin-bottom: 6px;
-        border-bottom: 1px solid #ccc;
-        }
-
-        #who-when-where p {
-        display: inline-block;
-        padding-right: 20px;
-        }
-
-        #where > input[type=text] {
-        display: inline-block;
-        }
-
-        .field-error {
-        color: #ff6666;
-        font-size: 1.1em;
-        display: block;
-        }
-
-        <ifMode mode="VIEW" include="false">
-            #data-collection {
-            display: inline-block;
-            width: 58%;
-            vertical-align: top;
-            }
-
-            #encounter-diagnoses-target {
-            display: inline-block;
-            width: 40%;
-            vertical-align: top;
-            }
-
-            #encounter-diagnoses-app {
-            margin-bottom: 20px;
-            }
-        </ifMode>
-    </style>
     <!-- Flowsheet table view -->
     <ifMode mode="VIEW" include="true">
 
@@ -67,9 +28,7 @@
                     <td width="156" valign="top"><p>Body systems</p></td>
                     <td width="156" valign="top"><p>Findings</p></td>
                     <td width="156" valign="top"><p>Findings notes</p></td>
-                    <td width="156" valign="top"><p>Diagnosis</p></td>
-                    <td width="156" valign="top"><p>Clinical notes</p></td>
-                </tr>
+                   </tr>
             </thead>
             <tbody class="visit-table-body">
                 <tr class="visit-table-row">
@@ -110,27 +69,21 @@
                                            Abdominal distension,Hepatomegaly,Abdominal mass,Splenomegaly,Abdominal tenderness,
                                            Altered sensations,Bulging fontenelle,Abnormal reflexes,Confusion,Limb weakness,Stiff neck,Kernicterus,
                                            Bleeding,Rectal discharge,Urethral discharge,Vaginal discharge,Ulceration"
-                             style="dropdown" id="findings"/>
+                               style="dropdown" id="findings"/>
                     </td>
                     <td>
                         <!-- REMARKS -->
                         <obs conceptId="$remarks" />
-                    </td>
-                    <td>
-                        <!-- DIAGNOSIS -->
-                        <obs conceptId="$remarks" />
-                    </td>
-                    <td>
-                        <!-- CLINICAL NOTES -->
-                        <obs conceptId="$clinical_note" />
                     </td>
                 </tr>
             </tbody>
         </table>
 
     </ifMode>
+
+    <!-- Data entry view -->
     <ifMode mode="VIEW" include="false">
-        <h2>Systemic examination:</h2>
+
         <table class="visit-edit-table">
             <tr>
                 <th>Visit Date</th>
@@ -179,33 +132,6 @@
                 <td><obs conceptId="$remarks" id="remarks_input" /></td>
             </tr>
         </table>
-    <br />
-    <h2>Diagnosis:</h2>
-    <table>
-         <tr>
-             <td width="30%">
-        <encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>
-
-             </td>
-            <td id="encounter-diagnoses-target">
-
-            </td>
-        </tr>
-    </table>
-    <table>
-        <h2>Notes:</h2>
-         <tr>
-                 <td>
-                     <label>Clinical Notes</label>
-                     <obs conceptId="$clinical_note" style="textarea" cols="60"/>
-                 </td>
-         </tr>
-    </table>
-    <!--<table id="buttons">-->
-            <!--<submit submitClass="confirm right" submitCode="general.save"/>-->
-            <!--<button type="button" class="cancel"><uimessage code="general.cancel"/></button>-->
-     <!--</table>-->
         <submit/>
     </ifMode>
-
 </htmlform>

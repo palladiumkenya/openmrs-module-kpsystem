@@ -1,0 +1,112 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="30905fa8-5a35-4d11-a7a3-8e1016b8dc8f" formName="Diagnosis and Treatment Plan"
+          formEncounterType="928ea6b2-3425-4ee9-854d-daa5ceaade03" formVersion="1.0">
+
+    <macros>
+               diagnosis=6042
+               treatment_plan=163104
+    </macros>
+    <style type="text/css">
+        #who-when-where {
+        margin-bottom: 6px;
+        border-bottom: 1px solid #ccc;
+        }
+
+        #who-when-where p {
+        display: inline-block;
+        padding-right: 20px;
+        }
+
+        #where > input[type=text] {
+        display: inline-block;
+        }
+
+        .field-error {
+        color: #ff6666;
+        font-size: 1.1em;
+        display: block;
+        }
+
+        <ifMode mode="VIEW" include="false">
+            #data-collection {
+            display: inline-block;
+            width: 58%;
+            vertical-align: top;
+            }
+
+            #encounter-diagnoses-target {
+            display: inline-block;
+            width: 40%;
+            vertical-align: top;
+            }
+
+            #encounter-diagnoses-app {
+            margin-bottom: 20px;
+            }
+        </ifMode>
+    </style>
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td width="156" valign="top"><p>Visit date</p></td>
+                    <td width="156" valign="top"><p>Diagnosis</p></td>
+                    <td width="156" valign="top"><p>Treatment plan</p></td>
+                </tr>
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+                    <td>
+                        <!-- DIAGNOSIS-->
+                        <obs conceptId="$diagnosis" answerClasses="Diagnosis" id="diagnosis-type" style="autocomplete"/>
+                        <!--<encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>-->
+                    </td>
+                    <td>
+                        <!-- TREATMENT PLAN-->
+                        <obs conceptId="$treatment_plan" rows="1" cols="80" id="treatment-plan"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+
+        <table class="visit-edit-table">
+            <tr>
+                <th>Visit Date</th>
+                <td><encounterDate id="visitDate" size="20" default="today" /></td>
+            </tr>
+            <tr>
+                <th>Diagnosis</th>
+
+                <td> <obs conceptId="$diagnosis" answerClasses="Diagnosis" id="diagnosis-type" style="autocomplete"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Treatment plan</th>
+                <td>
+                    <obs conceptId="$treatment_plan" rows="1" cols="80" id="treatment-plan"/>
+                </td>
+            </tr>
+        </table>
+        <submit/>
+    </ifMode>
+</htmlform>

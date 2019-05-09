@@ -10,7 +10,7 @@
 
 -->
 <htmlform formUuid="9ce5b2d6-7c22-4fa8-8cca-edaad872c467" formName="Drug Overdose Screening Form"
-          formEncounterType="63918048-3fea-11e9-b210-d663bd873d93" formVersion="1.0">
+          formEncounterType="c3fb7831-f8fc-4b71-bd54-f23cdd77e305" formVersion="1.0">
 
     <macros>
         overdose_screened =165022
