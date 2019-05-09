@@ -4695,3 +4695,16 @@ ul.icons li [class*=" icon-"] {
 #breadcrumbs li:last-child {
   font-family: "OpenSansBold";
 }
+
+form fieldset, .form fieldset {
+  border: 1px solid #eeeeee;
+  display: inline-block;
+  padding: 20px;
+  min-width: 60%;
+}
+form fieldset legend, .form fieldset legend {
+  text-align: left;
+  padding: 0 10px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
