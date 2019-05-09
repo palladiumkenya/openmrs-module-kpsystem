@@ -35,20 +35,15 @@
                         <!-- Encounter Date -->
                         <encounterDate />
                     </td>
-                </tr>
-                <tr>
-                    <td>Unique Client Number</td>
                     <td>
                         <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
+                    </td>
+                    <td>
+                        <obs id="enrolment_area" conceptId="160540"/>
 
                     </td>
                 </tr>
-                <tr>
-                    <td>Enrolment Service Areas</td>
-                    <td>
-                        <obs id="enrolment_area" conceptId="160540"/>
-                    </td>
-                </tr>
+ 
             </tbody>
         </table>
 
@@ -65,14 +60,14 @@
                 </td>
             </tr>
             <tr>
-                <td>Unique Client Number</td>
+                <th>Unique Client Number</th>
                 <td>
                     <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
 
                 </td>
             </tr>
             <tr>
-                <td>Enrolment Service Areas</td>
+                <th>Enrolment Service Areas</th>
                 <td>
                     <obs id="enrolment_area" conceptId="160540"/>
                 </td>
