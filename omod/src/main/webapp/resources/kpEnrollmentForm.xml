@@ -35,18 +35,15 @@
                         <!-- Encounter Date -->
                         <encounterDate />
                     </td>
-                </tr>
-                <tr>
-                    <td>Unique Client Number</td>
+
+
                     <td>
                         <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
 
                     </td>
-                </tr>
-                <tr>
-                    <td>Enrolment Service Areas</td>
+
                     <td>
-                        <obs id="enrolment_area" conceptId="160540"/>
+                        <obs id="enrollment_area" conceptId="$service_area"/>
                     </td>
                 </tr>
             </tbody>
@@ -74,7 +71,7 @@
             <tr>
                 <td>Enrolment Service Areas</td>
                 <td>
-                    <obs id="enrolment_area" conceptId="160540"/>
+                    <obs id="enrollment_area" conceptId="$service_area"/>
                 </td>
             </tr>
         </table>
