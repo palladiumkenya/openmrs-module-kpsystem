@@ -28,7 +28,7 @@
 			<h3>General Actions</h3>
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ ui.pageLink("registrationapp", "registerPatient", [appId:"referenceapplication.registrationapp.registerPatient"]) }" class="float-left">
-					<i class="fa fa-search fa-2x"></i>
+					<i class="fa fa-user"></i>
 					Register Client
 				</a>
 			</li>
@@ -37,32 +37,39 @@
 			<h3>Flowsheets</h3>
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ triageFlowsheeturl }" class="float-left">
-					<i class="fa fa-plus-square fa-2x"></i>
+					<i class="fa fa-files-o"></i>
 					Triage and History
 				</a>
 			</li>
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ examDiagnosisFlowsheeturl }" class="float-left">
-					<i class="fa fa-plus-square fa-2x"></i>
+					<i class="fa fa-files-o"></i>
 					Examinations and Diagnosis
 				</a>
 			</li>
 
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ screeningFlowsheeturl }" class="float-left">
-					<i class="fa fa-plus-square fa-2x"></i>
-					KP Screening
+
+					<i class="fa fa-files-o"></i>
+                    KP Screening
 				</a>
 			</li>
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ obsgynFlowsheeturl }" class="float-left">
-					<i class="fa fa-plus-square fa-2x"></i>
+					<i class="fa fa-files-o"></i>
 					Obs-gynae and Other Services
 				</a>
 			</li>
 		</ul>
 		<ul>
 			<h3>Visit Actions</h3>
+			<li class="float-left" style="margin-top: 7px">
+				<a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/triage.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
+					<i class="fa fa-stethoscope"></i>
+					Triage
+				</a>
+			</li>
 
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ ui.pageLink("kenyaemrorderentry", "drugOrders", [patient: currentPatient]) }" class="float-left">
