@@ -207,7 +207,7 @@ figure {
  * Define consistent border, margin, and padding.
  */
 fieldset {
-  border: 1px solid silver;
+  border: 1px solid #eeeeee;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
@@ -4672,4 +4672,26 @@ ul.icons li [class*=" icon-"] {
 }
 .ngdialog.ngdialog-theme-default .ngdialog-message {
   margin-bottom: .5em;
+}
+
+#breadcrumbs {
+  clear: both;
+  font-size: 0.9em;
+  border-bottom: 1px solid white;
+}
+#breadcrumbs a, #breadcrumbs a:link, #breadcrumbs a:visited {
+  color: #555;
+  text-decoration: underline;
+}
+#breadcrumbs a:hover, #breadcrumbs a:link:hover, #breadcrumbs a:visited:hover {
+  color: #7b7b7b;
+}
+#breadcrumbs a:first-child, #breadcrumbs a:link:first-child, #breadcrumbs a:visited:first-child {
+  text-decoration: none;
+}
+#breadcrumbs li {
+  display: inline;
+}
+#breadcrumbs li:last-child {
+  font-family: "OpenSansBold";
 }
