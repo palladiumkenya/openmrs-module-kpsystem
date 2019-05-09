@@ -1,7 +1,29 @@
 <%
     ui.includeCss("kenyaemr", "referenceapplication.css", 100)
 %>
-
+<style>
+.servicetag {
+    float:right;
+    background: #770725;
+    color: white;
+    display: inline;
+    padding: 2px 5px;
+    border-radius: 1px;
+    font-size: 0.8em;
+}
+</style>
+<script>
+    function showDetails(element) {
+        var rowId = element.id;
+        var x = rowId + "-details";
+        if (document.getElementById(x).style.display == 'none') {
+            document.getElementById(x).style.display = '';
+        } else {
+            document.getElementById(x).style.display = 'none';
+        }
+        //document.getElementById(detailsRow).style("display:")
+    }
+</script>
 <div>
 
 
@@ -15,24 +37,18 @@
                     <div class="info-section">
                         <div class="info-body">
 
-                            <table >
+                            <table id="recentVisit" >
 
                                 <% if(recentVisits) { %>
-                                <!--<ul >-->
 
-                                <% recentVisits.each { %>
-                                <tr>
+                                <% recentVisits.eachWithIndex { it, i -> %>
+                                <tr id="row-${i}" onclick="showDetails(this);">
                                     <td style="border: none;">
                                         <!--<li class="clear">-->
                                         ${it.visitDate}
                                     </td>
 
-                                <td style="border: none;">
-                                    <!--<li class="clear">-->
-                                    ${it.service}
-                                </td>
-
-                                    <td style="border: none;">
+                                    <td colspan="2" style="border: none;">
                                         <div class="tag">
                                             <% if(it.active) { %>
 
@@ -44,15 +60,30 @@
 
                                         </div>
                                     </td>
-                                    <!-- </li>-->
+                            </tr>
+                                <tr id="row-${i}-details" <% if(!it.active) { %>
 
+                                    style="display: none;"
+
+                                    <% } %>><td colspan="3">
+                                    <div>
+                                        <% if(it.service) { %>
+                                        Services: 
+                                            <% it.service.each { %>
+                                        <div class="servicetag" style="margin-right: 2px">
+                                            ${it}
+                                        </div>
+                                            <% } %>
+                                        <%} else { %>
+                                            No service yet
+                                        <% } %>
+                                </div></td> </tr>
                                     <% } %>
-                                </tr>
-                                <!-- </ul>-->
+
                                 <% } else { %>
                                 <tr>
                                     <td>
-                                        No visit in the last six months
+                                        No visits found
                                     </td>
                                 </tr>
                                 <% } %>
