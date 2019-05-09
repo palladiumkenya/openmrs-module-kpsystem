@@ -27,7 +27,7 @@
     <!-- Flowsheet table view -->
     <ifMode mode="VIEW" include="true">
 
-        <table class="visit-table data-entry-table" style="border-bottom:2px solid #0071BC">
+        <table class="visit-table data-entry-table" style="border-bottom:2px solid #0071BC;margin-left:7px">
             <thead class="visit-table-header" style="margin:5px;">
                 <tr>
                     <td style="margin:2%">Enrollment Date</td>

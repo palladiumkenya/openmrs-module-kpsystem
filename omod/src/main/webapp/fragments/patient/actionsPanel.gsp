@@ -1,6 +1,7 @@
 <%
 	def baseLink = ui.pageLink("htmlformentryui", "htmlform/flowsheet", [patientId: currentPatient.patientId, headerForm: "kenyaemr:kpEnrollmentHeaderForm.xml", returnUrl: ui.thisUrl()])
 
+
 	def triageFlowsheets = "flowsheets=kenyaemr:triageForm.xml&flowsheets=kenyaemr:kpComplaints.xml&flowsheets=kenyaemr:kpChronicIllnesses.xml&\n" +
 			"flowsheets=kenyaemr:kpKnownAllergies.xml&flowsheets=kenyaemr:kpDrugReactions.xml&flowsheets=kenyaemr:kpImmunizationAndVaccination.xml"
 
