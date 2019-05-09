@@ -8,16 +8,13 @@
 	def screeningFlowsheets = "flowsheets=kenyaemr:kpHepatitisBScreening.xml&flowsheets=kenyaemr:kpHepatitisCScreening.xml&\n" +
 			"flowsheets=kenyaemr:kpOverdoseManagement.xml&flowsheets=kenyaemr:kpAlcoholScreening.xml&\n" +
 			"flowsheets=kenyaemr:kpAbscesScreening.xml&flowsheets=kenyaemr:kpRiskReduction.xml&\n" +
-			"flowsheets=kenyaemr:kpPep.xml&flowsheets=kenyaemr:kpPrep.xml&flowsheets=kenyaemr:kpSTITreatment.xml&\n" +
-			"flowsheets=kenyaemr:kpViolenceScreening.xml"
-
-	def obsgynFlowsheets = "flowsheets=kenyaemr:kpPregnancyAndFamilyPlanning.xml&flowsheets=kenyaemr:kpCervicalCancerScreening.xml&flowsheets=kenyaemr:kpOtherServices.xml"
-
-	def examDiagnosisFlowsheets = "flowsheets=kenyaemr:kpSystemsExamination.xml&flowsheets=kenyaemr:kpDiagnosisAndTreatmentPlan.xml&flowsheets=kenyaemr:kpClinicalNotes.xml"
+			"flowsheets=kenyaemr:kpPep.xml&flowsheets=kenyaemr:kpPrep.xml&\n" +
+			"flowsheets=kenyaemr:kpViolenceScreening.xml&flowsheets=kenyaemr:kpPregnancyAndFamilyPlanning.xml&flowsheets=kenyaemr:kpCervicalCancerScreening.xml&\n" +
+			"flowsheets=kenyaemr:kpAppointmentCreation.xml"
+	def examDiagnosisFlowsheets = "&flowsheets=kenyaemr:kpSTScreening.xml&flowsheets=kenyaemr:kpSystemsExamination.xml&flowsheets=kenyaemr:kpDiagnosisAndTreatmentPlan.xml&flowsheets=kenyaemr:kpCounsellingServices.xml&flowsheets=kenyaemr:kpClinicalNotes.xml"
 
 	def triageFlowsheeturl = baseLink + triageFlowsheets
 	def screeningFlowsheeturl = baseLink + screeningFlowsheets
-	def obsgynFlowsheeturl = baseLink + obsgynFlowsheets
 	def examDiagnosisFlowsheeturl = baseLink + examDiagnosisFlowsheets
 %>
 <div class="action-container column">
@@ -51,15 +48,8 @@
 
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ screeningFlowsheeturl }" class="float-left">
-
 					<i class="fa fa-files-o"></i>
                     KP Screening
-				</a>
-			</li>
-			<li class="float-left" style="margin-top: 7px">
-				<a href="${ obsgynFlowsheeturl }" class="float-left">
-					<i class="fa fa-files-o"></i>
-					Obs-gynae and Other Services
 				</a>
 			</li>
 		</ul>

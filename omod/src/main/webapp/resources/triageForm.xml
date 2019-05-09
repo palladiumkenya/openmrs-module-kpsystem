@@ -140,18 +140,6 @@
             </tr>
         </table>
 
-        <table>
-            <tr>
-                <td width="30%">
-                    <encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>
-
-                </td>
-                <td id="encounter-diagnoses-target">
-
-                </td>
-            </tr>
-        </table>
-
         <submit/>
 
     </ifMode>
