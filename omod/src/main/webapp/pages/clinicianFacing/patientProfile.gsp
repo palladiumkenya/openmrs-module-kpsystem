@@ -58,7 +58,7 @@
                     <div class="info-header">
                         <i class="icon-calendar"></i>
                         <h3>Social Status</h3>
-                        <i class="icon-pencil edit-action right" title="Add" onclick="location.href = '${addSocialStatusFormLink}'"></i>
+                        <i class="fa fa-plus-square right" style="color: steelblue" title="Record new social status" onclick="location.href = '${addSocialStatusFormLink}'"></i>
                     </div>
                     <div class="info-body">
                         ${ ui.includeFragment("kenyaemr", "program/kp/socialStatus", [ patient: currentPatient]) }
