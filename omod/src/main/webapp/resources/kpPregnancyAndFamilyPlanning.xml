@@ -65,8 +65,30 @@
                     </td>
                     <td>
                         <obs conceptId="$family_planning_method" id="family_planning_methodInput"
-                             answerConceptIds="160570AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,780AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5279AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5275AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5278AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1472AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,190AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162332AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabels="Emergency contraceptive pills,Oral Contraceptives Pills,Injectible,Implant,Intrauterine Device,Lactational Amenorhea Method,Diaphram/Cervical Cap,Fertility Awareness,Tubal Ligation,Condoms,Vasectomy(Partner),Undecided"
+                             answerConceptIds=" 160570AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                780AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                5279AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                1359AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                136163AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                5275AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                5278AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                5277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                1472AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                190AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                1489AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                162332AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Emergency contraceptive pills,
+                                           Oral Contraceptives Pills,
+                                           Injectible,
+                                           Implant,
+                                           Lactational Amenorhea Method,
+                                           Intrauterine Device,
+                                           Diaphram/Cervical Cap,
+                                           Fertility Awareness,
+                                           Tubal Ligation,
+                                           Condoms,
+                                           Vasectomy(Partner),
+                                           Undecided"
                              style="checkbox"/>
                     </td>
                     <td>
@@ -76,18 +98,15 @@
                              style="dropdown"/>
                     </td>
                 </tr>
-
             </tbody>
         </table>
     </ifMode>
-
     <!-- Data entry view -->
     <ifMode mode="VIEW" include="false">
         <table class="visit-edit-table">
             <tr>
                 <th>Visit Date</th>
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
-
             </tr>
             <tr>
                 <th>LMP</th>
