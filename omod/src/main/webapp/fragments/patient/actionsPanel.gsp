@@ -12,9 +12,12 @@
 
 	def obsgynFlowsheets = "flowsheets=kenyaemr:kpPregnancyAndFamilyPlanning.xml&flowsheets=kenyaemr:kpCervicalCancerScreening.xml&flowsheets=kenyaemr:kpOtherServices.xml"
 
+	def examDiagnosisFlowsheets = "flowsheets=kenyaemr:kpSystemsExamination.xml&flowsheets=kenyaemr:kpDiagnosisAndTreatmentPlan.xml&flowsheets=kenyaemr:kpClinicalNotes.xml"
+
 	def triageFlowsheeturl = baseLink + triageFlowsheets
 	def screeningFlowsheeturl = baseLink + screeningFlowsheets
 	def obsgynFlowsheeturl = baseLink + obsgynFlowsheets
+	def examDiagnosisFlowsheeturl = baseLink + examDiagnosisFlowsheets
 %>
 <div class="action-container column">
 	<div class="action-section">
@@ -39,11 +42,12 @@
 				</a>
 			</li>
 			<li class="float-left" style="margin-top: 7px">
-				<a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithStandardUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/simpleVisitNote.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
+				<a href="${ examDiagnosisFlowsheeturl }" class="float-left">
 					<i class="fa fa-plus-square fa-2x"></i>
 					Examinations and Diagnosis
 				</a>
 			</li>
+
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ screeningFlowsheeturl }" class="float-left">
 					<i class="fa fa-plus-square fa-2x"></i>
@@ -72,6 +76,12 @@
 					Lab Orders
 				</a>
 			</li>
+			<li class="float-left" style="margin-top: 7px">
+				<a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithStandardUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/simpleVisitNote.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
+					<i class="fa fa-plus-square fa-2x"></i>
+					Diagnosis
+				</a>
+			</li>
 		</ul>
 		<ul>
 			<h3>Available Forms</h3>
@@ -83,7 +93,7 @@
 						"""ui.navigate('${ ui.pageLink('kenyaemr', 'enterForm', opts) }');"""
 					}
 				%>
-				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: availableForms, onFormClick: onFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: availableForms, onFormClick: onFormClick ]) }
 
 			</a>
 			</li>
