@@ -39,7 +39,10 @@ public class EmrExternalUrlInterceptor extends HandlerInterceptorAdapter {
 	protected static final String[] BASE_CONTROLLER_WHITELIST = {
 			"org.openmrs.module.htmlformentry.web.controller", // Required for concept widget in HFE
 			"org.openmrs.module.kenyaemr",
-			"org.openmrs.module.uiframework"
+			"org.openmrs.module.uiframework",
+			"org.openmrs.module.openhmis.commons",
+			"org.openmrs.module.openhmis.inventory"
+
 	};
 
 	protected Set<String> controllerWhitelist = null;

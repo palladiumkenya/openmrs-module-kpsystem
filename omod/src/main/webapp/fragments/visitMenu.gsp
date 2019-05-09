@@ -15,9 +15,9 @@
 
 <div class="ke-panelbar" style="text-align: right">
 	<% if (visit) { %>
-	<button type="button" onclick="openVisitSummary();"><img src="${ ui.resourceLink("kenyaui", "images/buttons/summary.png") }" /> Visit Summary</button>
+
 	<%= ui.includeFragment("kenyaui", "widget/dialogForm", [
-			buttonConfig: [ label: "Check out of visit", iconProvider: "kenyaui", icon: "buttons/visit_end.png" ],
+			buttonConfig: [ label: "Check out of visit"],
 			dialogConfig: [ heading: "Check Out", width: 50, height: 30 ],
 			fields: [
 						[ hiddenInputName: "visitId", value: visit.visitId ],
@@ -33,7 +33,7 @@
 	]) %>
 	<% } else if (!patient.dead && !patient.voided) { %>
 	<%= ui.includeFragment("kenyaui", "widget/dialogForm", [
-			buttonConfig: [ label: "Check in for visit", iconProvider: "kenyaui", icon: "buttons/registration.png" ],
+			buttonConfig: [ label: "Check in for visit"],
 			dialogConfig: [ heading: "Check In", width: 50, height: 30 ],
 			prefix: "visit",
 			commandObject: newCurrentVisit,

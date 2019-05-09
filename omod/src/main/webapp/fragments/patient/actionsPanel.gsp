@@ -86,17 +86,17 @@
 				</a>
 			</li>
 		</ul>
-			<ul>
-				<h3>Available Forms</h3>
-				<li class="float-left" style="margin-top: 7px">
-					<%
-						def onFormClick = { form ->
-							def visitId = currentVisit ? currentVisit.id : activeVisit.id
-							def opts = [ appId: currentApp.id, visitId: visitId, formUuid: form.formUuid, returnUrl: ui.thisUrl() ]
-							"""ui.navigate('${ ui.pageLink('kenyaemr', 'enterForm', opts) }');"""
-						}
-					%>
-					${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: availableForms, onFormClick: onFormClick ]) }
+		<ul>
+			<h3>Available Forms</h3>
+			<li class="float-left" style="margin-top: 7px">
+				<%
+					def onFormClick = { form ->
+						def visitId = currentVisit ? currentVisit.id : activeVisit.id
+						def opts = [ appId: currentApp.id, visitId: visitId, formUuid: form.formUuid, returnUrl: ui.thisUrl() ]
+						"""ui.navigate('${ ui.pageLink('kenyaemr', 'enterForm', opts) }');"""
+					}
+				%>
+				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: availableForms, onFormClick: onFormClick ]) }
 
 					</a>
 				</li>

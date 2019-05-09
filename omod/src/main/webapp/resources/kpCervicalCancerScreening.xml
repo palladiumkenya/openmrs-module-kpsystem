@@ -11,7 +11,6 @@
 -->
 <htmlform formUuid="fb9d9291-a84f-443f-a6b1-e955ccfaa07c" formName="Cervical Cancer Screening Form"
           formEncounterType="a99e5f02-5101-4342-913a-8920971f9b84" formVersion="1.0">
-
     <macros>
         screened=164934
         results=165026
