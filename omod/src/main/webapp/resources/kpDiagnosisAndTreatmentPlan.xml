@@ -74,8 +74,8 @@
                     </td>
                     <td>
                         <!-- DIAGNOSIS-->
-                        <!--<obs conceptId="$diagnosis" answerClasses="Diagnosis" id="diagnosis-type" style="autocomplete"/>-->
-                        <encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>
+                        <obs conceptId="$diagnosis" answerClasses="Diagnosis" id="diagnosis-type" style="autocomplete"/>
+                        <!--<encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>-->
                     </td>
                     <td>
                         <!-- TREATMENT PLAN-->
