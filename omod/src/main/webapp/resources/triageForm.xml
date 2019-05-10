@@ -97,14 +97,6 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Location</th>
-                <td><encounterLocation id="visitLocation" default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete" /></td>
-            </tr>
-            <tr>
-                <th>Provider</th>
-                <td><encounterProvider type="autocomplete" default="1" /></td>
-            </tr>
-            <tr>
                 <th>Height</th>
                 <td class="focus-field"><obs conceptId="$height" id="heightInput" showUnits="true" /></td>
             </tr>
