@@ -1151,14 +1151,14 @@ header #session-location li {
   -ms-border-radius: 3px;
   -khtml-border-radius: 3px;
   border-radius: 3px;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a1d030), color-stop(100%, #88af28));
-  background: -webkit-linear-gradient(top, #a1d030, #88af28);
-  background: -moz-linear-gradient(top, #a1d030, #88af28);
-  background: -o-linear-gradient(top, #a1d030, #88af28);
-  background: -ms-linear-gradient(top, #a1d030, #88af28);
-  background: linear-gradient(top, #a1d030, #88af28);
-  background-color: #88af28;
-  border: #88af28 1px solid;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3c8dbc), color-stop(100%, #367fa9));
+  background: -webkit-linear-gradient(top, #3c8dbc, #367fa9);
+  background: -moz-linear-gradient(top, #3c8dbc, #367fa9);
+  background: -o-linear-gradient(top, #3c8dbc, #367fa9);
+  background: -ms-linear-gradient(top, #3c8dbc, #367fa9);
+  background: linear-gradient(top, #3c8dbc, #367fa9);
+  background-color: #367fa9;
+  border: #367fa9 1px solid;
   padding: 8px 20px;
   display: inline-block;
   line-height: 1.2em;
@@ -1172,12 +1172,12 @@ header #session-location li {
   margin-right: 10px;
 }
 .button.confirm:hover, button.confirm:hover, input[type="submit"].confirm:hover, input[type="button"].confirm:hover, input[type="submit"].confirm:hover, a.button.confirm:hover {
-  background: #8eb82a;
-  border-color: #779b23;
+  background: #3c8dbc;
+  border-color: #367fa9;
 }
 .button.confirm.active, button.confirm.active, input[type="submit"].confirm.active, input[type="button"].confirm.active, input[type="submit"].confirm.active, a.button.confirm.active {
-  background: #81a726;
-  border-color: #779b23;
+  background: #3c8dbc;
+  border-color: #367fa9;
 }
 .button.confirm i, button.confirm i, input[type="submit"].confirm i, input[type="button"].confirm i, input[type="submit"].confirm i, a.button.confirm i {
   font-size: 1.2em;
@@ -4708,3 +4708,17 @@ form fieldset legend, .form fieldset legend {
   font-weight: 300;
   text-transform: uppercase;
 }
+
+.component-title {
+  font-size: 22px;
+  text-transform: capitalize;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(34, 36, 38, .15);
+  margin-bottom: 8px;
+}
+
+.component-title span {
+  display: inline-block;
+  margin-right: 12px;
+}
+
