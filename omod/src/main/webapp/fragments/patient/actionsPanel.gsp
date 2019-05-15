@@ -5,7 +5,7 @@
 	def triageFlowsheets = "flowsheets=kenyaemr:triageForm.xml&flowsheets=kenyaemr:kpComplaints.xml&flowsheets=kenyaemr:kpChronicIllnesses.xml&\n" +
 			"flowsheets=kenyaemr:kpKnownAllergies.xml&flowsheets=kenyaemr:kpDrugReactions.xml&flowsheets=kenyaemr:kpImmunizationAndVaccination.xml"
 
-	def screeningFlowsheets = "flowsheets=kenyaemr:kpHepatitisBScreening.xml&flowsheets=kenyaemr:kpHepatitisCScreening.xml&\n" +
+	def screeningFlowsheets = "flowsheets=kenyaemr:kpHepatitisScreening.xml&\n" +
 			"flowsheets=kenyaemr:kpOverdoseManagement.xml&flowsheets=kenyaemr:kpAlcoholScreening.xml&\n" +
 			"flowsheets=kenyaemr:kpAbscesScreening.xml&flowsheets=kenyaemr:kpRiskReduction.xml&\n" +
 			"flowsheets=kenyaemr:kpPep.xml&flowsheets=kenyaemr:kpPrep.xml&\n" +
