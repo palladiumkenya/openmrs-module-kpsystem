@@ -4,7 +4,7 @@
 <style>
 .servicetag {
     float:right;
-    background: #770725;
+    background: #800080;
     color: white;
     display: inline;
     padding: 2px 5px;
