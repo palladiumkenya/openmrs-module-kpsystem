@@ -9,13 +9,16 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="a455aef4-56c8-4386-902e-b599c572f33f" formName="Pep Screening Form"
+<htmlform formUuid="a455aef4-56c8-4386-902e-b599c572f33f" formName="Prep/Pep Services Form"
           formEncounterType="b06625d4-dfe4-458c-93fa-e878c8370733" formVersion="1.0">
 
     <macros>
         pep_use =164845
         exposure_type=165046
         prep_remarks=160632
+        prep_screening =165062
+        prep_eligible=165065
+        prep_referred=1272
     </macros>
 
     <!-- Flowsheet table view -->
@@ -25,6 +28,9 @@
             <thead class="visit-table-header">
                 <tr>
                     <td width="156" valign="top"><p>Visit date</p></td>
+                    <td width="156" valign="top"><p>Screened for Prep</p></td>
+                    <td width="156" valign="top"><p>Status</p></td>
+                    <td width="156" valign="top"><p>Referred</p></td>
                     <td width="156" valign="top"><p>Using pep</p></td>
                     <td width="156" valign="top"><p>Exposure type</p></td>
                     <td width="156" valign="top"><p>Remarks</p></td>
@@ -35,6 +41,27 @@
                     <td class="nowrap visit-date">
                         <!-- Encounter Date -->
                         <encounterDate />
+                    </td>
+                    <td>
+                        <!-- SCREENED-->
+                        <obs conceptId="$prep_screening" id="prep_screening"
+                             answerConceptIds="165063,165064,165065,165066"
+                             answerLabels="Not screened,Not Eligible Eligible, Ongoing"
+                             style="dropdown" />
+                    </td>
+                    <td>
+                        <!-- STATUS -->
+                        <obs conceptId="$prep_eligible"
+                             answerConceptIds="1065,1066"
+                             answerLabels="Initiated,Not Initiated"
+                             style="dropdown" />
+                    </td>
+                    <td>
+                        <!-- REFERRED -->
+                        <obs conceptId="$prep_referred"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
                     </td>
                     <td>
                         <!-- PEP USAGE-->
@@ -66,6 +93,31 @@
             <tr>
                 <th>Visit Date</th>
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
+            </tr>
+            <tr>
+                <th>Screened for Prep</th>
+                <td>   <obs conceptId="$prep_screening" id="$prep_screening"
+                            answerConceptIds="165063,165064,165065,165066"
+                            answerLabels="Not screened,Not Eligible Eligible, Ongoing"
+                            style="dropdown" />
+                </td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td> <obs conceptId="$prep_eligible"
+                          answerConceptIds="1065,1066"
+                          answerLabels="Initiated,Not Initiated"
+                          style="dropdown" />
+                </td>
+            </tr>
+            <tr>
+                <th>Referred</th>
+                <td>
+                    <obs conceptId="$prep_referred"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
             </tr>
             <tr>
                 <th>Using Pep</th>
