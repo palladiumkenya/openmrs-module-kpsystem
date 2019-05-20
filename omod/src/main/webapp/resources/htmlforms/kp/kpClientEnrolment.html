@@ -44,6 +44,7 @@
 
 
         }
+
         $(document).ready(function () {
             $("#date").datepicker({
                 changeMonth: false,
@@ -61,26 +62,7 @@
             jq("#year_sarted_sex").hide();
             jq("#yearStartedSexWithMen").hide();
 
-            var male = $('#w11_0');
-            var female = $('#w11_1');
-            var transgender = $('#w11_2');
-            $('input').on('click',function () {
-                if (male.is(':checked')) {
-                    jq("#year_sarted_sex").hide();
-                    jq("#yearStartedSexWithMen").show();
-                }
-                if (female.is(':checked')) {
-                    jq("#yearStartedSexWithMen").hide();
-                    jq("#year_sarted_sex").show();
-                }
-                if(transgender.is(':checked')) {
-                    jq("#year_sarted_sex").hide();
-                    jq("#yearStartedSexWithMen").hide();
-                }
-            });
-
-
-            var sexViolenceckbox = $('#w35_0');
+            var sexViolenceckbox = $('#w33_0');
             $('input').on('click',function () {
                 if (sexViolenceckbox.is(':checked')) {
                     jq("#sexuaViolence").show();
@@ -90,7 +72,7 @@
                 }
             });
 
-            var physicalViolenceckbox = $('#w39_0');
+            var physicalViolenceckbox = $('#w37_0');
             $('input').on('click',function () {
                 if (physicalViolenceckbox.is(':checked')) {
                     jq("#historicalPhysicalViolence").show();
@@ -99,7 +81,7 @@
                 }
             });
 
-            var nonepaying_ckbox = $('#w19_0');
+            var nonepaying_ckbox = $('#w17_0');
             $('input').on('click',function () {
                 if (nonepaying_ckbox.is(':checked')) {
                     jq("#NonePayingSex").show();
@@ -108,17 +90,8 @@
                 }
             });
 
-            var clientphysiaclViolence = $('#w47_0');
-            $('input').on('click',function () {
-                if (clientphysiaclViolence.is(':checked')) {
-                    jq("#clientphysiaclViolence").show();
-                } else {
-                    jq("#clientphysiaclViolence").hide();
-                }
-            });
 
-
-            var peer_work_name = $('#w15_0');
+            var peer_work_name = $('#w13_0');
             $('input').on('click',function () {
                 if (peer_work_name.is(':checked')) {
                     jq("#peer_work_name").show();
@@ -225,9 +198,7 @@
         });
 
         beforeSubmit.push(function() {
-            var gender_identity = getField('gender-identity.value').val();
 
-            //var gender_identity_name = jq('.gender_selected input').val();
             var enrolment_area = getField('enrolment_area.value').val();
             var peer_educator = getField('peer-educator.value').val();
             var peer = getField('peer.value').val();
@@ -246,21 +217,6 @@
             var historical_ordeal = getField("hOrdeal.value").val();
             var contatcted_incase_of_appointment = getField("contacted-incase-of-appointment.value").val();
             var clinical_contatcted = getField("cContacted.value").val();
-            var experience_phy_violence = getField("exprienced-cphysical-violence.value").val();
-            var cordeal = getField("cOrdeal.value").val();
-
-            //Gender validation
-
-            var male = $('#w11_0');
-            var female = $('#w11_1');
-            var transgender = $('#w11_2');
-
-            if (male.is(':checked') || female.is(':checked') || transgender.is(':checked')) {
-                getField('gender-identity.error').html('Please select gender.').hide();
-            } else {
-                getField('gender-identity.error').html('Please select gender.').show();
-                return false;
-            }
 
             // validate enrollment
             if (enrolment_area == "" ) {
@@ -270,8 +226,8 @@
                 getField('enrolment_area.error').html('Please select enrollment service area.').hide();
             }
 
-            var contacted_by_eductaor = $('#w15_0');
-            var notContacted = $('#w15_1');
+            var contacted_by_eductaor = $('#w13_0');
+            var notContacted = $('#w13_1');
 
 
             if (contacted_by_eductaor.is(':checked') || notContacted.is(':checked')) {
@@ -283,8 +239,8 @@
 
 
 
-            var has_regular_sex_partner = $('#w19_0');
-            var doesnot_regular_sex_partner = $('#w19_1');
+            var has_regular_sex_partner = $('#w17_0');
+            var doesnot_regular_sex_partner = $('#w17_1');
 
 
             if (has_regular_sex_partner.is(':checked') || doesnot_regular_sex_partner.is(':checked')) {
@@ -316,36 +272,6 @@
 
         });
     </script>
-    <ifMode mode="VIEW" include="true">
-        <div>
-            <table style="width: 100%">
-                <tr>
-                    <td align="left">
-                        Observation Date:
-                    </td>
-                    <td>
-                        Unique Client Number
-                    </td>
-                    <td align="right">
-                        Gender Identity:
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        16-Jan-2019
-                    </td>
-                    <td>
-                        Test
-                    </td>
-                    <td align="right">
-                        Test
-                    </td>
-                </tr>
-            </table>
-        </div>
-
-    </ifMode>
-
     <div class="ke-form-header">
         <table style="width: 100%">
             <tr>
@@ -370,15 +296,6 @@
                     <td>
                         <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>Gender Identity</td>
-                    <td>
-                        <obs id="gender-identity" class="gender_selected" conceptId="1533"
-                             answerConceptIds="1534,1535"
-                             answerLabels="Male,Female" required="true"
-                             style="radio" />
                     </td>
                 </tr>
                 <tr>
@@ -533,23 +450,6 @@
                              answerConceptIds="161642,165016,1555,159635"
                              answerLabels="Treatment supporter,Peer educator,Outreach worker,Phone number"/>
                     </td>
-                </tr>
-                <tr>
-                    <td>Ever experienced physical violence?</td>
-                    <td>
-                        <obs id="exprienced-cphysical-violence" conceptId="165013"
-                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabels="Yes,No"
-                             style="radio" />
-                    </td>
-                    <table id="clientphysiaclViolence">
-
-
-                        <td>If yes, describe the ordeal</td>
-                        <td>
-                            <obs id="cOrdeal" conceptId="165014" rows="2" cols="80"/>
-                        </td>
-                    </table>
                 </tr>
             </table>
         </fieldset>

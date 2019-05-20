@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="c534e64c-698f-47a9-b551-56e59ea5c6a0" formName="Pregnancy and FP Screening Form"
+<htmlform formUuid="c534e64c-698f-47a9-b551-56e59ea5c6a0" formName="Pregnancy, FP and CaCx Screening Form"
           formEncounterType="55d0b03e-8977-4d3e-8941-3333712b1afe" formVersion="1.0">
     <macros>
         lmp=1427
@@ -19,6 +19,11 @@
         family_planning_method=374
         eligible=165067
         referred=165069
+
+        screened=164934
+        results=165026
+        treated=165038
+        referred=1272
     </macros>
 
     <!-- Flowsheet table view -->
@@ -34,6 +39,11 @@
                     <td>Eligible for Family planning </td>
                     <td>Family Planning Method</td>
                     <td>Referred For FP</td>
+
+                    <td rowspan="2">Screened for CaCx</td>
+                    <td rowspan="2">Results</td>
+                    <td rowspan="2">Treated</td>
+                    <td rowspan="2">Referred</td>
                 </tr>
             </thead>
             <tbody class="visit-table-body">
@@ -90,6 +100,31 @@
                                            Vasectomy(Partner),
                                            Undecided"
                              style="checkbox"/>
+                    </td>
+                    <td>
+                        <obs conceptId="$referred" id="referredInput"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+                    <!-- Screened for CaCx -->
+                    <td>
+                        <obs conceptId="$screened" id="screenedInput"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <obs conceptId="$results" id="resultsInput"
+                             answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Negative,Positive"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <obs conceptId="$treated" id="treatedInput"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
                     </td>
                     <td>
                         <obs conceptId="$referred" id="referredInput"
@@ -211,6 +246,44 @@
                          style="dropdown"/>
                 </td>
             </tr>
+            <tr>
+                <th>Cervical Cancer Screening</th>
+                <td>
+                    <obs conceptId="$screened" id="screenedInput"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Screening Results</th>
+                <td>
+                    <obs conceptId="$results" id="resultsInput"
+                         answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Negative,Positive"
+                         style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Treated</th>
+                <td>
+                    <obs conceptId="$treated" id="treatedInput"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Referred</th>
+                <td>
+                    <obs conceptId="$referred" id="referredInput"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
+            </tr>
+
 
         </table>
     </ifMode>

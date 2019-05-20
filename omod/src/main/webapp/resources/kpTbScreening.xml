@@ -9,14 +9,15 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="fb9d9291-a84f-443f-a6b1-e955ccfaa07c" formName="Cervical Cancer Screening Form"
-          formEncounterType="a99e5f02-5101-4342-913a-8920971f9b84" formVersion="1.0">
+<htmlform formUuid="7719e79e-2e39-409c-8190-4b54b4a76cca" formName="TB screening Form"
+          formEncounterType="32e5ac6f-80cf-4908-aa88-200e3e199c68" formVersion="1.0">
+
     <macros>
-        screened=164934
-        results=165026
+        tb_screening_done=159800
+        tb_results=1659
         treated=165038
         referred=1272
-
+        remarks=160632
     </macros>
 
     <!-- Flowsheet table view -->
@@ -25,12 +26,13 @@
         <table class="visit-table data-entry-table">
             <thead class="visit-table-header">
                 <tr>
-                    <td rowspan="2">Visit Date</td>
-                    <td rowspan="2">Screened</td>
-                    <td rowspan="2">Results</td>
-                    <td rowspan="2">Treated</td>
-                    <td rowspan="2">Referred</td>
-                </tr>
+                    <td width="156" valign="top"><p>Visit date</p></td>
+                    <td width="156" valign="top"><p>TB Screening done</p></td>
+                    <td width="156" valign="top"><p>Results</p></td>
+                    <td width="156" valign="top"><p>Treated</p></td>
+                    <td width="156" valign="top"><p>Referred</p></td>
+                    <td width="156" valign="top"><p>Remarks</p></td>
+               </tr>
             </thead>
             <tbody class="visit-table-body">
                 <tr class="visit-table-row">
@@ -39,30 +41,37 @@
                         <encounterDate />
                     </td>
                     <td>
-                        <obs conceptId="$screened" id="screenedInput"
+                        <!-- SCREENED-->
+                        <obs conceptId="$tb_screening_done" id="tb_screening_done"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Yes,No"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- RESULTS -->
+                        <obs conceptId="$tb_results"
+                             answerConceptIds="1660AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142177AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1662AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="NO signs,TB presumed,TB Rx"
+                             style="dropdown" />
+                    </td>
+                    <td>
+                        <!-- TREATED-->
+                        <obs conceptId="$treated"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Yes,No"
                              style="dropdown"/>
                     </td>
                     <td>
-                        <obs conceptId="$results" id="resultsInput"
-                             answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabel="Negative,Positive"
-                             style="dropdown"/>
-                    </td>
-                    <td>
-                        <obs conceptId="$treated" id="treatedInput"
+                        <!-- REFERRED -->
+                        <obs conceptId="$referred"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Yes,No"
                              style="dropdown"/>
                     </td>
                     <td>
-                        <obs conceptId="$referred" id="referredInput"
-                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabel="Yes,No"
-                             style="dropdown"/>
+                        <!-- REMARKS -->
+                        <obs conceptId="$remarks" />
                     </td>
-
                 </tr>
             </tbody>
         </table>
@@ -72,34 +81,31 @@
     <!-- Data entry view -->
     <ifMode mode="VIEW" include="false">
 
-        <table class="visit-edit-table" style="margin-bottom:1%">
+        <table class="visit-edit-table">
             <tr>
                 <th>Visit Date</th>
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-               <th>Cervical Cancer Screening</th>
-                <td>
-                    <obs conceptId="$screened" id="screenedInput"
-                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                         answerLabel="Yes,No"
-                         style="dropdown"/>
+                <th>TB Screening done</th>
+                <td>    <obs conceptId="$tb_screening_done" id="tb_screening_done"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Yes,No"
+                             style="dropdown"/>
                 </td>
             </tr>
-
             <tr>
-                <th>Screening Results</th>
-                <td>
-                    <obs conceptId="$results" id="resultsInput"
-                         answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                         answerLabel="Negative,Positive"
-                         style="dropdown"/>
+                <th>Results</th>
+                <td>  <obs conceptId="$tb_results"
+                           answerConceptIds="1660AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142177AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1662AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                           answerLabels="NO signs,TB presumed,TB Rx"
+                           style="dropdown" />
                 </td>
             </tr>
             <tr>
                 <th>Treated</th>
                 <td>
-                    <obs conceptId="$treated" id="treatedInput"
+                    <obs conceptId="$treated"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
@@ -108,17 +114,18 @@
             <tr>
                 <th>Referred</th>
                 <td>
-                    <obs conceptId="$referred" id="referredInput"
+                    <obs conceptId="$referred"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
                 </td>
             </tr>
+            <tr>
+                <th>Remarks</th>
+                <td><obs conceptId="$remarks" id="remarks_input" /></td>
+            </tr>
 
         </table>
-
         <submit/>
-
     </ifMode>
-
 </htmlform>

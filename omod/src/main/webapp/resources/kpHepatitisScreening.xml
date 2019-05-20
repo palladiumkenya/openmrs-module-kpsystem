@@ -9,12 +9,14 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="28c27e89-f535-4a55-9e39-32e9a36afa90" formName="Hepatitis C Screening Form"
-          formEncounterType="d5473763-62ff-417c-9243-b839f00c7f75" formVersion="1.0">
+<htmlform formUuid="c0151dfc-6097-4eb1-8226-484303dcdc88" formName="Hepatitis Screening Form"
+          formEncounterType="5c05a229-51b4-4b73-be13-0d93765a2a96" formVersion="1.0">
 
     <macros>
+        screened=164082
+        hepatitisB_screened =165019
         hepatitisC_screened =165020
-        hepatitisC_results=161471
+        hepatitis_results=1322
         treated=165038
         referred=1272
         remarks=160632
@@ -27,7 +29,7 @@
             <thead class="visit-table-header">
                 <tr>
                     <td width="156" valign="top"><p>Visit date</p></td>
-                    <td width="156" valign="top"><p>Screened for Hepatitis C</p></td>
+                    <td width="156" valign="top"><p>Screened for Hepatitis</p></td>
                     <td width="156" valign="top"><p>Results</p></td>
                     <td width="156" valign="top"><p>Treated</p></td>
                     <td width="156" valign="top"><p>Referred</p></td>
@@ -42,14 +44,14 @@
                     </td>
                     <td>
                         <!-- SCREENED-->
-                        <obs conceptId="$hepatitisC_screened" id="hepatitisC_screened"
-                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabel="Yes,No"
+                        <obs conceptId="$screened" id="screened"
+                             answerConceptIds="$hepatitisB_screened,$hepatitisC_screened"
+                             answerLabels="Hepatits B,Hepatitis C"
                              style="dropdown"/>
                     </td>
                     <td>
                         <!-- RESULTS -->
-                        <obs conceptId="$hepatitisC_results"
+                        <obs conceptId="$hepatitis_results"
                              answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabels="Negative,Positive,Vaccinated"
                              style="dropdown"/>
@@ -87,16 +89,16 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Screened for Hepatitis C</th>
-                <td>  <obs conceptId="$hepatitisC_screened" id="hepatitisC_screened_input"
-                           answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                           answerLabel="Yes,No"
-                           style="dropdown"/>
+                <th>Screened for Hepatitis</th>
+                <td>   <obs conceptId="$screened" id="screened"
+                            answerConceptIds="$hepatitisB_screened,$hepatitisC_screened"
+                            answerLabels="Hepatits B,Hepatitis C"
+                            style="dropdown"/>
                 </td>
             </tr>
             <tr>
                 <th>Results</th>
-                <td> <obs conceptId="$hepatitisC_results"
+                <td> <obs conceptId="$hepatitis_results"
                           answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                           answerLabels="Negative,Positive,Vaccinated"
                           style="dropdown"/>
