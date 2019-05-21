@@ -1,0 +1,133 @@
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<htmlform formUuid="74acd5bb-1565-4261-a642-2bbc0d847e08" formName="Alcohol, Drugs and Risk Reduction Screening Form"
+          formEncounterType="981c1420-4e83-4656-beb1-2461c45de532" formVersion="1.0">
+
+    <macros>
+        screened_for =164082
+        alcohol=165023
+        risk=165025
+        drugs=165022
+        results=165028
+        treated=165038
+        referred=1272
+        remarks=160632
+    </macros>
+
+    <!-- Flowsheet table view -->
+    <ifMode mode="VIEW" include="true">
+
+        <table class="visit-table data-entry-table">
+            <thead class="visit-table-header">
+                <tr>
+                    <td width="156" valign="top"><p>Visit date</p></td>
+                    <td width="156" valign="top"><p>Screened for:</p></td>
+                    <td width="156" valign="top"><p>Results</p></td>
+                    <td width="156" valign="top"><p>Treated</p></td>
+                    <td width="156" valign="top"><p>Referred</p></td>
+                    <td width="156" valign="top"><p>Remarks</p></td>
+                </tr>
+            </thead>
+            <tbody class="visit-table-body">
+                <tr class="visit-table-row">
+                    <td class="nowrap visit-date">
+                        <!-- Encounter Date -->
+                        <encounterDate />
+                    </td>
+                    <td>
+                        <!-- SCREENED FOR-->
+                        <obs conceptId="$screened_for" id="screened_for"
+                             answerConceptIds="$alcohol,$drugs,$risk"
+                             answerLabel="Alcohol usage, Drug overdose,Risk reduction"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- RESULTS -->
+                        <obs conceptId="$results"
+                             answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Negative,Positive"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- TREATED-->
+                        <obs conceptId="$treated"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- REFERRED -->
+                        <obs conceptId="$referred"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- REMARKS -->
+                        <obs conceptId="$remarks" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </ifMode>
+
+    <!-- Data entry view -->
+    <ifMode mode="VIEW" include="false">
+
+        <table class="visit-edit-table">
+            <tr>
+                <th>Visit Date</th>
+                <td><encounterDate id="visitDate" size="20" default="today" /></td>
+            </tr>
+            <tr>
+                <th>Screened for Alcohol</th>
+                <td>   <obs conceptId="$screened_for" id="screened_for"
+                            answerConceptIds="$alcohol,$drugs,$risk"
+                            answerLabel="Alcohol usage, Drug overdose,Risk reduction"
+                            style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Results</th>
+                <td>  <obs conceptId="$results"
+                           answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                           answerLabels="Negative,Positive"
+                           style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Treated</th>
+                <td>
+                    <obs conceptId="$treated"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Referred</th>
+                <td>
+                    <obs conceptId="$referred"
+                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerLabel="Yes,No"
+                         style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Remarks</th>
+                <td><obs conceptId="$remarks" id="remarks_input" /></td>
+            </tr>
+        </table>
+        <submit/>
+    </ifMode>
+</htmlform>
