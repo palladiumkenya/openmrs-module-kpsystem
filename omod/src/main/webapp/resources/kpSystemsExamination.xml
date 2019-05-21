@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="20cf6054-a119-4168-a49a-8ce09830899d" formName="Review of Body Systems Form"
+<htmlform formUuid="20cf6054-a119-4168-a49a-8ce09830899d" formName="Review of systems"
           formEncounterType="5568ab72-e951-4683-875e-c5781b6f7b81" formVersion="1.0">
 
     <macros>
@@ -25,7 +25,7 @@
             <thead class="visit-table-header">
                 <tr>
                     <td width="156" valign="top"><p>Visit date</p></td>
-                    <td width="156" valign="top"><p>Body systems</p></td>
+                    <td width="156" valign="top"><p>Systems</p></td>
                     <td width="156" valign="top"><p>Findings</p></td>
                     <td width="156" valign="top"><p>Findings notes</p></td>
                    </tr>

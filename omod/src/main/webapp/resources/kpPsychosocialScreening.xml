@@ -90,7 +90,7 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Screened for Alcohol</th>
+                <th>Screened for:</th>
                 <td>   <obs conceptId="$screened_for" id="screened_for"
                             answerConceptIds="$alcohol,$drugs,$risk"
                             answerLabel="Alcohol usage, Drug overdose,Risk reduction"

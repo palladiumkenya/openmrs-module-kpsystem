@@ -4,17 +4,19 @@
 
 	def triageFlowsheets = "flowsheets=kenyaemr:triageForm.xml"
 
-	def clinicalEncounterFlowsheets = "flowsheets=kenyaemr:kpComplaints.xml&flowsheets=kenyaemr:kpChronicIllnesses.xml&\n" +
+	def clinicalEncounterFlowsheets = "flowsheets=kenyaemr:kpComplaints.xml&flowsheets=kenyaemr:kpPregnancyAndFamilyPlanning.xml&flowsheets=kenyaemr:kpChronicIllnesses.xml&\n" +
 			"flowsheets=kenyaemr:kpKnownAllergies.xml&flowsheets=kenyaemr:kpDrugReactions.xml&flowsheets=kenyaemr:kpImmunizationAndVaccination.xml&\n" +
 			"flowsheets=kenyaemr:kpSTScreening.xml&flowsheets=kenyaemr:kpTbScreening.xml&\n" +
 			"flowsheets=kenyaemr:kpSystemsExamination.xml&flowsheets=kenyaemr:kpDiagnosisAndTreatmentPlan.xml&\n" +
-			"flowsheets=kenyaemr:kpPregnancyAndFamilyPlanning.xml&flowsheets=kenyaemr:kpClinicalNotes.xml"
+			"flowsheets=kenyaemr:kpClinicalNotes.xml"
 
 	def psychosocialFlowsheets = "flowsheets=kenyaemr:kpPsychosocialScreening.xml&flowsheets=kenyaemr:kpViolenceScreening.xml&flowsheets=kenyaemr:kpCounsellingServices.xml"
+	def pepPrepFlowsheets = "flowsheets=kenyaemr:kpPrepPepScreening.xml"
 
 	def triageFlowsheeturl = baseLink + triageFlowsheets
 	def clinicalEncounterFlowsheeturl = baseLink + clinicalEncounterFlowsheets
 	def psychosocialFlowsheeturl = baseLink + psychosocialFlowsheets
+	def pepPrepFlowsheeturl = baseLink + pepPrepFlowsheets
 %>
 <div class="action-container column">
 	<div class="action-section">
@@ -50,15 +52,15 @@
 					Psychosocial Screening
 				</a>
 			</li>
+			<li class="float-left" style="margin-top: 7px">
+				<a href="${ pepPrepFlowsheeturl }" class="float-left">
+					<i class="fa fa-files-o"></i>
+					PEP and PREP Screening
+				</a>
+			</li>
 		</ul>
 		<ul>
 			<h3>Visit Actions</h3>
-			<li class="float-left" style="margin-top: 7px">
-				<a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/triage.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
-					<i class="fa fa-stethoscope"></i>
-					Triage
-				</a>
-			</li>
 
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ ui.pageLink("kenyaemrorderentry", "drugOrders", [patient: currentPatient]) }" class="float-left">
