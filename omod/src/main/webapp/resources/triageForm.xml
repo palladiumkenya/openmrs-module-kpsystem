@@ -39,11 +39,6 @@
                     <td rowspan="2">Oxygen Saturation</td>
 
                 </tr>
-                <tr>
-                    <td><i style="font-size:.7em;">day month year</i></td>
-                    <td><i>cm</i></td>
-                    <td><i>kg</i></td>
-                </tr>
             </thead>
             <tbody class="visit-table-body">
                 <tr class="visit-table-row">

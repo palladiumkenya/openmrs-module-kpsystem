@@ -2,20 +2,21 @@
 	def baseLink = ui.pageLink("htmlformentryui", "htmlform/flowsheet", [patientId: currentPatient.patientId, headerForm: "kenyaemr:kpEnrollmentHeaderForm.xml", returnUrl: ui.thisUrl()])
 
 
-	def triageFlowsheets = "flowsheets=kenyaemr:triageForm.xml&flowsheets=kenyaemr:kpComplaints.xml&flowsheets=kenyaemr:kpChronicIllnesses.xml&\n" +
-			"flowsheets=kenyaemr:kpKnownAllergies.xml&flowsheets=kenyaemr:kpDrugReactions.xml&flowsheets=kenyaemr:kpImmunizationAndVaccination.xml"
+	def triageFlowsheets = "flowsheets=kenyaemr:triageForm.xml"
 
-	def screeningFlowsheets = "flowsheets=kenyaemr:kpSTScreening.xml&flowsheets=kenyaemr:kpTbScreening.xml&flowsheets=kenyaemr:kpHepatitisScreening.xml&\n" +
-			"flowsheets=kenyaemr:kpOverdoseManagement.xml&flowsheets=kenyaemr:kpAlcoholScreening.xml&\n" +
-			"flowsheets=kenyaemr:kpAbscesScreening.xml&flowsheets=kenyaemr:kpRiskReduction.xml&\n" +
-			"flowsheets=kenyaemr:kpPrepPepScreening.xml&\n" +
-			"flowsheets=kenyaemr:kpViolenceScreening.xml&flowsheets=kenyaemr:kpPregnancyAndFamilyPlanning.xml&\n" +
-			"flowsheets=kenyaemr:kpAppointmentCreation.xml"
-	def examDiagnosisFlowsheets = "flowsheets=kenyaemr:kpSystemsExamination.xml&flowsheets=kenyaemr:kpDiagnosisAndTreatmentPlan.xml&flowsheets=kenyaemr:kpCounsellingServices.xml&flowsheets=kenyaemr:kpClinicalNotes.xml"
+	def clinicalEncounterFlowsheets = "flowsheets=kenyaemr:kpComplaints.xml&flowsheets=kenyaemr:kpPregnancyAndFamilyPlanning.xml&flowsheets=kenyaemr:kpChronicIllnesses.xml&\n" +
+			"flowsheets=kenyaemr:kpKnownAllergies.xml&flowsheets=kenyaemr:kpDrugReactions.xml&flowsheets=kenyaemr:kpImmunizationAndVaccination.xml&\n" +
+			"flowsheets=kenyaemr:kpSTScreening.xml&flowsheets=kenyaemr:kpTbScreening.xml&\n" +
+			"flowsheets=kenyaemr:kpSystemsExamination.xml&flowsheets=kenyaemr:kpDiagnosisAndTreatmentPlan.xml&\n" +
+			"flowsheets=kenyaemr:kpClinicalNotes.xml"
+
+	def psychosocialFlowsheets = "flowsheets=kenyaemr:kpPsychosocialScreening.xml&flowsheets=kenyaemr:kpViolenceScreening.xml&flowsheets=kenyaemr:kpCounsellingServices.xml"
+	def pepPrepFlowsheets = "flowsheets=kenyaemr:kpPrepPepScreening.xml"
 
 	def triageFlowsheeturl = baseLink + triageFlowsheets
-	def screeningFlowsheeturl = baseLink + screeningFlowsheets
-	def examDiagnosisFlowsheeturl = baseLink + examDiagnosisFlowsheets
+	def clinicalEncounterFlowsheeturl = baseLink + clinicalEncounterFlowsheets
+	def psychosocialFlowsheeturl = baseLink + psychosocialFlowsheets
+	def pepPrepFlowsheeturl = baseLink + pepPrepFlowsheets
 %>
 <div class="action-container column">
 	<div class="action-section">
@@ -36,31 +37,30 @@
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ triageFlowsheeturl }" class="float-left">
 					<i class="fa fa-files-o"></i>
-					Triage and History
+					Triage
 				</a>
 			</li>
 			<li class="float-left" style="margin-top: 7px">
-				<a href="${ examDiagnosisFlowsheeturl }" class="float-left">
+				<a href="${ clinicalEncounterFlowsheeturl }" class="float-left">
 					<i class="fa fa-files-o"></i>
-					Examinations and Diagnosis
+					Clinical Encounter
 				</a>
 			</li>
-
 			<li class="float-left" style="margin-top: 7px">
-				<a href="${ screeningFlowsheeturl }" class="float-left">
+				<a href="${ psychosocialFlowsheeturl }" class="float-left">
 					<i class="fa fa-files-o"></i>
-                    KP Screening
+					Psychosocial Screening
+				</a>
+			</li>
+			<li class="float-left" style="margin-top: 7px">
+				<a href="${ pepPrepFlowsheeturl }" class="float-left">
+					<i class="fa fa-files-o"></i>
+					PEP and PREP Screening
 				</a>
 			</li>
 		</ul>
 		<ul>
 			<h3>Visit Actions</h3>
-			<li class="float-left" style="margin-top: 7px">
-				<a href="${ ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/triage.xml", returnUrl: ui.thisUrl()]) }" class="float-left">
-					<i class="fa fa-stethoscope"></i>
-					Triage
-				</a>
-			</li>
 
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ ui.pageLink("kenyaemrorderentry", "drugOrders", [patient: currentPatient]) }" class="float-left">
