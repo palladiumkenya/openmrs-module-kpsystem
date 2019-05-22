@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="4464390d-025d-47bd-9619-64cb1d89a1da" formName="Adverse Drug Reactions Form"
+<htmlform formUuid="4464390d-025d-47bd-9619-64cb1d89a1da" formName="Adverse Drug Reactions"
           formEncounterType="d7cfa460-2944-11e9-b210-d663bd873d93" formVersion="1.0">
 
     <macros>

@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="6d830745-9465-4b61-8257-b4c010b2a072" formName="Treatment Buddy Contact Information Form"
+<htmlform formUuid="6d830745-9465-4b61-8257-b4c010b2a072" formName="Treatment Buddy Contact Information"
           formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
 
     <macros>

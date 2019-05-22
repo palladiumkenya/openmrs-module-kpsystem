@@ -157,7 +157,7 @@ public class RecentVisitsFragmentController {
         screening.add("Hepatitis B Screening Form");
         screening.add("Hepatitis C Screening Form");
         screening.add("Immunization Screening Form");
-        screening.add("Allergies Screning Form");
+        screening.add("Allergies Screening Form");
         screening.add("Drug Overdose Screening Form");
         screening.add("Pep Screening Form");
         screening.add("Prep Screening Form");

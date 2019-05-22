@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="7587529e-9d84-4947-953e-afe5643cc816" formName="KP Appointment Creation Form"
+<htmlform formUuid="7587529e-9d84-4947-953e-afe5643cc816" formName="KP Appointment Creation"
 		  formEncounterType="66609dee-3438-11e9-b210-d663bd873d93" formVersion="1.0">
 
 	<macros>

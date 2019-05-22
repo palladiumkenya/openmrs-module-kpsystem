@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="a455aef4-56c8-4386-902e-b599c572f33f" formName="Prep/Pep Services Form"
+<htmlform formUuid="a455aef4-56c8-4386-902e-b599c572f33f" formName="Prep/Pep Services"
           formEncounterType="b06625d4-dfe4-458c-93fa-e878c8370733" formVersion="1.0">
 
     <macros>

@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="2c2f1dea-1715-442e-9abe-71bc89ace1af" formName="Immunization Screening Form"
+<htmlform formUuid="2c2f1dea-1715-442e-9abe-71bc89ace1af" formName="Immunization Screening"
           formEncounterType="9b8c17cc-3420-11e9-b210-d663bd873d93" formVersion="1.0">
 
     <macros>
@@ -33,7 +33,7 @@
                     <td width="156" valign="top"><p>Immunization date</p></td>
                     <td width="156" valign="top"><p>Side effects</p></td>
                     <td width="156" valign="top"><p>Nature of side effects</p></td>
-                    <td width="156" valign="top"><p>Vaccine validity</p></td>
+                    <td width="156" valign="top"><p>Vaccine validity (Months)</p></td>
 
                 </tr>
             </thead>
@@ -174,7 +174,7 @@
                 <td><obs conceptId="$immunization_effects_text" id="immunization_effects_text_input" /></td>
             </tr>
             <tr>
-                <th>Vaccine validity</th>
+                <th>Vaccine validity (Months)</th>
                 <td><obs conceptId="$validity" id="validity_input" /></td>
             </tr>
         </table>

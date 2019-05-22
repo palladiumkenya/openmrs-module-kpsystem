@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="9ce5b2d6-7c22-4fa8-8cca-edaad872c467" formName="Drug Overdose Screening Form"
+<htmlform formUuid="9ce5b2d6-7c22-4fa8-8cca-edaad872c467" formName="Drug Overdose Screening"
           formEncounterType="c3fb7831-f8fc-4b71-bd54-f23cdd77e305" formVersion="1.0">
 
     <macros>

@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="1530f634-3c07-48cd-9a50-59af23cd4e3e" formName="HIV Status Form"
+<htmlform formUuid="1530f634-3c07-48cd-9a50-59af23cd4e3e" formName="HIV Status"
           formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
 
     <macros>
