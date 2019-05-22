@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="7719e79e-2e39-409c-8190-4b54b4a76cca" formName="TB screening Form"
+<htmlform formUuid="7719e79e-2e39-409c-8190-4b54b4a76cca" formName="TB screening"
           formEncounterType="32e5ac6f-80cf-4908-aa88-200e3e199c68" formVersion="1.0">
 
     <macros>

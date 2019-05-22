@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="458a1a0a-fb8e-4a37-a836-d47e63673b60" formName="Chronic Illness Form"
+<htmlform formUuid="458a1a0a-fb8e-4a37-a836-d47e63673b60" formName="Chronic Illness"
           formEncounterType="26bb869b-b569-4acd-b455-02c853e9f1e6" formVersion="1.0">
 
     <macros>

@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="c0151dfc-6097-4eb1-8226-484303dcdc88" formName="Hepatitis Screening Form"
+<htmlform formUuid="c0151dfc-6097-4eb1-8226-484303dcdc88" formName="Hepatitis Screening"
           formEncounterType="5c05a229-51b4-4b73-be13-0d93765a2a96" formVersion="1.0">
 
     <macros>

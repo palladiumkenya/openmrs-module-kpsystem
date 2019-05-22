@@ -51,8 +51,8 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Screened for risk</th>
-                <td>  <obs conceptId="$clinical_notes" />
+                <th>Clinical notes</th>
+                <td>  <obs conceptId="$clinical_notes" cols="100" rows="10" />
                 </td>
             </tr>
         </table>

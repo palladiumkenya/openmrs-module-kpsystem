@@ -6,9 +6,9 @@
 
 	def clinicalEncounterFlowsheets = "flowsheets=kenyaemr:kpComplaints.xml&flowsheets=kenyaemr:kpPregnancyAndFamilyPlanning.xml&flowsheets=kenyaemr:kpChronicIllnesses.xml&\n" +
 			"flowsheets=kenyaemr:kpKnownAllergies.xml&flowsheets=kenyaemr:kpDrugReactions.xml&flowsheets=kenyaemr:kpImmunizationAndVaccination.xml&\n" +
-			"flowsheets=kenyaemr:kpSTScreening.xml&flowsheets=kenyaemr:kpTbScreening.xml&\n" +
+			"flowsheets=kenyaemr:kpSTScreening.xml&flowsheets=kenyaemr:kpHepatitisScreening.xml&\n" +
 			"flowsheets=kenyaemr:kpSystemsExamination.xml&flowsheets=kenyaemr:kpDiagnosisAndTreatmentPlan.xml&\n" +
-			"flowsheets=kenyaemr:kpClinicalNotes.xml"
+			"flowsheets=kenyaemr:kpClinicalNotes.xml&flowsheets=kenyaemr:kpAppointmentCreation.xml"
 
 	def psychosocialFlowsheets = "flowsheets=kenyaemr:kpPsychosocialScreening.xml&flowsheets=kenyaemr:kpViolenceScreening.xml&flowsheets=kenyaemr:kpCounsellingServices.xml"
 	def pepPrepFlowsheets = "flowsheets=kenyaemr:kpPrepPepScreening.xml"
