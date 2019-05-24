@@ -73,7 +73,7 @@
             </tr>
             <tr>
                 <th>STI Screening done</th>
-                <td>  <obs conceptId="$sti_screening_done"
+                <td>  <obs conceptId="$sti_screening_done" id="stiScreeningDone"
                            answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                            answerLabel="Yes,No"
                            style="dropdown"/>
@@ -81,7 +81,7 @@
             </tr>
             <tr>
                 <th>Reason</th>
-                <td>  <obs conceptId="$reason"
+                <td>  <obs conceptId="$reason" id="reason"
                            answerConceptIds="1068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
                                                 5006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
                                                 163139AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
@@ -94,11 +94,38 @@
             <tr>
                 <th>Provider Name</th>
                 <td>
-                    <obs conceptId="$provider_name" />
+                    <obs conceptId="$provider_name" id="providerName" />
                 </td>
             </tr>
 
         </table>
         <submit/>
     </ifMode>
+    <script type="text/javascript">
+        jq(function() {
+
+        var stiScreening = jq("#stiScreeningDone select").change(StiScreened)
+
+        console.log("Run  ==> StiScreened");
+        StiScreened();
+
+        });
+
+        function StiScreened() {
+
+        var screening_type = jq("#stiScreeningDone select").val();
+
+
+        console.log("Screened for ==> "+screening_type);
+        if (screening_type == 1066){
+        jq('#reason select').prop('disabled', true);
+        jq('#providerName input').prop('disabled', true);
+        }
+        else{
+        jq('#reason select').prop('disabled', false);
+        jq('#providerName input').prop('disabled', false);
+        jq('#providerName input').val('');
+        }
+        }
+    </script>
 </htmlform>
