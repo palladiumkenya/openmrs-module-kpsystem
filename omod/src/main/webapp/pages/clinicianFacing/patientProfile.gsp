@@ -10,6 +10,7 @@
     def addSocialStatusFormLink = ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/kpSocialStatus.xml", returnUrl: ui.thisUrl()])
     def editContactInfoLink =  ui.pageLink("registrationapp", "editSection", [ patientId: patient.id,sectionId: "contactInfo", appId:"referenceapplication.registrationapp.registerPatient", returnUrl: ui.thisUrl() ])
     def editAliasLink = ui.pageLink("registrationapp", "editSection", [ patientId: patient.id,sectionId: "alias", appId:"referenceapplication.registrationapp.registerPatient", returnUrl: ui.thisUrl() ])
+    def addTriageFormLink = ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/triage.xml", returnUrl: ui.thisUrl()])
 
 %>
 <script type="text/javascript">
@@ -45,9 +46,9 @@
 
                 <div class="info-section">
                     <div class="info-header">
-                        <i class="icon-calendar"></i>
+                        <i class="fa fa-support"></i>
                         <h3>Client Support</h3>
-                        <i class="icon-pencil edit-action right" title="Add" onclick="location.href = '${addSocialStatusFormLink}'"></i>
+                        <i class="fa fa-plus-square right" style="color: steelblue" title="Add support details" onclick="location.href = '${addSocialStatusFormLink}'"></i>
                     </div>
                     <div class="info-body">
                         No data
@@ -56,9 +57,9 @@
 
                 <div class="info-section">
                     <div class="info-header">
-                        <i class="icon-calendar"></i>
+                        <i class="fa fa-info-circle"></i>
                         <h3>Social Status</h3>
-                        <i class="fa fa-plus-square right" style="color: steelblue" title="Record new social status" onclick="location.href = '${addSocialStatusFormLink}'"></i>
+                        <i class="fa fa-plus-square right" style="color: steelblue" title="Add social status" onclick="location.href = '${addSocialStatusFormLink}'"></i>
                     </div>
                     <div class="info-body">
                         ${ ui.includeFragment("kenyaemr", "program/kp/socialStatus", [ patient: currentPatient]) }
@@ -67,8 +68,8 @@
 
                 <div class="info-section">
                     <div class="info-header">
-                        <i class="icon-calendar"></i>
-                        <h3>Program History</h3>
+                        <i class="fa fa-history"></i>
+                        <h3>KP Program History</h3>
                     </div>
                     <div class="info-body">
                         ${ ui.includeFragment("kenyaemr", "program/programHistories", [ patient: currentPatient, showClinicalData: true ]) }
@@ -92,6 +93,7 @@
                     <div class="info-header">
                         <i class="icon-stethoscope"></i>
                         <h3>Vitals</h3>
+                        <i class="fa fa-plus-square right" style="color: steelblue" title="Add vitals" onclick="location.href = '${addTriageFormLink}'"></i>
                     </div>
                     <div class="info-body">
                         ${ ui.includeFragment("kenyaemr", "patient/currentVitals", [ patient: currentPatient]) }
