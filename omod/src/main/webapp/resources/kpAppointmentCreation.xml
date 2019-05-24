@@ -38,7 +38,7 @@
 					</td>
 					<td>
 						<!-- Appointment date -->
-						<obs conceptId="$appointment_date" id="appointment_date_entered"/>
+						<obs conceptId="$appointment_date"/>
 					</td>
 					<td>
 						<!-- Appointment Type -->
@@ -68,7 +68,7 @@
 			</tr>
 			<tr>
 				<th>Appointment Date</th>
-				<td class="focus-field"><obs conceptId="$appointment_date" id="appointment_date_input" allowFutureDates="true" /></td>
+				<td class="focus-field"><obs conceptId="$appointment_date" id="nextAppointmentDate" allowFutureDates="true" /></td>
 			</tr>
 			<tr>
 				<th>Appointment Type</th>

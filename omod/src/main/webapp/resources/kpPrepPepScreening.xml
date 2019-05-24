@@ -9,14 +9,19 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="a455aef4-56c8-4386-902e-b599c572f33f" formName="Prep/Pep Services"
+<htmlform formUuid="a455aef4-56c8-4386-902e-b599c572f33f" formName="Prep/Pep Services Form"
           formEncounterType="b06625d4-dfe4-458c-93fa-e878c8370733" formVersion="1.0">
 
     <macros>
+        screened_for=164082
+        results=165028
+
         pep_use =164845
+        prep_screening =165062
+
         exposure_type=165046
         prep_remarks=160632
-        prep_screening =165062
+
         prep_eligible=165065
         prep_referred=1272
     </macros>
@@ -28,7 +33,7 @@
             <thead class="visit-table-header">
                 <tr>
                     <td width="156" valign="top"><p>Visit date</p></td>
-                    <td width="156" valign="top"><p>Screened for Prep</p></td>
+                    <td width="156" valign="top"><p>Screened for:</p></td>
                     <td width="156" valign="top"><p>Status</p></td>
                     <td width="156" valign="top"><p>Referred</p></td>
                     <td width="156" valign="top"><p>Using pep</p></td>
@@ -44,17 +49,17 @@
                     </td>
                     <td>
                         <!-- SCREENED-->
-                        <obs conceptId="$prep_screening" id="prep_screening"
-                             answerConceptIds="165063,165064,165065,165066"
-                             answerLabels="Not screened,Not Eligible Eligible, Ongoing"
+                        <obs conceptId="$screened_for" id="screening_for"
+                             answerConceptIds="$pep_use,$prep_screening"
+                             answerLabels="PEP,PREP"
                              style="dropdown" />
                     </td>
                     <td>
-                        <!-- STATUS -->
-                        <obs conceptId="$prep_eligible"
-                             answerConceptIds="1065,1066"
-                             answerLabels="Initiated,Not Initiated"
-                             style="dropdown" />
+                        <!-- RESULTS -->
+                        <obs conceptId="$results"
+                             answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Negative,Positive"
+                             style="dropdown"/>
                     </td>
                     <td>
                         <!-- REFERRED -->
@@ -95,25 +100,25 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Screened for Prep</th>
-                <td>   <obs conceptId="$prep_screening" id="$prep_screening"
-                            answerConceptIds="165063,165064,165065,165066"
-                            answerLabels="Not screened,Not Eligible Eligible, Ongoing"
-                            style="dropdown" />
+                <th>Screened for:</th>
+                <td>    <obs conceptId="$screened_for" id="screening_for"
+                             answerConceptIds="$pep_use,$prep_screening"
+                             answerLabels="PEP,PREP"
+                             style="dropdown" />
                 </td>
             </tr>
             <tr>
                 <th>Status</th>
-                <td> <obs conceptId="$prep_eligible"
-                          answerConceptIds="1065,1066"
-                          answerLabels="Initiated,Not Initiated"
-                          style="dropdown" />
+                <td>  <obs conceptId="$results" id="status"
+                           answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                           answerLabels="Negative,Positive"
+                           style="dropdown"/>
                 </td>
             </tr>
             <tr>
                 <th>Referred</th>
                 <td>
-                    <obs conceptId="$prep_referred"
+                    <obs conceptId="$prep_referred" id="referred"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
@@ -129,7 +134,7 @@
             </tr>
             <tr>
                 <th>Exposure type</th>
-                <td>  <obs conceptId="$exposure_type"
+                <td>  <obs conceptId="$exposure_type" id="exposure_type"
                            answerConceptIds="127910,165045, 160632"
                            answerLabels="Rape,Condom Burst,Others"
                            style="dropdown" />
@@ -142,4 +147,41 @@
         </table>
         <submit/>
     </ifMode>
+    <script type="text/javascript">
+        jq(function() {
+
+        var screeningType = jq("#flowsheet-edit-section-0").find("#screening_for select").change(screeningReasonSelected)
+
+       console.log("Run  ==> screeningReasonSelected");
+        screeningReasonSelected();
+
+        });
+
+        function screeningReasonSelected() {
+
+        var screening_type = jq("#flowsheet-edit-section-0").find("#screening_for select").val();
+
+
+        console.log("Screened for ==> "+screening_type);
+        if (screening_type == $prep_screening){
+                jq('#pep_use select').prop('disabled', true);
+                jq('#exposure_type select').prop('disabled', true);
+                jq('#status select').prop('disabled', false);
+                jq('#referred select').prop('disabled', false);
+
+        }else if (screening_type == $pep_use){
+                jq('#pep_use select').prop('disabled', false);
+                jq('#exposure_type select').prop('disabled', false);
+                jq('#status select').prop('disabled', true);
+                jq('#referred select').prop('disabled', true);
+        }else{
+                jq('#pep_use select').prop('disabled', true);
+                jq('#exposure_type select').prop('disabled', true);
+                jq('#status select').prop('disabled', true);
+                jq('#referred select').prop('disabled', true);
+
+           }
+        }
+
+    </script>
 </htmlform>

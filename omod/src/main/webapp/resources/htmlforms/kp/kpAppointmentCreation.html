@@ -77,9 +77,9 @@
 							});
 						</script>
 					</ifMode>
-					Appointment date: <encounterDate id="encounter-date" showTime="true" required="true"/>
+					Encounter date: <encounterDate id="encounter-date" showTime="true" required="true"/>
 				</td>
-				<td>Appointment Provider : <encounterProvider default="currentUser" /></td>
+				<td>Encounter Provider : <encounterProvider default="currentUser" /></td>
 				<td>Location: <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" /></td>
 			</tr>
 		</table>
@@ -92,38 +92,14 @@
 			<table border="0" width="100%" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="156" valign="top"><p>Appointment date</p></td>
-					<td width="156" valign="top"><p> <obs id="expiry-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
+					<td width="156" valign="top"><p> <obs id="tca-date" conceptId="5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
 					/></p></td>
 					<td width="156" valign="top"><p>Specify Appointment type:</p></td>
 					<td width="156" valign="top"><p>
-						<obs id="hiv-test1-result" conceptId="984"
-							 answerConceptIds="5665AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               159711AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               73193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               73354AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               129850AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               78032AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               77424AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               77429AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               159696AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               159708AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               79409AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               79554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               80193AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               82215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               82243AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               83533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               83563AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               129638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               1656AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               83050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               129658AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               86022AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               86556AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                                               "
-							 style="autocomplete" answerLabels="ARV Prophylaxis, Cervical Cancer Vaccine, Chickenpox (Varicella), Cholera Vaccine, Diphtheria, Flu (Influenza), Hepatitis A, Hepatitis B,
-                             Hib, Human Papillomavirus (HPV), Measles, Meningococcal, Mumps, Pneumococcal, Polio, Rotavirus, Rubella, Tetanus, Whooping Cough (Pertussis), Rabies, Smallpox, Typhoid Fever, and  Yellow Fever "/>
-
+						<obs id="hiv-test1-result" conceptId="160288"
+							 answerConceptIds="160523AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1283AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160521AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+							 answerLabels="Follow up,Lab tests,Counseling,Pharmacy Refill,Other,"
+							 style="dropdown" />
 					</p></td>
 				</tr>
 
