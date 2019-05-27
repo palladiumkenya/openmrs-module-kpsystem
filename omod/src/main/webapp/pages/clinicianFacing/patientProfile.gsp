@@ -36,7 +36,7 @@
                     <div class="info-header">
                         <i class="icon-diagnosis"></i>
                         <h3>Registration Info</h3>
-                        <span class="right">[ <a href="${editAliasLink}">Edit Client Alias</a>|<a href="${editContactInfoLink}">Edit Contact Info</a> ]</span>
+                        <span class="right"><i class="fa fa-pencil" style="font-size:20px;color: steelblue;"></i> &nbsp;<a href="${editAliasLink}">Edit Client Alias</a> &nbsp;&nbsp;&nbsp; <i class="fa fa-pencil" style="font-size:20px;color: steelblue">&nbsp;</i> <a href="${editContactInfoLink}">Edit Contact Info</a> </span>
                     </div>
                     <div class="info-body">
                         ${ ui.includeFragment("kenyaemr", "patient/patientSummary", [ patient: currentPatient ]) }
