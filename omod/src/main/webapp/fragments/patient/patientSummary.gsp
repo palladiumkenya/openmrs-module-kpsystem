@@ -7,12 +7,11 @@
 		</div>
 		<% } %>
 
-		<button type="button" class="ke-compact" onclick="ui.navigate('${ ui.pageLink("kenyaemr", "registration/editPatient", [ patientId: patient.id, returnUrl: ui.thisUrl() ]) }')">
-			<img src="${ ui.resourceLink("kenyaui", "images/glyphs/edit.png") }" />
-		</button>
-
 		<% patient.activeAttributes.each { %>
+		<% if (it.attributeType.name == 'Unknown patient' && (patient.familyName != "UNKNOWN" || patient.givenName != "UNKNOWN")) { %>
+		<% } else { %>
 		${ ui.includeFragment("kenyaui", "widget/dataPoint", [ label: ui.format(it.attributeType), value: it ]) }
+		<% } %>
 		<% } %>
 	</div>
 </div>

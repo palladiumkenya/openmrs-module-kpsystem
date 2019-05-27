@@ -10,7 +10,7 @@
 
 -->
 <htmlform formUuid="37f6bd8d-586a-4169-95fa-5781f987fe62" formName="Triage"
-          formEncounterType="d1059fb9-a079-4feb-a749-eedd709ae542" formVersion="1.0">
+          formEncounterType="55e67467-bd0b-4940-82c2-3281938afde3" formVersion="1.0">
     <style>
         #calculated-bmi {
         font-weight: bold;
@@ -274,10 +274,10 @@
         <includeIf velocityTest="13 > $patient.getAge($encounter.getEncounterDatetime())">
             <fieldset>
                 <legend>
-                    <lookup expression="fn.getConcept('CIEL:1343').name"/>
+                    MUAC
                 </legend>
                 <h3>
-                    <lookup expression="fn.getConcept('CIEL:1343').name"/>
+                    MUAC
                 </h3>
 
                 <p>

@@ -1,9 +1,5 @@
 <%
 	def baseLink = ui.pageLink("htmlformentryui", "htmlform/flowsheet", [patientId: currentPatient.patientId, headerForm: "kenyaemr:kpEnrollmentHeaderForm.xml", returnUrl: ui.thisUrl()])
-
-
-	def triageFlowsheets = "flowsheets=kenyaemr:triageForm.xml"
-
 	def clinicalEncounterFlowsheets = "flowsheets=kenyaemr:kpComplaints.xml&flowsheets=kenyaemr:kpPregnancyAndFamilyPlanning.xml&flowsheets=kenyaemr:kpChronicIllnesses.xml&\n" +
 			"flowsheets=kenyaemr:kpKnownAllergies.xml&flowsheets=kenyaemr:kpDrugReactions.xml&flowsheets=kenyaemr:kpImmunizationAndVaccination.xml&\n" +
 			"flowsheets=kenyaemr:kpSTScreening.xml&flowsheets=kenyaemr:kpHepatitisScreening.xml&\n" +
@@ -13,7 +9,6 @@
 	def psychosocialFlowsheets = "flowsheets=kenyaemr:kpPsychosocialScreening.xml&flowsheets=kenyaemr:kpViolenceScreening.xml&flowsheets=kenyaemr:kpCounsellingServices.xml"
 	def pepPrepFlowsheets = "flowsheets=kenyaemr:kpPrepPepScreening.xml"
 
-	def triageFlowsheeturl = baseLink + triageFlowsheets
 	def clinicalEncounterFlowsheeturl = baseLink + clinicalEncounterFlowsheets
 	def psychosocialFlowsheeturl = baseLink + psychosocialFlowsheets
 	def pepPrepFlowsheeturl = baseLink + pepPrepFlowsheets
@@ -34,12 +29,7 @@
 		</ul>
 		<ul>
 			<h3>Flowsheets</h3>
-			<li class="float-left" style="margin-top: 7px">
-				<a href="${ triageFlowsheeturl }" class="float-left">
-					<i class="fa fa-files-o"></i>
-					Triage
-				</a>
-			</li>
+
 			<li class="float-left" style="margin-top: 7px">
 				<a href="${ clinicalEncounterFlowsheeturl }" class="float-left">
 					<i class="fa fa-files-o"></i>
@@ -99,9 +89,7 @@
 		<ul>
 			<h3>Completed Forms</h3>
 			<li class="float-left" style="margin-top: 7px">
-
 				<%
-
 					def onEncounterClick = { encounter ->
 						"""kenyaemr.openEncounterDialog('${ currentApp.id }', ${ encounter.id });"""
 					}
