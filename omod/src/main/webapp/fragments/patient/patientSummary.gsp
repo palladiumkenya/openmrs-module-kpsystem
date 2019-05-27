@@ -8,7 +8,10 @@
 		<% } %>
 
 		<% patient.activeAttributes.each { %>
+		<% if (it.attributeType.name == 'Unknown patient' && (patient.familyName != "UNKNOWN" || patient.givenName != "UNKNOWN")) { %>
+		<% } else { %>
 		${ ui.includeFragment("kenyaui", "widget/dataPoint", [ label: ui.format(it.attributeType), value: it ]) }
+		<% } %>
 		<% } %>
 	</div>
 </div>
