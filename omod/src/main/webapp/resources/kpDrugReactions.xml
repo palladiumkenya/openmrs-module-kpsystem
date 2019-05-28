@@ -118,7 +118,7 @@
             <tr>
                 <th>Reaction</th>
                 <td>
-                    <obs conceptId="$reaction_type"
+                    <obs conceptId="$reaction_type" id="reaction_type"
                          answerConceptIds="1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121629AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148888AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148787AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120148AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,108AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,143264AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,142412AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118773AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140039AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139084AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159098AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
                                                                             111061AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,879AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121677AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159347AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,121AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,512AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabels="Unknown,Anaemia,Anaphylaxis,Angioedema,Arrhythmia,Bronchospasm,Cough,Diarrhea,Dystonia,Fever,Flushing,GI upset,Headache,Hepatotoxicity,Hives,Hypertension,Itching,Mental status change,Musculoskeletal pain,Myalgia,Rash,Other"
@@ -128,7 +128,7 @@
             <tr>
                 <th>Severity</th>
                 <td>
-                    <obs conceptId="$severity"
+                    <obs conceptId="$severity" id="severity"
                          answerConceptIds="1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,162819AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabels="Mild,Moderate,Severe,Fatal,Unknown" />
                 </td>
@@ -136,12 +136,12 @@
             <tr>
                 <th>Onset date </th>
                 <td>
-                    <obs conceptId="$onset" />
+                    <obs conceptId="$onset" id="onsetDate" />
                 </td>
             </tr>
             <tr>
                 <th>Action taken</th>
-                <td>  <obs conceptId="$action_taken"
+                <td>  <obs conceptId="$action_taken" id="action_taken"
                          answerConceptIds="1257AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabels="CONTINUE REGIMEN,SWITCHED REGIMEN,CHANGED DOSE,SUBSTITUTED DRUG,NONE,STOP,OTHER"
                          style="dropdown"
@@ -151,4 +151,55 @@
         </table>
         <submit/>
     </ifMode>
+    <script type="text/javascript">
+        jq(function() {
+        jq('#adverse_input select').prop('disabled', true);
+        jq('#reaction_type select').prop('disabled', true);
+        jq('#severity select').prop('disabled', true);
+        jq('#action_taken select').prop('disabled', true);
+        jq('#onsetDate input').prop('disabled', true);
+
+        var reaction = jq("#adverse_reaction_exists_input select").change(DrugReaction)
+
+        console.log("Run  ==> IlnessExists");
+        //ComplaintsExists();
+
+        });
+
+        function DrugReaction() {
+
+        var reaction_type = jq("#adverse_reaction_exists_input select").val();
+
+
+        console.log("Screened for ==> "+reaction_type);
+        if (reaction_type == 1066){
+        jq('#adverse_input select').prop('disabled', true);
+        jq('#reaction_type select').prop('disabled', true);
+        jq('#severity select').prop('disabled', true);
+        jq('#action_taken select').prop('disabled', true);
+        jq('#onsetDate input').prop('disabled', true);
+
+
+        jq('#adverse_input select').val('');
+        jq('#reaction_type select').val('');
+        jq('#severity select').val('');
+        jq('#action_taken select').val('');
+        jq('#onsetDate input').val('');
+
+        }
+        else{
+        jq('#adverse_input select').prop('disabled', false);
+        jq('#adverse_input select').val('');
+        jq('#reaction_type select').prop('disabled', false);
+        jq('#reaction_type select').val('');
+        jq('#severity select').prop('disabled', false);
+        jq('#severity select').val('');
+        jq('#$action_taken select').prop('disabled', false);
+        jq('#action_taken select').val('');
+
+        jq('#onsetDate input').prop('disabled', false);
+        jq('#onsetDate input').val('');
+        }
+        }
+    </script>
 </htmlform>

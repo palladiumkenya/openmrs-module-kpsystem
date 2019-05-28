@@ -124,11 +124,57 @@
             <tr>
                 <th>Onset Date</th>
                 <td>
-                    <obs class="onset-date" conceptId="164428AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  allowFutureDates="false" labelText=" " />
+                    <obs class="onset-date" conceptId="164428AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="onsetaDate"  allowFutureDates="false" labelText=" " />
                 </td>
             </tr>
 
         </table>
     </ifMode>
     <submit/>
+    <script type="text/javascript">
+        jq(function() {
+
+        jq('#causative_agent_input select').prop('disabled', true);
+        jq('#reaction_input select').prop('disabled', true);
+        jq('#severity_input select').prop('disabled', true);
+        jq('#onsetaDate input').prop('disabled', true);
+
+        var checkIfcomplaintsExist = jq("#complaint_exists_input select").change(ComplaintsExist)
+
+        console.log("Run  ==> complaints");
+        ComplaintsExist();
+
+        });
+
+        function ComplaintsExist() {
+
+        var complaints = jq("#complaint_exists_input select").val();
+
+
+        console.log("Screened for ==> "+complaints);
+        if (complaints == 1066){
+        jq('#causative_agent_input select').prop('disabled', true);
+        jq('#reaction_input select').prop('disabled', true);
+        jq('#severity_input select').prop('disabled', true);
+        jq('#onsetaDate input').prop('disabled', true);
+
+
+        jq('#causative_agent_input select').val('');
+        jq('#reaction_input select').val('');
+        jq('#severity_input select').val('');
+        jq('#onsetaDate input').val('');
+        }
+        else{
+        jq('#causative_agent_input select').prop('disabled', false);
+        jq('#causative_agent_input select').val('');
+        jq('#reaction_input select').prop('disabled', false);
+        jq('#reaction_input select').val('');
+        jq('#severity_input select').prop('disabled', false);
+        jq('#severity_input select').val('');
+        jq('#onsetaDate input').prop('disabled', false);
+        jq('#onsetaDate input').val('');
+
+        }
+        }
+    </script>
 </htmlform>

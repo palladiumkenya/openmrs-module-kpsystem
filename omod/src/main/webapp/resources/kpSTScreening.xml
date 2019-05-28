@@ -103,6 +103,8 @@
     </ifMode>
     <script type="text/javascript">
         jq(function() {
+        jq('#reason select').prop('disabled', true);
+        jq('#providerName input').prop('disabled', true);
 
         var stiScreening = jq("#stiScreeningDone select").change(StiScreened)
 

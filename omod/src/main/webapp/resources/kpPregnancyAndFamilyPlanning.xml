@@ -149,8 +149,8 @@
             </tr>
             <tr>
                 <th>Pregnant ?</th>
-                <td> <obs conceptId="$pregnant" id="$pregnantInput"
-                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                <td> <obs conceptId="$pregnant" id="pregnantInput"
+                          answerConceptIds="1065,1066"
                           answerLabel="Yes,No"
                           style="dropdown"/></td>
             </tr>
@@ -161,10 +161,10 @@
             <tr>
                 <th>Family Planning Status</th>
                 <td>
-                    <obs conceptId="$family_planning_status" id="family_planning_statusInput"
+                    <obs conceptId="$family_planning_status" id="fPsatatus"
                          answerConceptIds="965AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160652AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabels="On Family Planning,Not using Family Planning,Wants Family Planning"
-                         style="checkbox"/>
+                     />
                 </td>
 
             </tr>
@@ -181,7 +181,7 @@
 
             <tr>
                 <th>Family Planning Method </th>
-                <td>
+                <td id="familyplanning">
 
                     <obs conceptId="$family_planning_method"
                          answerConceptId="160570AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -250,7 +250,7 @@
                 <th>Cervical Cancer Screening</th>
                 <td>
                     <obs conceptId="$screened" id="screenedInput"
-                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerConceptIds="1065,1066"
                          answerLabel="Yes,No"
                          style="dropdown"/>
                 </td>
@@ -277,7 +277,7 @@
             <tr>
                 <th>Referred</th>
                 <td>
-                    <obs conceptId="$referred" id="referredInput"
+                    <obs conceptId="$referred" id="referred"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
@@ -288,4 +288,67 @@
         </table>
     </ifMode>
     <submit/>
+    <script type="text/javascript">
+        jq(function() {
+        var checkIfPregnant = jq("#pregnantInput select").change(CheckIfPregnant)
+        var cervicalCancer = jq("#screenedInput select").change(CervicalCancer)
+        console.log("Run  ==> checkIfPregnant");
+        });
+        function CervicalCancer(){
+        var cervical = jq("#screenedInput select").val();
+
+        if (cervical == 1066){
+        console.log("Run  ==> not cervical");
+        jq('#resultsInput select').prop('disabled', true);
+        jq('#resultsInput select').val('')
+        jq('#treatedInput select').prop('disabled', true);
+        jq('#treatedInput select').val('')
+        jq('#referredInput select').prop('disabled', true);
+        jq('#referredInput select').val('');
+
+        }
+        else{
+        console.log("Run  ==>  cervical");
+        jq('#resultsInput select').prop('disabled', false);
+        jq('#resultsInput select').val('');
+        jq('#treatedInput select').prop('disabled', false);
+        jq('#treatedInput select').val('');
+        jq('#referredInput select').prop('disabled', false);
+        jq('#referredInput select').val('');
+        }
+        }
+
+        function CheckIfPregnant() {
+
+        var Pregnant = jq("#pregnantInput select").val();
+
+        if (Pregnant == 1066){
+        console.log("Run  ==> not pregnant");
+        jq('#EDDInput input').prop('disabled', true);
+        jq('#EDDInput input').val('');
+        jq('#fPsatatus select').prop('disabled', false);
+        jq('#fPsatatus select').val('');
+        jq('#eligibleInput select').prop('disabled', false);
+        jq('#eligibleInput select').val('');
+        jq('#familyplanning').show();
+        jq('#referredInput select').prop('disabled', false);
+        jq('#referredInput select').val('');
+
+        }
+        else{
+        console.log("Run  ==> Pregnant");
+        jq('#EDDInput input').prop('disabled', false);
+        jq('#EDDInput input').val('');
+        jq('#fPsatatus select').prop('disabled', true);
+        jq('#fPsatatus select').val('');
+        jq('#eligibleInput select').prop('disabled', true);
+        jq('#eligibleInput select').val('');
+
+        jq('#familyplanning').hide();
+        jq('#referredInput select').prop('disabled', true);
+        jq('#referredInput select').val('');
+
+        }
+        }
+    </script>
 </htmlform>

@@ -180,4 +180,70 @@
         </table>
         <submit/>
     </ifMode>
+    <script type="text/javascript">
+        jq(function()
+        {
+        jq('#vaccine-type_input input').prop('disabled', true);
+        jq('#immunization_date_input input').prop('disabled', true);
+        jq('#side_effects_exists_input select').prop('disabled', true);
+        jq('#immunization_effects_text_input input').prop('disabled', true);
+        jq('#validity_input input').prop('disabled', true);
+
+        var immunizationDone = jq("#immunization_exists_input select").change(DrugReaction)
+        console.log("Run  ==> immunizationDone");
+        var sideEffects = jq("#side_effects_exists_input select").change(SideEffectExist)
+        console.log("Run  ==> sideEffects");
+        });
+        function SideEffectExist()
+        {
+        var side_EfectExist = jq("#immunization_exists_input select").val();
+
+        if (side_EfectExist == 1065)
+        {
+        jq('#immunization_effects_text_input input').prop('disabled', false);
+        jq('#immunization_effects_text_input input').val('');
+        }
+        else
+        {
+        jq('#immunization_effects_text_input input').prop('disabled', true);
+        jq('#immunization_effects_text_input input').val('');
+        }
+        }
+
+        function DrugReaction()
+        {
+
+        var immunizationResult = jq("#immunization_exists_input select").val();
+        if (immunizationResult == 1066)
+        {
+        jq('#vaccine-type_input input').prop('disabled', true);
+        jq('#immunization_date_input input').prop('disabled', true);
+        jq('#side_effects_exists_input select').prop('disabled', true);
+        jq('#immunization_effects_text_input input').prop('disabled', true);
+        jq('#validity_input input').prop('disabled', true);
+
+
+
+        jq('#vaccine-type_input input').val('');
+        jq('#immunization_date_input input').val('');
+        jq('#side_effects_exists_input select').val('');
+        jq('#immunization_effects_text_input input').val('');
+        jq('#validity_input input').val('');
+        }
+        else
+        {
+        jq('#vaccine-type_input input').prop('disabled', false);
+        jq('#vaccine-type_input input').val('');
+        jq('#immunization_date_input input').prop('disabled', false);
+        jq('#immunization_date_input input').val('');
+        jq('#side_effects_exists_input select').prop('disabled', false);
+        jq('#side_effects_exists_input select').val('');
+        jq('#validity_input input').prop('disabled', false);
+        jq('#validity_input input').val('');
+
+        }
+        }
+
+
+    </script>
 </htmlform>
