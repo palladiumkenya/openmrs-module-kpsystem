@@ -47,7 +47,7 @@
                         <!-- SCREENED FOR-->
                         <obs conceptId="$screened_for" id="screened_for"
                              answerConceptIds="$alcohol,$drugs,$risk"
-                             answerLabel="Alcohol usage, Drug overdose,Risk reduction"
+                             answerLabels="Alcohol usage, Drug overdose,Risk reduction"
                              style="dropdown"/>
                     </td>
                     <td>
