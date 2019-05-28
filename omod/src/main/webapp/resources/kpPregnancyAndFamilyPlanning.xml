@@ -18,7 +18,7 @@
         family_planning_status=160653
         family_planning_method=374
         eligible=165067
-        referred=165069
+        referredfp=165069
 
         screened=164934
         results=165026
@@ -102,7 +102,7 @@
                              style="checkbox"/>
                     </td>
                     <td>
-                        <obs conceptId="$referred" id="referredInput"
+                        <obs conceptId="referredfp" id="referredfpInput"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Yes,No"
                              style="dropdown"/>
@@ -240,7 +240,7 @@
             <tr>
                 <th>Referred For FP ?</th>
                 <td>
-                    <obs conceptId="$referred" id="referredInput"
+                    <obs conceptId="$referredfp" id="referredfpInput"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
