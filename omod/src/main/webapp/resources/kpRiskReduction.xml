@@ -13,9 +13,9 @@
           formEncounterType="dd06ac5c-70b4-4d8e-96a3-05edc9019f8f" formVersion="1.0">
 
     <macros>
-        risk_screened =165025
-        risk_results=165036
-        risk_treated=165039
+        risk_screened =165045
+        risk_results=165050
+        risk_treated=165053
         risk_referred=1272
         risk_remarks=161595
     </macros>
@@ -50,7 +50,7 @@
                     <td>
                         <!-- RESULTS -->
                         <obs conceptId="$risk_results"
-                             answerConceptIds="165067,165064"
+                             answerConceptIds="165081,165078"
                              answerLabels="Eligible,Not Eligible"
                              style="dropdown"/>
                     </td>
@@ -71,7 +71,7 @@
                     <td>
                         <!-- ACTION -->
                         <obs conceptId="$risk_remarks"
-                             answerConceptIds="165056,165055"
+                             answerConceptIds="165070,165069"
                              answerLabels="Counselling,EBl Provided"
                              style="dropdown" />
                     </td>
@@ -100,7 +100,7 @@
             <tr>
                 <th>Results</th>
                 <td> <obs conceptId="$risk_results"
-                          answerConceptIds="165067,165064"
+                          answerConceptIds="165081,165078"
                           answerLabels="Eligible,Not Eligible"
                           style="dropdown"/>
                 </td>
@@ -127,7 +127,7 @@
                 <th>Action done</th>
                 <td>
                     <obs conceptId="$risk_remarks"
-                         answerConceptIds="165056,165055"
+                         answerConceptIds="165070,165069"
                          answerLabels="Counselling,EBl Provided"
                          style="dropdown" />
                 </td>

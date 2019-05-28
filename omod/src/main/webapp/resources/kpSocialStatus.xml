@@ -24,13 +24,13 @@
           formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
 
     <macros>
-        peer_educator=164983
+        peer_educator=165004
         peer_worker_name=1473
-        regular_sex_partner=165006
+        regular_sex_partner=165027
         partner_name=161135
-        partner_alias=165007
+        partner_alias=165028
         partner_contact=159635
-        contact-regular-sex-partner=165008
+        contact-regular-sex-partner=165029
 
     </macros>
 

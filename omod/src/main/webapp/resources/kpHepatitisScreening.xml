@@ -14,10 +14,10 @@
 
     <macros>
         screened=164082
-        hepatitisB_screened =165019
-        hepatitisC_screened =165020
+        hepatitisB_screened =165040
+        hepatitisC_screened =165041
         hepatitis_results=1322
-        treated=165038
+        treated=165052
         referred=1272
         remarks=160632
     </macros>
