@@ -115,5 +115,47 @@
         <submit/>
 
     </ifMode>
+    <script type="text/javascript">
+        jq(function() {
 
+        var hivTested = jq("#ever_been_tested select").change(DrugReaction)
+
+        console.log("Run  ==> IlnessExists");
+        //ComplaintsExists();
+
+        });
+
+        function DrugReaction() {
+
+        var tested_result = jq("#ever_been_tested select").val();
+
+        if (tested_result == 1066){
+        jq('#test_results select').prop('disabled', true);
+        jq('#testing_date select').prop('disabled', true);
+        jq('#current_in_care select').prop('disabled', true);
+        jq('#facility_name input').prop('disabled', true);
+
+
+
+        jq('#test_results select').val('');
+        jq('#testing_date select').val('');
+        jq('#current_in_care select').val('');
+        jq('#facility_name input').val('');
+
+
+        }
+        else{
+        jq('#test_results select').prop('disabled', false);
+        jq('#test_results select').val('');
+        jq('#testing_date select').prop('disabled', false);
+        jq('#testing_date select').val('');
+        jq('#current_in_care select').prop('disabled', false);
+        jq('#current_in_care select').val('');
+        jq('#$facility_name input').prop('disabled', false);
+        jq('#facility_name input').val('');
+
+
+        }
+        }
+    </script>
 </htmlform>

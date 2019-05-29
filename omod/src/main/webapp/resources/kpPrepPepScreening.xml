@@ -39,7 +39,7 @@
                     <td width="156" valign="top"><p>Using pep</p></td>
                     <td width="156" valign="top"><p>Exposure type</p></td>
                     <td width="156" valign="top"><p>Remarks</p></td>
-                   </tr>
+                </tr>
             </thead>
             <tbody class="visit-table-body">
                 <tr class="visit-table-row">
@@ -151,8 +151,7 @@
         jq(function() {
 
         var screeningType = jq("#flowsheet-edit-section-0").find("#screening_for select").change(screeningReasonSelected)
-
-       console.log("Run  ==> screeningReasonSelected");
+        
         screeningReasonSelected();
 
         });
@@ -164,23 +163,25 @@
 
         console.log("Screened for ==> "+screening_type);
         if (screening_type == $prep_screening){
-                jq('#pep_use select').prop('disabled', true);
-                jq('#exposure_type select').prop('disabled', true);
-                jq('#status select').prop('disabled', false);
-                jq('#referred select').prop('disabled', false);
+
+        jq('#pep_use select').prop('disabled', true);
+        jq('#exposure_type select').prop('disabled', true);
+        jq('#status select').prop('disabled', false);
+        jq('#referred select').prop('disabled', false);
 
         }else if (screening_type == $pep_use){
-                jq('#pep_use select').prop('disabled', false);
-                jq('#exposure_type select').prop('disabled', false);
-                jq('#status select').prop('disabled', true);
-                jq('#referred select').prop('disabled', true);
+        jq('#pep_use select').prop('disabled', false);
+        jq('#exposure_type select').prop('disabled', false);
+        jq('#status select').prop('disabled', true);
+        jq('#referred select').prop('disabled', true);
         }else{
-                jq('#pep_use select').prop('disabled', true);
-                jq('#exposure_type select').prop('disabled', true);
-                jq('#status select').prop('disabled', true);
-                jq('#referred select').prop('disabled', true);
+        jq('#pep_use select').prop('disabled', true);
+        jq('#exposure_type select').prop('disabled', true);
+        jq('#status select').prop('disabled', true);
+        jq('#referred select').prop('disabled', true);
 
-           }
+
+        }
         }
 
     </script>

@@ -123,32 +123,63 @@
         </table>
         <submit/>
     </ifMode>
+
+
     <script type="text/javascript">
+        jq(function()
+        {
+        console.log("Run  ==> test");
+        jq('#chronic select').prop('disabled', true);
+        jq('#illness_nature_input input').prop('disabled', true);
+        jq('#start_date_input input').prop('disabled', true);
+        jq('#duration_input input').prop('disabled', true);
+        jq('#remarks_input input').prop('disabled', true);
+        jq('#illness_nature_input input').val('');
+        jq('#start_date_input input').val('');
+        jq('#duration_input input').val('');
+        jq('#remarks_input input').val('');
 
-        jq(function() {
+        console.log("Run  ==> end of test");
 
-        var illnessExists = jq("#flowsheet-edit-section-2").find("#illness_exists select").change(chronicIllnessExistsSelected)
-        chronicIllnessExistsSelected();
+        var illness = jq("#illness_exists select").change(IllnessExists)
+
+        console.log("Run  ==> illness");
+        IllnessExists();
 
         });
 
-        function chronicIllnessExistsSelected() {
-        var existsChoice = jq("#flowsheet-edit-section-2").find("#illness_exists select").val();
-        if (existsChoice == 1065){
-            jq('#chronic select').prop('disabled', false);
-            jq('#illness_nature_input input').prop('disabled', false);
-            jq('#start_date_input input').prop('disabled', false);
-            jq('#duration_input input').prop('disabled', false);
+        function IllnessExists() {
+
+        var screening_type = jq("#illness_exists select").val();
 
 
-        }else{
-            jq('#chronic select').prop('disabled', true);
-            jq('#illness_nature_input input').prop('disabled', true);
-            jq('#start_date_input input').prop('disabled', true);
-            jq('#duration_input input').prop('disabled', true);
+        console.log("Screened for ==> "+screening_type);
+        if (screening_type == 1066){
+        jq('#chronic select').prop('disabled', true);
+        jq('#illness_nature_input input').prop('disabled', true);
+        jq('#start_date_input input').prop('disabled', true);
+        jq('#duration_input input').prop('disabled', true);
+        jq('#remarks_input input').prop('disabled', true);
+        jq('#illness_nature_input input').val('');
+        jq('#start_date_input input').val('');
+        jq('#duration_input input').val('');
+        jq('#remarks_input input').val('');
 
-         }
         }
-
+        else{
+        jq('#chronic select').prop('disabled', false);
+        jq('#illness_nature_input input').prop('disabled', false);
+        jq('#illness_nature_input input').val('');
+        jq('#start_date_input input').prop('disabled', false);
+        jq('#start_date_input input').val('');
+        jq('#duration_input input').prop('disabled', false);
+        jq('#duration_input input').val('');
+        jq('#remarks_input input').prop('disabled', false);
+        jq('#remarks_input input').val('');
+        }
+        }
     </script>
+
+
+
 </htmlform>
