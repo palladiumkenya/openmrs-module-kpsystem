@@ -77,8 +77,8 @@
             </h3>
 
             <p class="left">
-                <obs conceptId="164930"
-                     answerConceptIds="164982,160578,164981,160666,157351"
+                <obs conceptId="164929"
+                     answerConceptIds="165083,160578,165084,165085,105"
                      answerLabels="Female sex worker, Male who have sex with Men, Male sex worker, People who use drugs, People who inject drugs"
                      id="kpType"/>
             </p>
@@ -110,7 +110,7 @@
             </h3>
 
             <p class="left">
-                <obs conceptId="164984" id="hotspot_frequented" />
+                <obs conceptId="165005" id="hotspot_frequented" />
             </p>
 
         </fieldset>
@@ -124,7 +124,7 @@
             </h3>
 
             <p class="left">
-                <obs conceptId="164986"/>
+                <obs conceptId="165007"/>
             </p>
 
         </fieldset>
@@ -138,7 +138,7 @@
             </h3>
 
             <p>
-                <obs conceptId="164987"/>
+                <obs conceptId="165008"/>
             </p>
         </fieldset>
 
@@ -151,7 +151,7 @@
             </h3>
 
             <p>
-                <obs conceptId="164988" />
+                <obs conceptId="165009" />
             </p>
         </fieldset>
 
@@ -160,7 +160,7 @@
             <h3>Average Number of drug injection episodes per week</h3>
 
             <p class="left">
-                <obs conceptId="164989" />
+                <obs conceptId="165010" />
             </p>
         </fieldset>
 

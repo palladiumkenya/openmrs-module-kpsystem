@@ -13,7 +13,7 @@
           formEncounterType="28883f27-dfd1-4ce5-89f0-2a4f87974d15" formVersion="1.0">
 
     <macros>
-        counselling_type=165056
+        counselling_type=165070
         referred=1272
         remarks=160632
     </macros>

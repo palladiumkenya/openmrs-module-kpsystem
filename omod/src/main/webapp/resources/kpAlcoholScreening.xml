@@ -13,9 +13,9 @@
           formEncounterType="a3ce2705-d72d-458a-a76c-dae0f93398e7" formVersion="1.0">
 
     <macros>
-        alcohol_screened =165023
-        alcohol_results=165028
-        alcohol_treated=165038
+        alcohol_screened =165043
+        alcohol_results=165047
+        alcohol_treated=165052
         alcohol_referred=1272
         alcohol_remarks=160632
     </macros>
