@@ -56,12 +56,12 @@ public class ClientSupportFragmentController {
 
 	public static SimpleObject buildEncounterData(Set<Obs> obsList, Encounter e) {
 
-		int KPTYPE = 164930;
-		int HOTSPOT = 164984;
-		int SEX_ACTS_PER_WEEK = 164986;
-		int ANAL_SEX_ACTS_PER_WEEK = 164987;
-		int DAILY_DRUG_INJECTIONS = 164988;
-		int WEEKLY_DRUG_INJECTIONS = 164989;
+		int KPTYPE = 160581;
+		int HOTSPOT = 165005;
+		int SEX_ACTS_PER_WEEK = 165007;
+		int ANAL_SEX_ACTS_PER_WEEK = 165008;
+		int DAILY_DRUG_INJECTIONS = 165009;
+		int WEEKLY_DRUG_INJECTIONS = 165010;
 
 
 		String kpType = null;
@@ -75,15 +75,15 @@ public class ClientSupportFragmentController {
 		for(Obs obs:obsList) {
 
 			if (obs.getConcept().getConceptId().equals(KPTYPE) ) {
-				if (obs.getValueCoded().getConceptId().equals(164982)) {
+				if (obs.getValueCoded().getConceptId().equals(165083)) {
 					kpType = "FSW";
 				} else if (obs.getValueCoded().getConceptId().equals(160578)) {
 					kpType = "MSM";
-				} else if (obs.getValueCoded().getConceptId().equals(164981)) {
+				} else if (obs.getValueCoded().getConceptId().equals(165084)) {
 					kpType = "MSW";
-				} else if (obs.getValueCoded().getConceptId().equals(160666)) {
+				} else if (obs.getValueCoded().getConceptId().equals(165085)) {
 					kpType = "Drug User";
-				} else if (obs.getValueCoded().getConceptId().equals(157351)) {
+				} else if (obs.getValueCoded().getConceptId().equals(105)) {
 					kpType = "Drug Injector";
 				}
 			} else if (obs.getConcept().getConceptId().equals(HOTSPOT)) {

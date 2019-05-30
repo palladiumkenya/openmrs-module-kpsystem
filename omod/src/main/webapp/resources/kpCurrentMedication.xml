@@ -13,7 +13,7 @@
           formEncounterType="89767cca-13b9-411a-aa59-98656b096fd9" formVersion="1.0">
 
     <macros>
-        currently_on_drugs=160666
+        currently_on_drugs=105
         medication_nature=160742
         drug_name=1282
         start_date=162502
