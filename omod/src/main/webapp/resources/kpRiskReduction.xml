@@ -50,7 +50,7 @@
                     <td>
                         <!-- RESULTS -->
                         <obs conceptId="$risk_results"
-                             answerConceptIds="165081,165078"
+                             answerConceptIds="165087,165078"
                              answerLabels="Eligible,Not Eligible"
                              style="dropdown"/>
                     </td>
@@ -100,7 +100,7 @@
             <tr>
                 <th>Results</th>
                 <td> <obs conceptId="$risk_results"
-                          answerConceptIds="165081,165078"
+                          answerConceptIds="165087,165078"
                           answerLabels="Eligible,Not Eligible"
                           style="dropdown"/>
                 </td>
