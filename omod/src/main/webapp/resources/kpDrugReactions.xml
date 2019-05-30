@@ -161,7 +161,7 @@
 
         var reaction = jq("#adverse_reaction_exists_input select").change(DrugReaction)
 
-        console.log("Run  ==> IlnessExists");
+        console.log("Run  ==> reaction");
         //ComplaintsExists();
 
         });
@@ -194,7 +194,7 @@
         jq('#reaction_type select').val('');
         jq('#severity select').prop('disabled', false);
         jq('#severity select').val('');
-        jq('#$action_taken select').prop('disabled', false);
+        jq('#action_taken select').prop('disabled', false);
         jq('#action_taken select').val('');
 
         jq('#onsetDate input').prop('disabled', false);
