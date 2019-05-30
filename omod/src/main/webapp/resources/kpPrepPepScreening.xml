@@ -14,15 +14,15 @@
 
     <macros>
         screened_for=164082
-        results=165028
+        results=165047
 
         pep_use =164845
-        prep_screening =165062
+        prep_screening =165076
 
-        exposure_type=165046
+        exposure_type=165060
         prep_remarks=160632
 
-        prep_eligible=165065
+        prep_eligible=165080
         prep_referred=1272
     </macros>
 
@@ -78,7 +78,7 @@
                     <td>
                         <!-- EXPOSURE TYPE -->
                         <obs conceptId="$exposure_type"
-                             answerConceptIds="127910,165045, 160632"
+                             answerConceptIds="127910,165059, 160632"
                              answerLabels="Rape,Condom Burst,Others"
                              style="dropdown" />
                     </td>
@@ -135,7 +135,7 @@
             <tr>
                 <th>Exposure type</th>
                 <td>  <obs conceptId="$exposure_type" id="exposure_type"
-                           answerConceptIds="127910,165045, 160632"
+                           answerConceptIds="127910,165059, 160632"
                            answerLabels="Rape,Condom Burst,Others"
                            style="dropdown" />
                 </td>
