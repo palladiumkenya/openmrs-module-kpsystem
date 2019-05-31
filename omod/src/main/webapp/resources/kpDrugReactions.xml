@@ -19,6 +19,7 @@
         severity=162760
         onset=160753
         action_taken=1255
+        remarks=160632
 
     </macros>
 
@@ -142,11 +143,15 @@
             <tr>
                 <th>Action taken</th>
                 <td>  <obs conceptId="$action_taken" id="action_taken"
-                         answerConceptIds="1257AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                         answerLabels="CONTINUE REGIMEN,SWITCHED REGIMEN,CHANGED DOSE,SUBSTITUTED DRUG,NONE,STOP,OTHER"
+                         answerConceptIds="1257AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1259AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1258AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1260AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622"
+                         answerLabels="CONTINUE REGIMEN,SWITCHED REGIMEN,CHANGED DOSE,SUBSTITUTED DRUG,NONE,STOP REGIMEN,OTHER"
                          style="dropdown"
                     />
                 </td>
+            </tr>
+            <tr>
+                <th>Other(Specify)</th>
+                <td><obs conceptId="$remarks" id="remarks_input" /></td>
             </tr>
         </table>
         <submit/>
@@ -158,13 +163,35 @@
         jq('#severity select').prop('disabled', true);
         jq('#action_taken select').prop('disabled', true);
         jq('#onsetDate input').prop('disabled', true);
+        jq('#remarks_input input').prop('disabled', true);
+
 
         var reaction = jq("#adverse_reaction_exists_input select").change(DrugReaction)
+        var reaction = jq("#action_taken select").change(ActionTaken)
 
         console.log("Run  ==> reaction");
-        //ComplaintsExists();
+
 
         });
+
+        function ActionTaken() {
+
+        var Action_taken = jq("#action_taken select").val();
+
+        if (Action_taken == 5622){
+
+        jq('#remarks_input input').prop('disabled', false);
+
+        jq('#remarks_input input').val('');
+
+        }
+        else{
+
+
+        jq('#remarks_input input').prop('disabled', true);
+        jq('#remarks_input input').val('');
+        }
+        }
 
         function DrugReaction() {
 
