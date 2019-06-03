@@ -196,7 +196,7 @@
         });
         function SideEffectExist()
         {
-        var side_EfectExist = jq("#immunization_exists_input select").val();
+        var side_EfectExist = jq("#side_effects_exists_input select").val();
 
         if (side_EfectExist == 1065)
         {

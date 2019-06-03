@@ -177,5 +177,67 @@
         <submit/>
 
     </ifMode>
+    <script type="text/javascript">
+        jq(function() {
 
+        jq('#$peer_worker_name input').prop('disabled', true);
+        jq('#partner_name input').prop('disabled', true);
+        jq('#partner_alias input').prop('disabled', true);
+        jq('#partner_contact input').prop('disabled', true);
+        jq('#contact-regular-sex-partner select').prop('disabled', true);
+
+
+        var contacted = jq("#peer-educator select").change(ContactPeer)
+        var regularSexPartner = jq("#regular-sex-partner select").change(RegularSexPartner)
+
+        //console.log("Run  ==> contacted");
+        });
+
+        function RegularSexPartner() {
+
+        var regularSex = jq("#regular-sex-partner select").val();
+        console.log(regularSex);
+        if (regularSex == 1066){
+        console.log("tested");
+        jq('#partner_name input').prop('disabled', true);
+        jq('#partner_name input').val('');
+        jq('#partner_alias input').prop('disabled', true);
+        jq('#partner_alias input').val('');
+        jq('#partner_contact input').prop('disabled', true);
+        jq('#partner_contact input').val('');
+        jq('#contact-regular-sex-partner select').prop('disabled', true);
+        jq('#contact-regular-sex-partner select').val('');
+
+        }
+        else{
+        jq('#partner_name input').prop('disabled', false);
+        jq('#partner_name input').val('');
+        jq('#partner_alias input').prop('disabled', false);
+        jq('#partner_alias input').val('');
+        jq('#partner_contact input').prop('disabled', false);
+        jq('#partner_contact input').val('');
+        jq('#contact-regular-sex-partner select').prop('disabled', false);
+        jq('#contact-regular-sex-partner select').val('');
+
+        }
+        }
+
+
+        function ContactPeer() {
+
+        var peer = jq("#peer-educator select").val();
+        console.log(peer);
+        if (peer == 1066){
+        jq('#$peer_worker_name input').prop('disabled', true);
+
+        jq('#$peer_worker_name input').val('');
+
+        }
+        else{
+        jq('#$peer_worker_name input').prop('disabled', false);
+        jq('#$peer_worker_name input').val('');
+
+        }
+        }
+    </script>
 </htmlform>

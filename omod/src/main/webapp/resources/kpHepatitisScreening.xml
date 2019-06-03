@@ -98,8 +98,8 @@
             </tr>
             <tr>
                 <th>Results</th>
-                <td> <obs conceptId="$hepatitis_results"
-                          answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                <td> <obs conceptId="$hepatitis_results" id="results"
+                          answerConceptIds="664,703, 782AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                           answerLabels="Negative,Positive,Vaccinated"
                           style="dropdown"/>
                 </td>
@@ -107,7 +107,7 @@
             <tr>
                 <th>Treated</th>
                 <td>
-                    <obs conceptId="$treated"
+                    <obs conceptId="$treated" id="treated"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
@@ -116,7 +116,7 @@
             <tr>
                 <th>Referred</th>
                 <td>
-                    <obs conceptId="$referred"
+                    <obs conceptId="$referred" id="referred"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
@@ -124,10 +124,66 @@
             </tr>
             <tr>
                 <th>Remarks</th>
-                <td><obs conceptId="$remarks" id="remarks_input" /></td>
+                <td><obs conceptId="$remarks" id="remarks_input"  /></td>
             </tr>
         </table>
         <submit/>
     </ifMode>
+    <script type="text/javascript">
+        jq(function() {
+        jq('#results select').prop('disabled', true);
+        jq('#treated select').prop('disabled', true);
+        jq('#treated select').val('');
+        jq('#referred select').prop('disabled', true);
+        jq('#referred select').val('');
+        jq('#remarks_input select').prop('disabled', true);
+        jq('#remarks_input input').val('');
 
+        var Screened = jq("#screened select").change(ScreenedFor)
+
+        var Screened = jq("#results select").change(ScreeningResults)
+
+        console.log("Run  ==> Screened");
+        });
+
+        function ScreenedFor() {
+
+        var screenedfor = jq("#screened select").val();
+
+        if (screenedfor == 165040 || screenedfor==165041){
+
+        jq('#results select').prop('disabled', false);
+        }
+        else{
+        jq('#results select').prop('disabled', true);
+        }
+        }
+
+        function ScreeningResults() {
+
+        var negative = jq("#results select").val();
+
+        if (negative == 703){
+        jq('#treated select').prop('disabled', false);
+        jq('#referred select').prop('disabled', false);
+        jq('#remarks_input select').prop('disabled', false);
+
+
+        jq('#treated select').val('');
+        jq('#referred select').val('');
+        jq('#remarks_input select').val('');
+
+        }
+        else{
+        jq('#treated select').prop('disabled', true);
+        jq('#treated select').val('');
+        jq('#referred select').prop('disabled', true);
+        jq('#referred select').val('');
+        jq('#remarks_input select').prop('disabled', true);
+        jq('#remarks_input selct').val('');
+
+
+        }
+        }
+    </script>
 </htmlform>

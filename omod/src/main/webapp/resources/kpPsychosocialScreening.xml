@@ -99,8 +99,8 @@
             </tr>
             <tr>
                 <th>Results</th>
-                <td>  <obs conceptId="$results"
-                           answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                <td>  <obs conceptId="$results" id="results"
+                           answerConceptIds="664,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                            answerLabels="Negative,Positive"
                            style="dropdown"/>
                 </td>
@@ -117,7 +117,7 @@
             <tr>
                 <th>Referred</th>
                 <td>
-                    <obs conceptId="$referred"
+                    <obs conceptId="$referred" id="referred"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Yes,No"
                          style="dropdown"/>
@@ -130,4 +130,79 @@
         </table>
         <submit/>
     </ifMode>
+    <script type="text/javascript">
+        jq(function()
+        {
+        jq('#results select').prop('disabled', true);
+        jq('#treated_psychosocialInput select').prop('disabled', true);
+        jq('#referred select').prop('disabled', true);
+        jq('#remarks_input input').prop('disabled', true);
+
+        var screened_for = jq("#screened_for select").change(Screened)
+
+        var results = jq("#results select").change(ScreeningResults)
+
+        });
+        function ScreeningResults()
+        {
+        var results = jq("#results select").val();
+
+        if (results == 664)
+        {
+        console.log("result");
+        console.log(results);
+        jq('#treated_psychosocialInput select').prop('disabled', true);
+        jq('#referred select').prop('disabled', true);
+
+
+        jq('#treated_psychosocialInput select').val('');
+        jq('#referred select').val('');
+
+        }
+        else
+        {
+        jq('#treated_psychosocialInput select').prop('disabled', false);
+        jq('#treated_psychosocialInput select').val('');
+        jq('#referred select').prop('disabled', false);
+        jq('#referred select').val('');
+
+        }
+        }
+
+        function Screened()
+        {
+
+        var screenedfor = jq("#screened_for select").val();
+        if (screenedfor == "")
+        {
+        console.log("screened null");
+        console.log(screenedfor);
+        jq('#results select').prop('disabled', true);
+        jq('#treated_psychosocialInput select').prop('disabled', true);
+        jq('#referred select').prop('disabled', true);
+        jq('#remarks_input input').prop('disabled', true);
+
+        jq('#results select').val('');
+        jq('#treated_psychosocialInput select').val('');
+        jq('#referred select').val('');
+        jq('#remarks_input input').val('');
+
+        }
+        else
+        {
+        console.log("screened not null");
+        jq('#results select').prop('disabled', false);
+        jq('#results select').val('');
+        jq('#treated_psychosocialInput select').prop('disabled', false);
+        jq('#treated_psychosocialInput select').val('');
+        jq('#referred select').prop('disabled', false);
+        jq('#referred select').val('');
+        jq('#remarks_input input').prop('disabled', false);
+        jq('#remarks_input input').val('');
+
+        }
+        }
+
+
+    </script>
 </htmlform>
