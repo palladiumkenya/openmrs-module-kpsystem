@@ -102,7 +102,7 @@
                              style="checkbox"/>
                     </td>
                     <td>
-                        <obs conceptId="referredfp" id="referredfpInput"
+                        <obs conceptId="$referredfp" id="referredfpInput"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Yes,No"
                              style="dropdown"/>
