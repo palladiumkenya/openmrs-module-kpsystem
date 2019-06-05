@@ -18,11 +18,11 @@ import static org.openmrs.module.kenyacore.report.ReportUtils.map;
 import static org.openmrs.module.kenyaemr.reporting.EmrReportingUtils.cohortIndicator;
 
 /**
- * Created by dev on 1/14/17.
+ * Created by dev on 04/06/19.
  */
 
 /**
- * Library of HIV related indicator definitions. All indicators require parameters ${startDate} and ${endDate}
+ * Library of KP related indicator definitions. All indicators require parameters ${startDate} and ${endDate}
  */
 @Component
 public class ETLMoh731BIndicatorLibrary {
