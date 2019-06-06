@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="a5fdc7a4-093c-4157-979d-ec5d11d4c5f1" formName="Enrollment Header"
+<htmlform formUuid="c7f47cea-207b-11e9-ab14-d663bd873d93" formName="Enrollment Header"
           formEncounterType="c7f47a56-207b-11e9-ab14-d663bd873d93" formVersion="1.0">
 
     <macros>
@@ -55,6 +55,7 @@
                     </td>
                     <td>
                         <obs id="enrollment_area" conceptId="$service_area"/>
+
                     </td>
                     <td>
                         <obs id="peer-educator" conceptId="$peer_educator"
@@ -179,12 +180,6 @@
     </ifMode>
     <script type="text/javascript">
         jq(function() {
-
-        jq('#$peer_worker_name input').prop('disabled', true);
-        jq('#partner_name input').prop('disabled', true);
-        jq('#partner_alias input').prop('disabled', true);
-        jq('#partner_contact input').prop('disabled', true);
-        jq('#contact-regular-sex-partner select').prop('disabled', true);
 
 
         var contacted = jq("#peer-educator select").change(ContactPeer)
