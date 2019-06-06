@@ -17,62 +17,54 @@
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#hiv :input").prop("disabled", true);
-            $('#ever_been_tested input').prop("disabled", false);
+              $("#hiv :input").prop("disabled", true);
+              $('#ever_been_tested input').prop("disabled", false);
 
             $("#ever_been_tested").change(EverBeenTested)
-            $("#test_results").change(TestResults)
-            $("#currently_in_care").change(CurrentlyIncare)
-            $("#referral").change(Referral)
+            $("#testResults").change(TestResults)
+            $("#currentlyincare").change(CurrentlyIncare)
+            $("#referral_id").change(Referral)
             //console.log("Run  ==> contacted");
         });
         var CurrentlyIncare  = function (){
 
-            var incare = jq("#currently_in_care input").val();
+            var incare =  getValue('currentlyincare.value');
             if (incare == 1066 )
             {
 
-                $('#referral input').prop("disabled", false);
-                $('#referred_to input').prop("disabled", false);
+                $('#referral_id input').prop("disabled", false);
+                $('#referred_to_input input').prop("disabled", false);
 
 
             }else
             {
-                $('#referral input').prop("disabled", true);
-                $('#referred_to input').prop("disabled", true);
+                $('#referral_id input').prop("disabled", true);
+                $('#referred_to_input input').prop("disabled", true);
             }
         }
         var Referral  = function (){
 
-            var referred = jq("#referral input").val();
-            if (referred == 1066 )
+            var referred =  getValue('referral_id.value');
+            if (referred == 1065 )
             {
-                $('#referred_to input').prop("disabled", false);
+                $('#referred_to_input input').prop("disabled", false);
 
             }else
             {
-                $('#referred_to input').prop("disabled", true);
+                $('#referred_to_input input').prop("disabled", true);
             }
         }
 
         var TestResults  = function (){
 
-            var results = jq("#test_results input").val();
+            var results =  getValue('testResults.value');
             if (results == 703 )
             {
                 $("#hiv :input").prop("disabled", true);
                 $('#ever_been_tested input').prop("disabled", false);
+                $('#testResults input').prop("disabled", false);
                 $('#testing-date input').prop("disabled", false);
-                setValue("testing-date.value", "");
-                setValue("currently_in_care.value", "");
-                setValue("referral.value", "");
-                setValue("referred_to.value", "");
-                setValue("date_started_ART.value", "");
-                setValue("facility.value", "");
-                setValue("currentART_medication.value", "");
-                setValue("most_resent_VL.value", "");
-                setValue("vl_test_date.value", "");
-                setValue("provider.value", "");
+
 
             }else
             {
@@ -81,30 +73,29 @@
         }
         function EverBeenTested() {
 
-            var everTested = getValue("ever_been_tested.value");
+            var everTested =   getValue('ever_been_tested.value');
+            console.log(everTested)
             if (everTested == 1066 )
             {
                 $("#hiv :input").prop("disabled", true);
                 $('#ever_been_tested input').prop("disabled", false);
+                //$("#hiv :input").val('');
 
             }else
             {
                 $("#hiv :input").prop("disabled", false);
 
-                $("#hiv :input").val('');
-
-                $('#testing-date').val('');
-                setValue("test_results.value", "");
-                setValue("testing-date.value", "");
-                setValue("currently_in_care.value", "");
-                setValue("referral.value", "");
-                setValue("referred_to.value", "");
-                setValue("date_started_ART.value", "");
-
-                setValue("currentART_medication.value", "");
-                setValue("most_resent_VL.value", "");
-                setValue("vl_test_date.value", "");
-                setValue("provider.value", "");
+                // $('#testing-date').val('');
+                // setValue("testResults.value", "");
+                // setValue("testing-date.value", "");
+                // setValue("referral_id.value", "");
+                // setValue("referred_to_input.value", "");
+                // setValue("date_started_ART.value", "");
+                //
+                // setValue("currentART_medication.value", "");
+                // setValue("most_resent_VL.value", "");
+                // setValue("vl_test_date.value", "");
+                // setValue("provider.value", "");
             }
         }
     </script>
@@ -204,7 +195,7 @@
 
 
 
-                    <td width="156" valign="top" colspan="2"><p>Test results:  <obs id="test_results" class="consent" conceptId="159427"
+                    <td width="156" valign="top" colspan="2"><p>Test results:  <obs id="testResults" class="consent" conceptId="159427"
                                                            answerConceptIds="703,
                                                             664"  answerLabels="Positive,Negative"
                                                            style="radio" rows="2" />
@@ -217,17 +208,17 @@
 
                 <tr>
                     <td width="156" valign="top"><p>Currently in care</p></td>
-                    <td width="156" valign="top"><p>  <obs id="currently_in_care" class="consent" conceptId="159811"
+                    <td width="156" valign="top"><p>  <obs id="currentlyincare" class="consent" conceptId="159811"
                                                            style="radio" answerConceptIds="1065,1066" /></p></td>
 
 
 
-                    <td width="156" valign="top"><p> Referral:  <obs id="referral" class="consent" conceptId="164849"
+                    <td width="156" valign="top"><p> Referral:  <obs id="referral_id" class="consent" conceptId="164849"
                                                            style="radio" answerConceptIds="1065,1066" /></p></td>
 
                     <td width="156" valign="top"><p></p></td>
 
-                    <td width="156" valign="top" colspan="4"><p> Facility where treatment is being offered: <encounterLocation id="referred_to" default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
+                    <td width="156" valign="top" colspan="4"><p> Facility where treatment is being offered: <encounterLocation id="referred_to_input" default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
                     </p></td>
 
                 </tr>

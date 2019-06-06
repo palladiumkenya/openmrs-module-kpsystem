@@ -174,7 +174,7 @@
 
     <!-- kp client Hiv status -->
     <bean id="kenyaemr.common.form.kpHIVstatus" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-        <property name="targetUuid" value="b315a664-4a15-11e9-8646-d663bd873d93" />
+        <property name="targetUuid" value="99979576-8854-11e9-bc42-526af7764f64" />
         <property name="apps">
             <set>
                 <ref bean="kenyaemr.app.registration" />
