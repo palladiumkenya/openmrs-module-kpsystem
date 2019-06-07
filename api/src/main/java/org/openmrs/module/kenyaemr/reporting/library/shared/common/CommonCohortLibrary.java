@@ -63,6 +63,71 @@ public class CommonCohortLibrary {
 	}
 
 	/**
+	 * Clients who are female sex workers
+	 * @return the cohort definition
+	 */
+	public CohortDefinition fsw() {
+		GenderCohortDefinition cd = new GenderCohortDefinition();
+		cd.setName("fsw");
+		cd.setMaleIncluded(true);
+		return cd;
+	}
+	/**
+	 * Male Clients have sex with males
+	 * @return the cohort definition
+	 */
+	public CohortDefinition msm() {
+		GenderCohortDefinition cd = new GenderCohortDefinition();
+		cd.setName("msm");
+		cd.setMaleIncluded(true);
+		return cd;
+	}
+
+	/**
+	 * Clients who are Male sex workers
+	 * @return the cohort definition
+	 */
+	public CohortDefinition msw() {
+		GenderCohortDefinition cd = new GenderCohortDefinition();
+		cd.setName("msw");
+		cd.setMaleIncluded(true);
+		return cd;
+	}
+
+	/**
+	 * Clients who inject drugs
+	 * @return the cohort definition
+	 */
+	public CohortDefinition pwid() {
+		GenderCohortDefinition cd = new GenderCohortDefinition();
+		cd.setName("pwid");
+		cd.setMaleIncluded(true);
+		return cd;
+	}
+
+	/**
+	 * Clients who use drugs
+	 * @return the cohort definition
+	 */
+	public CohortDefinition pwud() {
+		GenderCohortDefinition cd = new GenderCohortDefinition();
+		cd.setName("pwud");
+		cd.setMaleIncluded(true);
+		return cd;
+	}
+
+	/**
+	 * Clients who are transgender
+	 * @return the cohort definition
+	 */
+	public CohortDefinition transgender() {
+		GenderCohortDefinition cd = new GenderCohortDefinition();
+		cd.setName("transgender");
+		cd.setMaleIncluded(true);
+		return cd;
+	}
+
+	/**
 	 * Patients who at most maxAge years old on ${effectiveDate}
 	 * @return the cohort definition
 	 */
