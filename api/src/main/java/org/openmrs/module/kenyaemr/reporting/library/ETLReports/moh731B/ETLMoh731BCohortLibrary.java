@@ -2048,7 +2048,12 @@ public class ETLMoh731BCohortLibrary {
     //tbClientsOnHAARTFsw
     public CohortDefinition tbClientsOnHAARTFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select tb.client_id from etl_tb_screening tb inner join etl_hts_referral_and_linkage r on tb.client_id = r.client_id\n" +
+                "inner join etl_hiv_status hs on tb.client_id = hs.client_id\n" +
+                "inner join etl_client_social_status ss on tb.client_id = ss.client_id\n" +
+                "where r.art_start_date <= tb.visit_date or (hs.art_start_date <= tb.visit_date and hs.current_in_care =\"Yes\")\n" +
+                "    and ss.key_population_type = \"Female sex worker\"\n" +
+                "and date(tb.visit_date) between date(:startDate) and date(:endDate) group by tb.client_id;\n";
         cd.setName("tbClientsOnHAARTFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2061,7 +2066,12 @@ public class ETLMoh731BCohortLibrary {
 //tbClientsOnHAARTMsm
     public CohortDefinition tbClientsOnHAARTMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select tb.client_id from etl_tb_screening tb left join etl_hts_referral_and_linkage r on tb.client_id = r.client_id\n" +
+                "                                             inner join etl_hiv_status hs on tb.client_id = hs.client_id\n" +
+                "                                             inner join etl_client_social_status ss on tb.client_id = ss.client_id\n" +
+                "where (r.art_start_date <= tb.visit_date or (hs.art_start_date <= tb.visit_date and hs.current_in_care =\"Yes\"))\n" +
+                "  and ss.key_population_type = \"Male who have sex with Men\" and tb.tb_results_status = \"TB Confirmed\"\n" +
+                "  and date(tb.visit_date) between date(:startDate) and date(:endDate) group by tb.client_id;";
         cd.setName("tbClientsOnHAARTMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2074,7 +2084,12 @@ public class ETLMoh731BCohortLibrary {
     //tbClientsOnHAARTMsw
     public CohortDefinition tbClientsOnHAARTMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select tb.client_id from etl_tb_screening tb left join etl_hts_referral_and_linkage r on tb.client_id = r.client_id\n" +
+                "                                             inner join etl_hiv_status hs on tb.client_id = hs.client_id\n" +
+                "                                             inner join etl_client_social_status ss on tb.client_id = ss.client_id\n" +
+                "where (r.art_start_date <= tb.visit_date or (hs.art_start_date <= tb.visit_date and hs.current_in_care =\"Yes\"))\n" +
+                "  and ss.key_population_type = \"Male sex worker\" and tb.tb_results_status = \"TB Confirmed\"\n" +
+                "  and date(tb.visit_date) between date(:startDate) and date(:endDate) group by tb.client_id;";
         cd.setName("tbClientsOnHAARTMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2083,9 +2098,15 @@ public class ETLMoh731BCohortLibrary {
 
         return cd;
     }
+    //tbClientsOnHAARTPwid
     public CohortDefinition tbClientsOnHAARTPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select tb.client_id from etl_tb_screening tb left join etl_hts_referral_and_linkage r on tb.client_id = r.client_id\n" +
+                "                                             inner join etl_hiv_status hs on tb.client_id = hs.client_id\n" +
+                "                                             inner join etl_client_social_status ss on tb.client_id = ss.client_id\n" +
+                "where (r.art_start_date <= tb.visit_date or (hs.art_start_date <= tb.visit_date and hs.current_in_care =\"Yes\"))\n" +
+                "  and ss.key_population_type = \"People who inject drugs\" and tb.tb_results_status = \"TB Confirmed\"\n" +
+                "  and date(tb.visit_date) between date(:startDate) and date(:endDate) group by tb.client_id;";
         cd.setName("tbClientsOnHAARTPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2095,10 +2116,15 @@ public class ETLMoh731BCohortLibrary {
         return cd;
     }
 
-
+//tbClientsOnHAARTPwud
     public CohortDefinition tbClientsOnHAARTPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select tb.client_id from etl_tb_screening tb left join etl_hts_referral_and_linkage r on tb.client_id = r.client_id\n" +
+                "                                             inner join etl_hiv_status hs on tb.client_id = hs.client_id\n" +
+                "                                             inner join etl_client_social_status ss on tb.client_id = ss.client_id\n" +
+                "where (r.art_start_date <= tb.visit_date or (hs.art_start_date <= tb.visit_date and hs.current_in_care =\"Yes\"))\n" +
+                "  and ss.key_population_type = \"People who use drugs\" and tb.tb_results_status = \"TB Confirmed\"\n" +
+                "  and date(tb.visit_date) between date(:startDate) and date(:endDate) group by tb.client_id;";
         cd.setName("tbClientsOnHAARTPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
