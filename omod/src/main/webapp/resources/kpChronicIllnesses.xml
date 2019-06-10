@@ -87,7 +87,7 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Chronic Illness exists</th>
+                <th>Has known chronic illness </th>
                 <td>  <obs conceptId="$illness_exists" id="illness_exists"
                            answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                            answerLabel="Yes,No"
