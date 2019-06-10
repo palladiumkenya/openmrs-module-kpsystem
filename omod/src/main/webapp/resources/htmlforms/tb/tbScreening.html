@@ -15,324 +15,324 @@
 	<script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
 	<script type="text/javascript">
 
-        //Resulting TB status for Ordered test
-        var testOrdered  = function () {
-            var val = jq(this).val();
-            var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
-            var sputumSmear = getValue("sputum-smear-action.value");
-            var geneXpert = getField("genexpert-action.value").val();
-            var referral = getValue("referral-action.value");
-            var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
-            var xray = getValue("chest-xray-action.value");
+		//Resulting TB status for Ordered test
+		var testOrdered  = function () {
+			var val = jq(this).val();
+			var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
+			var sputumSmear = getValue("sputum-smear-action.value");
+			var geneXpert = getField("genexpert-action.value").val();
+			var referral = getValue("referral-action.value");
+			var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
+			var xray = getValue("chest-xray-action.value");
 
-            //TB
-            if(clinicalDiagnosis ==703) {
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", true);
-                jq('#ipt-client-workup').hide();
+			//TB
+			if(clinicalDiagnosis ==703) {
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", true);
+				jq('#ipt-client-workup').hide();
 
-            }
-            //No signs
-            if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral !=1065 || sputumSmear !=703 || xray !=152526 || geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //No signs with normal/negative Tests results
-            if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==664) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==1115) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)))){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //Presumed TB  with abnormal/positive Tests results
-            if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==703) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==152526) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)))){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //Presumed TB
-            if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &gt; 0 || referral ==1065 || sputumSmear ==703 || xray ==152526 || geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)){
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", true);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-        }
+			}
+			//No signs
+			if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral !=1065 || sputumSmear !=703 || xray !=152526 || geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//No signs with normal/negative Tests results
+			if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==664) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==1115) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)))){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//Presumed TB  with abnormal/positive Tests results
+			if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==703) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==152526) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)))){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//Presumed TB
+			if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &gt; 0 || referral ==1065 || sputumSmear ==703 || xray ==152526 || geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)){
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", true);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+		}
 
-        //Resulting TB status for Action Positive Sputum smear
-        var sputumSmearAction  = function () {
-            var sputumSmear = getValue("sputum-smear-action.value");
-            var geneXpert = getField("genexpert-action.value").val();
-            var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
-            var xray = getValue("chest-xray-action.value");
-            var referral = getValue("referral-action.value");
-            var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
+		//Resulting TB status for Action Positive Sputum smear
+		var sputumSmearAction  = function () {
+			var sputumSmear = getValue("sputum-smear-action.value");
+			var geneXpert = getField("genexpert-action.value").val();
+			var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
+			var xray = getValue("chest-xray-action.value");
+			var referral = getValue("referral-action.value");
+			var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
 
-            //TB
-            if(clinicalDiagnosis ==703) {
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", true);
-                jq('#ipt-client-workup').hide();
+			//TB
+			if(clinicalDiagnosis ==703) {
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", true);
+				jq('#ipt-client-workup').hide();
 
-            }
-            //No signs
-            if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral !=1065 || sputumSmear !=703 || xray !=152526 || geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //No signs with normal/negative Tests results
-            if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==664) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==1115) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)))){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //Presumed TB  with abnormal/positive Tests results
-            if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==703) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==152526) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)))){
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", true);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //Presumed TB
-            if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral ==1065 || sputumSmear ==703 || xray ==152526 || geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)){
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", true);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-        }
-        //Resulting TB status for Action Positive GeneXpert
-        var geneXpertAction  = function () {
+			}
+			//No signs
+			if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral !=1065 || sputumSmear !=703 || xray !=152526 || geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//No signs with normal/negative Tests results
+			if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==664) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==1115) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)))){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//Presumed TB  with abnormal/positive Tests results
+			if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==703) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==152526) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)))){
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", true);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//Presumed TB
+			if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral ==1065 || sputumSmear ==703 || xray ==152526 || geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)){
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", true);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+		}
+		//Resulting TB status for Action Positive GeneXpert
+		var geneXpertAction  = function () {
 
-            var geneXpert = getField("genexpert-action.value").val();
-            var sputumSmear = getValue("sputum-smear-action.value");
-            var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
-            var xray = getValue("chest-xray-action.value");
-            var referral = getValue("referral-action.value");
-            var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
+			var geneXpert = getField("genexpert-action.value").val();
+			var sputumSmear = getValue("sputum-smear-action.value");
+			var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
+			var xray = getValue("chest-xray-action.value");
+			var referral = getValue("referral-action.value");
+			var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
 
-            //TB
-            if(clinicalDiagnosis ==703) {
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", true);
-                jq('#ipt-client-workup').hide();
+			//TB
+			if(clinicalDiagnosis ==703) {
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", true);
+				jq('#ipt-client-workup').hide();
 
-            }
-            //No signs
-            if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral !=1065 || sputumSmear !=703 || xray !=152526 || geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //No signs with normal/negative Tests results
-            if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==664) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==1115) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)))){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //Presumed TB  with abnormal/positive Tests results
-            if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==703) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==152526) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)))){
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", true);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //Presumed TB
-            if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral ==1065 || sputumSmear ==703 || xray ==152526 || geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)){
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", true);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
+			}
+			//No signs
+			if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral !=1065 || sputumSmear !=703 || xray !=152526 || geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//No signs with normal/negative Tests results
+			if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==664) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==1115) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)))){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//Presumed TB  with abnormal/positive Tests results
+			if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==703) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==152526) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)))){
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", true);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//Presumed TB
+			if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral ==1065 || sputumSmear ==703 || xray ==152526 || geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)){
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", true);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
 
-        }
-        //Resulting TB status for Abnormal chest x ray
-        var chestXrayAction = function () {
-            var xray = getValue("chest-xray-action.value");
-            var sputumSmear = getValue("sputum-smear-action.value");
-            var geneXpert = getField("genexpert-action.value").val();
-            var referral = getValue("referral-action.value");
-            var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
-            var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
+		}
+		//Resulting TB status for Abnormal chest x ray
+		var chestXrayAction = function () {
+			var xray = getValue("chest-xray-action.value");
+			var sputumSmear = getValue("sputum-smear-action.value");
+			var geneXpert = getField("genexpert-action.value").val();
+			var referral = getValue("referral-action.value");
+			var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
+			var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
 
-            //TB
-            if(clinicalDiagnosis ==703) {
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", true);
-                jq('#ipt-client-workup').hide();
+			//TB
+			if(clinicalDiagnosis ==703) {
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", true);
+				jq('#ipt-client-workup').hide();
 
-            }
-            //No signs
-            if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral !=1065 || sputumSmear !=703 || xray !=152526 || geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //No signs with normal/negative Tests results
-            if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==664) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==1115) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)))){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //Presumed TB  with abnormal/positive Tests results
-            if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==703) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==152526) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)))){
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", true);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //Presumed TB
-            if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral ==1065 || sputumSmear ==703 || xray ==152526 || geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)){
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", true);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-        }
-        //Resulting TB status for Action Referral
-        var referralAction  = function () {
-            var referral = getValue("referral-action.value");
-            var sputumSmear = getValue("sputum-smear-action.value");
-            var geneXpert = getField("genexpert-action.value").val();
-            var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
-            var xray = getValue("chest-xray-action.value");
-            var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
+			}
+			//No signs
+			if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral !=1065 || sputumSmear !=703 || xray !=152526 || geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//No signs with normal/negative Tests results
+			if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==664) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==1115) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)))){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//Presumed TB  with abnormal/positive Tests results
+			if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==703) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==152526) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)))){
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", true);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//Presumed TB
+			if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral ==1065 || sputumSmear ==703 || xray ==152526 || geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)){
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", true);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+		}
+		//Resulting TB status for Action Referral
+		var referralAction  = function () {
+			var referral = getValue("referral-action.value");
+			var sputumSmear = getValue("sputum-smear-action.value");
+			var geneXpert = getField("genexpert-action.value").val();
+			var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
+			var xray = getValue("chest-xray-action.value");
+			var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
 
-            //TB
-            if(clinicalDiagnosis ==703) {
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", true);
-                jq('#ipt-client-workup').hide();
-            }
-            //No signs
-            if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral !=1065 || sputumSmear !=703 || xray !=152526 || geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //No signs with normal/negative Tests results
-            if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==664) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==1115) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)))){
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //Presumed TB  with abnormal/positive Tests results
-            if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==703) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==152526) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)))){
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", true);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
-            //Presumed TB
-            if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral ==1065 || sputumSmear ==703 || xray ==152526 || geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)){
-                jq("#tb-result-status input[value=1660]").prop("checked", false);
-                jq("#tb-result-status input[value=142177]").prop("checked", true);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-            }
+			//TB
+			if(clinicalDiagnosis ==703) {
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", true);
+				jq('#ipt-client-workup').hide();
+			}
+			//No signs
+			if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral !=1065 || sputumSmear !=703 || xray !=152526 || geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//No signs with normal/negative Tests results
+			if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==664) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==1115) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)))){
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//Presumed TB  with abnormal/positive Tests results
+			if((clinicalDiagnosis !=703) &amp;&amp; ((testOrderedChecked.length &gt; 0 &amp;&amp; sputumSmear ==703) || (testOrderedChecked.length &gt; 0 &amp;&amp; xray ==152526) || (testOrderedChecked.length &gt; 0 &amp;&amp; (geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)))){
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", true);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
+			//Presumed TB
+			if((clinicalDiagnosis !=703) &amp;&amp; (testOrderedChecked.length &lt; 0 || referral ==1065 || sputumSmear ==703 || xray ==152526 || geneXpert ==162203 || geneXpert ==162204 || geneXpert ==164104)){
+				jq("#tb-result-status input[value=1660]").prop("checked", false);
+				jq("#tb-result-status input[value=142177]").prop("checked", true);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+			}
 
-        }
+		}
 
-        //Resulting TB status for Action clinical diagnosis
-        var clinicalDiagnosisAction  = function () {
-            var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
-            var sputumSmear = getValue("sputum-smear-action.value");
-            var xray = getValue("chest-xray-action.value");
-            var referral = getValue("referral-action.value");
-            var geneXpert = getField("genexpert-action.value").val();
-            var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
+		//Resulting TB status for Action clinical diagnosis
+		var clinicalDiagnosisAction  = function () {
+			var clinicalDiagnosis = getValue("clinical-diagnosis-action.value");
+			var sputumSmear = getValue("sputum-smear-action.value");
+			var xray = getValue("chest-xray-action.value");
+			var referral = getValue("referral-action.value");
+			var geneXpert = getField("genexpert-action.value").val();
+			var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
 
-            if(clinicalDiagnosis ==703){
-                jq("#tb-result-status input[value=1662]").prop("disabled", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", true);
-                jq("#tb-result-status.input[value=142177]").prop("disabled", true);
-                jq("#tb-result-status.input[value=1660]").prop("disabled", true);
-                jq("#tb-result-status.input[value=160737]").prop("disabled", true);
-                jq("#tbl-start-antiTb").show();
-                jq('#ipt-client-workup').hide();
-                jq('#ipt-initiation').hide();
-                jq('#ipt-result-status').hide();
-            }
-            if(clinicalDiagnosis ==664 ){
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq("#tbl-start-antiTb").hide();
-            }
-            if(testOrderedChecked.length ==0 &amp;&amp; clinicalDiagnosis !=703 &amp;&amp; referral !=1065 &amp;&amp; sputumSmear !=703 &amp;&amp; xray !=152526 &amp;&amp;(geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)) {
-                jq("#tb-result-status input[value=1660]").prop("checked", true);
-                jq("#tb-result-status input[value=142177]").prop("checked", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", false);
-                jq('#ipt-client-workup').hide();
-                // getField('tbrxdate.value').val("");
-            }
-        }
-        //Resulting TB status for Action start anti tb
-        var startAntiTbAction  = function () {
-            var startAntiTb = getValue("start-anti-tb-action.value");
-            var sputumSmear = getValue("sputum-smear-action.value");
-            var xray = getValue("chest-xray-action.value");
-            var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
+			if(clinicalDiagnosis ==703){
+				jq("#tb-result-status input[value=1662]").prop("disabled", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", true);
+				jq("#tb-result-status.input[value=142177]").prop("disabled", true);
+				jq("#tb-result-status.input[value=1660]").prop("disabled", true);
+				jq("#tb-result-status.input[value=160737]").prop("disabled", true);
+				jq("#tbl-start-antiTb").show();
+				jq('#ipt-client-workup').hide();
+				jq('#ipt-initiation').hide();
+				jq('#ipt-result-status').hide();
+			}
+			if(clinicalDiagnosis ==664 ){
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq("#tbl-start-antiTb").hide();
+			}
+			if(testOrderedChecked.length ==0 &amp;&amp; clinicalDiagnosis !=703 &amp;&amp; referral !=1065 &amp;&amp; sputumSmear !=703 &amp;&amp; xray !=152526 &amp;&amp;(geneXpert !=162203 || geneXpert !=162204 || geneXpert !=164104)) {
+				jq("#tb-result-status input[value=1660]").prop("checked", true);
+				jq("#tb-result-status input[value=142177]").prop("checked", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", false);
+				jq('#ipt-client-workup').hide();
+				// getField('tbrxdate.value').val("");
+			}
+		}
+		//Resulting TB status for Action start anti tb
+		var startAntiTbAction  = function () {
+			var startAntiTb = getValue("start-anti-tb-action.value");
+			var sputumSmear = getValue("sputum-smear-action.value");
+			var xray = getValue("chest-xray-action.value");
+			var testOrderedChecked = jq("#tb-test-ordered input:checkbox:checked");
 
-            if(startAntiTb ==1065){
-                jq("#tb-result-status input[value=1662]").prop("disabled", false);
-                jq("#tb-result-status input[value=1662]").prop("checked", true);
-                jq("#tb-result-status.input[value=142177]").prop("disabled", true);
-                jq("#tb-result-status.input[value=1660]").prop("disabled", true);
-                jq("#tb-result-status.input[value=160737]").prop("disabled", true);
-                jq('#ipt-client-workup').hide();
-                jq('#ipt-initiation').hide();
-                jq('#ipt-result-status').hide();
-                //set TB RX date to todays date
-                var encounterDate = getValue('encounter-date.value');
-                //Validate for moment
-                var momentEncounterDate =moment(moment(encounterDate,'YYYY-MM-DD').toDate()).format("DD-MMM-YYYY");
-                getField('tbrxdate.value').val(momentEncounterDate);
-            }
-            if(startAntiTb ==1066 ){
-                // jq("#tb-result-status input[value=1662]").prop("disabled", true);
-                //jq('#tbrxdate').val(" ");
-                getField('tbrxdate.value').val("");
-            }
+			if(startAntiTb ==1065){
+				jq("#tb-result-status input[value=1662]").prop("disabled", false);
+				jq("#tb-result-status input[value=1662]").prop("checked", true);
+				jq("#tb-result-status.input[value=142177]").prop("disabled", true);
+				jq("#tb-result-status.input[value=1660]").prop("disabled", true);
+				jq("#tb-result-status.input[value=160737]").prop("disabled", true);
+				jq('#ipt-client-workup').hide();
+				jq('#ipt-initiation').hide();
+				jq('#ipt-result-status').hide();
+				//set TB RX date to todays date
+				var encounterDate = getValue('encounter-date.value');
+				//Validate for moment
+				var momentEncounterDate =moment(moment(encounterDate,'YYYY-MM-DD').toDate()).format("DD-MMM-YYYY");
+				getField('tbrxdate.value').val(momentEncounterDate);
+			}
+			if(startAntiTb ==1066 ){
+				// jq("#tb-result-status input[value=1662]").prop("disabled", true);
+				//jq('#tbrxdate').val(" ");
+				getField('tbrxdate.value').val("");
+			}
 
-        }
+		}
 
 		jQuery(function($) {
 			var valbirthdate = "<lookup  expression="patient.birthdate" />"
 			var valChangedToDateFormat = new Date(valbirthdate).getTime();
-            var actionTakenTab = jq('#action-taken');
-            var iptClientWorkupTab = jq('#ipt-client-workup');
-            var iptFollowup = jq('#ipt-followup');
-            var iptInitiationTab = jq('#ipt-initiation');
-            var iptUtake = jq("#ipt-uptake").hide();
-            actionTakenTab.hide();
-            iptClientWorkupTab.hide();
-            iptFollowup.hide();
-            iptInitiationTab.hide();
-            iptUtake.hide();
+			var actionTakenTab = jq('#action-taken');
+			var iptClientWorkupTab = jq('#ipt-client-workup');
+			var iptFollowup = jq('#ipt-followup');
+			var iptInitiationTab = jq('#ipt-initiation');
+			var iptUtake = jq("#ipt-uptake").hide();
+			actionTakenTab.hide();
+			iptClientWorkupTab.hide();
+			iptFollowup.hide();
+			iptInitiationTab.hide();
+			iptUtake.hide();
 
-            jq("#start-anti-tb-action").change(startAntiTbAction);
-            jq("#clinical-diagnosis-action").change(clinicalDiagnosisAction);
-            jq("#sputum-smear-action").change(sputumSmearAction);
-            jq("#genexpert-action select").change(geneXpertAction);
-            jq("#chest-xray-action").change(chestXrayAction);
-            jq("#referral-action").change(referralAction);
-            jq("#tb-test-ordered").change(testOrdered);
+			jq("#start-anti-tb-action").change(startAntiTbAction);
+			jq("#clinical-diagnosis-action").change(clinicalDiagnosisAction);
+			jq("#sputum-smear-action").change(sputumSmearAction);
+			jq("#genexpert-action select").change(geneXpertAction);
+			jq("#chest-xray-action").change(chestXrayAction);
+			jq("#referral-action").change(referralAction);
+			jq("#tb-test-ordered").change(testOrdered);
 
 			beforeSubmit.push(function() {
 				var valonform = getValue('tbrxdate.value');
@@ -363,7 +363,7 @@
 			var showHideTabs = function() {
 				var actionTakenTab = $('#action-taken');
 				var iptClientWorkupTab = $('#ipt-client-workup');
-				
+
 				var showActionTakenTab = false;
 				var showIPTClientWorkupTab = false;
 
@@ -372,16 +372,16 @@
 
 				//Fetch responses for the screening questions
 				$.each(screeningRadios, function(){
-                    const COUGH = 159799;
-                    const CONTACT = 124068;
-                    const FEVER = 1494;
-                    const WEIGHTLOSS = 832;
-                    const SWEAT =133027;
-                    const LETHERGY =116334;
+					const COUGH = 159799;
+					const CONTACT = 124068;
+					const FEVER = 1494;
+					const WEIGHTLOSS = 832;
+					const SWEAT =133027;
+					const LETHERGY =116334;
 
-                    //Push any responses to the respective screeningYesResponses and screeningNoResponses array
-                    if ((this.value == COUGH || this.value == CONTACT || this.value == FEVER || this.value == WEIGHTLOSS || this.value == SWEAT || this.value == LETHERGY)&amp;&amp; this.checked == true) {
-                        screeningYesResponses.push(this);
+					//Push any responses to the respective screeningYesResponses and screeningNoResponses array
+					if ((this.value == COUGH || this.value == CONTACT || this.value == FEVER || this.value == WEIGHTLOSS || this.value == SWEAT || this.value == LETHERGY)&amp;&amp; this.checked == true) {
+						screeningYesResponses.push(this);
 
 					}
 
@@ -405,7 +405,7 @@
 						if (screeningNoResponses.length == screeningRadios.length / 2 ) {
 							showIPTClientWorkupTab = true;
 
-						} 
+						}
 					}
 
 				}
@@ -440,20 +440,20 @@
 
 				//Fetch responses for the IPT client workup questions
 				$.each(iptClientWorkupRadios, function() {
-                    const YELLOWURINE = 162311;
-                    const NUMBNESS = 132652;
-                    const YELLOWEYES = 5192;
-                    const TENDERNESS = 124992;
+					const YELLOWURINE = 162311;
+					const NUMBNESS = 132652;
+					const YELLOWEYES = 5192;
+					const TENDERNESS = 124992;
 
-                    //Push any responses to the respective iptClientWorkupYesResponses and iptClientWorkupNoResponses array
-                    if ((this.value == YELLOWURINE || this.value == NUMBNESS || this.value == YELLOWEYES || this.value == TENDERNESS)&amp;&amp; this.checked == true) {
-                        iptClientWorkupYesResponses.push(this);
-                    }
+					//Push any responses to the respective iptClientWorkupYesResponses and iptClientWorkupNoResponses array
+					if ((this.value == YELLOWURINE || this.value == NUMBNESS || this.value == YELLOWEYES || this.value == TENDERNESS)&amp;&amp; this.checked == true) {
+						iptClientWorkupYesResponses.push(this);
+					}
 
 					if (this.value == NO_CONCEPT_ID &amp;&amp; this.checked == true) {
 						iptClientWorkupNoResponses.push(this);
 
-					}					
+					}
 
 				});
 
@@ -463,7 +463,7 @@
 					if (iptClientWorkupNoResponses.length == iptClientWorkupRadios.length / 2) {
 						showIPTInitiationTab = true;
 
-					} 
+					}
 				}
 
 				if (showIPTInitiationTab) {
@@ -634,9 +634,62 @@
 					<tr id="tbrxfield">
 						<td width="50%" style="text-align: left"><obs  conceptId="1113AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" labelText="TB Rx date: " id="tbrxdate"/> </td>
 
-						<td><obs conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" labelText="TB Rx:" id="tb-regimen"
-								 answerConceptSetIds="160021AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="multiselect"
-						/></td>
+
+					</tr>
+					<tr>
+						<td id="tb-regimen">TB Rx:  </td>
+						<td>
+							<table>
+								<tr>
+									<td><obs conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="1131AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs  conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="768AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs  conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="1194AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs  conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="767AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs  conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="1108AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs  conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="82900AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="75948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="78280AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs  conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="84360AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs  conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="160097AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs  conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="160096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs  conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="160094AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs  conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="160093AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="160092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="1111AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  answerConceptId="163753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" style="checkbox" /></td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 				</table>
 			</fieldset>
