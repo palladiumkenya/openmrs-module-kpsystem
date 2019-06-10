@@ -89,7 +89,7 @@
             <tr>
                 <th>Has a known allergy</th>
                 <td> <obs conceptId="5219" id="complaint_exists_input"
-                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                          answerConceptIds="1065,1066"
                           answerLabel="Yes,No"
                           style="dropdown"/></td>
             </tr>
@@ -131,12 +131,15 @@
         </table>
     </ifMode>
     <submit/>
+
     <script type="text/javascript">
         jq(function() {
 
         jq('#causative_agent_input select').prop('disabled', true);
         jq('#reaction_input select').prop('disabled', true).addClass('disabled');
-        jq('#severity_input select').prop('disabled', true).addClass('disabled');s
+
+        jq('#severity_input select').prop('disabled', true).addClass('disabled');
+
         jq('#onsetaDate input').prop('disabled', true);
 
         var checkIfcomplaintsExist = jq("#complaint_exists_input select").change(ComplaintsExist)
@@ -177,4 +180,5 @@
         }
         }
     </script>
+
 </htmlform>

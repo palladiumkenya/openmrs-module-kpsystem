@@ -15,6 +15,8 @@
     <macros>
         screened_for=164082
         results=165047
+        facility_name=162724
+
 
         pep_use =164845
         prep_screening =165076
@@ -108,10 +110,17 @@
                 </td>
             </tr>
             <tr>
+                <th>Results</th>
+                <td>  <obs conceptId="$results" id="results"
+                           answerConceptIds="165087,165078"
+                           style="dropdown"/>
+                </td>
+            </tr>
+            <tr>
                 <th>Status</th>
-                <td>  <obs conceptId="$results" id="status"
-                           answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                           answerLabels="Negative,Positive"
+                <td>  <obs conceptId="165102" id="status"
+                           answerConceptIds="1065,1066"
+                           answerLabels="Prep initiated,Prep not initiated"
                            style="dropdown"/>
                 </td>
             </tr>
@@ -119,15 +128,22 @@
                 <th>Referred</th>
                 <td>
                     <obs conceptId="$prep_referred" id="referred"
-                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                         answerConceptIds="1065,1066"
                          answerLabel="Yes,No"
                          style="dropdown"/>
                 </td>
             </tr>
+
+            <tr>
+                <th>Facility Name</th>
+
+                    <td><obs id="facility_name" conceptId="$facility_name"  /> </td>
+
+            </tr>
             <tr>
                 <th>Using Pep</th>
                 <td>   <obs conceptId="$pep_use" id="pep_use"
-                            answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                            answerConceptIds="1065,1066"
                             answerLabel="Yes,No"
                             style="dropdown"/>
                 </td>
@@ -141,48 +157,94 @@
                 </td>
             </tr>
             <tr>
-                <th>Remarks</th>
+                <th>Specify</th>
                 <td><obs conceptId="$prep_remarks" id="remarks_input" /></td>
             </tr>
         </table>
         <submit/>
     </ifMode>
+
     <script type="text/javascript">
         jq(function() {
 
-        var screeningType = jq("#flowsheet-edit-section-0").find("#screening_for select").change(screeningReasonSelected)
-        
-        screeningReasonSelected();
+        jq('#remarks_input input').prop('disabled', true).addClass('disabled');
+        jq('#facility_name input').prop('disabled', true).addClass('disabled');
+        jq('#pep_use select').prop('disabled', false).removeClass('disabled');
+        jq('#status select').prop('disabled', true).addClass('disabled');
+        jq('#results select').prop('disabled', true).addClass('disabled');
+        jq('#referred select').prop('disabled', true).addClass('disabled');
+        jq('#pep_use select').prop('disabled', true).addClass('disabled');
+        jq('#exposure_type select').prop('disabled', true).addClass('disabled');
+
+        var screeningType = jq("#screening_for select").change(screeningReasonSelected)
+        var referred = jq("#referred select").change(RefferedTo)
+        var exposureType = jq("#exposure_type select").change(ExposureType)
+
+
 
         });
 
-        function screeningReasonSelected() {
+        function RefferedTo() {
+        var refferedto = jq("#referred select").val();
 
-        var screening_type = jq("#flowsheet-edit-section-0").find("#screening_for select").val();
+        console.log("Screened for ==> "+refferedto);
+        if (refferedto == 1065){
+
+        jq('#facility_name input').prop('disabled', false).removeClass('disabled');
+        }else
+        {
+        jq('#facility_name input').prop('disabled', true).addClass('disabled');
+
+        }
+
+        }
+
+
+        function ExposureType() {
+        var exposure = jq("#exposure_type select").val();
+
+
+        console.log("Screened for ==> "+exposure);
+        if (exposure == 160632){
+        jq('#remarks_input input').prop('disabled', false).removeClass('disabled');
+        }else
+        {
+        jq('#remarks_input input').prop('disabled', true).addClass('disabled');
+        }
+        }
+
+        function screeningReasonSelected() {
+        var screening_type = jq("#screening_for select").val();
 
 
         console.log("Screened for ==> "+screening_type);
         if (screening_type == $prep_screening){
 
         jq('#pep_use select').prop('disabled', true).addClass('disabled');
+
+        jq('#pep_use select').val('');
         jq('#exposure_type select').prop('disabled', true).addClass('disabled');
-        jq('#status select').prop('disabled', false);
-        jq('#referred select').prop('disabled', false).addClass('disabled');
+        jq('#exposure_type select').val('');
+        jq('#status select').prop('disabled', false).removeClass('disabled');
+        jq('#results select').prop('disabled', false).removeClass('disabled');
+        jq('#referred select').prop('disabled', false).removeClass('disabled');
 
         }else if (screening_type == $pep_use){
-        jq('#pep_use select').prop('disabled', false);
+        jq('#facility_name input').prop('disabled', true).addClass('disabled');
+        jq('#pep_use select').prop('disabled', false).removeClass('disabled');
         jq('#exposure_type select').prop('disabled', false).removeClass('disabled');
-        jq('#status select').prop('disabled', true).removeClass('disabled');
-        jq('#referred select').prop('disabled', true).removeClass('disabled');
-        }else{
-        jq('#pep_use select').prop('disabled', true).addClass('disabled');
-        jq('#exposure_type select').prop('disabled', true).addClass('disabled');
         jq('#status select').prop('disabled', true).addClass('disabled');
+        jq('#status select').val('');
+        jq('#results select').prop('disabled', true).addClass('disabled');
+        jq('#results select').val('');
         jq('#referred select').prop('disabled', true).addClass('disabled');
-
+        jq('#referred select').val('');
 
         }
+
         }
 
     </script>
+
+
 </htmlform>
