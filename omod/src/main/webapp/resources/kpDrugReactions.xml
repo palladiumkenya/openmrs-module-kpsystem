@@ -99,7 +99,7 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Adverse reaction exists</th>
+                <th>Has client developed any adverse effects from a drug</th>
                 <td>   <obs conceptId="$adverse_reaction_exists" id="adverse_reaction_exists_input"
                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                             answerLabel="Yes,No"

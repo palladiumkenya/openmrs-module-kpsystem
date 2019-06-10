@@ -32,7 +32,7 @@
                     <td width="156" valign="top"><p>Chronic illness type</p></td>
                     <td width="156" valign="top"><p>Nature of illness</p></td>
                     <td width="156" valign="top"><p>Start date</p></td>
-                    <td width="156" valign="top"><p>Duration</p></td>
+                    <td width="156" valign="top"><p>Duration in years</p></td>
                     <td width="156" valign="top"><p>Remarks</p></td>
                    </tr>
             </thead>
@@ -87,7 +87,7 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Chronic Illness exists</th>
+                <th>Has known chronic illness </th>
                 <td>  <obs conceptId="$illness_exists" id="illness_exists"
                            answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                            answerLabel="Yes,No"
@@ -113,7 +113,7 @@
                 <td><obs conceptId="$start_date" id="start_date_input" allowFutureDates="false" /></td>
             </tr>
             <tr>
-                <th>Duration(Days)</th>
+                <th>Duration(Years)</th>
                 <td><obs conceptId="$duration" id="duration_input" /></td>
             </tr>
             <tr>

@@ -46,6 +46,20 @@
                 jq('#disability select').prop("disabled", false);
             }
         }
+        var OthersSelected = function () {
+            var val = jq(this).val();
+            if (val == 5622 ){
+                jq('#specify_row').show();
+                jq('#specify select').prop("disabled", false);
+
+
+            }else{
+                jq('#specify_row').hide();
+                jq('#specify select').prop("disabled", true);
+                jq('#specify select').val('');
+            }
+        }
+
         var strategySelected = function () {
             var val = jq(this).val();
             if (val == 159938 ){
@@ -247,6 +261,8 @@
             jq('#population-type :input[type=radio]').change(populationTypeSelected);
             //disability
             jq('#has-disability input').change(hasDisabilitySelected);
+            jq('#disability input').change(OthersSelected);
+            jq('#specify_row').hide();
             jq('#disability').hide();
             //ever tested
             jq('#ever-tested input').change(prevTestSelected);
@@ -588,9 +604,15 @@
                              answerLabel="Mentally Challenged" style="checkbox"  /><br/>
                         <obs conceptId="162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="164538AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Physically Challenged" style="checkbox" /><br/>
-                        <obs conceptId="162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                        <obs conceptId="162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerConceptId="5622"
                              answerLabel="Other" style="checkbox"  /><br/>
 
+                    </td>
+                </tr>
+                <tr id="specify_row">
+                    <td> Specify: &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="specify"  rows="5" cols="80"
+                        />
                     </td>
                 </tr>
             </table>
