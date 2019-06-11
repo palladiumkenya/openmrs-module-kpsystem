@@ -2491,7 +2491,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolenceFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  kp_etl.etl_violence_screening vs on ce.client_id = vs.client_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "where vs.form_of_violence in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\") \n" +
+                "and ss.key_population_type =\"Female sex worker\"\n" +
+                "and date(vs.incident_date) between date(:startDate) and date(:endDate);";
         cd.setName("experiencingViolenceFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2503,7 +2508,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolenceMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  kp_etl.etl_violence_screening vs on ce.client_id = vs.client_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "where vs.form_of_violence in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\") \n" +
+                "and ss.key_population_type =\"Male who have sex with Men\"\n" +
+                "and date(vs.incident_date) between date(:startDate) and date(:endDate);";
         cd.setName("experiencingViolenceMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2515,7 +2525,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolenceMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  kp_etl.etl_violence_screening vs on ce.client_id = vs.client_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "where vs.form_of_violence in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\") \n" +
+                "and ss.key_population_type =\"Male sex worker\"\n" +
+                "and date(vs.incident_date) between date(:startDate) and date(:endDate);";
         cd.setName("experiencingViolenceMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2527,7 +2542,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolencePwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  kp_etl.etl_violence_screening vs on ce.client_id = vs.client_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "where vs.form_of_violence in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\") \n" +
+                "and ss.key_population_type =\"People who inject drugs\"\n" +
+                "and date(vs.incident_date) between date(:startDate) and date(:endDate);";
         cd.setName("experiencingViolencePwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2539,7 +2559,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolencePwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  kp_etl.etl_violence_screening vs on ce.client_id = vs.client_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "where vs.form_of_violence in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\") \n" +
+                "and ss.key_population_type =\"People who use drugs\"\n" +
+                "and date(vs.incident_date) between date(:startDate) and date(:endDate);";
         cd.setName("experiencingViolencePwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
