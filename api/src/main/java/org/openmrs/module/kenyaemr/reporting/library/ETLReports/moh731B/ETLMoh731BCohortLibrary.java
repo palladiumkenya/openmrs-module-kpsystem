@@ -883,7 +883,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id \n" +
+                "join  inv_item i on tr.item_id = i.item_id\n" +
+                "where i.name like \"%condom%\" and ss.key_population_type =\"Female sex worker\" and \n" +
+                "date(tr.date_created) between date(:startDate) and date(:endDate);";
         cd.setName("receivingCondomsFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -895,7 +900,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "join  inv_item i on tr.item_id = i.item_id\n" +
+                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"Male who have sex with Men\"\n" +
+                "date(tr.date_created) between date(:startDate) and date(:endDate);";
         cd.setName("receivingCondomsMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -907,7 +917,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "join  inv_item i on tr.item_id = i.item_id\n" +
+                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"Male sex worker\"\n" +
+                "date(tr.date_created) between date(:startDate) and date(:endDate);";
         cd.setName("receivingCondomsMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -920,7 +935,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id \n" +
+                "join  inv_item i on tr.item_id = i.item_id\n" +
+                "where i.name like \"%condom%\" and ss.key_population_type =\"People who inject drugs\" and \n" +
+                "date(tr.date_created) between date(:startDate) and date(:endDate);";
         cd.setName("receivingCondomsPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -932,7 +952,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id \n" +
+                "join  inv_item i on tr.item_id = i.item_id\n" +
+                "where i.name like \"%condom%\" and ss.key_population_type =\"People who use drugs\" and \n" +
+                "date(tr.date_created) between date(:startDate) and date(:endDate);";
         cd.setName("receivingCondomsPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1031,7 +1056,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "join  inv_item i on tr.item_id = i.item_id\n" +
+                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"Female sex worker\"\n" +
+                "date(tr.date_created) between date(:startDate) and date(:endDate);";
         cd.setName("receivingNeedlesAndSyringesPerNeedFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1043,7 +1073,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "join  inv_item i on tr.item_id = i.item_id\n" +
+                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"Male who have sex with Men\"\n" +
+                "date(tr.date_created) between date(:startDate) and date(:endDate);";
         cd.setName("receivingNeedlesAndSyringesMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1055,7 +1090,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "join  inv_item i on tr.item_id = i.item_id\n" +
+                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"Male sex worker\"\n" +
+                "date(tr.date_created) between date(:startDate) and date(:endDate);";
         cd.setName("receivingNeedlesAndSyringesMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1067,7 +1107,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join inv_transaction tr on ce.client_id = tr.patient_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "join inv_item i on tr.item_id = i.item_id\n" +
+                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"People who inject drugs\"\n" +
+                "date(tr.date_created) between date(:startDate) and date(:endDate);";
         cd.setName("receivingNeedlesAndSyringesPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1080,7 +1125,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
+                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
+                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
+                "join  inv_item i on tr.item_id = i.item_id\n" +
+                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"People who use drugs\"\n" +
+                "date(tr.date_created) between date(:startDate) and date(:endDate);";
         cd.setName("receivingNeedlesAndSyringesPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
