@@ -177,9 +177,9 @@
         {
         console.log("screened null");
         console.log(screenedfor);
-        jq('#results select').prop('disabled', true);
-        jq('#treated_psychosocialInput select').prop('disabled', true);
-        jq('#referred select').prop('disabled', true);
+        jq('#results select').prop('disabled', true).addClass('disabled');
+        jq('#treated_psychosocialInput select').prop('disabled', true).addClass('disabled');
+        jq('#referred select').prop('disabled', true).addClass('disabled');
         jq('#remarks_input input').prop('disabled', true);
 
         jq('#results select').val('');
@@ -191,13 +191,13 @@
         else
         {
         console.log("screened not null");
-        jq('#results select').prop('disabled', false);
+        jq('#results select').prop('disabled', false).removeClass('disabled');
         jq('#results select').val('');
-        jq('#treated_psychosocialInput select').prop('disabled', false);
+        jq('#treated_psychosocialInput select').prop('disabled', false).removeClass('disabled');
         jq('#treated_psychosocialInput select').val('');
         jq('#referred select').prop('disabled', false);
         jq('#referred select').val('');
-        jq('#remarks_input input').prop('disabled', false);
+        jq('#remarks_input input').prop('disabled', false).removeClass('disabled');
         jq('#remarks_input input').val('');
 
         }

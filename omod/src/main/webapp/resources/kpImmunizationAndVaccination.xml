@@ -185,7 +185,7 @@
         {
         jq('#vaccine-type_input input').prop('disabled', true);
         jq('#immunization_date_input input').prop('disabled', true);
-        jq('#side_effects_exists_input select').prop('disabled', true);
+        jq('#side_effects_exists_input select').prop('disabled', true).addClass('disabled');
         jq('#immunization_effects_text_input input').prop('disabled', true);
         jq('#validity_input input').prop('disabled', true);
 
@@ -216,7 +216,7 @@
         var immunizationResult = jq("#immunization_exists_input select").val();
         if (immunizationResult == 1066)
         {
-        jq('#vaccine-type_input input').prop('disabled', true);
+        jq('#vaccine-type_input input').prop('disabled', true)
         jq('#immunization_date_input input').prop('disabled', true);
         jq('#side_effects_exists_input select').prop('disabled', true);
         jq('#immunization_effects_text_input input').prop('disabled', true);

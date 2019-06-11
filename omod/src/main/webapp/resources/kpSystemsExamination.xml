@@ -151,7 +151,7 @@
         var Examination = jq("#systems select").val();
         console.log(Examination);
         if (Examination == ""){
-        jq('#findings select').prop('disabled', true);
+        jq('#findings select').prop('disabled', true).addClass('disabled');
         jq('#remaks input').prop('disabled', true);
 
         jq('#findings select').val('');
@@ -159,7 +159,7 @@
 
         }
         else{
-        jq('#findings select').prop('disabled', false);
+        jq('#findings select').prop('disabled', false).removeClass('disabled');
         jq('#findings select').val('');
         jq('#remaks input').prop('disabled', false);
         jq('#remaks input').val('');

@@ -164,21 +164,21 @@
         console.log("Screened for ==> "+screening_type);
         if (screening_type == $prep_screening){
 
-        jq('#pep_use select').prop('disabled', true);
-        jq('#exposure_type select').prop('disabled', true);
+        jq('#pep_use select').prop('disabled', true).addClass('disabled');
+        jq('#exposure_type select').prop('disabled', true).addClass('disabled');
         jq('#status select').prop('disabled', false);
-        jq('#referred select').prop('disabled', false);
+        jq('#referred select').prop('disabled', false).addClass('disabled');
 
         }else if (screening_type == $pep_use){
         jq('#pep_use select').prop('disabled', false);
-        jq('#exposure_type select').prop('disabled', false);
-        jq('#status select').prop('disabled', true);
-        jq('#referred select').prop('disabled', true);
+        jq('#exposure_type select').prop('disabled', false).removeClass('disabled');
+        jq('#status select').prop('disabled', true).removeClass('disabled');
+        jq('#referred select').prop('disabled', true).removeClass('disabled');
         }else{
-        jq('#pep_use select').prop('disabled', true);
-        jq('#exposure_type select').prop('disabled', true);
-        jq('#status select').prop('disabled', true);
-        jq('#referred select').prop('disabled', true);
+        jq('#pep_use select').prop('disabled', true).addClass('disabled');
+        jq('#exposure_type select').prop('disabled', true).addClass('disabled');
+        jq('#status select').prop('disabled', true).addClass('disabled');
+        jq('#referred select').prop('disabled', true).addClass('disabled');
 
 
         }

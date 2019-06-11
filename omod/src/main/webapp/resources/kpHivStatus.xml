@@ -130,9 +130,9 @@
         var tested_result = jq("#ever_been_tested select").val();
 
         if (tested_result == 1066){
-        jq('#test_results select').prop('disabled', true);
-        jq('#testing_date select').prop('disabled', true);
-        jq('#current_in_care select').prop('disabled', true);
+        jq('#test_results select').prop('disabled', true).addClass('disabled');
+        jq('#testing_date select').prop('disabled', true).addClass('disabled');
+        jq('#current_in_care select').prop('disabled', true).addClass('disabled');
         jq('#facility_name input').prop('disabled', true);
 
 
@@ -145,11 +145,11 @@
 
         }
         else{
-        jq('#test_results select').prop('disabled', false);
+        jq('#test_results select').prop('disabled', false).removeClass('disabled');;
         jq('#test_results select').val('');
-        jq('#testing_date select').prop('disabled', false);
+        jq('#testing_date select').prop('disabled', false).removeClass('disabled');
         jq('#testing_date select').val('');
-        jq('#current_in_care select').prop('disabled', false);
+        jq('#current_in_care select').prop('disabled', false).removeClass('disabled');
         jq('#current_in_care select').val('');
         jq('#$facility_name input').prop('disabled', false);
         jq('#facility_name input').val('');

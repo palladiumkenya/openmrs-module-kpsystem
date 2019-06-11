@@ -158,10 +158,10 @@
     </ifMode>
     <script type="text/javascript">
         jq(function() {
-        jq('#adverse_input select').prop('disabled', true);
-        jq('#reaction_type select').prop('disabled', true);
-        jq('#severity select').prop('disabled', true);
-        jq('#action_taken select').prop('disabled', true);
+        jq('#adverse_input select').prop('disabled', true).addClass('disabled');;
+        jq('#reaction_type select').prop('disabled', true).addClass('disabled');
+        jq('#severity select').prop('disabled', true).addClass('disabled');
+        jq('#action_taken select').prop('disabled', true).addClass('disabled');
         jq('#onsetDate input').prop('disabled', true);
         jq('#remarks_input input').prop('disabled', true);
 
@@ -200,10 +200,10 @@
 
         console.log("Screened for ==> "+reaction_type);
         if (reaction_type == 1066){
-        jq('#adverse_input select').prop('disabled', true);
-        jq('#reaction_type select').prop('disabled', true);
-        jq('#severity select').prop('disabled', true);
-        jq('#action_taken select').prop('disabled', true);
+        jq('#adverse_input select').prop('disabled', true).addClass('disabled');
+        jq('#reaction_type select').prop('disabled', true).addClass('disabled');
+        jq('#severity select').prop('disabled', true).addClass('disabled');
+        jq('#action_taken select').prop('disabled', true).addClass('disabled');
         jq('#onsetDate input').prop('disabled', true);
 
 
@@ -215,13 +215,13 @@
 
         }
         else{
-        jq('#adverse_input select').prop('disabled', false);
+        jq('#adverse_input select').prop('disabled', false).removeClass('disabled');
         jq('#adverse_input select').val('');
-        jq('#reaction_type select').prop('disabled', false);
+        jq('#reaction_type select').prop('disabled', false).removeClass('disabled');
         jq('#reaction_type select').val('');
-        jq('#severity select').prop('disabled', false);
+        jq('#severity select').prop('disabled', false).removeClass('disabled');
         jq('#severity select').val('');
-        jq('#action_taken select').prop('disabled', false);
+        jq('#action_taken select').prop('disabled', false).removeClass('disabled');
         jq('#action_taken select').val('');
 
         jq('#onsetDate input').prop('disabled', false);

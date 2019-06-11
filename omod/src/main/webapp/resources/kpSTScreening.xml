@@ -120,11 +120,11 @@
 
         console.log("Screened for ==> "+screening_type);
         if (screening_type == 1066){
-        jq('#reason select').prop('disabled', true);
+        jq('#reason select').prop('disabled', true).addClass('disabled');
         jq('#providerName input').prop('disabled', true);
         }
         else{
-        jq('#reason select').prop('disabled', false);
+        jq('#reason select').prop('disabled', false).removeClass('disabled');
         jq('#providerName input').prop('disabled', false);
         jq('#providerName input').val('');
         }

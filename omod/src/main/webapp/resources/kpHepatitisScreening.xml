@@ -131,12 +131,12 @@
     </ifMode>
     <script type="text/javascript">
         jq(function() {
-        jq('#results select').prop('disabled', true);
-        jq('#treated select').prop('disabled', true);
+        jq('#results select').prop('disabled', true).addClass('disabled');
+        jq('#treated select').prop('disabled', true).addClass('disabled');
         jq('#treated select').val('');
-        jq('#referred select').prop('disabled', true);
+        jq('#referred select').prop('disabled', true).addClass('disabled');
         jq('#referred select').val('');
-        jq('#remarks_input select').prop('disabled', true);
+        jq('#remarks_input select').prop('disabled', true).addClass('disabled');
         jq('#remarks_input input').val('');
 
         var Screened = jq("#screened select").change(ScreenedFor)
@@ -164,9 +164,9 @@
         var negative = jq("#results select").val();
 
         if (negative == 703){
-        jq('#treated select').prop('disabled', false);
-        jq('#referred select').prop('disabled', false);
-        jq('#remarks_input select').prop('disabled', false);
+        jq('#treated select').prop('disabled', false).removeClass('disabled');
+        jq('#referred select').prop('disabled', false).removeClass('disabled');
+        jq('#remarks_input select').prop('disabled', false).removeClass('disabled');
 
 
         jq('#treated select').val('');
@@ -175,11 +175,11 @@
 
         }
         else{
-        jq('#treated select').prop('disabled', true);
+        jq('#treated select').prop('disabled', true).addClass('disabled');
         jq('#treated select').val('');
-        jq('#referred select').prop('disabled', true);
+        jq('#referred select').prop('disabled', true).addClass('disabled');
         jq('#referred select').val('');
-        jq('#remarks_input select').prop('disabled', true);
+        jq('#remarks_input select').prop('disabled', true).addClass('disabled');
         jq('#remarks_input selct').val('');
 
 

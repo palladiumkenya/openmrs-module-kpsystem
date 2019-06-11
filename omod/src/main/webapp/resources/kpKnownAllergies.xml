@@ -135,8 +135,8 @@
         jq(function() {
 
         jq('#causative_agent_input select').prop('disabled', true);
-        jq('#reaction_input select').prop('disabled', true);
-        jq('#severity_input select').prop('disabled', true);
+        jq('#reaction_input select').prop('disabled', true).addClass('disabled');
+        jq('#severity_input select').prop('disabled', true).addClass('disabled');s
         jq('#onsetaDate input').prop('disabled', true);
 
         var checkIfcomplaintsExist = jq("#complaint_exists_input select").change(ComplaintsExist)
@@ -153,9 +153,9 @@
 
         console.log("Screened for ==> "+complaints);
         if (complaints == 1066){
-        jq('#causative_agent_input select').prop('disabled', true);
-        jq('#reaction_input select').prop('disabled', true);
-        jq('#severity_input select').prop('disabled', true);
+        jq('#causative_agent_input select').prop('disabled', true).addClass('disabled');
+        jq('#reaction_input select').prop('disabled', true).addClass('disabled');
+        jq('#severity_input select').prop('disabled', true).addClass('disabled');
         jq('#onsetaDate input').prop('disabled', true);
 
 
@@ -165,11 +165,11 @@
         jq('#onsetaDate input').val('');
         }
         else{
-        jq('#causative_agent_input select').prop('disabled', false);
+        jq('#causative_agent_input select').prop('disabled', false).removeClass('disabled');
         jq('#causative_agent_input select').val('');
-        jq('#reaction_input select').prop('disabled', false);
+        jq('#reaction_input select').prop('disabled', false).removeClass('disabled');
         jq('#reaction_input select').val('');
-        jq('#severity_input select').prop('disabled', false);
+        jq('#severity_input select').prop('disabled', false).removeClass('disabled');
         jq('#severity_input select').val('');
         jq('#onsetaDate input').prop('disabled', false);
         jq('#onsetaDate input').val('');
