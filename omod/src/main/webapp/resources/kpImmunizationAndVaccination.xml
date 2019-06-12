@@ -119,7 +119,7 @@
                           style="dropdown"/></td>
             </tr>
             <tr>
-                <th>Immunization type</th>
+                <th>The vaccine/ Antigen name</th>
                 <td> <obs id="vaccine-type_input" conceptId="984"
                           answerConceptIds='5665AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
                                                159711AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
@@ -161,7 +161,7 @@
                 <td><obs conceptId="$immunization_date" id="immunization_date_input" /></td>
             </tr>
             <tr>
-                <th>Immunization side effects</th>
+                <th>Has the client developed any side effects following immunization</th>
                 <td>
                     <obs conceptId="$immunization_effects_coded" id="side_effects_exists_input"
                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -170,7 +170,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Nature of side effects</th>
+                <th>The side effects</th>
                 <td><obs conceptId="$immunization_effects_text" id="immunization_effects_text_input" /></td>
             </tr>
             <tr>
