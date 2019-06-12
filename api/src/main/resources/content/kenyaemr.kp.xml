@@ -32,7 +32,7 @@
 	
 		<property name="reports">
 			<set>
-				<ref bean="kenyaemr.kp.report.kpRegister" />
+
 			</set>
 		</property>
 		<property name="fragments">
@@ -99,17 +99,6 @@
 		<property name="icon" value="kenyaui:forms/generic.png" />
 		<property name="htmlform" value="kenyaemr:tb/tbScreening.html" />
 		<property name="order" value="200014" />
-	</bean>
-	<bean id="kenyaemr.kp.report.kpRegister" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
-		<property name="targetUuid" value="fc9c5158-70db-466b-89ad-f4f502757c24" />
-		<property name="name" value="KP Cohort Register" />
-		<property name="description" value="KP Cohort Register" />
-		<property name="apps">
-			<set>
-				<ref bean="kenyaemr.app.reports" />
-			</set></property>
-		<property name="template" value="kenyaemr:pmtct/hei_register_template.xls" />
-		<property name="repeatingSection" value="sheet:1,row:7,dataset:KPRegister" />
 	</bean>
 
 </beans>
