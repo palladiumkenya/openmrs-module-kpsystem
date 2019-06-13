@@ -31,25 +31,12 @@
                 <ref bean="kenyaemr.common.form.kpAppointmentCreation"/>
                 <ref bean="kenyaemr.common.form.kpClientTracing"/>
                 <ref bean="kenyaemr.common.form.kpHIVstatus"/>
-                <ref bean="kenyaemr.common.form.Screening"/>
+                <ref bean="kenyaemr.common.form.kpDepressionScreening"/>
+                <ref bean="kenyaemr.common.form.kpOverdoseReporting"/>
 
             </set>
         </property>
     </bean>
-
-
-    <bean id="kenyaemr.config.report" class="org.openmrs.module.kenyacore.report.ReportConfiguration">
-        <property name="commonReports">
-            <set>
-                <ref bean="kp.etl.common.report.moh731b" />
-
-                <ref bean="kenyaemr.hiv.report.pendingVLAndCD4Report"/>
-                <ref bean="kenyaemr.hiv.report.cccDefaulterTracingRegister"/>
-                <ref bean="kenyaemr.etl.common.report.diffcarestability" />
-            </set>
-        </property>
-    </bean>
-
     <bean id="kenyaemr.config.regimen" class="org.openmrs.module.kenyaemr.regimen.RegimenConfiguration">
         <property name="definitionsPath" value="regimens.xml" />
     </bean>
@@ -66,32 +53,32 @@
 
     <!-- National Identification Number -->
     <bean id="kenyaemr.common.identifier.national" class="org.openmrs.module.kenyacore.identifier.IdentifierDescriptor">
-        <property name="targetUuid" value="49af6cdc-7968-4abb-bf46-de10d7f4859f" />
+        <property name="targetUuid" value="${metadata.identifiertype.NATIONAL_ID}" />
         <property name="order" value="100" />
     </bean>
 
     <!-- Patient Clinic Number -->
     <bean id="kenyaemr.common.identifier.pcn" class="org.openmrs.module.kenyacore.identifier.IdentifierDescriptor">
-        <property name="targetUuid" value="b4d66522-11fc-45c7-83e3-39a1af21ae0d" />
+        <property name="targetUuid" value="${metadata.identifiertype.PATIENT_CLINIC_NUMBER}" />
         <property name="order" value="200" />
     </bean>
 
     <!-- Old Identification Number -->
     <bean id="kenyaemr.common.identifier.old" class="org.openmrs.module.kenyacore.identifier.IdentifierDescriptor">
-        <property name="targetUuid" value="8d79403a-c2cc-11de-8d13-0010c6dffd0f" />
+        <property name="targetUuid" value="${metadata.identifiertype.OLD}" />
         <property name="order" value="300" />
     </bean>
 
     <!-- OpenMRS ID -->
     <bean id="kenyaemr.common.identifier.mrn" class="org.openmrs.module.kenyacore.identifier.IdentifierDescriptor">
-        <property name="targetUuid" value="dfacd928-0370-4315-99d7-6ec1c9f7ae76" />
+        <property name="targetUuid" value="${metadata.identifiertype.MEDICAL_RECORD_NUMBER}" />
     </bean>
 
     <!-- ===================== Forms ===================== -->
 
     <!-- TB Screening -->
     <bean id="kenyaemr.common.form.tbScreening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-        <property name="targetUuid" value="59ed8e62-7f1f-40ae-a2e3-eabe350277ce" />
+        <property name="targetUuid" value="${metadata.form.TB_SCREENING}" />
         <property name="apps">
             <set>
                 <ref bean="kenyaemr.app.intake" />
@@ -180,13 +167,13 @@
         <property name="order" value="201006" />
     </bean>
 
-      <!-- kp client Hiv status -->
+    <!-- kp client Hiv status -->
     <bean id="kenyaemr.common.form.kpHIVstatus" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-        <property name="targetUuid" value="b315a664-4a15-11e9-8646-d663bd873d93" />
+        <property name="targetUuid" value="99979576-8854-11e9-bc42-526af7764f64" />
         <property name="apps">
             <set>
                 <ref bean="kenyaemr.app.registration" />
-                <ref bean="keny.app.clinician" />
+                <ref bean="kenyaemr.app.clinician" />
                 <ref bean="kenyaemr.app.chart" />
             </set>
         </property>
@@ -194,44 +181,37 @@
         <property name="htmlform" value="kenyaemr:kp/kpHIVstatus.html" />
         <property name="order" value="201010" />
     </bean>
+
+    <!-- kp client Depression Screening -->
+    <bean id="kenyaemr.common.form.kpDepressionScreening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="5fe533ee-0c40-4a1f-a071-dc4d0fbb0c17" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.registration" />
+                <ref bean="kenyaemr.app.clinician" />
+                <ref bean="kenyaemr.app.chart" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/kpDepressionScreening.html" />
+        <property name="order" value="201012" />
+    </bean>
+    <!-- kp client Overdose Reporting -->
+    <bean id="kenyaemr.common.form.kpOverdoseReporting" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="92fd9c5a-c84a-483b-8d78-d4d7a600db30" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.registration" />
+                <ref bean="kenyaemr.app.clinician" />
+                <ref bean="kenyaemr.app.chart" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/overdoseReporting.html" />
+        <property name="order" value="201015" />
+    </bean>
+
+
     <!-- ===================== Reports ===================== -->
-
-    <bean id="kp.etl.common.report.moh731b" class="org.openmrs.module.kenyacore.report.IndicatorReportDescriptor">
-        <property name="targetUuid" value="5ade02a7-671e-4404-9785-81b4041d3cd1" />
-        <property name="name" value="MOH 731B Report" />
-        <property name="description" value="MOH 731B Report for KP" />
-        <property name="apps">
-            <set>
-                <ref bean="kenyaemr.app.reports" />
-            </set></property>
-        <property name="template" value="kenyaemr:MOH731B_Kp_Report_Template.xls" />
-    </bean>
-
-    <bean id="kenyaemr.hiv.report.pendingVLAndCD4Report" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
-        <property name="targetUuid" value="d21dd5f4-3660-11e9-b210-d663bd873d93" />
-        <property name="name" value="Viral Load and CD4 Lab requests pending Results" />
-        <property name="description" value="Patients with VL and CD4 Lab requests pending Results" />
-        <property name="apps">
-            <set>
-                <ref bean="kenyaemr.app.reports" />
-            </set></property>
-    </bean>
-
-    <bean id="kenyaemr.hiv.report.cccDefaulterTracingRegister" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
-        <property name="targetUuid" value="b71a8cfe-3695-11e9-b210-d663bd873d93" />
-        <property name="name" value="CCC Defaulter Tracing Register (Mini)" />
-        <property name="description" value="Report that shows tracing attempts within a period" />
-        <property name="apps">
-            <set>
-                <ref bean="kenyaemr.app.reports" />
-            </set></property>
-    </bean>
-
-    <bean id="kenyaemr.etl.common.report.diffcarestability" class="org.openmrs.module.kenyacore.report.IndicatorReportDescriptor">
-        <property name="targetUuid" value="fb52e73d-3f98-4ff0-a2e9-65c5d486b872" />
-        <property name="name" value="Differentiated care report for Current in Care Patients" />
-        <property name="description" value="Current in Care - stability report" />
-        <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
-    </bean>
 
 </beans>
