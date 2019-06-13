@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="20cf6054-a119-4168-a49a-8ce09830899d" formName="Review of systems"
+<htmlform formUuid="20cf6054-a119-4168-a49a-8ce09830899d" formName="Review of Body systems"
           formEncounterType="5568ab72-e951-4683-875e-c5781b6f7b81" formVersion="1.0">
 
     <macros>
