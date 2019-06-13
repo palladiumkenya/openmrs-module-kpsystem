@@ -315,17 +315,6 @@
 
         }
 
-        function DateChangedw(){
-
-        console.log("Run  Date Changed");
-        <!-- var first = new Date($(#LMPInput).val());
-         console.log("Run  Date Changed");
-         first.setMonth( first.getMonth( ) + 9 );
-         console.log("Run  Date Changed");
-         // var seconddate = ( first.getMonth( ) + 1 ) + '/' + first.getDate( ) + '/' + first.getFullYear( );
-         //$(#expectedDate).val(seconddate);-->
-        }
-
         function CervicalCancerResults(){
         var cervicalResults = jq("#resultsInput select").val();
 
@@ -346,21 +335,21 @@
 
         if (cervical == 1066){
         console.log("Run  ==> not cervical");
-        jq('#resultsInput select').prop('disabled', true);
+        jq('#resultsInput select').prop('disabled', true).addClass('disabled');
         jq('#resultsInput select').val('')
-        jq('#treatedInput select').prop('disabled', true);
+        jq('#treatedInput select').prop('disabled', true).addClass('disabled');
         jq('#treatedInput select').val('')
-        jq('#referredInput select').prop('disabled', true);
+        jq('#referredInput select').prop('disabled', true).addClass('disabled');
         jq('#referredInput select').val('');
 
         }
         else{
         console.log("Run  ==>  cervical");
-        jq('#resultsInput select').prop('disabled', false);
+        jq('#resultsInput select').prop('disabled', false).removeClass('disabled');
         jq('#resultsInput select').val('');
-        jq('#treatedInput select').prop('disabled', false);
+        jq('#treatedInput select').prop('disabled', false).removeClass('disabled');
         jq('#treatedInput select').val('');
-        jq('#referredInput select').prop('disabled', false);
+        jq('#referredInput select').prop('disabled', false).removeClass('disabled');
         jq('#referredInput select').val('');
         }
         }
@@ -371,14 +360,14 @@
 
         if (Pregnant == 1066){
         console.log("Run  ==> not pregnant");
-        jq('#expectedDate input').prop('disabled', true);
+        jq('#expectedDate input').prop('disabled', true)
         jq('#expectedDate input').val('');
-        jq('#fPsatatus select').prop('disabled', false);
+        jq('#fPsatatus select').prop('disabled', false).removeClass('disabled');
         jq('#fPsatatus select').val('');
-        jq('#eligibleInput select').prop('disabled', false);
+        jq('#eligibleInput select').prop('disabled', false).removeClass('disabled');
         jq('#eligibleInput select').val('');
         jq('#familyplanning').show();
-        jq('#referredInput select').prop('disabled', false);
+        jq('#referredInput select').prop('disabled', false).removeClass('disabled');
         jq('#referredInput select').val('');
 
         }
@@ -386,13 +375,13 @@
         console.log("Run  ==> Pregnant");
         jq('#expectedDate input').prop('disabled', false);
 
-        jq('#fPsatatus select').prop('disabled', true);
+        jq('#fPsatatus select').prop('disabled', true).addClass('disabled');
         jq('#fPsatatus select').val('');
-        jq('#eligibleInput select').prop('disabled', true);
+        jq('#eligibleInput select').prop('disabled', true).addClass('disabled');
         jq('#eligibleInput select').val('');
 
         jq('#familyplanning').hide();
-        jq('#referredInput select').prop('disabled', true);
+        jq('#referredInput select').prop('disabled', true).addClass('disabled');
         jq('#referredInput select').val('');
 
         }

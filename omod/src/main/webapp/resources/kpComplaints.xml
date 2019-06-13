@@ -145,7 +145,7 @@
 
         console.log("Screened for ==> "+complaint_type);
         if (complaint_type == 1066){
-        jq('#complaint_type_input select').prop('disabled', true);
+        jq('#complaint_type_input select').prop('disabled', true).addClass('disabled');
         jq('#complaint_nature_input input').prop('disabled', true);
         jq('#start_date_input input').prop('disabled', true);
         jq('#duration_input input').prop('disabled', true);
@@ -159,7 +159,7 @@
         jq('#remarks_input input').val('');
         }
         else{
-        jq('#complaint_type_input select').prop('disabled', false);
+        jq('#complaint_type_input select').prop('disabled', false).removeClass('disabled');
         jq('#complaint_type_input select').val('');
         jq('#complaint_nature_input input').prop('disabled', false);
         jq('#complaint_nature_input input').val('');

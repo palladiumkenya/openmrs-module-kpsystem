@@ -30,7 +30,6 @@
                     <td width="156" valign="top"><p>Visit date</p></td>
                     <td width="156" valign="top"><p>Chronic Illness exists</p></td>
                     <td width="156" valign="top"><p>Chronic illness type</p></td>
-                    <td width="156" valign="top"><p>Nature of illness</p></td>
                     <td width="156" valign="top"><p>Start date</p></td>
                     <td width="156" valign="top"><p>Duration in years</p></td>
                     <td width="156" valign="top"><p>Remarks</p></td>
@@ -87,7 +86,7 @@
                 <td><encounterDate id="visitDate" size="20" default="today" /></td>
             </tr>
             <tr>
-                <th>Has known chronic illness </th>
+                <th>Has known chronic illness?</th>
                 <td>  <obs conceptId="$illness_exists" id="illness_exists"
                            answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                            answerLabel="Yes,No"
@@ -95,7 +94,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Chronic Illness type</th>
+                <th>Chronic Illness</th>
                 <td> <obs
                         conceptId="$illness_type" class="illness-chronic"
                         answerConceptIds="149019AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,148432AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,153754AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159351AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119270AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120637AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,145438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1295AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120576AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119692AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120291AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117855AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117789AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139071AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,115728AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117399AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117321AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,151342AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133687AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,115115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,114662AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118976AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -104,10 +103,7 @@
                 />
             </td>
             </tr>
-            <tr>
-                <th>Nature of illness</th>
-                <td><obs conceptId="$illness_nature" id="illness_nature_input" /></td>
-            </tr>
+
             <tr>
                 <th>Start date</th>
                 <td><obs conceptId="$start_date" id="start_date_input" allowFutureDates="false" /></td>
@@ -129,7 +125,7 @@
         jq(function()
         {
         console.log("Run  ==> test");
-        jq('#chronic select').prop('disabled', true);
+        jq('#chronic select').prop('disabled', true).addClass('disabled');
         jq('#illness_nature_input input').prop('disabled', true);
         jq('#start_date_input input').prop('disabled', true);
         jq('#duration_input input').prop('disabled', true);
@@ -155,11 +151,12 @@
 
         console.log("Screened for ==> "+screening_type);
         if (screening_type == 1066){
-        jq('#chronic select').prop('disabled', true);
+        jq('#chronic select').prop('disabled', true).addClass('disabled');
         jq('#illness_nature_input input').prop('disabled', true);
         jq('#start_date_input input').prop('disabled', true);
         jq('#duration_input input').prop('disabled', true);
         jq('#remarks_input input').prop('disabled', true);
+        jq('#chronic select').val('');
         jq('#illness_nature_input input').val('');
         jq('#start_date_input input').val('');
         jq('#duration_input input').val('');
@@ -167,7 +164,7 @@
 
         }
         else{
-        jq('#chronic select').prop('disabled', false);
+        jq('#chronic select').prop('disabled', false).removeClass('disabled');
         jq('#illness_nature_input input').prop('disabled', false);
         jq('#illness_nature_input input').val('');
         jq('#start_date_input input').prop('disabled', false);
