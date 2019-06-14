@@ -1,4 +1,8 @@
 <%
+	ui.includeCss("kenyaemrorderentry", "font-awesome.css")
+	ui.includeCss("kenyaemrorderentry", "font-awesome.min.css")
+	ui.includeCss("kenyaemrorderentry", "font-awesome.css.map")
+	ui.includeCss("kenyaemrorderentry", "fontawesome-webfont.svg")
 	def baseLink = ui.pageLink("htmlformentryui", "htmlform/flowsheet", [patientId: currentPatient.patientId, headerForm: "kenyaemr:kpEnrollmentHeaderForm.xml", returnUrl: ui.thisUrl()])
 	def clinicalEncounterFlowsheets = "flowsheets=kenyaemr:kpComplaints.xml&flowsheets=kenyaemr:kpPregnancyAndFamilyPlanning.xml&flowsheets=kenyaemr:kpChronicIllnesses.xml&\n" +
 			"flowsheets=kenyaemr:kpKnownAllergies.xml&flowsheets=kenyaemr:kpDrugReactions.xml&flowsheets=kenyaemr:kpImmunizationAndVaccination.xml&\n" +
@@ -12,6 +16,8 @@
 	def clinicalEncounterFlowsheeturl = baseLink + clinicalEncounterFlowsheets
 	def psychosocialFlowsheeturl = baseLink + psychosocialFlowsheets
 	def pepPrepFlowsheeturl = baseLink + pepPrepFlowsheets
+
+
 %>
 
 <div class="action-container column">
@@ -75,6 +81,12 @@
 				<a href="${ ui.pageLink("hivtestingservices", "patientContactList", [patientId: currentPatient.patientId]) }" class="float-left">
 					<i class="fa fa-list-ul fa-2x"></i>
 					Contact Listing
+				</a>
+			</li>
+			<li class="float-left" style="margin-top: 7px">
+				<a href="${ ui.pageLink("openhmis.inventory", "createOperation/entities", [patientId: currentPatient.patientId]) }" class="float-left">
+					<i class="fa fa-cubes fa-2x"></i>
+					Commodities
 				</a>
 			</li>
 		</ul>
