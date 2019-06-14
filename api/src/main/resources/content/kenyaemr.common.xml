@@ -28,12 +28,17 @@
                 <ref bean="kenyaemr.common.form.referralAndLinkage"/>
                 <ref bean="kenyaemr.common.form.htsinitialtest"/>
                 <ref bean="kenyaemr.common.form.htsconfirmatorytest"/>
+                <ref bean="kenyaemr.common.form.tbScreening"/>
+                <ref bean="kenyaemr.common.form.kpSTITreatment"/>
                 <ref bean="kenyaemr.common.form.kpAppointmentCreation"/>
                 <ref bean="kenyaemr.common.form.kpClientTracing"/>
                 <ref bean="kenyaemr.common.form.kpHIVstatus"/>
                 <ref bean="kenyaemr.common.form.kpDepressionScreening"/>
                 <ref bean="kenyaemr.common.form.kpOverdoseReporting"/>
                 <ref bean="kenyaemr.common.form.kpContact"/>
+                <ref bean="kenyaemr.common.form.kpHealthEducation"/>
+                <ref bean="kenyaemr.common.form.kpReferral"/>
+
             </set>
         </property>
     </bean>
@@ -103,7 +108,7 @@
         </property>
         <property name="icon" value="kenyaui:forms/generic.png" />
         <property name="htmlform" value="kenyaemr:hts/htsInitialTest.html" />
-        <property name="order" value="201000" />
+        <property name="order" value="1000" />
     </bean>
 
     <!-- HTS confirmatory test form -->
@@ -212,6 +217,7 @@
         <property name="htmlform" value="kenyaemr:kp/overdoseReporting.html" />
         <property name="order" value="201015" />
     </bean>
+
     <!-- kp contact registration form -->
     <bean id="kenyaemr.common.form.kpContact" class="org.openmrs.module.kenyacore.form.FormDescriptor">
         <property name="targetUuid" value="185dec84-df6f-4fc7-a370-15aa8be531ec" />
@@ -226,7 +232,48 @@
         <property name="htmlform" value="kenyaemr:kp/kpContact.html" />
         <property name="order" value="201017" />
     </bean>
-
+    <!-- kp client Health Education -->
+    <bean id="kenyaemr.common.form.kpHealthEducation" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="67a224a5-907c-49e0-a1ea-e7c38b7a489d" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.registration" />
+                <ref bean="kenyaemr.app.clinician" />
+                <ref bean="kenyaemr.app.chart" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/kpHealthEducation.html" />
+        <property name="order" value="201018" />
+    </bean>
+    <!-- kp client Referrals -->
+    <bean id="kenyaemr.common.form.kpReferral" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="bd12f98a-fcfe-4472-a858-17f28457932b" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.registration" />
+                <ref bean="kenyaemr.app.clinician" />
+                <ref bean="kenyaemr.app.chart" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/kpReferral.html" />
+        <property name="order" value="201019" />
+    </bean>
+    <!-- kp client STI Screening -->
+    <bean id="kenyaemr.common.form.kpSTITreatment" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="318ad7be-e4da-481f-bcdd-0368cb7601c8" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.registration" />
+                <ref bean="kenyaemr.app.clinician" />
+                <ref bean="kenyaemr.app.chart" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/kpSTITreatment.html" />
+        <property name="order" value="1100" />
+    </bean>
 
     <!-- ===================== Reports ===================== -->
 

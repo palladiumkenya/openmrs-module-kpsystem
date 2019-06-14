@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="c7f47cea-207b-11e9-ab14-d663bd873d93" formName="Enrollment Header"
+<htmlform formUuid="c7f47cea-207b-11e9-ab14-d663bd873d93" formName="KP Enrollment"
           formEncounterType="c7f47a56-207b-11e9-ab14-d663bd873d93" formVersion="1.0">
 
     <macros>
