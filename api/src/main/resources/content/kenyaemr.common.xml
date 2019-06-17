@@ -33,11 +33,16 @@
                 <ref bean="kenyaemr.common.form.kpAppointmentCreation"/>
                 <ref bean="kenyaemr.common.form.kpClientTracing"/>
                 <ref bean="kenyaemr.common.form.kpHIVstatus"/>
+
                 <ref bean="kenyaemr.common.form.kpDepressionScreening"/>
                 <ref bean="kenyaemr.common.form.kpOverdoseReporting"/>
                 <ref bean="kenyaemr.common.form.kpContact"/>
                 <ref bean="kenyaemr.common.form.kpHealthEducation"/>
                 <ref bean="kenyaemr.common.form.kpReferral"/>
+
+                <ref bean="kenyaemr.common.form.kpAlcoholScreening"/>
+               <ref bean="kenyaemr.common.form.kpViolenceScreening" />
+
 
             </set>
         </property>
@@ -187,6 +192,21 @@
         <property name="order" value="201010" />
     </bean>
 
+    <!-- kp Alcohol Screening -->
+    <bean id="kenyaemr.common.form.kpAlcoholScreening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="7ba743c8-d8e6-44ad-aeed-8d2ff9e985db" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.registration" />
+                <ref bean="kenyaemr.app.clinician" />
+                <ref bean="kenyaemr.app.chart" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/kpAlcoholScreening.html" />
+        <property name="order" value="201010" />
+    </bean>
+
 
     <!-- kp client Depression Screening -->
     <bean id="kenyaemr.common.form.kpDepressionScreening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
@@ -273,6 +293,22 @@
         <property name="icon" value="kenyaui:forms/generic.png" />
         <property name="htmlform" value="kenyaemr:kp/kpSTITreatment.html" />
         <property name="order" value="1100" />
+    </bean>
+
+
+    <!-- kp Violence Screening -->
+    <bean id="kenyaemr.common.form.kpViolenceScreening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="10cd2ca0-8d25-4876-b97c-b568a912957e" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.registration" />
+                <ref bean="kenyaemr.app.clinician" />
+                <ref bean="kenyaemr.app.chart" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/kpViolenceScreening.html" />
+        <property name="order" value="201010" />
     </bean>
 
     <!-- ===================== Reports ===================== -->
