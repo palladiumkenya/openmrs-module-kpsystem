@@ -1,0 +1,469 @@
+<!--
+  ~ The contents of this file are subject to the OpenMRS Public License
+  ~ Version 1.0 (the "License"); you may not use this file except in
+  ~ compliance with the License. You may obtain a copy of the License at
+  ~ http://license.openmrs.org
+  ~
+  ~ Software distributed under the License is distributed on an "AS IS"
+  ~ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+  ~ License for the specific language governing rights and limitations
+  ~ under the License.
+  ~
+  ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+
+-->
+<htmlform>
+
+    <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#hiv :input").prop("disabled", true);
+            $('#ever_been_tested input').prop("disabled", false);
+
+            $("#ever_been_tested").change(EverBeenTested)
+            $("#testResults").change(TestResults)
+            $("#currentlyincare").change(CurrentlyIncare)
+            $("#referral_id").change(Referral)
+            //console.log("Run  ==> contacted");
+        });
+        var CurrentlyIncare  = function (){
+
+            var incare =  getValue('currentlyincare.value');
+            if (incare == 1066 )
+            {
+
+                $('#referral_id input').prop("disabled", false);
+                $('#referred_to_input input').prop("disabled", false);
+
+
+            }else
+            {
+                $('#referral_id input').prop("disabled", true);
+                $('#referred_to_input input').prop("disabled", true);
+            }
+        }
+        var Referral  = function (){
+
+            var referred =  getValue('referral_id.value');
+            if (referred == 1065 )
+            {
+                $('#referred_to_input input').prop("disabled", false);
+
+            }else
+            {
+                $('#referred_to_input input').prop("disabled", true);
+            }
+        }
+
+        var TestResults  = function (){
+
+            var results =  getValue('testResults.value');
+            if (results == 703 )
+            {
+                $("#hiv :input").prop("disabled", true);
+                $('#ever_been_tested input').prop("disabled", false);
+                $('#testResults input').prop("disabled", false);
+                $('#testing-date input').prop("disabled", false);
+
+
+            }else
+            {
+                $("#hiv :input").prop("disabled", false);
+            }
+        }
+        function EverBeenTested() {
+
+            var everTested =   getValue('ever_been_tested.value');
+            console.log(everTested)
+            if (everTested == 1066 )
+            {
+                $("#hiv :input").prop("disabled", true);
+                $('#ever_been_tested input').prop("disabled", false);
+                //$("#hiv :input").val('');
+
+            }else
+            {
+                $("#hiv :input").prop("disabled", false);
+
+                // $('#testing-date').val('');
+                // setValue("testResults.value", "");
+                // setValue("testing-date.value", "");
+                // setValue("referral_id.value", "");
+                // setValue("referred_to_input.value", "");
+                // setValue("date_started_ART.value", "");
+                //
+                // setValue("currentART_medication.value", "");
+                // setValue("most_resent_VL.value", "");
+                // setValue("vl_test_date.value", "");
+                // setValue("provider.value", "");
+            }
+        }
+    </script>
+    <!--=============Work flow==================-->
+    <ifMode mode="VIEW" include="true">
+        <div>
+            <table style="width: 100%">
+                <tr>
+                    <td align="left">
+                        HIV Screening Date:
+                    </td>
+                    <td>
+                        Results
+                    </td>
+                    <td align="right">
+                        Currently in care:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        16-Jan-2019
+                    </td>
+                    <td>
+                        Test
+                    </td>
+                    <td align="right">
+                        Test
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </ifMode>
+    <!-- ============ end work flow =================-->
+
+
+    <div class="ke-form-header">
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <ifMode mode="ENTER">
+                        <script type="text/javascript">
+                            jq(function(){
+                                setValue("encounter-date.value", "");
+                            });
+                        </script>
+                    </ifMode>
+                    <ifMode mode="EDIT">
+                        <script type="text/javascript">
+                            jq(function(){
+
+                                //First test
+                                var firstTest = getField("hiv-test1-result.value").val();
+                                //Negative
+                                if(firstTest ==664) {
+
+                                    jq("#hiv-test2-result select").prop("disabled", true);
+                                    jq(".kit-name2 select").prop("disabled", true);
+                                    jq(".lot-number2 input").prop("disabled", true);
+                                    jq("#expiry-date2 input").prop("disabled", true);
+                                    getField('hiv-final-result.value').val(664);
+                                    jq('#ccc-no input').prop("disabled", true);
+                                }
+                            });
+                        </script>
+                    </ifMode>
+
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <div class="ke-form-header">
+        <table width="100%">
+            <tr>
+                <td>Date:
+                    <encounterDate id="encounter-date" />
+                </td>
+                <td>Location:
+                    <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ke-form-content" id="hiv">
+
+        <fieldset>
+            <legend>VIOLENCE REPORTING FORM</legend>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+                <tr>
+                    <td width="156" valign="top"><p>Place of incident</p></td>
+                    <td width="156" valign="top"><p>  <obs id="place" class="consent" conceptId="162725"
+                                                         /></p></td>
+                    <td width="156" valign="top"><p></p></td>
+
+
+                    <td width="156" valign="top" colspan="2"><p> Date Of incident:<obs id="testing-date" conceptId="160753" allowFutureDates="true"
+                    /></p></td>
+
+                </tr>
+
+                <tr>
+                    <td width="156" valign="top"><p>Was the abuse against:</p></td>
+                    <td width="156" valign="top"><p>  <obs id="currentlyincare" class="consent" conceptId="165142"
+                                                           style="radio"  /></p></td>
+
+                    <td width="156" valign="top"><p></p></td>
+
+                    <td width="156" valign="top" colspan="4"><p> the form of the incident:  <obs id="referral_id" class="consent" conceptId="165143"
+                                                                     answerConceptIds="165144,165145,126312,121387,127910,165146" /></p></td>
+
+
+
+                </tr>
+
+            </table>
+
+        </fieldset>
+        <fieldset>
+            <legend>PREPETRATORS</legend>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="156"  valign="top"><p><b>Kp being Discriminated / Harassed /Abused by:</b></p></td>
+                    <td width="156" valign="top"><p>  <obs conceptId="165147" answerConceptId="165148" style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="1560"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="165149" style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5617" answerLabel="partner" style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="165150"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+
+                        <obs conceptId="165147" answerConceptId="160580"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="159928" answerLabel="education institute"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                    </p>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+                    <td width="156" valign="top"><p>Other KP (specify)</p></td>
+                    <td width="156" valign="top" ><p>  <obs class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="5" cols="50"
+                    /></p></td>
+
+                </tr>
+
+                <tr>
+
+                    <td width="156" valign="top" colspan="4"><p> Date and time the crisis response team made its first attempt to address the incident through staff: <obs id="response_date" conceptId="164400" allowFutureDates="false" showTime="true"
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>Type of post violence support provided</p></td>
+                    <td width="156" valign="top" ><p>  <obs class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="5" cols="50"
+                    /></p></td>
+
+                </tr>
+
+
+            </table>
+
+        </fieldset>
+        <fieldset>
+            <legend>Services</legend>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="156" colspan="4" valign="top"><p><b>Select the applicable post eape care service provided:</b></p></td>
+
+                </tr>
+
+                <tr>
+                    <td width="156" valign="top"><p> a) HIV testing service</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>b)  Emergency contraception</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156"  valign="top"><p> c)  Complaint registration at police station     (provide OB number)</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p> d) Psychosocial/trauma counsellin</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p> e) PEP provided</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p> f) STI screening and treatmen</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p> g) Legal support</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p> h) Medical examination</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p> i) PRC form file</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top" ><p> j) Other services provided: specify:</p></td>
+                    <td width="156" valign="top" colspan="3" ><p>  <obs class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="5" cols="50"
+                    /></p></td>
+
+
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top" colspan="2"><p> <b>Non sexual violence</b>:</p></td>
+
+
+
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p> a) Medical services and care</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p> b) Psychosocial /trauma counselling</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p> c) Complaint registration at police station     (Provide OB number)</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p> d) Legal Support</p></td>
+                    <td width="156" valign="top"><p> </p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    /></p></td>
+
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+
+                    /></p></td>
+
+                </tr>
+                <tr>
+
+
+                    <td width="156" valign="top" colspan="4"><p> where is the person now:  <obs id="referral_id" class="consent" conceptId="164849"
+                                                                                                   style="radio" answerConceptIds="1065,1066,1065,1066,1065,1066" /></p></td>
+
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top" ><p> follow up action plan</p></td>
+                    <td width="156" valign="top" colspan="3" ><p>  <obs class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="5" cols="50"
+                    /></p></td>
+
+
+
+                </tr>
+
+                <tr>
+
+                    <td width="156" valign="top" colspan="4"><p> Date issue was completely addressed: <obs id="response_date" conceptId="164400" allowFutureDates="false" showTime="true"
+                    /></p></td>
+
+                </tr>
+            </table>
+
+        </fieldset>
+    </div>
+    <div class="ke-form-footer">
+        <submit/>
+    </div>
+
+</htmlform>
