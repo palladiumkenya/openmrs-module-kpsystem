@@ -17,14 +17,14 @@
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#hiv :input").prop("disabled", true);
-            $('#ever_been_tested input').prop("disabled", false);
+
+
 
             $("#ever_been_tested").change(EverBeenTested)
             $("#testResults").change(TestResults)
             $("#currentlyincare").change(CurrentlyIncare)
             $("#referral_id").change(Referral)
-            //console.log("Run  ==> contacted");
+
         });
         var CurrentlyIncare  = function (){
 
@@ -85,17 +85,7 @@
             {
                 $("#hiv :input").prop("disabled", false);
 
-                // $('#testing-date').val('');
-                // setValue("testResults.value", "");
-                // setValue("testing-date.value", "");
-                // setValue("referral_id.value", "");
-                // setValue("referred_to_input.value", "");
-                // setValue("date_started_ART.value", "");
-                //
-                // setValue("currentART_medication.value", "");
-                // setValue("most_resent_VL.value", "");
-                // setValue("vl_test_date.value", "");
-                // setValue("provider.value", "");
+
             }
         }
     </script>
@@ -190,7 +180,7 @@
                 <tr>
                     <td width="156" valign="top"><p>Place of incident</p></td>
                     <td width="156" valign="top"><p>  <obs id="place" class="consent" conceptId="162725"
-                                                         /></p></td>
+                    /></p></td>
                     <td width="156" valign="top"><p></p></td>
 
 
@@ -201,13 +191,23 @@
 
                 <tr>
                     <td width="156" valign="top"><p>Was the abuse against:</p></td>
-                    <td width="156" valign="top"><p>  <obs id="currentlyincare" class="consent" conceptId="165142"
+                    <td width="156" valign="top"><p>  <obs id="currentlyincare" class="consent" conceptId="165164"
                                                            style="radio"  /></p></td>
 
                     <td width="156" valign="top"><p></p></td>
 
-                    <td width="156" valign="top" colspan="4"><p> the form of the incident:  <obs id="referral_id" class="consent" conceptId="165143"
-                                                                     answerConceptIds="165144,165145,126312,121387,127910,165146" /></p></td>
+                    <td width="156" valign="top" colspan="4"><p> the form of the incident:
+                        <obs conceptId="141814" answerConceptId="123007" style="checkbox" />
+                        <obs conceptId="141814" answerConceptId="152292"  style="checkbox" />
+                        <obs conceptId="141814" answerConceptId="126312" style="checkbox" />
+                        <obs conceptId="141814" answerConceptId="152370" answerLabel="Sexual Abuse" style="checkbox" />
+                        <obs conceptId="141814" answerConceptId="156761"  style="checkbox" />
+                        <obs conceptId="141814" answerConceptId="5622"  style="checkbox" />
+                        <obs conceptId="141814" answerConceptId="165159"  style="checkbox" />
+
+
+
+                    </p></td>
 
 
 
@@ -221,24 +221,21 @@
             <table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td width="156"  valign="top"><p><b>Kp being Discriminated / Harassed /Abused by:</b></p></td>
-                    <td width="156" valign="top"><p>  <obs conceptId="165147" answerConceptId="165148" style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="1560"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="165149" style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5617" answerLabel="partner" style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="165150"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                    <td width="156" valign="top"><p>  <obs conceptId="160658" answerConceptId="123163" style="checkbox" />
+                        <obs conceptId="160658" answerConceptId="5620"  style="checkbox" />
+                        <obs conceptId="160658" answerConceptId="110360" style="checkbox" />
+                        <obs conceptId="160658" answerConceptId="1540" answerLabel="partner" style="checkbox" />
+                        <obs conceptId="160658" answerConceptId="163096"  style="checkbox" />
+                        <obs conceptId="160658" answerConceptId="159928"  style="checkbox" />
 
-                        <obs conceptId="165147" answerConceptId="160580"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="159928" answerLabel="education institute"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
-                        <obs conceptId="165147" answerConceptId="5619"  style="checkbox" />
+                        <obs conceptId="160658" answerConceptId="133651"  style="checkbox" />
+                        <!--                        <obs conceptId="160658" answerConceptId="159928" answerLabel="education institute"  style="checkbox" />-->
+                        <obs conceptId="160658" answerConceptId="165155 "  style="checkbox" />
+
+                        <obs conceptId="160658" answerConceptId="165156"  style="checkbox" />
+                        <obs conceptId="160658" answerConceptId="165157"  style="checkbox" />
+                        <obs conceptId="160658" answerConceptId="165158"  style="checkbox" />
+                        <obs conceptId="160658" answerConceptId="165159"  style="checkbox" />
                     </p>
                     </td>
 
@@ -280,10 +277,10 @@
                 <tr>
                     <td width="156" valign="top"><p> a) HIV testing service</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="159368"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165165" style="radio"
 
                     /></p></td>
 
@@ -291,10 +288,10 @@
                 <tr>
                     <td width="156" valign="top"><p>b)  Emergency contraception</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165166"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165167" style="radio"
 
                     /></p></td>
 
@@ -302,10 +299,10 @@
                 <tr>
                     <td width="156"  valign="top"><p> c)  Complaint registration at police station     (provide OB number)</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165179"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165180" style="radio"
 
                     /></p></td>
 
@@ -313,10 +310,10 @@
                 <tr>
                     <td width="156" valign="top"><p> d) Psychosocial/trauma counsellin</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165168"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165169" style="radio"
 
                     /></p></td>
 
@@ -324,21 +321,21 @@
                 <tr>
                     <td width="156" valign="top"><p> e) PEP provided</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165170"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165171" style="radio"
 
                     /></p></td>
 
                 </tr>
                 <tr>
-                    <td width="156" valign="top"><p> f) STI screening and treatmen</p></td>
+                    <td width="156" valign="top"><p> f) STI screening and treatment done</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services done: <obs id="vl_test_date" conceptId="161558"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165172" style="radio"
 
                     /></p></td>
 
@@ -346,10 +343,10 @@
                 <tr>
                     <td width="156" valign="top"><p> g) Legal support</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165173"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165174" style="radio"
 
                     /></p></td>
 
@@ -357,10 +354,10 @@
                 <tr>
                     <td width="156" valign="top"><p> h) Medical examination</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165175"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165176" style="radio"
 
                     /></p></td>
 
@@ -368,10 +365,10 @@
                 <tr>
                     <td width="156" valign="top"><p> i) PRC form file</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165178"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165177" style="radio"
 
                     /></p></td>
 
@@ -394,10 +391,10 @@
                 <tr>
                     <td width="156" valign="top"><p> a) Medical services and care</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165181"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165182" style="radio"
 
                     /></p></td>
 
@@ -405,10 +402,10 @@
                 <tr>
                     <td width="156" valign="top"><p> b) Psychosocial /trauma counselling</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165183"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165184" style="radio"
 
                     /></p></td>
 
@@ -416,10 +413,9 @@
                 <tr>
                     <td width="156" valign="top"><p> c) Complaint registration at police station     (Provide OB number)</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
-                    /></p></td>
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165185"                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165186" style="radio"
 
                     /></p></td>
 
@@ -427,10 +423,10 @@
                 <tr>
                     <td width="156" valign="top"><p> d) Legal Support</p></td>
                     <td width="156" valign="top"><p> </p></td>
-                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="160632" allowFutureDates="true"
+                    <td width="156" valign="top" colspan="2"><p>Duration of services: <obs id="vl_test_date" conceptId="165187"
                     /></p></td>
 
-                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="160632"
+                    <td width="156" valign="top" colspan="3"><p> Provided within 5 days <obs id="provider"  conceptId="165188" style="radio"
 
                     /></p></td>
 
@@ -438,8 +434,8 @@
                 <tr>
 
 
-                    <td width="156" valign="top" colspan="4"><p> where is the person now:  <obs id="referral_id" class="consent" conceptId="164849"
-                                                                                                   style="radio" answerConceptIds="1065,1066,1065,1066,1065,1066" /></p></td>
+                    <td width="156" valign="top" colspan="4"><p> where is the person now:  <obs class="consent" conceptId="165189"
+                                                                                                style="radio" answerConceptIds="160432,162277,1896,1536,163321" /></p></td>
 
 
                 </tr>
