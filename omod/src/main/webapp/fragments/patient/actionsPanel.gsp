@@ -100,7 +100,7 @@
 						"""ui.navigate('${ ui.pageLink('kenyaemr', 'enterForm', opts) }');"""
 					}
 				%>
-				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: availableForms, onFormClick: onFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: availableForms, onFormClick: onFormClick ]) }
 
 
 			</a>

@@ -57,11 +57,8 @@
                                 style="dropdown"
                         />
                     </td>
-                    <td>
-                        <!-- NATURE OF CHRONIC ILLNESS -->
-                        <obs conceptId="$illness_nature" />
 
-                    </td> <td>
+                    <td>
                         <!-- START DATE -->
                         <obs conceptId="$start_date" />
                     </td> <td>

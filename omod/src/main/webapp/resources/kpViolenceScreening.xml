@@ -16,7 +16,7 @@
         violence_exists =141814
         violence_location=162721
         incidence_date=160753
-        target=165034
+        target=165164
         perpetrator=160658
         intervention_date=162869
         referrals_ordered=1272
@@ -191,8 +191,8 @@
                 <th>Target</th>
                 <td>
                     <obs conceptId="$target"
-                         answerConceptIds="978AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,163488AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                         answerLabels="Self,Group"
+                         answerConceptIds="165162,165163"
+                         answerLabels="Individual,Group"
                          style="dropdown"/>
                 </td>
             </tr>
