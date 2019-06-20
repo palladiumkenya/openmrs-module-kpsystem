@@ -274,7 +274,6 @@
             var partner_name = getField('pName.value').val();
             var partner_alias = getField('pAlias.value').val();
             var partner_number = getField('pNumber.value').val();
-            var contact_regular_sex_partner = getField("contact-regular-sex-partner.value").val();
             var start_sex = getField("startSex.value").val();
 
             var sex_with_men = getField("sexWithMen.value").val();
@@ -285,14 +284,6 @@
             var historical_ordeal = getField("hOrdeal.value").val();
             var contatcted_incase_of_appointment = getField("contacted-incase-of-appointment.value").val();
             var clinical_contatcted = getField("cContacted.value").val();
-
-            // validate enrollment
-            if (enrolment_area == "" ) {
-                getField('enrolment_area.error').html('Please select enrollment service area.').show();
-                return false;
-            }else{
-                getField('enrolment_area.error').html('Please select enrollment service area.').hide();
-            }
 
             var contacted_by_eductaor = $('#w13_0');
             var notContacted = $('#w13_1');
@@ -328,14 +319,6 @@
                     getField('pNumber.error').html('Please enter valid phone number.').show();
                     return false;
                 }
-
-                //
-                // if (start_sex == false) {
-                //     getField('Please indicate when you started sex work.error').html('Please indicate when you started sex work.').show();
-                //     return false;
-                // } else {
-                //     getField('Please indicate when you started sex work.error').html('Please indicate when you started sex sex_with_men.').hide();
-                // }
             }
 
         });
@@ -356,25 +339,7 @@
     <div class="ke-form-content">
 
         <fieldset>
-
-            <table>
-                <tr>
-
-                    <td>Unique Client Number</td>
-                    <td>
-                        <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>Enrolment Service Areas</td>
-                    <td>
-                        <obs id="enrolment_area" conceptId="160540" />
-                    </td>
-                </tr>
-            </table>
         </fieldset>
-
         <fieldset>
             <legend>Client Enrolment Social Status</legend>
 
@@ -424,17 +389,6 @@
 
                     </table>
 
-                </tr>
-                <tr>
-                    <table>
-                        <td>Could we contact your regular sexual partner(s) for health services?</td>
-                        <td>
-                            <obs id="contact-regular-sex-partner" conceptId="165029"
-                                 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                 answerLabels="Yes,No"
-                                 style="radio" />
-                        </td>
-                    </table>
                 </tr>
             </table>
         </fieldset>
