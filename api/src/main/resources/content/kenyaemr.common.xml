@@ -204,7 +204,7 @@
         </property>
         <property name="icon" value="kenyaui:forms/generic.png" />
         <property name="htmlform" value="kenyaemr:kp/kpAlcoholScreening.html" />
-        <property name="order" value="201010" />
+        <property name="order" value="201030" />
     </bean>
 
 
@@ -308,7 +308,7 @@
         </property>
         <property name="icon" value="kenyaui:forms/generic.png" />
         <property name="htmlform" value="kenyaemr:kp/kpViolenceScreening.html" />
-        <property name="order" value="201010" />
+        <property name="order" value="201040" />
     </bean>
 
     <!-- ===================== Reports ===================== -->
