@@ -44,7 +44,65 @@
 
 
         }
+        function everTestedSelected() {
+            var val = jq(this).val();
+            var everTested = getValue('ever-tested .value');
+            if(val == 1065){
+                jq("#test-type-tr").show();
+                jq("#share-test-tr").show();
+                jq("#tbl-receiving-care").show();
+                jq("#tbl-vl-status").show();
+                jq("#willing-to-test").hide();
+            }
+            if(val == 1066){
+                jq("#willing-to-test").show();
+                jq("#test-type-tr").hide();
+                jq("#share-test-tr").hide();
+                jq("#tbl-receiving-care").hide();
+                jq("#tbl-vl-status").hide();
+                jq("#test-type input").prop('checked', false);
+                jq("#share-test input").prop('checked', false);
+                jq("#vl-test-done input").prop('checked', false);
+                getField('vl-date.value').val("");
+                getField('ccc-number.value').val("");
+                getField('facility-name.value').val("");
+                getField('receiving-care.value').val("");
+            }
+        }
+        function receivingCareSelected() {
+            var val = jq(this).val();
+           if(val == 1065){
+               jq("#ccc-number :input").prop('disabled', false);
+               jq("#facility-name :input").prop('disabled', false);
+            }
+            if(val == 1066){
+                getField('ccc-number.value').val("");
+                getField('facility-name.value').val("");
+                jq("#ccc-number :input").prop('disabled', true);
+                jq("#facility-name :input").prop('disabled', true);
 
+            }
+        }
+        function vlTestDoneSelected() {
+            var val = jq(this).val();
+            if(val == 1065){
+                jq("#vl-date :input").prop('disabled', false);
+            }
+            if(val == 1066){
+                getField('vl-date.value').val("");
+                jq("#vl-date :input").prop('disabled', true);
+            }
+        }
+        function willingTesterSelected() {
+            var val = jq(this).val();
+            if(val == 1065){
+                jq("#decline-reason select").prop('disabled', false);
+            }
+            if(val == 1066){
+                jq("#decline-reason select").prop('disabled', true);
+                getField('decline-reason.value').prop("selectedIndex", 0);
+            }
+        }
         $(document).ready(function () {
             $("#date").datepicker({
                 changeMonth: false,
@@ -61,6 +119,16 @@
             jq("#peer_work_name").hide();
             jq("#year_sarted_sex").hide();
             jq("#yearStartedSexWithMen").hide();
+            jq("#test-type-tr").hide();
+            jq("#share-test-tr").hide();
+            jq("#tbl-receiving-care").hide();
+            jq("#tbl-vl-status").hide();
+            jq("#willing-to-test").hide();
+
+            jq('#ever-tested :input[type=radio]').change(everTestedSelected);
+            jq('#receiving-care :input[type=radio]').change(receivingCareSelected);
+            jq('#vl-test-done :input[type=radio]').change(vlTestDoneSelected);
+            jq('#willing-tester :input[type=radio]').change(willingTesterSelected);
 
             var sexViolenceckbox = $('#w33_0');
             $('input').on('click',function () {
@@ -206,7 +274,6 @@
             var partner_name = getField('pName.value').val();
             var partner_alias = getField('pAlias.value').val();
             var partner_number = getField('pNumber.value').val();
-            var contact_regular_sex_partner = getField("contact-regular-sex-partner.value").val();
             var start_sex = getField("startSex.value").val();
 
             var sex_with_men = getField("sexWithMen.value").val();
@@ -217,14 +284,6 @@
             var historical_ordeal = getField("hOrdeal.value").val();
             var contatcted_incase_of_appointment = getField("contacted-incase-of-appointment.value").val();
             var clinical_contatcted = getField("cContacted.value").val();
-
-            // validate enrollment
-            if (enrolment_area == "" ) {
-                getField('enrolment_area.error').html('Please select enrollment service area.').show();
-                return false;
-            }else{
-                getField('enrolment_area.error').html('Please select enrollment service area.').hide();
-            }
 
             var contacted_by_eductaor = $('#w13_0');
             var notContacted = $('#w13_1');
@@ -260,14 +319,6 @@
                     getField('pNumber.error').html('Please enter valid phone number.').show();
                     return false;
                 }
-
-                //
-                // if (start_sex == false) {
-                //     getField('Please indicate when you started sex work.error').html('Please indicate when you started sex work.').show();
-                //     return false;
-                // } else {
-                //     getField('Please indicate when you started sex work.error').html('Please indicate when you started sex sex_with_men.').hide();
-                // }
             }
 
         });
@@ -288,31 +339,13 @@
     <div class="ke-form-content">
 
         <fieldset>
-
-            <table>
-                <tr>
-
-                    <td>Unique Client Number</td>
-                    <td>
-                        <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>Enrolment Service Areas</td>
-                    <td>
-                        <obs id="enrolment_area" conceptId="160540" />
-                    </td>
-                </tr>
-            </table>
         </fieldset>
-
         <fieldset>
             <legend>Client Enrolment Social Status</legend>
 
             <table>
                 <tr>
-                    <td>Have you been contacted by a peer educator or an outreach worker for any prevention services?</td>
+                    <td>Have you been contacted by a peer educator or an outreach worker for any health services?</td>
                     <td>
                         <obs id="peer-educator" conceptId="165004"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -356,17 +389,6 @@
 
                     </table>
 
-                </tr>
-                <tr>
-                    <table>
-                        <td>Could we contact your regular sexual partner(s) for prevention services?</td>
-                        <td>
-                            <obs id="contact-regular-sex-partner" conceptId="165029"
-                                 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                 answerLabels="Yes,No"
-                                 style="radio" />
-                        </td>
-                    </table>
                 </tr>
             </table>
         </fieldset>
@@ -459,7 +481,7 @@
 
             <table>
                 <tr>
-                    <td>Treatment support Name</td>
+                    <td>Treatment supporter Name</td>
                     <td>
                         <obs id="fname" conceptId="160638"/>
                     </td>
@@ -484,6 +506,104 @@
                         <obs id="enNotes" conceptId="161011" rows="2" cols="80"/>
                     </td>
                 </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <table>
+                <tr>
+                    <td>
+                        Have you ever been tested for HIV?
+                    </td>
+                    <td>
+                        <obs id="ever-tested" conceptId="164401AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+                </tr>
+                <tr id="test-type-tr">
+                    <td>
+                        The last time you received HIV testing, how did you test?
+                    </td>
+                    <td>
+                        <obs id="test-type" conceptId="164956"
+                             answerConceptIds="163722AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164952"
+                             answerLabel="Rapid HIV Testing,Self Test"
+                             style="radio" />
+                    </td>
+                </tr>
+                <tr id="share-test-tr" >
+                    <td>
+                        Would you like to share your LAST test result with me?  (circle the number)
+                    </td>
+                    <td>
+                        <obs id="share-test" conceptId="165153"
+                             answerConceptIds="703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabels="Yes I tested positive,
+                                           Yes I tested negative,
+                                           No I do not want to share"
+                             style="radio" />
+                    </td>
+                </tr>
+            </table>
+
+        </fieldset>
+        <fieldset>
+
+            <table id="tbl-receiving-care">
+                <tr>
+                    <td>
+                        Are you receiving HIV care? &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs id="receiving-care" conceptId="159811AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        Facility name: &#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs id="facility-name"  conceptId="162724AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                        &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;CCC Number:&#160;&#160;&#160;&#160;
+                        <obs id="ccc-number" conceptId="162053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                    </td>
+                </tr>
+            </table>
+
+            <table id="tbl-vl-status">
+                <tr>
+                    <td>
+
+                        Viral Load Test done? &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs id="vl-test-done" conceptId="164437AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+
+
+                    <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        VL results date:&#160;&#160;&#160;&#160;
+                        <obs id ="vl-date" conceptId="163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+                    </td>
+                </tr>
+            </table>
+            <table id="willing-to-test">
+                <tr>
+                    <td>
+                        Are you willing to be tested for HIV?&#160;&#160;&#160;
+                        <obs id="willing-tester" conceptId="165154"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+
+                    <td>
+                        &#160;&#160;&#160;&#160;&#160;
+                        Reason:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs id="decline-reason" conceptId="159803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+
+                    </td>
+                </tr>
+
             </table>
         </fieldset>
 
