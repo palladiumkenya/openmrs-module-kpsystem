@@ -116,7 +116,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Enrolment Service Areas</td>
+                <td>Enrollment Service Areas</td>
                 <td>
                     <obs id="enrollment_area" conceptId="$service_area"/>
                 </td>
