@@ -33,7 +33,7 @@
                     <td width="156" valign="top"><p>Start date</p></td>
                     <td width="156" valign="top"><p>Duration in years</p></td>
                     <td width="156" valign="top"><p>Remarks</p></td>
-                   </tr>
+                </tr>
             </thead>
             <tbody class="visit-table-body">
                 <tr class="visit-table-row">
@@ -57,20 +57,21 @@
                                 style="dropdown"
                         />
                     </td>
-                    <td>
-                        <!-- NATURE OF CHRONIC ILLNESS -->
-                        <obs conceptId="$illness_nature" />
+                    <!--                    <td>-->
+                    <!--                        &lt;!&ndash; NATURE OF CHRONIC ILLNESS &ndash;&gt;-->
+                    <!--                        <obs conceptId="$illness_nature" />-->
 
-                    </td> <td>
+                    <!--                    </td> -->
+                    <td>
                         <!-- START DATE -->
                         <obs conceptId="$start_date" />
                     </td> <td>
-                        <!-- DURATION -->
-                        <obs conceptId="$duration" />
-                    </td> <td>
-                        <!-- REMARKS -->
-                        <obs conceptId="$remarks" />
-                    </td>
+                    <!-- DURATION -->
+                    <obs conceptId="$duration" />
+                </td> <td>
+                    <!-- REMARKS -->
+                    <obs conceptId="$remarks" />
+                </td>
                 </tr>
             </tbody>
         </table>
@@ -101,7 +102,7 @@
                         answerLabels="Alzheimer's Disease and other Dementias,Arthritis,Asthma,Cancer,Cardiovascular diseases,Chronic Hepatitis,Chronic Kidney Disease,Chronic Obstructive Pulmonary Disease(COPD),Chronic Renal Failure,Cystic Fibrosis,Deafness and Hearing impairment,Diabetes,Endometriosis,Epilepsy,Glaucoma,Heart Disease,Hyperlipidaemia,Hypertension,Hypothyroidism,Mental illness,Multiple Sclerosis,Obesity,Osteoporosis,Sickle Cell Anaemia,Thyroid disease"
                         style="dropdown" id="chronic"
                 />
-            </td>
+                </td>
             </tr>
 
             <tr>

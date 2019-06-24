@@ -36,6 +36,8 @@
                 <tr>
                     <td width="156" valign="top"><p>Visit date</p></td>
                     <td width="156" valign="top"><p>Screened for:</p></td>
+                    <td width="156" valign="top"><p>Results</p></td>
+
                     <td width="156" valign="top"><p>Status</p></td>
                     <td width="156" valign="top"><p>Referred</p></td>
                     <td width="156" valign="top"><p>Using pep</p></td>
@@ -56,11 +58,19 @@
                              answerLabels="PEP,PREP"
                              style="dropdown" />
                     </td>
+
                     <td>
                         <!-- RESULTS -->
                         <obs conceptId="$results"
-                             answerConceptIds="664AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,703AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabels="Negative,Positive"
+                             answerConceptIds="165087,165078"
+
+                             style="dropdown"/>
+                    </td>
+                    <td>
+                        <!-- STATUS -->
+                        <obs conceptId="165102"
+                             answerConceptIds="1065,1066"
+                             answerLabels="Prep initiated,Prep not initiated"
                              style="dropdown"/>
                     </td>
                     <td>
@@ -137,7 +147,7 @@
             <tr>
                 <th>Facility Name</th>
 
-                    <td><obs id="facility_name" conceptId="$facility_name"  /> </td>
+                <td><obs id="facility_name" conceptId="$facility_name"  /> </td>
 
             </tr>
             <tr>

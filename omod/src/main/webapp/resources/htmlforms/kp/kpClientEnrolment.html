@@ -267,7 +267,6 @@
 
         beforeSubmit.push(function() {
 
-            var enrolment_area = getField('enrolment_area.value').val();
             var peer_educator = getField('peer-educator.value').val();
             var peer = getField('peer.value').val();
             var regular_sex_partner = getField('regular-sex-partner.value').val();
@@ -289,12 +288,12 @@
             var notContacted = $('#w13_1');
 
 
-            if (contacted_by_eductaor.is(':checked') || notContacted.is(':checked')) {
-                getField('peer-educator.error').html('Please indicate whether you have been contacted or not').hide();
-            } else {
-                getField('peer-educator.error').html('Please indicate whether you have been contacted or not').show()
-                return false;
-            }
+//            if (contacted_by_eductaor.is(':checked') || notContacted.is(':checked')) {
+//                getField('peer-educator.error').html('Please indicate whether you have been contacted or not').hide();
+//            } else {
+//                getField('peer-educator.error').html('Please indicate whether you have been contacted or not').show()
+//                return false;
+//            }
 
 
 
@@ -302,12 +301,12 @@
             var doesnot_regular_sex_partner = $('#w17_1');
 
 
-            if (has_regular_sex_partner.is(':checked') || doesnot_regular_sex_partner.is(':checked')) {
-                getField('regular-sex-partner.error').html('Please indicate if you have regular sex partner.').hide();
-            } else {
-                getField('regular-sex-partner.error').html('Please indicate if you have regular sex partner.').show()
-                return false;
-            }
+//            if (has_regular_sex_partner.is(':checked') || doesnot_regular_sex_partner.is(':checked')) {
+//                getField('regular-sex-partner.error').html('Please indicate if you have regular sex partner.').hide();
+//            } else {
+//                getField('regular-sex-partner.error').html('Please indicate if you have regular sex partner.').show()
+//                return false;
+//            }
 
 
             if (partner_number != "") {
