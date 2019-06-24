@@ -20,7 +20,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="6673d923-8d78-480f-a68d-d7e38474c3f5" formName="Client Enrolment Social Status"
+<htmlform formUuid="6673d923-8d78-480f-a68d-d7e38474c3f5" formName="Client Enrollment Social Status"
           formEncounterType="465a92f2-baf8-42e9-9612-53064be868e8" formVersion="1.0">
 
     <macros>
