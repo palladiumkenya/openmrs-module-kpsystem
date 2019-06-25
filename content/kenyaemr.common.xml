@@ -28,13 +28,14 @@
                 <ref bean="kenyaemr.common.form.referralAndLinkage"/>
                 <ref bean="kenyaemr.common.form.htsinitialtest"/>
                 <ref bean="kenyaemr.common.form.htsconfirmatorytest"/>
-                <ref bean="kenyaemr.common.form.kpAppointmentCreation"/>
+                <!--<ref bean="kenyaemr.common.form.kpAppointmentCreation"/>-->
                 <ref bean="kenyaemr.common.form.kpClientTracing"/>
                 <ref bean="kenyaemr.common.form.kpHIVstatus"/>
                 <ref bean="kenyaemr.common.form.kpDepressionScreening"/>
-                <ref bean="kenyaemr.common.form.kpOverdoseReporting"/>
+                <ref bean="kenyaemr.common.form.kpPeerOverdoseReporting"/>
+                <ref bean="kenyaemr.common.form.kpHealthWorkerOverdoseReporting"/>
                 <ref bean="kenyaemr.common.form.kpContact"/>
-                <ref bean="kenyaemr.common.form.kpHealthEducation"/>
+                <!--<ref bean="kenyaemr.common.form.kpHealthEducation"/>-->
                 <ref bean="kenyaemr.common.form.kpReferral"/>
             </set>
         </property>
@@ -200,8 +201,9 @@
         <property name="htmlform" value="kenyaemr:kp/kpDepressionScreening.html" />
         <property name="order" value="201012" />
     </bean>
-    <!-- kp client Overdose Reporting -->
-    <bean id="kenyaemr.common.form.kpOverdoseReporting" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+
+    <!-- kp client Peer Overdose Reporting -->
+    <bean id="kenyaemr.common.form.kpPeerOverdoseReporting" class="org.openmrs.module.kenyacore.form.FormDescriptor">
         <property name="targetUuid" value="92fd9c5a-c84a-483b-8d78-d4d7a600db30" />
         <property name="apps">
             <set>
@@ -211,8 +213,23 @@
             </set>
         </property>
         <property name="icon" value="kenyaui:forms/generic.png" />
-        <property name="htmlform" value="kenyaemr:kp/overdoseReporting.html" />
+        <property name="htmlform" value="kenyaemr:kp/kpPeerOverdoseReporting.html" />
         <property name="order" value="201015" />
+    </bean>
+
+    <!-- kp client Health care worker Overdose Reporting -->
+    <bean id="kenyaemr.common.form.kpHealthWorkerOverdoseReporting" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="d753bab3-0bbb-43f5-9796-5e95a5d641f3" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.registration" />
+                <ref bean="kenyaemr.app.clinician" />
+                <ref bean="kenyaemr.app.chart" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/kpHealthWorkerOverdoseReporting.html" />
+        <property name="order" value="201016" />
     </bean>
 
     <!-- kp contact registration form -->
