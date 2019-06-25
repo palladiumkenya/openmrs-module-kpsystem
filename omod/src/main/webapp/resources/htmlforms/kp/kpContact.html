@@ -15,6 +15,31 @@
 
 
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
+
+    <style>
+        .simple-table {
+            border: solid 1px #DDEEEE;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font: normal 13px Arial, sans-serif;
+        }
+
+        .simple-table thead th {
+            background-color: #DDEFEF;
+            border: solid 1px #DDEEEE;
+            color: #336B6B;
+            padding: 10px;
+            text-align: left;
+            text-shadow: 1px 1px 1px #fff;
+        }
+
+        .simple-table td {
+            border: solid 1px #DDEEEE;
+            color: #333;
+            padding: 10px;
+            text-shadow: 1px 1px 1px #fff;
+        }
+    </style>
     <script type="text/javascript">
 
         function onHistoricalStatusDateChange() {
@@ -54,15 +79,6 @@
                 stepMonths: 0
             });
 
-            jq("#NonePayingSex").hide();
-            jq("#clientphysiaclViolence").hide();
-            jq("#historicalPhysicalViolence").hide();
-            jq("#sexuaViolence").hide();
-            jq("#peer_work_name").hide();
-            jq("#year_sarted_sex").hide();
-            jq("#yearStartedSexWithMen").hide();
-
-
 
             $('input').on('click',function () {
 
@@ -95,24 +111,31 @@
 
             });
 
-            var keypop_msm = $('#w8_1');
-            $('input').on('click',function () {
-                if (!keypop_msm.is(':checked')) {
-                    jq("#msm").hide();
-                } else {
+            $("input[type='radio']").click(function(){
+                var keypop_msm = $("input[name='w8']:checked").val();
+                if(keypop_msm ==160578){
                     jq("#msm").show();
+                }else {
+                    jq("#msm").hide();
                 }
-            });
 
-            var pwid = $('#w8_3');
-            $('input').on('click',function () {
-                if (!pwid.is(':checked')) {
-                    jq("#people_inject_drugs").hide();
-                } else {
+                if (keypop_msm ==105) {
                     jq("#people_inject_drugs").show();
+                }else {
+                    jq("#people_inject_drugs").hide();
                 }
+
             });
 
+            $("input[type='radio']").click(function(){
+                var peer_educator = $("input[name='w13']:checked").val();
+                if(peer_educator ==1065){
+                    jq("#program_name").show();
+                }else {
+                    jq("#program_name").hide();
+                }
+
+            });
 
             function yearValidation(year, textfield) {
 
@@ -151,7 +174,6 @@
         });
 
         beforeSubmit.push(function() {
-
             var hotspot_frequented = getField('hotspot_frequented.value').val();
             var start_sex = getField("startSex.value").val();
             var sex_with_men = getField("sexWithMen.value").val();
@@ -175,7 +197,7 @@
 
     </script>
     <div class="ke-form-header">
-        <table style="width: 100%">
+        <table width="100%">
             <tr>
                 <td align="left">Enrollment Date:
                     <encounterDate id="encounter-date" showTime="true"/>
@@ -190,7 +212,7 @@
     <div class="ke-form-content">
         <fieldset>
             <legend>Contact Form</legend>
-            <table>
+            <table class="simple-table">
 
                 <tr>
                     <td>Key Population Type</td>
@@ -215,17 +237,15 @@
                              style="radio" />
                     </td>
                 </tr>
-                <tr>
-                    <table id="program_name" >
+                <tr id="program_name">
+
                         <td width="400" valign="top">If yes, which programme do you receive service from?</td>
                         <td width="400" valign="top">
                             <obs id="program" conceptId="165137"/>
 
                         </td>
-                    </table>
                 </tr>
                 <tr>
-                    <table>
                         <td >Hot spot mostly frequented</td>
                         <td >
                             <obs conceptId="165006" id="hotspot_frequented"/>
@@ -236,63 +256,51 @@
                             <obs conceptId="165005" id="typeof_hotspot"/>
 
                         </td>
-                    </table>
                 </tr>
-                <tr >
-                    <table id="year_started_sex">
+                <tr id="year_started_sex">
                     <td width="550" valign="top">Which year did you start sex work?</td>
                     <td width="550" valign="top">
                         <obs id="startSex" conceptId="165030"/>
                     </td>
-                    </table>
                 </tr>
-                <tr >
-                    <table id="msm" >
+                <tr id="msm">
+
                     <td width="550" valign="top">Which year did you start having sex with men?(MSM only)</td>
                     <td width="550" valign="top">
                         <obs id="sexWithMen" conceptId="165031"/>
                     </td>
-                    </table>
                 </tr>
 
                 <tr>
-                    <table >
-                    <td width="550" valign="top">Which Year Did You Start Using Drugs (Injecting Or Smoking?</td>
+                    <td width="550" valign="top">Which Year Did You Start Using Drugs (Injecting Or Smoking)?</td>
                     <td width="550" valign="top">
                         <obs id="usingDrugs" conceptId="165032"/>
 
                     </td>
-                    </table>
                 </tr>
 
                 <tr>
-                    <table>
                     <td width="550" valign="top">On average, how many sex acts do you have per week</td>
                     <td width="550" valign="top">
                         <obs id="usingDrugs" conceptId="165007"/>
 
                     </td>
-                    </table>
                 </tr>
 
                 <tr>
-                    <table>
                     <td width="550" valign="top">On average, how many anal sex acts do you have per week</td>
                     <td width="550" valign="top">
                         <obs id="usingDrugs" conceptId="165008"/>
 
                     </td>
-                    </table>
                 </tr>
 
-                <tr>
-                    <table id="people_inject_drugs">
+                <tr id="people_inject_drugs">
                     <td width="550" valign="top">On average, how many times do you inject drugs per day(only PWID)</td>
                     <td width="550" valign="top">
                         <obs id="usingDrugs" conceptId="165009"/>
 
                     </td>
-                    </table>
                 </tr>
             </table>
         </fieldset>
@@ -300,7 +308,7 @@
         <fieldset>
             <legend>Alternative Contact Person</legend>
 
-            <table>
+            <table class="simple-table">
                 <tr>
                     <td width="100" valign="top">Name</td>
                     <td width="100" valign="top">
