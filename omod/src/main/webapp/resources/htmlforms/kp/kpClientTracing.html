@@ -14,7 +14,31 @@
 -->
 <htmlform>
 
-	<script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
+	<script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>    <style>
+	.simple-table {
+		border: solid 1px #DDEEEE;
+		border-collapse: collapse;
+		border-spacing: 0;
+		font: normal 13px Arial, sans-serif;
+	}
+
+	.simple-table thead th {
+		background-color: #DDEFEF;
+		border: solid 1px #DDEEEE;
+		color: #336B6B;
+		padding: 10px;
+		text-align: left;
+		text-shadow: 1px 1px 1px #fff;
+	}
+
+	.simple-table td {
+		border: solid 1px #DDEEEE;
+		color: #333;
+		padding: 10px;
+		text-shadow: 1px 1px 1px #fff;
+	}
+</style>
+
 	<script type="text/javascript">
 
 		var tetenus_selected  = function () {
@@ -29,21 +53,68 @@
 			}
 		}
 
+		jQuery(function ($) {
+			jq("#true-status-other").hide();
+			jq("#other-informant").hide();
+			jq('#tracing-outcome-status :input[type=radio]').click(onVoluntaryExitSelected);
+			jq('#tracking-attempted :input[type=radio]').click(onTrackingAttemptedSelected);
+			jq('#tracking-not-attempted :input[type=radio]').click(onStatusOtherSelected);
+			jq('#source-information :input[type=radio]').click(onOtherInfomatSelected);
+			beforeSubmit.push(function () {
+			});
 
-		//On Ready
-		$(document).ready(function () {
+		})
 
+		function onVoluntaryExitSelected() {
+			var val = jq(this).val();
+			var voluntaryExit = jq("#tracing-outcome-status input:radio:checked");
+			if(val == 165219 &amp;&amp; voluntaryExit.length >0 ){
+				jq("#comment-voluntary").show();
+			}
+			else{
+				jq("#comment-voluntary").hide();
+			}
+		}
 
-			//Consent validation
-			jq('#tetenus_selected input').prop("disabled", true);
-			jq("#couple-testing input").change(tetenus_selected);
+		function onTrackingAttemptedSelected() {
+			var val = jq(this).val();
+			var trackingAttempted = jq("#tracking-attempted input:radio:checked");
+			if(val == 1065 &amp;&amp; trackingAttempted.length >0 ){
+				jq("#not-attempted").hide();
+				jq("#attempted-first").show();
+				jq("#attempted-second").show();
+				jq("#attempted-third").show();
+				jq("#outcome-field").show();
+			}
+			else{
+				jq("#not-attempted").show();
+				jq("#attempted-first").hide();
+				jq("#attempted-second").hide();
+				jq("#attempted-third").hide();
+				jq("#outcome-field").hide();
+			}
+		}
 
-		});
-		//Before Submit
-		beforeSubmit.push(function() {
+		function onStatusOtherSelected() {
+			var val = jq(this).val();
+			var otherStatus = jq("#tracking-not-attempted input:radio:checked");
+			if(val == 5622 &amp;&amp; otherStatus.length >0 ){
+				jq("#true-status-other").show();
+			}else {
+				jq("#true-status-other").hide();
+			}
+		}
 
+		function onOtherInfomatSelected() {
+			var val = jq(this).val();
+			var otherStatus = jq("#source-information input:radio:checked");
+			if(val == 5622 &amp;&amp; otherStatus.length >0 ){
+				jq("#other-informant").show();
+			}else {
+				jq("#other-informant").hide();
+			}
+		}
 
-		});
 	</script>
 
 	<div class="ke-form-header">
@@ -117,64 +188,179 @@
 	<div class="ke-form-content">
 
 		<fieldset>
-			<legend>Client Tracing</legend>
-			<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<legend>Client Follow Up Tracking</legend>
+			<table class="simple-table">
 				<tr>
-					<td width="156" valign="top"><p>Tracing Attempt Date</p></td>
-					<td width="156" valign="top"><p> <obs id="expiry-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
-					/></p></td>
-					<td width="156" valign="top"><p>Type of tracing attempt:</p></td>
-					<td width="156" valign="top"><p>  <obs class="consent" conceptId="164966"
-														   answerConceptIds="164965,
-                                                            1650"
-					/></p></td>
-				</tr>
-				<tr>
-
-					<td width="156" valign="top"><p>Tracing outcome</p></td>
-					<td width="156" valign="top"><p>  <obs class="consent" conceptId="160721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-														   answerConceptIds="1065,
-                                                            1066"  answerLabels="Reached,Not Reached"
-														   style="radio" />
-					</p></td>
-					<td width="156" valign="top"><p>Reason for negative tracing outcome:</p></td>
-					<td width="156" valign="top"><p>   <obs conceptId="165071"
-															answerConceptIds="165074,
-                                                            165075,
-                                                            165072,
-                                                            165073,
-                                                            5622,"
-															style="dropdown" /></p></td>
-				</tr>
-				<tr>
-					<td width="156" valign="top"><p>Description for the negative tracing outcome</p></td>
-					<td width="156" valign="top"><p>  <obs class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  rows="5" cols="40"
-					/></p></td>
-
-
-				</tr>
-				<tr>
-					<td width="156" valign="top">
-					</td>
-					<td width="156" valign="top">
-						<p> <b> Initiate Tracing Of Treatment Buddies</b>
-						</p>
+					<td>Tracking attempted?</td>
+					<td>
+						<obs id="tracking-attempted" conceptId="165004"
+							 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+							 answerLabels="Yes,No"
+							 style="radio" />
 					</td>
 
-
 				</tr>
-				<tr>
-
-					<td width="156" valign="top"><p>Schedule Next Tracing Attempt</p></td>
-					<td width="156" valign="top"><p> <obs id="expiry-date" conceptId="162502AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true"
-					/></p></td>
-					<td width="156" valign="top"><p>Client Final Tracing Status</p></td>
-					<td width="156" valign="top"><p> <obs id="treatmentMedication" conceptId="165068" answerConceptIds="165062,164349,165063,160415,165064,165065,165066,162277,160432,165067"/></p></td>
-
+				<tr id="not-attempted">
+					<td>Why was tracking not attempted?</td>
+		<td>
+						<obs id="tracking-not-attempted" conceptId="165071"
+							 answerConceptIds="165078,165073,165072,163777,5622"
+							 answerLabels="Contact information illegible,Location listed too general to make tracking possible,Contact information missing,
+Cohort register/ peer outreach calendar reviewed and client not lost to follow up,Other -specify"
+							 answerSeparator="&lt;br /&gt;" style="radio"/>
+						<obs id="true-status-other" conceptId="161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+					</td>
 				</tr>
 			</table>
 
 		</fieldset>
+
+		<fieldset id="attempted-first">
+			<legend>First attempt of tracing by PE/Health care worker</legend>
+			<table class="simple-table">
+				<obsgroup groupingConceptId="165068">
+				<tr>
+					<td>Date</td>
+					<td>
+						<obs id="date-of-tracing-attempt" conceptId="160753"/>
+
+					</td>
+				</tr>
+				<tr>
+					<td>Tracing type</td>
+					<td>
+						<obs id="tracing-type" conceptId="164966"
+							 answerConceptIds="1650,164965"
+							 answerLabels="Phone,Physical"
+							 style="radio" />
+					</td>
+				</tr>
+				<tr>
+					<td>Tracing outcome</td>
+					<td>
+						<obs id="tracing-outcome" conceptId="164929"
+							 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+							 answerLabels="KP reached,KP not reached but other informant reached,KP not reached"
+							 style="radio" />
+					</td>
+				</tr>
+				</obsgroup>
+
+			</table>
+		</fieldset>
+
+		<fieldset id="attempted-second">
+			<legend>Second attempt of tracing by PE/Health care worker</legend>
+			<table class="simple-table">
+				<obsgroup groupingConceptId="165068">
+				<tr>
+					<td>Date</td>
+					<td>
+						<obs id="date-of-tracing-attempt" conceptId="160753"/>
+
+					</td>
+				</tr>
+				<tr>
+					<td>Tracing type</td>
+					<td>
+						<obs id="tracing-type" conceptId="164966"
+							 answerConceptIds="1650,164965"
+							 answerLabels="Phone,Physical"
+							 style="radio" />
+					</td>
+				</tr>
+				<tr>
+					<td>Tracing outcome</td>
+					<td>
+						<obs id="tracing-outcome" conceptId="164929"
+							 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+							 answerLabels="KP reached,KP not reached but other informant reached,KP not reached"
+							 style="radio" />
+					</td>
+				</tr>
+				</obsgroup>
+			</table>
+		</fieldset>
+		<fieldset id="attempted-third">
+			<legend>Third attempt of tracing by PE/Health care worker</legend>
+			<table class="simple-table">
+				<obsgroup groupingConceptId="165068">
+				<tr>
+					<td>Date</td>
+					<td>
+						<obs id="date-of-tracing-attempt" conceptId="160753"/>
+
+					</td>
+				</tr>
+				<tr>
+					<td>Tracing type</td>
+					<td>
+						<obs id="tracing-type" conceptId="164966"
+							 answerConceptIds="1650,164965"
+							 answerLabels="Phone,Physical"
+							 style="radio" />
+					</td>
+				</tr>
+				<tr>
+					<td>Tracing outcome</td>
+					<td>
+						<obs id="tracing-outcome" conceptId="164929"
+							 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+							 answerLabels="KP reached,KP not reached but other informant reached,KP not reached"
+							 style="radio" />
+					</td>
+				</tr>
+				</obsgroup>
+			</table>
+		</fieldset>
+
+		<fieldset id="outcome-field">
+			<legend>Tracing outcome status</legend>
+			<table class="simple-table">
+				<tr>
+					<td>Outcome Status</td>
+					<td>
+						<obs id="tracing-outcome-status" conceptId="160433"
+							 answerConceptIds="160432,160415,165219,134236,165067,162752,156761,162632"
+							 answerLabels="Dead,Relocated,Voluntary exit,Enrolled in MAT (applicable to PWIDS only),
+Untraceable,Bedridden,Imprisoned,Found" answerSeparator="&lt;br /&gt;"
+							 style="radio" />
+					</td>
+					<td>Source of information</td>
+					<td>
+						<obs id="source-information" conceptId="162568"
+							 answerConceptIds="164929,165037,5622"
+							 answerLabels="KP,PE,Other informant-specify (friend/neighbor/spouse/ etc)"
+							 style="radio"
+
+						/>
+						<obs id="other-informant" conceptId="160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+
+
+					</td>
+				</tr>
+				<tr>
+					<td>Status in the programme</td>
+					<td>
+						<obs id="status-in-programme" conceptId="161641"
+							 answerConceptIds="5240,160031,161636,160432"
+							 answerLabels="Lost to follow up,Defaulted,Active,Dead"
+							 style="radio"
+
+						/>
+					</td>
+				</tr>
+				<tr id="comment-voluntary">
+					<td>Comments explaining the reason(s) for voluntary exit</td>
+					<td>
+						<obs id="comment-voluntary-exit" conceptId="160716AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="3" cols="80"/>
+					</td>
+				</tr>
+
+			</table>
+		</fieldset>
+
+
 
 	</div>
 	<div class="ke-form-footer">
