@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="10cd2ca0-8d25-4876-b97c-b568a912957e" formName="Violence Screening"
+<htmlform formUuid="10cd2ca0-8d25-4876-b97c-b568a912957e" formName="Violence Reporting Form"
           formEncounterType="7b69daf5-b567-4384-9d29-f020c408d613" formVersion="1.0">
 
     <macros>

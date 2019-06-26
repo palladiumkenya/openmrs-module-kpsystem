@@ -9,7 +9,7 @@
     graphic logo is a trademark of OpenMRS Inc.
 
 -->
-<htmlform formUuid="7ba743c8-d8e6-44ad-aeed-8d2ff9e985db" formName="Alcohol Screening"
+<htmlform formUuid="7ba743c8-d8e6-44ad-aeed-8d2ff9e985db" formName="Alcohol Abuse Screening Tool"
           formEncounterType="a3ce2705-d72d-458a-a76c-dae0f93398e7" formVersion="1.0">
 
     <macros>
