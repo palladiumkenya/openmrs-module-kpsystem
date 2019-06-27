@@ -3,7 +3,7 @@
 	<div class="ke-stack-item">
 		<% if (recordedAsDeceased) { %>
 		<div class="ke-warning" style="margin-bottom: 5px">
-			Patient has been recorded as deceased in a program form. Please update the registration form.
+			Client has been recorded as deceased in a program form. Please update the registration form.
 		</div>
 		<% } %>
 

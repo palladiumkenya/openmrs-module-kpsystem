@@ -57,7 +57,7 @@
 
                                             <% } %>
 
-                                            Outpatient
+                                            OutClient
 
                                         </div>
                                     </td>

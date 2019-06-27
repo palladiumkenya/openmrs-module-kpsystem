@@ -1,5 +1,5 @@
 <%
-    ui.decorateWith("kenyaui", "panel", [heading: (config.heading ?: "Edit Patient"), frameOnly: true])
+    ui.decorateWith("kenyaui", "panel", [heading: (config.heading ?: "Edit Client"), frameOnly: true])
     def countyName = command.personAddress.country == null ? false : command.personAddress.country.toLowerCase()
 
     def nameFields = [
@@ -79,7 +79,7 @@
             <table>
                 <% if (command.inHivProgram) { %>
                 <tr>
-                    <td class="ke-field-label">Unique Patient Number</td>
+                    <td class="ke-field-label">Unique Client Number</td>
                     <td>${
                             ui.includeFragment("kenyaui", "widget/field", [object: command, property: "uniquePatientNumber"])}</td>
                     <td class="ke-field-instructions">(KP program<% if (!command.uniquePatientNumber) { %>, if assigned<%
@@ -87,7 +87,7 @@
                 </tr>
                 <% } %>
                 <tr>
-                    <td class="ke-field-label">Patient Clinic Number</td>
+                    <td class="ke-field-label">Client Clinic Number</td>
                     <td>${ui.includeFragment("kenyaui", "widget/field", [object: command, property: "patientClinicNumber"])}</td>
                     <td class="ke-field-instructions"><% if (!command.patientClinicNumber) { %>(if available)<%
                         } %></td>
@@ -264,7 +264,7 @@ ${ui.includeFragment("kenyaui", "widget/dialogForm", [
                     ui.navigate('kenyaemr', 'registration/registrationViewPatient', {patientId: data.id});
                     <% } %>
                 } else {
-                    kenyaui.notifyError('Saving patient was successful, but unexpected response');
+                    kenyaui.notifyError('Saving client was successful, but unexpected response');
                 }
             }
         });

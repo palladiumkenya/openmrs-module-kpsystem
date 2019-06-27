@@ -17,7 +17,7 @@ table.moh257 > tbody > tr > td, table.moh257 > tbody > tr > th {
 }
 </style>
 <div class="ke-panel-frame">
-    <div class="ke-panel-heading">Patient Summary</div>
+    <div class="ke-panel-heading">Client Summary</div>
     <div class="ke-panel-content" style="background-color: #D9F4D3">
         <table id="tblDetails" class="moh257" align="center" border="1" cellpadding="0" cellspacing="0">
 

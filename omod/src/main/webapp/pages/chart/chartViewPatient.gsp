@@ -17,7 +17,7 @@
 					icon: "forms/moh257.png"
 			],
 			[
-					label: "Patient summary",
+					label: "Client summary",
 					href: ui.pageLink("kenyaemr", "chart/chartViewPatient", [ patientId: currentPatient.id, section: "summaries" ]),
 					active: (selection == "section-summaries"),
 					iconProvider: "kenyaui",

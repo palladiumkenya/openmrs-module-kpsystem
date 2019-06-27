@@ -6,7 +6,7 @@
 			[ object: command, property: "person", label: "Person" ]
 		],
 		[
-			[ object: command, property: "isToPatient", label: "Relationship to patient", config: [ options: typeOptions ] ]
+			[ object: command, property: "isToPatient", label: "Relationship to client", config: [ options: typeOptions ] ]
 		],
 		[
 			[ object: command, property: "startDate", label: "Start date" ],
