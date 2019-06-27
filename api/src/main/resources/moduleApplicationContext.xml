@@ -49,7 +49,7 @@
 
 	<bean id="kenyaemr.app.clinician" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.medicalEncounter" />
-		<constructor-arg value="Clinician" />
+		<constructor-arg value="Provider" />
 		<constructor-arg value="kenyaemr/clinician/clinicianHome.page" />
 		<constructor-arg value="kenyaui:apps/clinician.png" />
 		<constructor-arg value="300" />
