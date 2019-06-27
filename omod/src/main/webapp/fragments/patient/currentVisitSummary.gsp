@@ -87,7 +87,7 @@
                                     <% if(it.active) { %>
                                         Active -
                                     <% } %>
-                                    Outpatient
+                                    OutClient
                                 </div>
                             </li>
 
