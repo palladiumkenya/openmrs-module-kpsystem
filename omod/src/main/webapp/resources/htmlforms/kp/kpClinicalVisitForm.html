@@ -1,0 +1,1835 @@
+<!--
+  ~ The contents of this file are subject to the OpenMRS Public License
+  ~ Version 1.0 (the "License"); you may not use this file except in
+  ~ compliance with the License. You may obtain a copy of the License at
+  ~ http://license.openmrs.org
+  ~
+  ~ Software distributed under the License is distributed on an "AS IS"
+  ~ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+  ~ License for the specific language governing rights and limitations
+  ~ under the License.
+  ~
+  ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+
+-->
+<htmlform>
+
+    <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
+    <script type="text/javascript">
+        $.fn.noText = function() {/*use the jquery prototype technology to make a chainable clear field method*/
+            if(this.is('clinicVisit_form')){ /*check to c if you the element type is an input*/
+                this.val('');/*clear the input field*/
+            }return this;/*means it is chainable*/
+        };
+        $('input').noText();
+        var StiScreened  = function () {
+            var sti_referred = getValue("sti_referred.value");
+            var sti_screened = getValue("sti_screened.value");
+            if(sti_screened ==1066) {
+
+                $('#visit div').empty();
+
+                jQuery('#visit div').html('');
+                jq('.clinicVisit_form div').html('');
+
+
+                $( "clinic_visit" ).empty();
+                $( ".clinicVisit_form" ).empty();
+
+                $("#sti_treated input").val('');
+                $("#sti_results input").val('');
+                $("#sti_referred input").val('');
+
+
+                jq("#sti_treated input").prop("disabled", true);
+                jq("#sti_results input").prop("disabled", true);
+                jq("#sti_referred input").prop("disabled", true);
+                jq("#sti_txt input").prop("disabled", true);
+
+                jq("#sti_treated input").prop('checked', false);
+                jq("#sti_results input").prop('checked', false);
+                jq("#sti_referred input").prop('checked', false);
+                jq("#sti_txt input").val('');
+
+
+            }
+            else{
+                jq("#sti_treated input").prop("disabled", false);
+                jq("#sti_results input").prop("disabled", false);
+                jq("#sti_screened input").prop("disabled", false);
+                jq("#sti_referred input").prop("disabled", false);
+                jq("#sti_txt input").prop("disabled", false);
+
+            }
+
+            if(sti_referred==1065 &amp;&amp; sti_screened==1065){
+                jq("#sti_txt input").prop("disabled", false);
+            }else{
+                jq("#sti_txt input").prop("disabled", true);
+            }
+
+        }
+        var StiResults  = function () {
+            var stiResults = getValue("sti_results.value");
+
+            if(stiResults==664){
+                jq("#sti_treated input").prop("disabled", true);
+                jq("#sti_referred input").prop("disabled", true);
+                jq("#sti_txt input").prop("disabled", true);
+            }
+            else{
+                jq("#sti_treated input").prop("disabled", false);
+                jq("#sti_referred input").prop("disabled", false);
+                jq("#sti_txt input").prop("disabled", false);
+            }
+
+        }
+        var StiTreateed  = function () {
+            var stiTreated = getValue("sti_treated.value");
+
+            if(stiTreated==1066){
+                jq("#sti_referred input").prop("disabled", false);
+                jq("#sti_txt input").prop("disabled", false);
+            }
+            else{
+                jq("#sti_referred input").prop("disabled", true);
+                jq("#sti_txt input").prop("disabled", true);
+            }
+
+        }
+        var StiReferred  = function () {
+            var stiReferred = getValue("sti_referred.value");
+
+
+            if(stiReferred==1065){
+                jq("#sti_txt input").prop("disabled", false);
+            }else{
+                jq("#sti_txt input").prop("disabled", true);
+            }
+
+        }
+
+
+        var tbScreened  = function () {
+            var HepbReferred = getValue("tb_referred.value");
+            var HepbScreened = getValue("tb_screened.value");
+            if(HepbScreened ==1066) {
+
+                $('#visit div').empty();
+
+                jQuery('#visit div').html('');
+                jq('.clinicVisit_form div').html('');
+
+
+                $( "clinic_visit" ).empty();
+                $( ".clinicVisit_form" ).empty();
+
+                $("#tb_treated").val('');
+                $("#tb_results").val('');
+                $("#tb_referred").val('');
+                $("#tb_txt").val('');
+
+                jq("#tb_treated input").prop("disabled", true);
+                jq("#tb_results input").prop("disabled", true);
+                jq("#tb_referred input").prop("disabled", true);
+                jq("#tb_txt input").prop("disabled", true);
+
+
+            }
+            else{
+                jq("#tb_treated input").prop("disabled", false);
+                jq("#tb_results input").prop("disabled", false);
+                jq("#tb_screened input").prop("disabled", false);
+                jq("#tb_referred input").prop("disabled", false);
+                jq("#tb_txt input").prop("disabled", false);
+
+            }
+
+            if(HepbReferred==1065 &amp;&amp; HepbScreened==1065){
+                jq("#tb_txt input").prop("disabled", false);
+            }else{
+                jq("#tb_txt input").prop("disabled", true);
+            }
+
+        }
+        var tbResults  = function () {
+            var HepbResults = getValue("tb_results.value");
+
+            if(HepbResults==664){
+                jq("#tb_treated input").prop("disabled", true);
+                jq("#tb_referred input").prop("disabled", true);
+                jq("#tb_txt input").prop("disabled", true);
+            }
+            else{
+                jq("#tb_treated input").prop("disabled", false);
+                jq("#tb_referred input").prop("disabled", false);
+
+            }
+
+        }
+        var tbTreated  = function () {
+            var HepbTreated = getValue("tb_treated.value");
+
+            if(HepbTreated==1066){
+                jq("#tb_referred input").prop("disabled", false);
+                jq("#tb_txt input").prop("disabled", false);
+            }
+            else{
+                jq("#tb_referred input").prop("disabled", true);
+                jq("#tb_txt input").prop("disabled", true);
+            }
+
+        }
+        var tbReferred  = function () {
+            var HepbReferred = getValue("tb_referred.value");
+
+
+            if(HepbReferred==1065){
+                jq("#tb_txt input").prop("disabled", false);
+            }else{
+                jq("#tb_txt input").prop("disabled", true);
+            }
+
+        }
+        ///========
+        var HepatitisbScreened  = function () {
+            var HepbReferred = getValue("hepb_referred.value");
+            var HepbScreened = getValue("hepb_screened.value");
+            if(HepbScreened ==1066) {
+
+                $('#visit div').empty();
+
+                jQuery('#visit div').html('');
+                jq('.clinicVisit_form div').html('');
+
+
+                $( "clinic_visit" ).empty();
+                $( ".clinicVisit_form" ).empty();
+
+                $("#hepb_treated").val('');
+                $("#hepb_results").val('');
+                $("#hepb_referred").val('');
+                $("#hepb_txt").val('');
+
+                jq("#hepb_treated input").prop("disabled", true);
+                jq("#hepb_results input").prop("disabled", true);
+                jq("#hepb_referred input").prop("disabled", true);
+                jq("#hepb_txt input").prop("disabled", true);
+
+
+            }
+            else{
+                jq("#hepb_treated input").prop("disabled", false);
+                jq("#hepb_results input").prop("disabled", false);
+                jq("#hepb_screened input").prop("disabled", false);
+                jq("#hepb_referred input").prop("disabled", false);
+                jq("#hepb_txt input").prop("disabled", false);
+
+            }
+
+            if(HepbReferred=="true" &amp;&amp; HepbScreened!=703){
+                jq("#hepb_txt input").prop("disabled", false);
+            }else{
+                jq("#hepb_txt input").prop("disabled", true);
+            }
+
+        }
+        var HepatitisbResults  = function () {
+            var HepbResults = getValue("hepb_results.value");
+
+            if(HepbResults==664){
+                jq("#hepb_treated input").prop("disabled", true);
+                jq("#hepb_referred input").prop("disabled", true);
+                jq("#hepb_txt input").prop("disabled", true);
+            }
+            else{
+                jq("#hepb_treated input").prop("disabled", false);
+                jq("#hepb_referred input").prop("disabled", false);
+
+            }
+
+        }
+        var HepatitisbTreated  = function () {
+            var HepbTreated = getValue("hepb_treated.value");
+
+            if(HepbTreated==1066){
+                jq("#hepb_referred input").prop("disabled", false);
+                jq("#hepb_txt input").prop("disabled", false);
+            }
+            else{
+                jq("#hepb_referred input").prop("disabled", true);
+                jq("#hepb_txt input").prop("disabled", true);
+            }
+
+        }
+        var HepatitisbReferred  = function () {
+            var HepbReferred = getValue("hepb_referred.value");
+
+
+            if(HepbReferred==1065){
+                jq("#hepb_txt input").prop("disabled", false);
+            }else{
+                jq("#hepb_txt input").prop("disabled", true);
+            }
+
+        }
+
+        var HepatitiscScreened  = function () {
+            var HepcScreened = getValue("hepc_screened.value");
+            var HepcReferred = getValue("hepc_referred.value");
+            if(HepcScreened ==1066) {
+                //jq("#hepc_screened input").prop("disabled", true);
+                jq("#hepc_results input").prop("disabled", true);
+                jq("#hepc_treated input").prop("disabled", true);
+                jq("#hepc_referred input").prop("disabled", true);
+                jq("#hepctxt input").prop("disabled", true);
+            }
+            else{
+                jq("#hepc_screened input").prop("disabled", false);
+                jq("#hepc_results input").prop("disabled", false);
+                jq("#hepc_treated input").prop("disabled", false);
+                jq("#hepc_referred input").prop("disabled", false);
+                jq("#hepctxt input").prop("disabled", false);
+            }
+            if(HepcReferred==1065 &amp;&amp; HepcScreened==1065){
+                jq("#hecbtxt input").prop("disabled", false);
+            }else{
+                jq("#hepctxt input").prop("disabled", true);
+            }
+
+        }
+        var HepatitiscResults  = function () {
+            var HepbResults = getValue("hepc_results.value");
+
+            if(HepbResults==664){
+                jq("#hepc_treated input").prop("disabled", true);
+                jq("#hepc_referred input").prop("disabled", true);
+                jq("#hepctxt input").prop("disabled", true);
+            }
+            else{
+                jq("#hepc_treated input").prop("disabled", false);
+                jq("#hepc_referred input").prop("disabled", false);
+                jq("#hepctxt input").prop("disabled", false);
+            }
+
+        }
+        var HepatitiscTreateed  = function () {
+            var HepbTreated = getValue("hepc_treated.value");
+
+            if(HepbTreated==1066){
+                jq("#hepc_referred input").prop("disabled", false);
+                jq("#hepctxt input").prop("disabled", false);
+            }
+            else{
+                jq("#hepc_referred input").prop("disabled", true);
+                jq("#hepctxt input").prop("disabled", true);
+            }
+
+        }
+        var HepatiriscReferred  = function () {
+            var HepbReferred = getValue("hepc_referred.value");
+            if(HepbReferred==1065){
+                jq("#hepctxt input").prop("disabled", false);
+            }else{
+                jq("#hepctxt input").prop("disabled", true);
+            }
+
+        }
+
+        var OverdoseScreenedSelected = function (){
+            var overdoseScreened= getValue("overdose_screened.value");
+            var overdoseReferred= getValue("overdose_referred.value");
+            if(overdoseScreened==1066){
+                jq("#overdose_treated input").prop("disabled", true);
+                jq("#overdose_referred input").prop("disabled", true);
+                jq("#overdosetxt input").prop("disabled", true);
+                jq("#overdose_results input").prop("disabled", true);
+                jq("#naloxane input").prop("disabled", true);
+
+            }else{
+                jq("#overdose_treated input").prop("disabled", false);
+                jq("#overdose_referred input").prop("disabled", false);
+                jq("#overdosetxt input").prop("disabled", false);
+                jq("#overdose_results input").prop("disabled", false);
+                jq("#naloxane input").prop("disabled", false);
+            }
+
+            if(overdoseScreened==1065 &amp;&amp; overdoseReferred=="true"){
+                jq("#overdosetxt input").prop("disabled", false);
+            }
+            else{
+                jq("#overdosetxt input").prop("disabled", true);
+            }
+        }
+        var OverdoseResultsSelected = function (){
+            var overdoseResults= getValue("overdose_results.value");
+            if(overdoseResults==664 ){
+                jq("#overdose_treated input").prop("disabled", true);
+                jq("#overdose_referred input").prop("disabled", true);
+                jq("#overdosetxt input").prop("disabled", true);
+                jq("#naloxane input").prop("disabled", true);
+            }
+            else{
+                jq("#overdose_treated input").prop("disabled", false);
+                jq("#overdose_referred input").prop("disabled", false);
+                jq("#overdosetxt input").prop("disabled", false);
+                jq("#naloxane input").prop("disabled", false);
+            }
+        }
+        var OverDoseTreatedSelected = function (){
+            var overdoseTreated= getValue("overdose_treated.value");
+            if(overdoseTreated==1066){
+                jq("#overdose_referred input").prop("disabled", false);
+                jq("#overdosetxt input").prop("disabled", false);
+            }
+            else{
+                jq("#overdose_referred input").prop("disabled", true);
+                jq("#overdosetxt input").prop("disabled", true);
+            }
+        }
+        var OverdoseRefferredSelected = function (){
+            var overdoseScreened= getValue("overdose_screened.value");
+            var overdoseReferred= getValue("overdose_referred.value");
+            if(overdoseReferred==1065){
+                jq("#overdosetxt input").prop("disabled", false);
+            }else{
+                jq("#overdosetxt input").prop("disabled", true);
+            }
+
+            // if(overdoseScreened==1065 &amp;&amp; overdoseReferred==1065){
+            //     jq("#overdosetxt input").prop("disabled", false);
+            // }
+            // else{
+            //     jq("#overdosetxt input").prop("disabled", true);
+            // }
+        }
+
+        var AlcoholScreenedSelected = function (){
+            var alcoholScreened= getValue("alcohol_screened.value");
+            var alcoholReferred= getValue("alcohol_referred.value");
+
+            if(alcoholScreened==1066){
+                jq("#alcohol_treated input").prop("disabled", true);
+                jq("#alcohol_referred input").prop("disabled", true);
+                jq("#alcohol_results input").prop("disabled", true);
+            }else{
+                jq("#alcohol_treated input").prop("disabled", false);
+                jq("#alcohol_referred input").prop("disabled", false);
+                jq("#alcohol_results input").prop("disabled", false);
+            }
+
+            if(alcoholScreened==1065 &amp;&amp; alcoholReferred==1065){
+                jq("#overdosetxt input").prop("disabled", false);
+            }
+            else{
+                jq("#overdosetxt input").prop("disabled", true);
+            }
+
+        }
+        var AlcoholResultsSelected = function (){
+            var alcoholResults= getValue("alcohol_results.value");
+            if(alcoholResults!=664){
+                jq("#alcohol_treated input").prop("disabled", false);
+                jq("#alcohol_referred input").prop("disabled", false);
+                jq("#alcoholtxt input").prop("disabled", false);
+            }
+            else{
+                jq("#alcohol_treated input").prop("disabled", true);
+                jq("#alcohol_referred input").prop("disabled", true);
+                jq("#alcoholtxt input").prop("disabled", true);
+            }
+        }
+        var AlcoholTreatedSelected = function (){
+            var alcoholTreated= getValue("alcohol_treated.value");
+            if(alcoholTreated==1066){
+                jq("#alcohol_referred input").prop("disabled", false);
+                jq("#alcoholtxt input").prop("disabled", false);
+            }
+            else{
+                jq("#alcohol_referred input").prop("disabled", true);
+                jq("#alcoholtxt input").prop("disabled", true);
+            }
+        }
+        var AlcoholReferredSelected = function (){
+            var alcoholReferred= getValue("alcohol_referred.value");
+
+            if(alcoholReferred=="true"){
+                jq("#alcoholtxt input").prop("disabled", false);
+            }else{
+                jq("#alcoholtxt input").prop("disabled", true);
+            }
+
+            // if(alcoholScreened==1065 &amp;&amp; alcoholReferred=="true"){
+            //     jq("#overdosetxt input").prop("disabled", false);
+            // }
+            // else{
+            //     jq("#overdosetxt input").prop("disabled", true);
+            // }
+        }
+
+        var AbscessScreenedSelected = function (){
+            var abscessScreened= getValue("abscess_screened.value");
+
+            if(abscessScreened==1066){
+                jq("#abscess_treated input").prop("disabled", true);
+                jq("#abscess_referred input").prop("disabled", true);
+                jq("#abscess_results input").prop("disabled", true);
+            }else{
+                jq("#abscess_treated input").prop("disabled", false);
+                jq("#abscess_referred input").prop("disabled", false);
+                jq("#abscess_results input").prop("disabled", false);
+            }
+
+
+        }
+        var AbscessResultsSelected = function (){
+            var abscessResults= getValue("abscess_results.value");
+
+            if(abscessResults==664  ){
+                jq("#abscess_treated input").prop("disabled", true);
+                jq("#abscess_referred input").prop("disabled", true);
+
+            }
+            else{
+                jq("#abscess_treated input").prop("disabled", false);
+                jq("#abscess_referred input").prop("disabled", false);
+
+            }
+        }
+        var AbscessTreatedSelected = function (){
+            var abscessTreated= getValue("abscess_treated.value");
+            if(abscessTreated==1066){
+                jq("#abscess_referred input").prop("disabled", false);
+                jq("#abscesstxt input").prop("disabled", false);
+            }
+            else{
+                jq("#abscess_referred input").prop("disabled", true);
+                jq("#abscesstxt input").prop("disabled", true);
+            }
+
+        }
+        var AbscessReferredSelected = function (){
+            var abscessReferred= getValue("abscess_referred.value");
+
+            if(abscessReferred=="true"){
+                jq("#abscesstxt input").prop("disabled", false);
+            }else{
+                jq("#abscesstxt input").prop("disabled", true);
+            }
+
+            if(abscessScreened==1065 &amp;&amp; overdoseReferred=="true"){
+                jq("#abscessetxt input").prop("disabled", false);
+            }
+            else{
+                jq("#abscesstxt input").prop("disabled", true);
+            }
+
+        }
+
+        var CervicalScreeningSelected = function (){
+            var cervicalScreened= getValue("cerv_screened.value");
+            if(cervicalScreened==1065){
+                jq("#cerv_referred input").prop("disabled", false);
+                jq("#cerv_cancertxt input").prop("disabled", false);
+                jq("#cerv_treated input").prop("disabled", false);
+                jq("#cerv_results input").prop("disabled", false);
+            }
+            else{
+                jq("#cerv_referred input").prop("disabled", true);
+                jq("#cerv_cancertxt input").prop("disabled", true);
+                jq("#cerv_treated input").prop("disabled", true);
+                jq("#cerv_results input").prop("disabled", true);
+            }
+
+
+        }
+        var CervicalResulltsSelected = function (){
+            var cervicaResults= getValue("cerv_results.value");
+
+
+            if(cervicaResults==664){
+                jq("#cerv_referred input").prop("disabled", true);
+                jq("#cerv_cancertxt input").prop("disabled", true);
+                jq("#cerv_treated input").prop("disabled", true);
+            }
+            else{
+                jq("#cerv_referred input").prop("disabled", false);
+                jq("#cerv_cancertxt input").prop("disabled", false);
+                jq("#cerv_treated input").prop("disabled", false);
+            }
+
+        }
+        var CervicalTreatedSelected = function (){
+            var cervicalTreated= getValue("cerv_treated.value");
+
+            if(cervicalTreated==1065){
+                jq("#cerv_referred input").prop("disabled", true);
+                jq("#cerv_cancertxt input").prop("disabled", true);
+            }
+            else{
+                jq("#cerv_referred input").prop("disabled", false);
+                jq("#cerv_cancertxt input").prop("disabled", false);
+            }
+
+        }
+        var CervicalReferredSelected = function (){
+            var cervicalReferred= getValue("cerv_referred.value");
+
+            //cervical validations
+            if(cervicalReferred=="true"){
+                jq("#cerv_cancertxt input").prop("disabled", false);
+            }else{
+                jq("#cerv_cancertxt input").prop("disabled", true);
+            }
+
+        }
+
+        var prepScreened  = function () {
+            var PrepScreened = getValue("prep_screened.value");
+            var PrepReferred = getValue("prep_referred.value");
+            if(PrepScreened ==1066) {
+                //jq("#hepc_screened input").prop("disabled", true);
+                jq("#prep_results input").prop("disabled", true);
+                jq("#prep_treated input").prop("disabled", true);
+                jq("#prep_referred input").prop("disabled", true);
+                jq("#preptext input").prop("disabled", true);
+            }
+            else{
+                jq("#prep_screened input").prop("disabled", false);
+                jq("#prep_results input").prop("disabled", false);
+                jq("#prep_treated input").prop("disabled", false);
+                jq("#prep_referred input").prop("disabled", false);
+
+            }
+            // if(PrepReferred==1065 &amp;&amp; PrepScreened==1065){
+            //     jq("#preptxt input").prop("disabled", false);
+            // }else{
+            //     jq("#preptxt input").prop("disabled", true);
+            // }
+
+        }
+        var prepResults  = function () {
+            var PrepResults = getValue("prep_results.value");
+
+            if(PrepResults==165078){
+                jq("#prep_treated input").prop("disabled", true);
+                jq("#prep_referred input").prop("disabled", true);
+                jq("#preptext input").prop("disabled", true);
+            }
+            else{
+                jq("#prep_treated input").prop("disabled", false);
+                jq("#prep_referred input").prop("disabled", false);
+
+            }
+
+        }
+        var prepTreateed  = function () {
+            var PrepTreated = getValue("prep_treated.value");
+
+            if(PrepTreated==1066){
+                jq("#prep_referred input").prop("disabled", true);
+                jq("#preptext input").prop("disabled", true);
+            }
+            else{
+                jq("#prep_referred input").prop("disabled", false);
+
+            }
+
+        }
+        var prepReferred  = function () {
+            var PrepReferred = getValue("prep_referred.value");
+            if(PrepReferred==1065){
+                jq("#preptext input").prop("disabled", false);
+            }else{
+                jq("#preptext input").prop("disabled", true);
+            }
+
+        }
+
+        var vilenceScreened  = function () {
+            var VioScreened = getValue("vio_screened.value");
+            var VioReferred = getValue("vio_referred.value");
+            if(VioScreened ==1066) {
+
+                jq("#vio_results input").prop("disabled", true);
+                jq("#vio_treated input").prop("disabled", true);
+                jq("#vio_referred input").prop("disabled", true);
+                jq("#viotext input").prop("disabled", true);
+            }
+            else{
+
+                jq("#vio_results input").prop("disabled", false);
+                jq("#vio_treated input").prop("disabled", false);
+                jq("#vio_referred input").prop("disabled", false);
+
+            }
+
+
+        }
+        var violenceResults  = function () {
+            var VioResults = getValue("vio_results.value");
+
+            if(VioResults==664){
+                jq("#vio_treated input").prop("disabled", true);
+                jq("#vio_referred input").prop("disabled", true);
+                jq("#viotext input").prop("disabled", true);
+            }
+            else{
+                jq("#vio_treated input").prop("disabled", false);
+                jq("#vio_referred input").prop("disabled", false);
+
+            }
+
+        }
+        var violenceTreateed  = function () {
+            var HepbTreated = getValue("vio_treated.value");
+
+            if(HepbTreated==1065){
+                jq("#vio_referred input").prop("disabled", false);
+
+            }
+            else{
+                jq("#vio_referred input").prop("disabled", true);
+                jq("#viotext input").prop("disabled", true);
+
+            }
+
+        }
+        var violenceReferred  = function () {
+            var vioReferred = getValue("vio_referred.value");
+            if(vioReferred==1065){
+                jq("#viotext input").prop("disabled", false);
+            }else{
+                jq("#viotext input").prop("disabled", true);
+            }
+
+        }
+
+        var riskScreened  = function () {
+            var riskScreened = getValue("risk_screened.value");
+            var riskReferred = getValue("risk_referred.value");
+            if(riskScreened ==1066) {
+
+                jq("#risk_results input").prop("disabled", true);
+                jq("#risk_treated input").prop("disabled", true);
+                jq("#risk_referred input").prop("disabled", true);
+                jq("#risktxt input").prop("disabled", true);
+            }
+            else{
+                jq("#risk_screened input").prop("disabled", false);
+                jq("#risk_results input").prop("disabled", false);
+                jq("#risk_treated input").prop("disabled", false);
+                jq("#risk_referred input").prop("disabled", false);
+                //jq("#risktxt input").prop("disabled", false);
+            }
+            // if(HepcReferred==1065 &amp;&amp; HepcScreened==1065){
+            //     jq("#risktxt input").prop("disabled", false);
+            // }else{
+            //     jq("#risktxt input").prop("disabled", true);
+            // }
+
+        }
+        var riskResults  = function () {
+            var riskResults = getValue("risk_results.value");
+
+            if(riskResults==165078){
+                jq("#risk_treated input").prop("disabled", true);
+                jq("#risk_referred input").prop("disabled", true);
+                jq("#risktxt input").prop("disabled", true);
+            }
+            else{
+                jq("#risk_treated input").prop("disabled", false);
+                jq("#risk_referred input").prop("disabled", false);
+
+            }
+
+        }
+        var riskcTreateed  = function () {
+            var riskTreated = getValue("risk_treated.value");
+
+            if(riskTreated==1066){
+                jq("#risk_referred input").prop("disabled", false);
+
+            }
+            else{
+                jq("#risk_referred input").prop("disabled", true);
+                jq("#risktxt input").prop("disabled", true);
+            }
+
+        }
+        var riskReferred  = function () {
+            var HepbReferred = getValue("risk_referred.value");
+            if(HepbReferred==1065){
+                jq("#risktxt input").prop("disabled", false);
+            }else{
+                jq("#risktxt input").prop("disabled", true);
+            }
+
+        }
+
+        var familyScreened  = function () {
+            var famScreened = getValue("fam_screened.value");
+            var famReferred = getValue("fam_referred.value");
+            if(famScreened ==1066) {
+                //jq("#hepc_screened input").prop("disabled", true);
+                jq("#fam_results input").prop("disabled", true);
+                jq("#fam_treated input").prop("disabled", true);
+                jq("#fam_referred input").prop("disabled", true);
+                jq("#famtxt input").prop("disabled", true);
+            }
+            else{
+                jq("#fam_screened input").prop("disabled", false);
+                jq("#fam_results input").prop("disabled", false);
+                jq("#fam_treated input").prop("disabled", false);
+                jq("#fam_referred input").prop("disabled", false);
+
+            }
+            // if(HepcReferred==1065 &amp;&amp; HepcScreened==1065){
+            //     jq("#hecbtxt input").prop("disabled", false);
+            // }else{
+            //     jq("#hepctxt input").prop("disabled", true);
+            // }
+
+        }
+        var familyResults  = function () {
+            var famResults = getValue("fam_results.value");
+
+            if(famResults==165078){
+                jq("#fam_treated input").prop("disabled", true);
+                jq("#fam_referred input").prop("disabled", true);
+                jq("#famtxt input").prop("disabled", true);
+            }
+            else{
+                jq("#fam_treated input").prop("disabled", false);
+                jq("#fam_referred input").prop("disabled", false);
+
+            }
+
+        }
+        var familyTreated  = function () {
+            var famTreated = getValue("fam_treated.value");
+
+            if(famTreated==1066){
+                jq("#fam_referred input").prop("disabled", false);
+
+            }
+            else{
+                jq("#fam_referred input").prop("disabled", true);
+                jq("#famtxt input").prop("disabled", true);
+            }
+
+        }
+        var familyReferred  = function () {
+            var famReferred = getValue("fam_referred.value");
+            if(famReferred==1065){
+                jq("#famtxt input").prop("disabled", false);
+            }else{
+                jq("#famtxt input").prop("disabled", true);
+            }
+
+        }
+
+        var menScreened  = function () {
+            var menScreened = getValue("men_screened.value");
+            if(menScreened ==1066) {
+                //jq("#hepc_screened input").prop("disabled", true);
+                jq("#men_results input").prop("disabled", true);
+                jq("#men_treated input").prop("disabled", true);
+                jq("#men_referred input").prop("disabled", true);
+                jq("#mentxt input").prop("disabled", true);
+            }
+            else{
+                jq("#men_screened input").prop("disabled", false);
+                jq("#men_results input").prop("disabled", false);
+                jq("#men_treated input").prop("disabled", false);
+                jq("#men_referred input").prop("disabled", false);
+
+            }
+
+
+        }
+        var menResults  = function () {
+            var menResults = getValue("men_results.value");
+
+            if(menResults==664){
+                jq("#men_treated input").prop("disabled", true);
+                jq("#men_referred input").prop("disabled", true);
+                jq("#mentxt input").prop("disabled", true);
+            }
+            else{
+                jq("#men_treated input").prop("disabled", false);
+                jq("#men_referred input").prop("disabled", false);
+            }
+
+        }
+        var menTreateed  = function () {
+            var menTreated = getValue("men_treated.value");
+
+            if(menTreated==1066){
+                jq("#men_referred input").prop("disabled", false);
+
+            }
+            else{
+                jq("#men_referred input").prop("disabled", true);
+                jq("#mentxt input").prop("disabled", true);
+            }
+
+        }
+        var menReferred  = function () {
+            var menReferred = getValue("men_referred.value");
+            if(menReferred==1065){
+                jq("#mentxt input").prop("disabled", false);
+            }else{
+                jq("#mentxt input").prop("disabled", true);
+            }
+
+        }
+
+        var hivTesting  = function () {
+            var unknown = getValue("hiv_selfreported.value");
+            if(unknown==1067){
+                jq('#hiv_settingoflasttest select').prop('disabled', true).addClass('disabled');
+            }else{
+
+                jq('#hiv_settingoflasttest select').prop('disabled', false).removeClass('disabled');
+            }
+
+        }
+
+        var hivTested  = function () {
+            var tested = getValue("hiv_tested.value");
+            if(tested==1065){
+                jq('#test_frequency select').prop('disabled', false).removeClass('disabled');
+                jq('#received_results select').prop('disabled', false).removeClass('disabled');
+                jq('#test_results select').prop('disabled', false).removeClass('disabled');
+
+            }else{
+
+                jq('#test_frequency select').prop('disabled', true).addClass('disabled');
+                jq('#received_results select').prop('disabled', true).addClass('disabled');
+                jq('#test_results select').prop('disabled', true).addClass('disabled');
+            }
+
+        }
+        var numberOfSelfTest  = function () {
+            var tested = getValue("hiv_selftest.value");
+            if(tested==165222){
+                jq("#disttxt input").val('');
+                jq("#selftxt input").prop("disabled", false);
+                jq("#disttxt input").prop("disabled", true);
+
+
+            }
+            else if(tested == 165223)
+            {
+                jq("#selftxt input").val('');
+                jq("#disttxt input").prop("disabled", false)
+                jq("#selftxt input").prop("disabled", true)
+
+            }
+            else{
+                jq("#selftxt input").val('');
+                jq("#disttxt input").val('');
+                jq("#disttxt input").prop("disabled", true)
+                jq("#selftxt input").prop("disabled", true);
+
+            }
+
+        }
+
+        var SelfTested  = function () {
+            var tested = getValue("self_tested.value");
+            if(tested==1065){
+
+                jq('#selftestFrequency select').prop('disabled', false).removeClass('disabled');
+                jq('#selftestResults select').prop('disabled', false).removeClass('disabled');
+                jq("#selftestDate input").prop("disabled", false);
+
+            }
+
+            else{
+                jq("#selftestDate input").val('');
+                jq("#selftestDate input").prop("disabled", true);
+                jq('#selftestFrequency select').prop('disabled', true).addClass('disabled');
+                jq('#selftestResults select').prop('disabled', true).addClass('disabled');
+            }
+
+        }
+        var confirmTest  = function () {
+            var tested = getValue("confirm_test.value");
+            if(tested==664){
+
+                jq('#facility select').prop('disabled', false).removeClass('disabled');
+                jq('#linktoart select').prop('disabled', true).addClass('disabled');
+                jq("#linktxt input").prop("disabled", true);
+
+            }
+            else if(tested == 703){
+                jq('#linktoart select').prop('disabled', false).removeClass('disabled');
+                jq('#facility select').prop('disabled', false).removeClass('disabled');
+
+            }
+            else{
+
+                jq('#facility select').prop('disabled', true).addClass('disabled');
+                jq('#linktoart select').prop('disabled', true).addClass('disabled');
+                jq("#facilitytxt input").prop("disabled", true);
+                jq("#linktxt input").prop("disabled", true);
+            }
+
+        }
+        var confirmFacility  = function () {
+            var tested = getValue("facility.value");
+            if(tested==165236){
+                jq("#facilitytxt input").prop("disabled", false);
+            }
+
+            else{
+                jq("#facilitytxt input").val('');
+                jq("#facilitytxt input").prop("disabled", true);
+            }
+
+        }
+
+        var linkToart  = function () {
+            var tested = getValue("linktoart.value");
+            if(tested==1065){
+                jq("#arttxt input").prop("disabled", false);
+            }
+
+            else{
+                jq("#arttxt input").val('');
+                jq("#arttxt input").prop("disabled", true);
+            }
+
+        }
+
+        var providedElseWhere  = function () {
+            var tested = getValue("care_provided.value");
+            if(tested==162723){
+                jq("#care_provided_txt input").prop("disabled", false);
+            }
+
+            else{
+                jq("#care_provided_txt input").val('');
+                jq("#care_provided_txt input").prop("disabled", true);
+            }
+
+        }
+
+
+        var PEP  = function () {
+            var tested = getValue("pep.value");
+            if(tested==1065){
+
+                jq('#pep_type select').prop('disabled', false).removeClass('disabled');
+            }
+
+            else{
+
+                jq('#pep_type select').prop('disabled', true).addClass('disabled');
+            }
+
+        }
+        var pep_type  = function () {
+            var pep = getValue("pep_type.value");
+            if(pep==5622){
+                jq("#pep_type_txt input").prop("disabled", false);
+            }
+
+            else{
+                jq("#pep_type_txt input").val('');
+                jq("#pep_type_txt input").prop("disabled", true);
+            }
+
+        }
+
+        //On Ready
+        $(document).ready(function () {
+            // sti forms
+            jq('#sti_screened').click(StiScreened);
+            jq('#sti_results').click(StiResults);
+            jq('#sti_treated').click(StiTreateed);
+            jq('#sti_referred').click(StiReferred);
+            // tb form
+            jq('#tb_screened').click(tbScreened);
+            jq('#tb_results').click(tbResults);
+            jq('#tb_treated').click(tbTreated);
+            jq('#tb_referred').click(tbReferred);
+            // hepatitis c
+            jq('#hepc_screened').click(HepatitiscScreened);
+            jq('#hepc_results').click(HepatitiscResults);
+            jq('#hepc_treated').click(HepatitiscTreateed);
+            jq('#hepc_referred').click(HepatiriscReferred);
+            //hep b
+            jq('#hepb_screened').click(HepatitisbScreened);
+            jq('#hepb_results').click(HepatitisbResults);
+            jq('#hepb_treated').click(HepatitisbTreated);
+            jq('#hepb_referred').click(HepatitisbReferred);
+            //Overdose validations
+            jq('#overdose_screened').click(OverdoseScreenedSelected);
+            jq('#overdose_results').click(OverdoseResultsSelected);
+            jq('#overdose_treated').click(OverDoseTreatedSelected);
+            jq('#overdose_referred').click(OverdoseRefferredSelected);
+
+            //Alcohol validations
+            jq('#alcohol_screened').click(AlcoholScreenedSelected);
+            jq('#alcohol_results').click(AlcoholResultsSelected);
+            jq('#alcohol_treated').click(AlcoholTreatedSelected);
+            jq('#alcohol_referred').click(AlcoholReferredSelected);
+
+            //Abscess validations
+            jq('#abscess_screened').click(AbscessScreenedSelected);
+            jq('#abscess_results').click(AbscessResultsSelected);
+            jq('#abscess_trested').click(AbscessTreatedSelected);
+            jq('#abscess_referred').click(AbscessReferredSelected);
+
+            //Prep validations
+            jq('#prep_screened').click(prepScreened);
+            jq('#prep_results').click(prepResults);
+            jq('#prep_treated').click(prepTreateed);
+            jq('#prep_referred').click(prepReferred);
+
+            //Cervical validations selected
+            jq('#cerv_screened').click(CervicalScreeningSelected);
+            jq('#cerv_results').click(CervicalResulltsSelected);
+            jq('#cerv_treated').click(CervicalTreatedSelected);
+            jq('#cerv_referred').click(CervicalReferredSelected);
+
+            //Violence validations
+            jq('#vio_screened').click(vilenceScreened);
+            jq('#vio_results').click(violenceResults);
+            jq('#vio_treated').click(violenceTreateed);
+            jq('#vio_referred').click(violenceReferred);
+
+            //Risk validations
+            jq('#risk_screened').click(riskScreened);
+            jq('#risk_results').click(riskResults);
+            jq('#risk_treated').click(riskcTreateed);
+            jq('#risk_referred').click(riskReferred);
+
+            //Family validations
+            jq('#fam_screened').click(familyScreened);
+            jq('#fam_results').click(familyResults);
+            jq('#fam_treated').click(familyTreated);
+            jq('#fam_referred').click(familyReferred);
+
+            //Mental validations
+            jq('#men_screened').click(menScreened);
+            jq('#men_results').click(menResults);
+            jq('#men_treated').click(menTreateed);
+            jq('#men_referred').click(menReferred);
+
+            // hiv testing validations
+            jq("#hiv_selfreported select").change(hivTesting);
+            jq("#hiv_tested select").change(hivTested);
+            jq("#hiv_selftest select").change(numberOfSelfTest);
+            jq("#self_tested select").change(SelfTested);
+            jq("#confirm_test select").change(confirmTest);
+
+            jq("#facility select").change(confirmFacility);
+            jq("#linktoart select").change(linkToart);
+            jq("#care_provided select").change(providedElseWhere);
+            jq("#pep select").change(PEP);
+            jq("#pep_type select").change(pep_type);
+
+
+
+            $("INPUT[type=text],TEXTAREA").attr("disabled", "disabled");
+            $(this).attr("disabled", "");
+            jq("#malecondoms input").prop("disabled", false);
+            jq("#femalecondoms input").prop("disabled", false);
+            jq("#lubes input").prop("disabled", false);
+            jq("#needles input").prop("disabled", false);
+            jq("#clinical input").prop("disabled", false);
+            jq("#lmp_date input").prop("disabled", false);
+            jq("#apointment input").prop("disabled", false);
+            jq("#edd input").prop("disabled", false);
+            jq("#encounter-date input").prop("disabled", false);
+
+
+
+
+            $( "select" )
+                .change(function () {
+                    var typeOfPep = getValue("typeofpep.value");
+                    if(typeOfPep=="160632"){
+                        jq("#typeofpeptxt input").prop("disabled", false);
+                    }else{
+                        jq("#typeofpeptxt input").prop("disabled", true);
+                    }
+                })
+
+            $('input').on('click',function () {
+
+                // if(prep=="true"){
+                //     jq("#preptext input").prop("disabled", false);
+                // }else{
+                //     jq("#preptext input").prop("disabled", true);
+                // }
+
+            });
+
+        });
+        //Before Submit
+        beforeSubmit.push(function() {
+
+
+        });
+    </script>
+    <style>
+        .simple-table {
+            border: solid 1px #DDEEEE;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font: normal 13px Arial, sans-serif;
+        }
+
+        .simple-table thead th {
+            background-color: #DDEFEF;
+            border: solid 1px #DDEEEE;
+            color: #336B6B;
+            padding: 10px;
+            text-align: left;
+            text-shadow: 1px 1px 1px #fff;
+        }
+
+        .simple-table td {
+            border: solid 1px #DDEEEE;
+            color: #333;
+            padding: 10px;
+            text-shadow: 1px 1px 1px #fff;
+        }
+        .disabled {
+            color: #ebebe4;
+    </style>
+
+    <div class="ke-form-header">
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <ifMode mode="ENTER">
+                        <script type="text/javascript">
+                            jq(function(){
+                                setValue("encounter-date.value", "");
+                            });
+                        </script>
+                    </ifMode>
+                    <ifMode mode="EDIT">
+                        <script type="text/javascript">
+                            jq(function(){
+
+                                //First test
+                                var firstTest = getField("hiv-test1-result.value").val();
+                                //Negative
+                                if(firstTest ==664) {
+
+                                    jq("#hiv-test2-result select").prop("disabled", true);
+                                    jq(".kit-name2 select").prop("disabled", true);
+                                    jq(".lot-number2 input").prop("disabled", true);
+                                    jq("#expiry-date2 input").prop("disabled", true);
+                                    getField('hiv-final-result.value').val(664);
+                                    jq('#ccc-no input').prop("disabled", true);
+
+                                }
+
+                            });
+                        </script>
+                    </ifMode>
+
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <!--=============Work flow==================-->
+    <ifMode mode="VIEW" include="true">
+        <div>
+            <table style="width: 100%">
+                <tr>
+                    <td align="left">
+                        Observation Date:
+                    </td>
+                    <td>
+                        Unique Client Number
+                    </td>
+                    <td align="right">
+                        Gender Identity:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        16-Jan-2019
+                    </td>
+                    <td>
+                        Test
+                    </td>
+                    <td align="right">
+                        Test
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </ifMode>
+    <!-- ============ end work flow =================-->
+
+
+
+    <div class="ke-form-header">
+        <table width="100%">
+            <tr>
+                <td>Date:
+                    <encounterDate id="encounter-date"/>
+                </td>
+                <td>Location:
+                    <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ke-form-content">
+
+        <fieldset>
+            <legend>Clinic Visit Form</legend>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0" class="simple-table">
+                <tr>
+                    <td width="156" valign="top"><p><b>SERVICES</b></p></td>
+                    <td width="156" valign="top"><p><b>SCREENED</b></p></td>
+                    <td width="156" valign="top"><p><b>SCREENING RESULTS</b></p></td>
+                    <td width="156" valign="top"><p><b>TREATED  / SUPPORT</b></p></td>
+                    <td width="156" valign="top"><p><b>REFERRED</b></p></td>
+                    <td width="156" valign="top"><p></p><b>IF YES SPECIFY</b></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>STI</p></td>
+                    <td width="156" valign="top"><p>  <obs id="sti_screened" class="consent" conceptId="161558" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="165199"
+                                                           answerConceptIds="664,
+                                                            703"  answerLabels="Negative,Positive"
+                                                           style="radio" id="sti_results" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="sti_treated" class="consent" conceptId="165200"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="sti_referred" class="consent" conceptId="165249"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="sti_txt" class="remarks" conceptId="165250"
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>TB</p></td>
+                    <td width="156" valign="top"><p>  <obs id="tb_screened" class="consent" conceptId="165197" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="tb_results" class="consent" conceptId="165198" answerConceptIds="664,
+                                                            703"  answerLabels="Negative,Positive"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="tb_treated" class="consent" conceptId="1111"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="tb_referred" class="consent" conceptId="162310"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="tb_txt" class="remarks" conceptId="163323"
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>Hepatitis B</p></td>
+                    <td width="156" valign="top"><p>  <obs id="hepb_screened" class="consent" conceptId="165040" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="hepb_results" class="consent" conceptId="1322"
+                                                           answerConceptIds="664,
+                                                            703"  answerLabels="Negative,Positive"
+                                                           style="radio" rows="2" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="hepb_treated" class="consent" conceptId="165251"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="hepb_referred" class="consent" conceptId="165252"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="hepb_txt" class="remarks" conceptId="165253"
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>Hepatitis C</p></td>
+                    <td width="156" valign="top"><p>  <obs id="hepc_screened" class="consent" conceptId="165041" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="hepc_results" class="consent" conceptId="161471"
+                                                           answerConceptIds="664,
+                                                            703"  answerLabels="Negative,Positive"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="hepc_treated" class="consent" conceptId="165254"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="165255"
+                                                           style="radio" answerConceptIds="1065,1066" id="hepc_referred" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="hepctxt" class="remarks" conceptId="165256"
+                    /></p></td>
+
+                </tr>
+
+                <tr>
+                    <td width="156" valign="top"><p>Overdose management</p></td>
+                    <td width="156" valign="top"><p>  <obs id="overdose_screened" class="consent" conceptId="165042" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="overdose_results" class="consent" conceptId="165046"
+                                                           answerConceptIds="664,
+                                                            703"  answerLabels="Negative,Positive"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="overdose_treated" class="consent" conceptId="165257"
+                                                           style="radio" answerConceptIds="1065,1066" /></p>
+
+                        <p> Received  naloxone <obs id="naloxane" class="consent" conceptId="165201"
+                                                    answerConceptIds="1065,
+                                                            1066"  answerLabels="Yes,No"
+                                                    style="radio" />
+                        </p>
+                    </td>
+                    <td width="156" valign="top"><p>  <obs id="overdose_referred" class="consent" conceptId="165258"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="overdosetxt" class="remarks" conceptId="165259"
+                    /></p></td>
+
+                </tr>
+
+
+                <tr>
+                    <td width="156" valign="top"><p>Abscess</p></td>
+                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="165044" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" id="abscess_screened" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="abscess_results"  class="consent" conceptId="165051"
+                                                           answerConceptIds="664,
+                                                            703"  answerLabels="Negative,Positive"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="abscess_treated" class="consent" conceptId="165260"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="abscess_referred" class="consent" conceptId="165261"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="abscesstxt" class="remarks" conceptId="165262"
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>Alcohol and drug abuse</p></td>
+                    <td width="156" valign="top"><p>  <obs id="alcohol_screened" class="consent" conceptId="165043" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="alcohol_results" class="consent" conceptId="165047"
+                                                           answerConceptIds="664,
+                                                            703"  answerLabels="Negative,Positive"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="alcohol_treated" class="consent" conceptId="165263"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="165264"
+                                                           style="radio" answerConceptIds="1065,1066" id="alcohol_referred" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="alcoholtxt" class="remarks" conceptId="165265"
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>Cervical Cancer</p></td>
+                    <td width="156" valign="top"><p>  <obs id="cerv_screened" class="consent" conceptId="164934"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="cerv_results" class="consent" conceptId="165196"
+                                                           answerConceptIds="664,
+                                                            703"  answerLabels="Negative,Positive"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="cerv_treated" class="consent" conceptId="165266"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="165267"
+                                                           id="cerv_referredd"  style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="cerv_txt" class="remarks" conceptId="165268"
+                    /></p></td>
+
+                </tr>
+
+                <tr>
+                    <td width="156" valign="top"><p>PrEP</p></td>
+                    <td width="156" valign="top"><p>  <obs id="prep_screened" class="consent" conceptId="165076" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="prep_results" class="consent" conceptId="165202"
+                                                           answerConceptIds="165087,
+                                                            165078"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="prep_treated" class="consent" conceptId="165203"
+                                                           answerConceptIds="1065,
+                                                            1066"  answerLabels="Initiated,Not Initiated"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="prep_referred" class="consent" conceptId="165270"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="preptext"  class="remarks" conceptId="165271"
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>Violence</p></td>
+                    <td width="156" valign="top"><p>  <obs id="vio_screened" class="consent" conceptId="165204" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+
+                    <td >
+                        <div id="vio_results" style="float: left; padding-right: 50px">
+
+                            <obs conceptId="165205" answerConceptId="165206" style="checkbox" /><br />
+                            <obs conceptId="165205" answerConceptId="121387" answerLabel="  Assault/Physical abuse"  style="checkbox" /><br />
+                            <obs conceptId="165205" answerConceptId="165207" style="checkbox" /><br />
+                            <obs conceptId="165205" answerConceptId="123007" answerLabel="Verbal Abuse" style="checkbox" /><br />
+                            <obs conceptId="165205" answerConceptId="127910"  style="checkbox" /><br />
+                            <obs conceptId="165205" answerConceptId="126312" answerLabel="Discrimination" style="checkbox" /><br />
+                        </div>
+                    </td>
+                    <td width="156" valign="top"><p>  <obs id="vio_treated" class="consent" conceptId="165208"
+                                                           answerConceptIds="1065,
+                                                            1066"  answerLabels="Supported,Not Supported"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="vio_referred" class="consent" conceptId="165273"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="viotext"  class="remarks" conceptId="165274"
+                    /></p></td>
+
+                </tr>
+
+                <tr>
+                    <td width="156" valign="top"><p></p></td>
+                    <td width="156" valign="top"></td>
+                    <td width="156" valign="top"></td>
+
+                    <td width="156" valign="top"></td>
+                    <td width="156" valign="top"></td>
+
+                </tr>
+
+
+                <tr>
+                    <td width="156" valign="top"><p>Risk Reduction Counselling</p></td>
+                    <td width="156" valign="top"><p>  <obs id="risk_screened" class="consent" conceptId="165045" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="risk_results" class="consent" conceptId="165050"
+                                                           answerConceptIds="165087,
+                                                            165078"  answerLabels="Eligible,Not Eligible"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="risk_treated" class="consent" conceptId="165053"
+                                                           answerConceptIds="1065,
+                                                            1066"  answerLabels="Supported,Not Supported"
+                                                           style="radio" />
+                    </p></td>
+
+                    <td width="156" valign="top"><p>Counseling EBI provided?  <obs id="risk_referred" class="consent" conceptId="161595"
+                                                                                   answerConceptIds="1065,
+                                                            1066"  answerLabels="Yes,No"
+                                                                                   style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="risktxt" class="remarks" conceptId="165277"
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>Family Planning</p></td>
+                    <td width="156" valign="top"><p>  <obs id="fam_screened" class="consent" conceptId="1382" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="fam_results" class="consent" conceptId="165209"
+                                                           answerConceptIds="165087,
+                                                            165078"  answerLabels="Eligible,Not Eligible"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="fam_treated" class="consent" conceptId="160653"
+                                                           answerConceptIds="1065,
+                                                            1066"  answerLabels="yes,No"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="fam_referred" class="consent" conceptId="165279"
+                                                           style="radio" answerConceptIds="1065,1066"/></p></td>
+                    <td width="156" valign="top"><p>  <obs id="famtxt" class="remarks" conceptId="165280"
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>Mental health</p></td>
+                    <td width="156" valign="top"><p>  <obs id="men_screened" class="consent" conceptId="165210" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td >
+                        <div id="men_results" style="float: left; padding-right: 50px">
+                            <obs conceptId="165211" answerConceptId="165212" style="checkbox" /><br />
+                            <obs conceptId="165211" answerConceptId="157790" answerLabel="Mild depression"  style="checkbox" /><br />
+                            <obs conceptId="165211" answerConceptId="134017" answerLabel="Moderate depression"  style="checkbox" /><br />
+                            <obs conceptId="165211" answerConceptId="134011" answerLabel="Moderate-severe depression" style="checkbox" /><br />
+                            <obs conceptId="165211" answerConceptId="126627"  style="checkbox" /><br />
+
+                        </div>
+                    </td>
+                    <td width="156" valign="top"><p>  <obs id="men_treated" class="consent" conceptId="165213"
+                                                           answerConceptIds="1065,
+                                                            1066"  answerLabels="Supported,Not Supported"
+                                                           style="radio" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="men_referred" class="consent" conceptId="165281" required="true"
+                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="mentxt" class="remarks" conceptId="165282"
+                    /></p></td>
+
+                </tr>
+
+
+            </table>
+
+        </fieldset>
+
+        <!--        ============HIV TESTING SERVICES===========================-->
+
+        <fieldset>
+            <legend>HIV Testing services</legend>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0" class="simple-table">
+                <tr>
+                    <td width="156" valign="top"><p><b>Self reported status</b></p></td>
+                    <td width="156" valign="top"><p><b>Setting of the last HIV test</b></p></td>
+                    <td width="156" valign="top"><p><b>Counselled</b></p></td>
+                    <td width="156" valign="top"><p><b>Tested</b></p></td>
+                    <td width="156" valign="top"><p><b>Frequency of test</b></p></td>
+                    <td width="156" valign="top"><p><b>Received results</b></p></td>
+                    <td width="156" valign="top"><p><b>Testing results</b></p></td>
+                    <td width="156" valign="top"><p><b>Linked to ART</b></p></td>
+                    <td width="156" valign="top"><p><b>Facility</b></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>  <obs id="hiv_selfreported" class="consent" conceptId="165214"
+                                                           style="dropdown" answerConceptIds="703,664, 1067" answerLabels="Positive,Negative, Unknown" /></p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="hiv_settingoflasttest" class="consent" conceptId="165215"
+                                                           style="dropdown" answerConceptIds="165216,165217,1402" answerLabels="Universal HTS,Self-testing , Never teste" /></p></td>
+
+
+                    <td width="156" valign="top"><p>  <obs id="hiv_counselled" class="consent" conceptId="159382"
+                                                           style="dropdown" answerConceptIds="1065,1066" /></p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="hiv_tested" class="consent" conceptId="164401"
+                                                           style="dropdown" answerConceptIds="1065,1066,1175" /></p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="test_frequency" class="consent" conceptId="165218"
+                                                           style="dropdown" /></p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="received_results" class="consent" conceptId="164848"
+                                                           answerConceptIds="1065,
+                                                            1066,1067"  answerLabels="Yes,No, Not applicable"
+                                                           style="dropdown" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="test_results" class="consent" conceptId="159427"
+                                                           style="dropdown" answerConceptIds="664,703,1118" answerLabels="Negative,Positive, Not done"/></p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="hepatitisb" class="consent" conceptId="1648"
+                                                           style="yes_no"  /></p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="familyplaningtxt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    /></p></td>
+
+                </tr>
+
+
+            </table>
+
+        </fieldset>
+
+        <!--        ======================HIV SELF TESTING=========================-->
+
+
+        <fieldset>
+            <legend>Self testing</legend>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0" class="simple-table">
+                <tr>
+                    <td><p><b>HIV self-test education/ demonstration </b></p></td>
+                    <td><p><b>Number of HIV self-test kits given</b></p></td>
+                    <td><p><b>Self-tested for HIV</b></p></td>
+                    <td><p><b>Date conducted</b></p></td>
+                    <td><p><b>Frequency of test</b></p></td>
+                    <td><p><b>Testing results</b></p></td>
+                    <td><p><b>Confirmatory HIV test results</b></p></td>
+                    <td><p><b>Facility name where confirmatory was done</b></p></td>
+
+                    <td><p><b>Linked to ART</b></p></td>
+
+
+                </tr>
+                <tr>
+                    <td ><p>  <obs id="hepb_screened" class="consent" conceptId="165220"
+                                   style="dropdown" answerConceptIds="1065,1066" /></p></td>
+
+                    <td ><p>  <obs id="hiv_selftest" class="consent" conceptId="165221"
+                                   style="dropdown" answerConceptIds="165222,165223"
+                                   answerLabels="For self use, For distribution" /></p>
+                        <p>Self test kits  <obs id="selftxt" class="remarks" conceptId="165222"
+                        /></p><p>Distributing <obs id="disttxt" class="remarks" conceptId="165223"
+                        /></p></td>
+
+                    <td ><p>  <obs class="consent" conceptId="164952"
+                                   style="dropdown" answerConceptIds="1065,1066" id="self_tested" /></p></td>
+                    <td ><p>  <obs id="selftestDate" class="consent" conceptId="164400"
+                    /></p></td>
+
+                    <td ><p>  <obs id="selftestFrequency" class="consent" conceptId="165231"
+                                   style="dropdown"  /></p></td>
+
+                    <td><p>  <obs id="selftestResults" class="consent" conceptId="165233"
+                                  style="dropdown" answerConceptIds="664,703,165232"
+                                  answerLabels="Negative, Positive, Inconclusive
+" /></p></td>
+                    <td ><p>  <obs id="confirm_test" class="consent" conceptId="165234"
+                                   style="dropdown" answerConceptIds="664,703,1118"
+                                   answerLabels="Negative, Positive, Not done"
+                    /></p></td>
+                    <td><p>  <obs id="facility" class="consent" conceptId="165237"
+                                  style="dropdown"  /></p>
+                        <p> if off-site specify <obs id="facilitytxt" class="remarks" conceptId="162724"
+                        /></p></td>
+
+                    <td ><p>  <obs id="linktoart" class="consent" conceptId="165238"
+                                   style="dropdown"  /></p>
+                        <p>if yes facility linked to <obs id="arttxt" class="remarks" conceptId="161562"
+                        /></p></td>
+                </tr>
+
+            </table>
+
+        </fieldset>
+        <!--        ===========================CARE AND TREATMENT=====================-->
+
+        <fieldset>
+            <legend>Care and treatment</legend>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0" class="simple-table">
+                <tr>
+                    <td width="156" valign="top"><p><b>Facility of HIV Care</b></p></td>
+                    <td width="156" valign="top"><p><b>Initiated on ART this month</b></p></td>
+                    <td width="156" valign="top"><p><b>Active on ART</b></p></td>
+                    <td width="156" valign="top"><p><b>Eligible for Viral Load</b></p></td>
+                    <td width="156" valign="top"><p><b>Viral Load Test Done</b></p></td>
+                    <td width="156" valign="top"><p><b>Viral Load Results</b></p></td>
+
+                </tr>
+                <tr>
+
+                    <td width="156" valign="top"><p>  <obs id="care_provided" class="consent" conceptId="165239"
+                                                           style="dropdown" answerConceptIds="163266,162723,160563"
+                                                           answerLabels="Provided here, Provided elsewhere, Referred"
+
+                    /></p>
+                        <p>if Provided elsewhere Specify:<obs id="care_provided_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                        /></p>
+                    </td>
+                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="165240"
+                                                           answerConceptIds="1065,1066,1175"
+                                                           answerLabels="Yes, No, Not applicable"
+                                                           style="dropdown" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="hepb_treated" class="consent" conceptId="160119"
+                                                           answerConceptIds="1065,1066,1175"
+                                                           answerLabels="Yes, No, Not applicable"
+                                                           style="dropdown" />
+                    </p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="hepatitisb" class="consent" conceptId="165242"
+                                                           answerConceptIds="1065,1066,1175"
+                                                           answerLabels="Yes, No, Not applicable"
+                                                           style="dropdown" />
+                    </p></td>
+                    <td width="156" valign="top"><p>  <obs id="hepb_screened" class="consent" conceptId="165243"
+                                                           answerConceptIds="1065,1066,1175"
+                                                           answerLabels="Yes, No, Not applicable"
+                                                           style="dropdown" />
+                    </p></td>
+
+                    <td width="156" valign="top"><p>  <obs id="hepb_screened" class="consent" conceptId="165246"
+                                                           answerConceptIds="165244,165245,164369,1175"
+                                                           answerLabels="Suppressed, Not Suppressed,Results not yet received, Not applicable"
+                                                           style="dropdown" />
+                    </p></td>
+                </tr>
+
+            </table>
+
+        </fieldset>
+        <!--        ===============================OTHER SERVICES========================-->
+
+        <fieldset>
+            <legend>Other services</legend>
+            <table border="0" width="100%" cellspacing="0" cellpadding="0">
+
+                <tr>
+                    <td width="156" valign="top"><p>Condom education/demonstration </p></td>
+                    <td width="156" valign="top"><p><obs class="consent" conceptId="165247"
+                                                         style="yes_no" /></p></td>
+                </tr>
+                <tr>
+                    <td width="156" valign="top"><p>Post Abortal Care provided</p></td>
+                    <td width="156" valign="top"><p><obs class="consent" conceptId="164820"
+                                                         style="yes_no" /></p></td>
+
+                </tr>
+                <tr>
+
+                    <td width="156" valign="top"><p>No. of condoms</p></td>
+
+                    <td width="156" valign="top"><p> Male<obs id="malecondoms" conceptId="165055"/></p></td>
+
+                    <td width="156" valign="top"><p>female <obs id="femalecondoms" conceptId="165056"/></p></td>
+
+                    <td width="156" valign="top"><p>No. of lubes given <obs id="lubes" conceptId="165057"/></p></td>
+
+                    <td width="156" valign="top"><p>Number of needles and syringes given:  <obs id="lubes" conceptId="165058"/></p></td>
+
+                </tr>
+
+                <tr>
+
+                    <td width="156" valign="top"><p> PEP<obs id="pep" class="consent" conceptId="164845"
+                                                             style="yes_no" /></p></td>
+                    <td width="156" valign="top"><p>Type of exposure for pep</p></td>
+                    <td width="156" valign="top"><p>  <obs id="pep_type" class="consent" conceptId="165060"
+                                                           answerConceptIds="127910,
+                                                            165045, 5622"  answerLabels="Rape,Condom Burst, Others"
+                                                           style="dropdown" rows="2" />
+                    </p></td>
+                    <td width="156" id="pep_others" valign="top"><p>If OtherSpecify</p></td>
+                    <td width="156" valign="top"><p>  <obs id="pep_type_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    /></p></td>
+
+                </tr>
+                <tr>
+                    <td width="156" valign="top" colspan="3"><p>Link to Psychosocial <obs class="consent" conceptId="1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" required="true"
+                                                                                          style="yes_no" /></p></td>
+
+
+                </tr>
+                <tr>
+
+                    <td width="156" valign="top"><p>Clinical Notes</p></td>
+                    <td width="156" valign="top"><p>  <obs id="clinical" class="remarks" conceptId="165248"
+                    /></p></td>
+
+                </tr>
+                <tr>
+
+
+                    <td width="156" valign="top"><p>Next Visit Date</p></td>
+
+
+                </tr>
+            </table>
+
+        </fieldset>
+
+    </div>
+    <div class="ke-form-footer">
+        <submit/>
+    </div>
+
+</htmlform>
