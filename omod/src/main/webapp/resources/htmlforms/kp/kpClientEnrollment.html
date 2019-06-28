@@ -17,6 +17,8 @@
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
     <script type="text/javascript">
 
+        var KEY_POP_TYPE = "<lookup expression="fn.latestObs(160581).getValueCoded()"/>";
+
         function onHistoricalStatusDateChange() {
 
             var today = new Date()//.getTime();        //get current date
@@ -45,20 +47,23 @@
 
         }
         function everTestedSelected() {
-            var val = jq(this).val();
-            var everTested = getValue('ever-tested .value');
-            if(val == 1065){
+            var everTestedVal = jq(this).val();
+
+            if(everTestedVal == 1065){
                 jq("#test-type-tr").show();
                 jq("#share-test-tr").show();
-                jq("#tbl-receiving-care").show();
-                jq("#tbl-vl-status").show();
+                jq('#decline-reason').val('');
+                jq('#test-decline-reason').hide();
                 jq("#willing-to-test").hide();
+                clearHiddenSections(jq('#willing-tester'));
+
             }
-            if(val == 1066){
+            else{
                 jq("#willing-to-test").show();
                 jq("#test-type-tr").hide();
                 jq("#share-test-tr").hide();
                 jq("#tbl-receiving-care").hide();
+                jq("#hiv-care").hide();
                 jq("#tbl-vl-status").hide();
                 jq("#test-type input").prop('checked', false);
                 jq("#share-test input").prop('checked', false);
@@ -71,9 +76,9 @@
         }
         function receivingCareSelected() {
             var val = jq(this).val();
-           if(val == 1065){
-               jq("#ccc-number :input").prop('disabled', false);
-               jq("#facility-name :input").prop('disabled', false);
+            if(val == 1065){
+                jq("#ccc-number :input").prop('disabled', false);
+                jq("#facility-name :input").prop('disabled', false);
             }
             if(val == 1066){
                 getField('ccc-number.value').val("");
@@ -93,17 +98,58 @@
                 jq("#vl-date :input").prop('disabled', true);
             }
         }
-        function willingTesterSelected() {
+
+        function contactMethod() {
             var val = jq(this).val();
             if(val == 1065){
-                jq("#decline-reason select").prop('disabled', false);
+                jq("#contact-method").show();
             }
             if(val == 1066){
-                jq("#decline-reason select").prop('disabled', true);
-                getField('decline-reason.value').prop("selectedIndex", 0);
+                jq("#contact-method").hide();
+                clearHiddenSections(jq('#cContacted'));
+            }
+        }
+
+        function willingToTest() {
+            var val = jq(this).val();
+            if(val == 1065){
+                jq("#test-decline-reason").hide();
+            }
+            if(val == 1066){
+                jq("#test-decline-reason").show();
+                clearHiddenSections(jq('#decline-reason'));
+            }
+        }
+
+        function hivStatusDisclosure() {
+            var val = jq(this).val();
+            if(val == 664){
+                jq("#tbl-vl-status").hide();
+                jq("#tbl-receiving-care").hide();
+                jq("#hiv-care").hide();
+                jq("#willing-to-test").show();
+                clearHiddenSections(jq('#willing-to-test'));
+            }
+            else if(val == 703) {
+                jq("#tbl-vl-status").show();
+                jq("#hiv-care").show();
+                jq("#tbl-receiving-care").show();
+                jq("#willing-to-test").hide();
+                clearHiddenSections(jq('#tbl-receiving-care'));
+                clearHiddenSections(jq('#tbl-vl-status'));
+                clearHiddenSections(jq('#willing-to-test'));
+            }
+            else {
+                jq("#tbl-vl-status").hide();
+                jq("#tbl-receiving-care").hide();
+                jq("#hiv-care").hide();
+                jq("#willing-to-test").show();
+                clearHiddenSections(jq('#tbl-receiving-care'));
+                clearHiddenSections(jq('#tbl-vl-status'));
             }
         }
         $(document).ready(function () {
+
             $("#date").datepicker({
                 changeMonth: false,
                 changeYear: true,
@@ -117,104 +163,40 @@
             jq("#historicalPhysicalViolence").hide();
             jq("#sexuaViolence").hide();
             jq("#peer_work_name").hide();
-            jq("#year_sarted_sex").hide();
+            jq("#year_started_sex").hide();
             jq("#yearStartedSexWithMen").hide();
+            jq("#yearStartedDrugs").hide();
             jq("#test-type-tr").hide();
             jq("#share-test-tr").hide();
             jq("#tbl-receiving-care").hide();
+            jq("#hiv-care").hide();
             jq("#tbl-vl-status").hide();
             jq("#willing-to-test").hide();
+            jq("#contact-method").hide();
+            jq("#test-decline-reason").hide();
 
             jq('#ever-tested :input[type=radio]').change(everTestedSelected);
             jq('#receiving-care :input[type=radio]').change(receivingCareSelected);
             jq('#vl-test-done :input[type=radio]').change(vlTestDoneSelected);
-            jq('#willing-tester :input[type=radio]').change(willingTesterSelected);
+            jq('#contacted-incase-of-appointment :input[type=radio]').change(contactMethod);
+            jq('#willing-tester :input[type=radio]').change(willingToTest);
+            jq('#share-test-tr :input[type=radio]').change(hivStatusDisclosure);
 
-            var sexViolenceckbox = $('#w33_0');
-            $('input').on('click',function () {
-                if (sexViolenceckbox.is(':checked')) {
-                    jq("#sexuaViolence").show();
+            if(KEY_POP_TYPE == 105 || KEY_POP_TYPE == 165085){
+                jq("#yearStartedDrugs").show();
+            }
+            else if(KEY_POP_TYPE == 160578 ){
+                jq("#yearStartedSexWithMen").show();
+            }
 
-                } else {
-                    jq("#sexuaViolence").hide();
-                }
-            });
-
-            var physicalViolenceckbox = $('#w37_0');
-            $('input').on('click',function () {
-                if (physicalViolenceckbox.is(':checked')) {
-                    jq("#historicalPhysicalViolence").show();
-                } else {
-                    jq("#historicalPhysicalViolence").hide();
-                }
-            });
-
-            var nonepaying_ckbox = $('#w17_0');
-            $('input').on('click',function () {
-                if (nonepaying_ckbox.is(':checked')) {
-                    jq("#NonePayingSex").show();
-                } else {
-                    jq("#NonePayingSex").hide();
-                }
-            });
-
-
-            var peer_work_name = $('#w13_0');
-            $('input').on('click',function () {
-                if (peer_work_name.is(':checked')) {
-                    jq("#peer_work_name").show();
-                } else {
-                    jq("#peer_work_name").hide();
-                }
-            });
-
-
-            $('input').on('click',function () {
-                var partnerNumber = getField('pNumber.value').val();
-                if (partnerNumber !== "") {
-
-                    var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-                    if (partnerNumber.match(phoneNum)) {
-                        getField('pNumber.error').html('Please enter valid phone number.').hide();
-                    } else {
-                        getField('pNumber.error').html('Please enter valid phone number.').show();
-                        $('#w25').val('');
-                        return false;
-                    }
-                }
-            });
-
-            $('input').on('click',function () {
-
-                var mobileNumber = getField('mobile.value').val();
-                if (mobileNumber !== "") {
-
-                    var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-                    if (mobileNumber.match(phoneNum)) {
-                        getField('mobile.error').html('Please enter valid phone number.').hide();
-                    } else {
-                        getField('mobile.error').html('Please enter valid phone number.').show();
-                        $('#w55').val('');
-                        return false;
-                    }
-                }
-            });
-
-            $('input').on('click',function () {
-
-                var alternateNumber = getField('alterNumber.value').val();
-                if (alternateNumber !== "") {
-
-                    var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-                    if (alternateNumber.match(phoneNum)) {
-                        getField('alterNumber.error').html('Please enter valid phone number.').hide();
-                    } else {
-                        getField('alterNumber.error').html('Please enter valid phone number.').show();
-                        $('#w57').val('');
-                        return false;
-                    }
-                }
-            });
+            else if(KEY_POP_TYPE == 165083 || KEY_POP_TYPE == 165084 ){
+                jq("#year_started_sex").show();
+            }
+            else {
+                jq("#year_started_sex").show();
+                jq("#yearStartedSexWithMen").show();
+                jq("#yearStartedDrugs").show();
+            }
 
             $('input').on('click',function () {
 
@@ -267,65 +249,168 @@
 
         beforeSubmit.push(function() {
 
-            var peer_educator = getField('peer-educator.value').val();
-            var peer = getField('peer.value').val();
-            var regular_sex_partner = getField('regular-sex-partner.value').val();
-            var partner_name = getField('pName.value').val();
-            var partner_alias = getField('pAlias.value').val();
-            var partner_number = getField('pNumber.value').val();
-            var start_sex = getField("startSex.value").val();
+            var contactedByPeerEducator = getValue('peer-educator.value');
+            var nonepaying_ckbox = getValue('regular-sex-partner.value');
+            var yearStartedSexWork = getField('startSex.value').val();
+            var yearStartedSexWithMen = getField('sexWithMen.value').val();
+            var yearStartedDrugs = getField('usingDrugs.value').val();
+            var sexViolenceckbox = getValue('exprienced-sex-violence.value');
+            var physicalViolenceckbox = getValue('exprienced-physical-violence.value');
+            var everTested = getValue('ever-tested.value');
+            var testType = getValue('test-type.value');
+            var shareTestResults = getValue('share-test.value');
+            var willingToTest = getValue('willing-tester.value');
+            var testDeclineReason = getField('decline-reason.value').val();
+            var receivingCare = getValue('receiving-care.value');
+            var contactForAppointment = getValue('contacted-incase-of-appointment.value');
+            var contactMethod = getField('cContacted.value').val();
+            var partner_number = getField('mobile.value').val();
 
-            var sex_with_men = getField("sexWithMen.value").val();
-            var using_drugs = getField("usingDrugs.value").val();
-            var experience_sex_violence = getField("exprienced-sex-violence.value").val();
-            var sex_violence_ordeal = getField("sOrdeal.value").val();
-            var physical_ordeal = getField("exprienced-physical-violence.value").val();
-            var historical_ordeal = getField("hOrdeal.value").val();
-            var contatcted_incase_of_appointment = getField("contacted-incase-of-appointment.value").val();
-            var clinical_contatcted = getField("cContacted.value").val();
+            if (contactedByPeerEducator =="") {
+                getField('peer-educator.error').html('Answer required').show();
+                return false;
+            }
 
-            var contacted_by_eductaor = $('#w13_0');
-            var notContacted = $('#w13_1');
+            if (nonepaying_ckbox =="") {
+                getField('regular-sex-partner.error').html('Answer required').show();
+                return false;
+            }
 
+            if (nonepaying_ckbox =="") {
+                getField('regular-sex-partner.error').html('Answer required').show();
+                return false;
+            }
 
-//            if (contacted_by_eductaor.is(':checked') || notContacted.is(':checked')) {
-//                getField('peer-educator.error').html('Please indicate whether you have been contacted or not').hide();
-//            } else {
-//                getField('peer-educator.error').html('Please indicate whether you have been contacted or not').show()
-//                return false;
-//            }
+            if((KEY_POP_TYPE == 105 || KEY_POP_TYPE == 165085) &amp;&amp; yearStartedDrugs=="" ) {
+                getField('usingDrugs.error').html('Year started drugs is required').show();
+                return false;
+            }
+            if(KEY_POP_TYPE == 160578  &amp;&amp; yearStartedSexWithMen =="" ){
+                getField('sexWithMen.error').html('Year started sex with men is required').show();
+                return false;
+            }
 
+            if((KEY_POP_TYPE == 165083 || KEY_POP_TYPE == 165084 ) &amp;&amp; yearStartedSexWork=="") {
+                getField('startSex.error').html('Year started sex work is required').show();
+                return false;
+            }
 
+            if (sexViolenceckbox =="") {
+                getField('exprienced-sex-violence.error').html('Sexual violence answer is required').show();
+                return false;
+            }
 
-            var has_regular_sex_partner = $('#w17_0');
-            var doesnot_regular_sex_partner = $('#w17_1');
+            if (physicalViolenceckbox =="") {
+                getField('exprienced-physical-violence.error').html('Physical violence answer is required').show();
+                return false;
+            }
 
+            if (everTested =="") {
+                getField('ever-tested.error').html('Ever tested answer required').show();
+                return false;
+            }
 
-//            if (has_regular_sex_partner.is(':checked') || doesnot_regular_sex_partner.is(':checked')) {
-//                getField('regular-sex-partner.error').html('Please indicate if you have regular sex partner.').hide();
-//            } else {
-//                getField('regular-sex-partner.error').html('Please indicate if you have regular sex partner.').show()
-//                return false;
-//            }
+            if(everTested==1066 &amp;&amp; willingToTest =="" ) {
+                getField('willing-tester.error').html('Indicate whether client is willing to test').show();
+                return false;
+            }
+
+            if (willingToTest ==1066 &amp;&amp; testDeclineReason =="") {
+                getField('decline-reason.error').html('Please select reason for declining test').show();
+                return false;
+            }
+
+            if(everTested==1065 &amp;&amp; testType =="" ) {
+                getField('test-type.error').html('Test type is required').show();
+                return false;
+            }
+
+            if(everTested==1065 &amp;&amp; shareTestResults =="" ) {
+                getField('share-test.error').html('Answer required').show();
+                return false;
+            }
+
+            if ((shareTestResults == 664 || shareTestResults == 1066) &amp;&amp; willingToTest =="") {
+                getField('willing-tester.error').html('Indicate whether client is willing to test').show();
+                return false;
+            }
+
+            if (shareTestResults == 664 &amp;&amp; receivingCare =="") {
+                getField('receiving-care.error').html('Indicate whether client is under care').show();
+                return false;
+            }
+
+            if (contactForAppointment =="") {
+                getField('contacted-incase-of-appointment.error').html('Indicate whether to contact for appointment').show();
+                return false;
+            }
+
+            if (contactForAppointment == 1065 &amp;&amp; contactMethod =="" ) {
+                getField('contacted-incase-of-appointment.error').html('Select contact method').show();
+                return false;
+            }
 
 
             if (partner_number != "") {
 
-                var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-                if (partner_number.match(phoneNum)) {
-                    getField('pName.error').html('Please enter partner number.').hide();
-                } else {
-                    getField('pNumber.error').html('Please enter valid phone number.').show();
+                var regex = /^(?:\+254|0|254)(\d{9})$/
+                if(!regex.test(partner_number)){
+                    getField('mobile.error').html('Please enter valid phone number.').show();
                     return false;
                 }
+
             }
 
         });
+
+        //Clear hidden sections
+        clearHiddenSections = function(parentObj) {
+            parentObj.find('input[type=radio]').each(function() {
+                this.checked = false;
+            });
+            parentObj.find('input[type=checkbox]').each(function() {
+                this.checked = false;
+            });
+            parentObj.find('input[type=text]').each(function() {
+                jq(this).val("");
+            });
+            parentObj.find('select').each(function() {
+                this.selectedIndex =0;
+            });
+        }
+
+
     </script>
+
+    <style>
+        .simple-table {
+            border: solid 1px #DDEEEE;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font: normal 13px Arial, sans-serif;
+        }
+
+        .simple-table thead th {
+            background-color: #DDEFEF;
+            border: solid 1px #DDEEEE;
+            color: #336B6B;
+            padding: 10px;
+            text-align: left;
+            text-shadow: 1px 1px 1px #fff;
+        }
+
+        .simple-table td {
+            border: solid 1px #DDEEEE;
+            color: #333;
+            padding: 10px;
+            text-shadow: 1px 1px 1px #fff;
+        }
+    </style>
+
     <div class="ke-form-header">
         <table style="width: 100%">
             <tr>
-                <td align="left">Enrollment Date:
+                <td align="left">Enrolment Date:
                     <encounterDate id="encounter-date" showTime="true"/>
                 </td>
                 <td align="right">Location:
@@ -336,15 +421,86 @@
     </div>
 
     <div class="ke-form-content">
+        <ifMode mode="EDIT">
+            <script type="text/javascript">
+                jq(function(){
+
+                    var everTested = getValue('ever-tested.value');
+                    var shareTestResults = getValue('share-test.value');
+                    var willingToTest = getValue('willing-tester.value');
+                    var contactForAppointment = getValue('contacted-incase-of-appointment.value');
+
+
+                    if(everTested == 1065){
+                        jq("#test-type-tr").show();
+                        jq("#share-test-tr").show();
+                        jq('#willing-tester').val('');
+                        jq("#willing-to-test").hide();
+
+
+                    }
+                    else{
+                        jq("#test-type-tr").hide();
+                        jq("#share-test-tr").hide();
+                        jq("#willing-to-test").show();
+                        jq('#share-test').val('');
+                        jq('#test-type').val('');
+
+                    }
+                    ;
+
+                    if(shareTestResults == 703){
+                        jq("#hiv-care").show();
+                        jq("#tbl-vl-status").show();
+                        jq("#tbl-receiving-care").show();
+                        jq('#decline-reason').val('');
+                        jq('#willing-tester').val('');
+                    }
+                    else{
+                        jq("#hiv-care").hide();
+                        jq("#tbl-vl-status").hide();
+                        jq("#tbl-receiving-care").hide();
+                        jq("#willing-to-test").show();
+                        jq('#vl-date').val('');
+                        jq('#vl-test-done').val('');
+                        jq('#ccc-number').val('');
+                        jq('#facility-name').val('');
+                        jq('#receiving-care').val('');
+                    }
+
+                    if(willingToTest == 1066) {
+                        jq("#test-decline-reason").show();
+                        jq('#decline-reason').show();
+                    }
+                    else{
+                        jq("#test-decline-reason").hide();
+                        jq('#decline-reason').val('');
+
+                    }
+
+                    if(contactForAppointment == 1065){
+                        jq("#contacted-incase-of-appointment").show();
+                        jq("#client-support").show();
+                        jq("#contact-method").show();
+                    }
+                    else{
+
+                        jq('#cContacted').val('');
+                        jq('#contacted-incase-of-appointment').val('');
+
+
+                    }
+                });
+
+            </script>
+        </ifMode>
 
         <fieldset>
-        </fieldset>
-        <fieldset>
-            <legend>Client Enrollment Social Status</legend>
+            <legend>Client Enrolment Social Status</legend>
 
-            <table>
+            <table class ="simple-table" id="social-status-table">
                 <tr>
-                    <td>Have you been contacted by a peer educator or an outreach worker for any health services?</td>
+                    <td>Have you been contacted by a peer educator for prevention services?</td>
                     <td>
                         <obs id="peer-educator" conceptId="165004"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -352,15 +508,7 @@
                              style="radio" />
                     </td>
                 </tr>
-                <tr>
-                    <table id="peer_work_name" >
-                        <td>Peer Educator/Outreach Worker name</td>
-                        <td>
-                            <obs id="peer" conceptId="1473"/>
 
-                        </td>
-                    </table>
-                </tr>
                 <tr>
                     <td>Do you have a regular(Non-Paying) sexual partner?</td>
                     <td>
@@ -370,33 +518,15 @@
                              style="radio" />
                     </td>
                 </tr>
-                <tr>
-                    <table id="NonePayingSex" >
 
-                        <td>If yes, partners name</td>
-                        <td>
-                            <obs id="pName" conceptId="161135"/>
-                        </td>
-                        <td>Alias Name</td>
-                        <td>
-                            <obs id="pAlias" conceptId="165028"/>
-                        </td>
-                        <td>Contact Number</td>
-                        <td>
-                            <obs id="pNumber" conceptId="159635"/>
-                        </td>
-
-                    </table>
-
-                </tr>
             </table>
         </fieldset>
 
         <fieldset>
             <legend>Historical Status</legend>
 
-            <table>
-                <tr id="year_sarted_sex">
+            <table class="simple-table" id="historical-status">
+                <tr id="year_started_sex">
                     <td>Which year did you start sex work?</td>
                     <td>
                         <obs id="startSex" conceptId="165030"/>
@@ -408,8 +538,8 @@
                         <obs id="sexWithMen" conceptId="165031"/>
                     </td>
                 </tr>
-                <tr>
-                    <td>Which Year Did You Start Using Drugs (Injecting Or Smoking?</td>
+                <tr id="yearStartedDrugs">
+                    <td>Which Year Did You Start Using Drugs (Injecting Or Smoking)?</td>
                     <td>
                         <obs id="usingDrugs" conceptId="165032"/>
 
@@ -419,19 +549,13 @@
                     <td>
                         Ever experienced sexual violence?</td>
                     <td>
+
                         <obs id="exprienced-sex-violence" conceptId="123160"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabels="Yes,No"
                              style="radio" />
                     </td>
-                    <table id="sexuaViolence" >
 
-
-                        <td>If yes, describe the ordeal</td>
-                        <td>
-                            <obs id="sOrdeal" conceptId="165033" rows="2" cols="80"/>
-                        </td>
-                    </table>
                 </tr>
                 <tr>
                     <td>Ever experienced physical violence?</td>
@@ -441,75 +565,14 @@
                              answerLabels="Yes,No"
                              style="radio" />
                     </td>
-                    <table id="historicalPhysicalViolence">
-                        <td>If yes, describe the ordeal</td>
-                        <td>
-                            <obs id="hOrdeal" conceptId="165035" rows="2" cols="80" />
-                        </td>
-                    </table>
+
                 </tr>
             </table>
         </fieldset>
 
         <fieldset>
-            <legend>Client Support</legend>
-
-            <table>
-                <tr>
-                    <td>Would you like to be contacted incase you are due for a clinical appointment?</td>
-                    <td>
-                        <obs id="contacted-incase-of-appointment" conceptId="165036"
-                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabels="Yes,No"
-                             style="radio" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>If yes, How would you like to be contacted</td>
-                    <td>
-                        <obs id="cContacted" conceptId="164966"
-                             answerConceptIds="161642,165037,1555,159635"
-                             answerLabels="Treatment supporter,Peer educator,Outreach worker,Phone number"/>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-
-        <fieldset>
-            <legend>Treatment Buddy Contact Information</legend>
-
-            <table>
-                <tr>
-                    <td>Treatment supporter Name</td>
-                    <td>
-                        <obs id="fname" conceptId="160638"/>
-                    </td>
-                    <td>Alias Name</td>
-                    <td>
-                        <obs id="alias" conceptId="165038"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Mobile Number</td>
-                    <td>
-                        <obs id="mobile" conceptId="160642"/>
-                    </td>
-                    <td> Alternative Mobile Number</td>
-                    <td>
-                        <obs id="alterNumber" conceptId="159635"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Enrollment Notes</td>
-                    <td>
-                        <obs id="enNotes" conceptId="161011" rows="2" cols="80"/>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-
-        <fieldset>
-            <table>
+            <legend>HIV History</legend>
+            <table class="simple-table" id="hiv-history">
                 <tr>
                     <td>
                         Have you ever been tested for HIV?
@@ -545,12 +608,31 @@
                              style="radio" />
                     </td>
                 </tr>
+                <tr id="willing-to-test">
+                    <td>
+                        Are you willing to be tested for HIV?&#160;&#160;&#160;</td>
+                    <td>
+                        <obs id="willing-tester" conceptId="165154"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="radio" />
+                    </td>
+                </tr>
+                <tr id ="test-decline-reason">
+                    <td>
+                        Reason:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                    </td>
+                    <td>
+                        <obs id="decline-reason" conceptId="159803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+
+                    </td>
+                </tr>
             </table>
 
         </fieldset>
-        <fieldset>
-
-            <table id="tbl-receiving-care">
+        <fieldset id="hiv-care" >
+            <legend>HIV Care</legend>
+            <table class="simple-table" id="tbl-receiving-care">
                 <tr>
                     <td>
                         Are you receiving HIV care? &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
@@ -567,7 +649,7 @@
                 </tr>
             </table>
 
-            <table id="tbl-vl-status">
+            <table class ="simple-table" id="tbl-vl-status">
                 <tr>
                     <td>
 
@@ -578,31 +660,54 @@
                              style="radio" />
                     </td>
 
-
                     <td>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
                         VL results date:&#160;&#160;&#160;&#160;
                         <obs id ="vl-date" conceptId="163281AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
                     </td>
                 </tr>
             </table>
-            <table id="willing-to-test">
+
+        </fieldset>
+        <fieldset>
+            <legend>Client Support</legend>
+
+            <table class="simple-table" id="client-support">
                 <tr>
+                    <td>Would you like to be contacted in case you are due for a clinical appointment?</td>
                     <td>
-                        Are you willing to be tested for HIV?&#160;&#160;&#160;
-                        <obs id="willing-tester" conceptId="165154"
+                        <obs id="contacted-incase-of-appointment" conceptId="165036"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                             answerLabel="Yes,No"
+                             answerLabels="Yes,No"
                              style="radio" />
                     </td>
-
+                </tr>
+                <tr id ="contact-method">
+                    <td>How would you like to be contacted?</td>
                     <td>
-                        &#160;&#160;&#160;&#160;&#160;
-                        Reason:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                        <obs id="decline-reason" conceptId="159803AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-
+                        <obs id="cContacted" conceptId="164966"
+                             answerConceptIds="161642,165037,1555,159635"
+                             answerLabels="Treatment supporter,Peer educator,Outreach worker,Phone number"/>
                     </td>
                 </tr>
+            </table>
+        </fieldset>
 
+        <fieldset>
+            <legend>Buddy Contact Information</legend>
+
+            <table class="simple-table" id="buddy-tbl">
+                <tr>
+                    <td>Buddy Name</td>
+                    <td>
+                        <obs id="fname" conceptId="160638"/>
+                    </td>
+
+                    <td>Buddy Mobile Number</td>
+                    <td>
+                        <obs id="mobile" conceptId="160642"/>
+                    </td>
+
+                </tr>
             </table>
         </fieldset>
 
