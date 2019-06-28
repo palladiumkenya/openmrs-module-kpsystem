@@ -183,32 +183,11 @@
             });
         });
     </script>
-
-
-    <div class="ke-form-header">
-        <table style="width: 100%">
-            <tr>
-                <td>
-                    <ifMode mode="ENTER">
-                        <script type="text/javascript">
-                            jq(function(){
-                                setValue("encounter-date.value", "");
-                            });
-                        </script>
-                    </ifMode>
-                </td>
-            </tr>
-        </table>
-    </div>
     <div class="ke-form-header">
         <table width="100%">
             <tr>
-                <td>Date:
-                    <encounterDate id="encounter-date"/>
-                </td>
-                <td>Location:
-                    <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
-                </td>
+                <td>Date: <encounterDate id="encounter-date" showTime="true" /></td>
+                <td>Location: <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete" /></td>
             </tr>
         </table>
     </div>
