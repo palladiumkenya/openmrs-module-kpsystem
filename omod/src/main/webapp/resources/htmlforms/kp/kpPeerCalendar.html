@@ -45,7 +45,11 @@
 
             jq('#hotspot-type select').click(onOtherHotspotSelected);
             getField('weekly-condom-requirements.value').change(onWeeklyCondomRequirementsChange);
-            jq('#calculated-monthly-CR input[type=text]').attr("style", "pointer-events:none;");
+            getField('weekly-lubes-requirements.value').change(onWeeklyLubesRequirementsChange);
+            getField('daily-syringes-requirements.value').change(onDailySyringeRequirementsChange);
+            jq('#calculated-monthly-CR input[type=text]').attr("disabled","true");
+            jq('#calculated-monthly-LR input[type=text]').attr("disabled","true");
+            jq('#calculated-monthly-SR input[type=text]').attr("disabled","true");
 
             beforeSubmit.push(function () {
             });
@@ -58,6 +62,22 @@
             if (!isNaN(weeklyCR)) {
                 monthlyCR = weeklyCR * 4;
                 getField('calculated-monthly-CR.value').val(monthlyCR);
+            }
+        }
+        function onWeeklyLubesRequirementsChange() {
+            var monthlyLR = '';
+            var weeklyLR = getValue('weekly-lubes-requirements.value');
+            if (!isNaN(weeklyLR)) {
+                monthlyLR = weeklyLR * 4;
+                getField('calculated-monthly-LR.value').val(monthlyLR);
+            }
+        }
+        function onDailySyringeRequirementsChange() {
+            var dailySR = '';
+            var dailySR = getValue('daily-syringes-requirements.value');
+            if (!isNaN(dailySR)) {
+                monthlySR = dailySR * 30;
+                getField('calculated-monthly-SR.value').val(monthlySR);
             }
         }
         function onOtherHotspotSelected() {
@@ -172,14 +192,84 @@
                     </tr>
                     <tr>
                         <td>
-                            <b>3. Condom requirements per month</b>
+                            <b>4. Condom requirements per month</b>
                         </td>
                         <td>
-                            <obs conceptId="165299"  id="calculated-monthly-CR"/>
+                            <obs conceptId="165299"  id="calculated-monthly-CR"/> <i>Calculated field</i>
 
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <b>5. Average number of anal sex acts per week</b>
+                        </td>
+                        <td>
+                            <obs id="weekly-lubes-requirements" conceptId="165008"/>
 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>6. Lubricant requirements per month</b>
+                        </td>
+                        <td>
+                            <obs conceptId="165300"  id="calculated-monthly-LR"/> <i>Calculated field</i>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>7. Average number of injecting episodes per day</b>
+                        </td>
+                        <td>
+                            <obs id="daily-syringes-requirements" conceptId="165009"/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>8. Needle and syringe requirements per month</b>
+                        </td>
+                        <td>
+                            <obs conceptId="165300"  id="calculated-monthly-SR"/> <i>Calculated field</i>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>9. Duration in sex work / injecting drugs</b>
+                        </td>
+                        <td>
+                            <obs conceptId="165301"  />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>10. Ever experienced violence </b>
+                        </td>
+                        <td>
+                            <obs id="exprienced-violence" conceptId="123160AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Yes,No"
+                                 style="radio" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>11. Service provided in the last 1 Month</b>
+                        </td>
+                        <td>
+                            <div style="float: left; padding-right: 50px">
+                            <obs conceptId="165302" answerConceptId="159777" answerLabel="Condoms" style="checkbox" /> <br />
+                            <obs conceptId="165302" answerConceptId="165303" answerLabel="N and S" style="checkbox"/> <br />
+                            </div>
+                            <div style="float: left;padding-right: 50px">
+                            <obs conceptId="165302" answerConceptId="165004" answerLabel="Contact" style="checkbox"/> <br />
+                            <obs conceptId="165302" answerConceptId="161643" answerLabel="Visited clinic" style="checkbox"/> <br />
+                            </div>
+                          </td>
+                    </tr>
                 </table>
         </fieldset>
     </div>
