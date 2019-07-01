@@ -125,8 +125,9 @@ public class ActionsPanelFragmentController {
         clinicalForms.add("99979576-8854-11e9-bc42-526af7764f64");  //Client HIV Status form
         clinicalForms.add("402dc5d7-46da-42d4-b2be-f43ea4ad87b0");  //HTS Initial test
         clinicalForms.add("b08471f6-0892-4bf7-ab2b-bf79797b8ea4");  //HTS Confirmatory test form
-        clinicalForms.add("10cd2ca0-8d25-4876-b97c-b568a912957e");  //Violence screening form
         clinicalForms.add("92e041ac-9686-11e9-bc42-526af7764f64"); //kp Clinical visit form
+
+        programLevelForms.add("10cd2ca0-8d25-4876-b97c-b568a912957e");  //Violence screening form
 
         AppDescriptor currentApp = kenyaUi.getCurrentApp(request);
         AppDescriptor app = null;
