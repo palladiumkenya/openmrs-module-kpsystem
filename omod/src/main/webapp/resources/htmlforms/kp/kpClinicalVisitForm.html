@@ -80,7 +80,7 @@
             else{
                 jq("#sti_treated input").prop("disabled", false);
                 jq("#sti_referred input").prop("disabled", false);
-                jq("#sti_txt input").prop("disabled", false);
+
             }
 
         }
@@ -372,7 +372,6 @@
             else{
                 jq("#overdose_treated input").prop("disabled", false);
                 jq("#overdose_referred input").prop("disabled", false);
-                jq("#overdosetxt input").prop("disabled", false);
                 jq("#naloxane input").prop("disabled", false);
             }
         }
@@ -380,7 +379,6 @@
             var overdoseTreated= getValue("overdose_treated.value");
             if(overdoseTreated==1066){
                 jq("#overdose_referred input").prop("disabled", false);
-                jq("#overdosetxt input").prop("disabled", false);
             }
             else{
                 jq("#overdose_referred input").prop("disabled", true);
@@ -388,7 +386,6 @@
             }
         }
         var OverdoseRefferredSelected = function (){
-            var overdoseScreened= getValue("overdose_screened.value");
             var overdoseReferred= getValue("overdose_referred.value");
             if(overdoseReferred==1065){
                 jq("#overdosetxt input").prop("disabled", false);
@@ -396,12 +393,6 @@
                 jq("#overdosetxt input").prop("disabled", true);
             }
 
-            // if(overdoseScreened==1065 &amp;&amp; overdoseReferred==1065){
-            //     jq("#overdosetxt input").prop("disabled", false);
-            // }
-            // else{
-            //     jq("#overdosetxt input").prop("disabled", true);
-            // }
         }
 
         var AlcoholScreenedSelected = function (){
@@ -459,12 +450,6 @@
                 jq("#alcoholtxt input").prop("disabled", true);
             }
 
-            // if(alcoholScreened==1065 &amp;&amp; alcoholReferred=="true"){
-            //     jq("#overdosetxt input").prop("disabled", false);
-            // }
-            // else{
-            //     jq("#overdosetxt input").prop("disabled", true);
-            // }
         }
 
         var AbscessScreenedSelected = function (){
@@ -476,8 +461,7 @@
                 jq("#abscess_results input").prop("disabled", true);
             }else{
                 jq("#abscess_treated input").prop("disabled", false);
-                jq("#abscess_referred input").prop("disabled", false);
-                jq("#abscess_results input").prop("disabled", false);
+
             }
 
 
@@ -488,12 +472,10 @@
             if(abscessResults==664  ){
                 jq("#abscess_treated input").prop("disabled", true);
                 jq("#abscess_referred input").prop("disabled", true);
-
             }
             else{
                 jq("#abscess_treated input").prop("disabled", false);
                 jq("#abscess_referred input").prop("disabled", false);
-
             }
         }
         var AbscessTreatedSelected = function (){
@@ -511,19 +493,11 @@
         var AbscessReferredSelected = function (){
             var abscessReferred= getValue("abscess_referred.value");
 
-            if(abscessReferred=="true"){
+            if(abscessReferred==1065){
                 jq("#abscesstxt input").prop("disabled", false);
             }else{
                 jq("#abscesstxt input").prop("disabled", true);
             }
-
-            if(abscessScreened==1065 &amp;&amp; overdoseReferred=="true"){
-                jq("#abscessetxt input").prop("disabled", false);
-            }
-            else{
-                jq("#abscesstxt input").prop("disabled", true);
-            }
-
         }
 
         var CervicalScreeningSelected = function (){
@@ -576,7 +550,7 @@
             var cervicalReferred= getValue("cerv_referred.value");
 
             //cervical validations
-            if(cervicalReferred=="true"){
+            if(cervicalReferred==1065){
                 jq("#cerv_cancertxt input").prop("disabled", false);
             }else{
                 jq("#cerv_cancertxt input").prop("disabled", true);
@@ -601,11 +575,7 @@
                 jq("#prep_referred input").prop("disabled", false);
 
             }
-            // if(PrepReferred==1065 &amp;&amp; PrepScreened==1065){
-            //     jq("#preptxt input").prop("disabled", false);
-            // }else{
-            //     jq("#preptxt input").prop("disabled", true);
-            // }
+
 
         }
         var prepResults  = function () {
@@ -627,11 +597,12 @@
             var PrepTreated = getValue("prep_treated.value");
 
             if(PrepTreated==1066){
-                jq("#prep_referred input").prop("disabled", true);
-                jq("#preptext input").prop("disabled", true);
+                jq("#prep_referred input").prop("disabled", false);
             }
             else{
-                jq("#prep_referred input").prop("disabled", false);
+
+                jq("#prep_referred input").prop("disabled", true);
+                jq("#preptext input").prop("disabled", true);
 
             }
 
@@ -685,13 +656,12 @@
             var HepbTreated = getValue("vio_treated.value");
 
             if(HepbTreated==1065){
-                jq("#vio_referred input").prop("disabled", false);
-
-            }
-            else{
                 jq("#vio_referred input").prop("disabled", true);
                 jq("#viotext input").prop("disabled", true);
+            }
+            else{
 
+                jq("#vio_referred input").prop("disabled", false);
             }
 
         }
@@ -767,6 +737,10 @@
 
         }
 
+
+
+
+
         var familyScreened  = function () {
             var famScreened = getValue("fam_screened.value");
             var famReferred = getValue("fam_referred.value");
@@ -784,11 +758,6 @@
                 jq("#fam_referred input").prop("disabled", false);
 
             }
-            // if(HepcReferred==1065 &amp;&amp; HepcScreened==1065){
-            //     jq("#hecbtxt input").prop("disabled", false);
-            // }else{
-            //     jq("#hepctxt input").prop("disabled", true);
-            // }
 
         }
         var familyResults  = function () {
@@ -809,7 +778,7 @@
         var familyTreated  = function () {
             var famTreated = getValue("fam_treated.value");
 
-            if(famTreated==1066){
+            if(famTreated==1065){
                 jq("#fam_referred input").prop("disabled", false);
 
             }
@@ -1044,6 +1013,16 @@
 
         }
 
+        var test_resultsChanged  = function () {
+            var testResult = getValue("test_results.value");
+            if(testResult==1065){
+                jq("#risktxt input").prop("disabled", false);
+            }else{
+                jq("#risktxt input").prop("disabled", true);
+            }
+
+        }
+
         //On Ready
         $(document).ready(function () {
             // sti forms
@@ -1081,7 +1060,7 @@
             //Abscess validations
             jq('#abscess_screened').click(AbscessScreenedSelected);
             jq('#abscess_results').click(AbscessResultsSelected);
-            jq('#abscess_trested').click(AbscessTreatedSelected);
+            jq('#abscess_treated').click(AbscessTreatedSelected);
             jq('#abscess_referred').click(AbscessReferredSelected);
 
             //Prep validations
@@ -1132,6 +1111,9 @@
             jq("#care_provided select").change(providedElseWhere);
             jq("#pep select").change(PEP);
             jq("#pep_type select").change(pep_type);
+            jq("#pep_type select").change(pep_type);
+
+            jq("#test_results select").change(test_resultsChanged);
 
 
 
@@ -1205,40 +1187,14 @@
     </style>
 
     <div class="ke-form-header">
-        <table style="width: 100%">
+        <table width="100%">
             <tr>
-                <td>
-                    <ifMode mode="ENTER">
-                        <script type="text/javascript">
-                            jq(function(){
-                                setValue("encounter-date.value", "");
-                            });
-                        </script>
-                    </ifMode>
-                    <ifMode mode="EDIT">
-                        <script type="text/javascript">
-                            jq(function(){
-
-                                //First test
-                                var firstTest = getField("hiv-test1-result.value").val();
-                                //Negative
-                                if(firstTest ==664) {
-
-                                    jq("#hiv-test2-result select").prop("disabled", true);
-                                    jq(".kit-name2 select").prop("disabled", true);
-                                    jq(".lot-number2 input").prop("disabled", true);
-                                    jq("#expiry-date2 input").prop("disabled", true);
-                                    getField('hiv-final-result.value').val(664);
-                                    jq('#ccc-no input').prop("disabled", true);
-
-                                }
-
-                            });
-                        </script>
-                    </ifMode>
-
+                <td>Date:
+                    <encounterDate id="encounter-date"/>
                 </td>
-
+                <td>Location:
+                    <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
+                </td>
             </tr>
         </table>
     </div>
@@ -1276,18 +1232,7 @@
 
 
 
-    <div class="ke-form-header">
-        <table width="100%">
-            <tr>
-                <td>Date:
-                    <encounterDate id="encounter-date"/>
-                </td>
-                <td>Location:
-                    <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
-                </td>
-            </tr>
-        </table>
-    </div>
+
     <div class="ke-form-content">
 
         <fieldset>
@@ -1445,8 +1390,8 @@
                     <td width="156" valign="top"><p>  <obs id="cerv_treated" class="consent" conceptId="165266"
                                                            style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td width="156" valign="top"><p>  <obs class="consent" conceptId="165267"
-                                                           id="cerv_referredd"  style="radio" answerConceptIds="1065,1066" /></p></td>
-                    <td width="156" valign="top"><p>  <obs id="cerv_txt" class="remarks" conceptId="165268"
+                                                           id="cerv_referred"  style="radio" answerConceptIds="1065,1066" /></p></td>
+                    <td width="156" valign="top"><p>  <obs id="cerv_cancertxt" class="remarks" conceptId="165268"
                     /></p></td>
 
                 </tr>
@@ -1483,7 +1428,7 @@
                             <obs conceptId="165205" answerConceptId="121387" answerLabel="  Assault/Physical abuse"  style="checkbox" /><br />
                             <obs conceptId="165205" answerConceptId="165207" style="checkbox" /><br />
                             <obs conceptId="165205" answerConceptId="123007" answerLabel="Verbal Abuse" style="checkbox" /><br />
-                            <obs conceptId="165205" answerConceptId="127910"  style="checkbox" /><br />
+                            <obs conceptId="165205" answerConceptId="127910" answerLabel="Rape/Sexual assault" style="checkbox" /><br />
                             <obs conceptId="165205" answerConceptId="126312" answerLabel="Discrimination" style="checkbox" /><br />
                         </div>
                     </td>
