@@ -1,0 +1,190 @@
+<!--
+  ~ The contents of this file are subject to the OpenMRS Public License
+  ~ Version 1.0 (the "License"); you may not use this file except in
+  ~ compliance with the License. You may obtain a copy of the License at
+  ~ http://license.openmrs.org
+  ~
+  ~ Software distributed under the License is distributed on an "AS IS"
+  ~ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+  ~ License for the specific language governing rights and limitations
+  ~ under the License.
+  ~
+  ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+  -->
+<htmlform>
+    <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
+    <style>
+        .simple-table {
+            border: solid 1px #DDEEEE;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font: normal 13px Arial, sans-serif;
+        }
+
+        .simple-table thead th {
+            background-color: #DDEFEF;
+            border: solid 1px #DDEEEE;
+            color: #336B6B;
+            padding: 10px;
+            text-align: left;
+            text-shadow: 1px 1px 1px #fff;
+        }
+
+        .simple-table td {
+            border: solid 1px #DDEEEE;
+            color: #333;
+            padding: 10px;
+            text-shadow: 1px 1px 1px #fff;
+        }
+    </style>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            jq("#other-hotspots-specify").hide();
+
+            jq('#hotspot-type select').click(onOtherHotspotSelected);
+            getField('weekly-condom-requirements.value').change(onWeeklyCondomRequirementsChange);
+            jq('#calculated-monthly-CR input[type=text]').attr("style", "pointer-events:none;");
+
+            beforeSubmit.push(function () {
+            });
+
+        })
+
+        function onWeeklyCondomRequirementsChange() {
+            var monthlyCR = '';
+            var weeklyCR = getValue('weekly-condom-requirements.value');
+            if (!isNaN(weeklyCR)) {
+                monthlyCR = weeklyCR * 4;
+                getField('calculated-monthly-CR.value').val(monthlyCR);
+            }
+        }
+        function onOtherHotspotSelected() {
+            var val = jq(this).val();
+            if(val == 5622 ){
+                jq("#other-hotspots-specify").show();
+            }
+            else{
+                jq("#other-hotspots-specify").hide();
+            }
+        }
+
+    </script>
+
+    <div class="ke-form-header">
+        <table width="100%">
+            <tr>
+                <td>Date:
+                    <encounterDate id="encounter-date" showTime="true"/>
+                </td>
+                <td>Location:
+                    <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="ke-form-content">
+        <ifMode mode="EDIT">
+            <script type="text/javascript">
+                jq(function(){
+
+                });
+
+            </script>
+        </ifMode>
+        <!-- PEER EDUCATOR OUTREACH CALENDAR -->
+            <fieldset id="overdose-reporting-tab">
+                <legend>
+                    Peer Educator Outreach Calendar
+                </legend>
+                <table class="simple-table" id="overdose-reporting-tool">
+                        <tr>
+                            <td>
+                                <b>1. Name of hotspot</b>
+                            </td>
+                            <td>
+                                <obs conceptId="165006"  size="20"/>
+
+                            </td>
+                        </tr>
+                    <tr>
+                        <td>
+                            <b>2. Typology </b>
+                        </td>
+                        <td>
+                            <obs conceptId="165005"
+                                 answerConceptIds="165011,
+                                                   165012,
+                                                   165013,
+                                                   165014,
+                                                   1536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                   165015,
+                                                   165016,
+                                                   165017,
+                                                   165018,
+                                                   165019,
+                                                   165020,
+                                                   165021,
+                                                   165022,
+                                                   165023,
+                                                   165024,
+                                                   165025,
+                                                   165026,
+                                                   165297,
+                                                   5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="1 - Street,
+                                              2 - Injecting den,
+                                              3 - Uninhabitable building,
+                                              4 - Park,
+                                              5 - Homes,
+                                              6 - Beach,
+                                              7 - Casino,
+                                              8 - Bar with lodging,
+                                              9 - Bar without lodging,
+                                              10 - Sex den,
+                                              11 - Strip club,
+                                              12 - Highways,
+                                              13 - Brothel,
+                                              14 - Guest house/Hotels/Lodgings,
+                                              15 - Massage parlor,
+                                              16 - Chang’aa den,
+                                              17 - Barbershop/Salon,
+                                              18 - Virtual Space,
+                                              19 - Other (Specify)"
+                                 id="hotspot-type"
+                                 style="dropdown" />
+                            &#160;&#160;&#160;&#160;&#160;
+                            <obs conceptId="165298" id="other-hotspots-specify"/>
+                            <br />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>3. Average number of sex acts per week</b>
+                        </td>
+                        <td>
+                            <obs id="weekly-condom-requirements" conceptId="165007"/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>3. Condom requirements per month</b>
+                        </td>
+                        <td>
+                            <obs conceptId="165299"  id="calculated-monthly-CR"/>
+
+                        </td>
+                    </tr>
+
+                </table>
+        </fieldset>
+    </div>
+    <div class="ke-form-footer">
+        <submit/>
+    </div>
+
+</htmlform>
