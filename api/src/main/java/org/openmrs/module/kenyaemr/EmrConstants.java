@@ -33,6 +33,8 @@ public class EmrConstants {
 	public static final String APP_DEVELOPER = MODULE_ID + ".developer";
 	public static final String APP_FACILITY_DASHBOARD = MODULE_ID + ".facilityDashboard";
 	public static final String APP_HIV_TESTING = MODULE_ID + ".hivtesting";
+	public static final String APP_PEER_CALENDER = MODULE_ID + ".peerCalender";
+
 
 
 	/**
