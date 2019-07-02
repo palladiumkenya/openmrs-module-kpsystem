@@ -30,7 +30,7 @@
                 <ref bean="kenyaemr.common.form.htsconfirmatorytest"/>
                 <!--<ref bean="kenyaemr.common.form.kpAppointmentCreation"/>-->
                 <ref bean="kenyaemr.common.form.kpClientTracing"/>
-                <ref bean="kenyaemr.common.form.kpHIVstatus"/>
+                <!--<ref bean="kenyaemr.common.form.kpHIVstatus"/>-->
                 <ref bean="kenyaemr.common.form.kpSTITreatment"/>
                 <ref bean="kenyaemr.common.form.kpDepressionScreening"/>
                 <ref bean="kenyaemr.common.form.kpPeerOverdoseReporting"/>
@@ -41,7 +41,7 @@
                 <ref bean="kenyaemr.common.form.kpReferral"/>
                 <ref bean="kenyaemr.common.form.kpAlcoholScreening"/>
                 <ref bean="kenyaemr.common.form.kpClinicalVisitForm" />
-
+                <ref bean="kenyaemr.common.form.kpPeerCalendar"/>
             </set>
         </property>
     </bean>
@@ -321,6 +321,20 @@
         <property name="order" value="201021" />
     </bean>
 
+    <!-- kp peer calendar -->
+    <bean id="kenyaemr.common.form.kpPeerCalendar" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="7492cffe-5874-4144-a1e6-c9e455472a35" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.registration" />
+                <ref bean="kenyaemr.app.clinician" />
+                <ref bean="kenyaemr.app.chart" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/kpPeerCalendar.html" />
+        <property name="order" value="201022" />
+    </bean>
     <!-- ===================== Reports ===================== -->
     <bean id="kenyaemr.common.form.kpClinicalVisitForm" class="org.openmrs.module.kenyacore.form.FormDescriptor">
         <property name="targetUuid" value="92e041ac-9686-11e9-bc42-526af7764f64" />
