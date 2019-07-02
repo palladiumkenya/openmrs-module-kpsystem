@@ -39,6 +39,8 @@
     </style>
 
     <script type="text/javascript">
+
+        var pgender = "<lookup expression="patient.gender" />";
         jQuery(function ($) {
 
             jq("#other-hotspots-specify").hide();
@@ -51,10 +53,107 @@
             jq('#calculated-monthly-LR input[type=text]').attr("disabled","true");
             jq('#calculated-monthly-SR input[type=text]').attr("disabled","true");
 
+
+            jq('#ns-first-week input[type=text]').prop("disabled",true);
+            jq('#ns-second-week input[type=text]').prop("disabled",true);
+            jq('#ns-third-week input[type=text]').prop("disabled",true);
+            jq('#ns-fourth-week input[type=text]').prop("disabled",true);
+
+            jq('#mCondom-w1 input[type=text]').prop("disabled",true);
+            jq('#mCondom-w2 input[type=text]').prop("disabled",true);
+            jq('#mCondom-w3 input[type=text]').prop("disabled",true);
+            jq('#mCondom-w4 input[type=text]').prop("disabled",true);
+
+            jq('#fCondom-w1 input[type=text]').prop("disabled",true);
+            jq('#fCondom-w2 input[type=text]').prop("disabled",true);
+            jq('#fCondom-w3 input[type=text]').prop("disabled",true);
+            jq('#fCondom-w4 input[type=text]').prop("disabled",true);
+
+
+            jq('#clinical-service-w1 select').prop("disabled",true);
+            jq('#clinical-service-w2 select').prop("disabled",true);
+            jq('#clinical-service-w3 select').prop("disabled",true);
+            jq('#clinical-service-w4 select').prop("disabled",true);
+
+
+
+            jq('#needles-checked :input[type=checkbox]').change(onNeedlesChecked);
+            jq('#condom-checked :input[type=checkbox]').change(onCondomChecked);
+            jq('#visited-clinic :input[type=checkbox]').change(onVisitedClinicChecked);
+
+
+
             beforeSubmit.push(function () {
             });
 
         })
+
+        function onNeedlesChecked() {
+            var val = jq(this).val();
+            var needlesChecked = jq("#needles-checked input:checkbox:checked");
+
+            if(val == 165303 &amp;&amp; needlesChecked.length &gt; 0){
+                jq('#ns-first-week input[type=text]').prop("disabled",false);
+                jq('#ns-second-week input[type=text]').prop("disabled",false);
+                jq('#ns-third-week input[type=text]').prop("disabled",false);
+                jq('#ns-fourth-week input[type=text]').prop("disabled",false);
+            }
+            else{
+
+                jq('#ns-first-week input[type=text]').prop("disabled",true);
+                jq('#ns-second-week input[type=text]').prop("disabled",true);
+                jq('#ns-third-week input[type=text]').prop("disabled",true);
+                jq('#ns-fourth-week input[type=text]').prop("disabled",true);
+            }
+        }
+
+        function onVisitedClinicChecked() {
+            var val = jq(this).val();
+            var visitedChecked = jq("#visited-clinic  input:checkbox:checked");
+
+            if(val == 161643 &amp;&amp; visitedChecked.length &gt; 0){
+                jq('#clinical-service-w1 select').prop("disabled",false);
+                jq('#clinical-service-w2 select').prop("disabled",false);
+                jq('#clinical-service-w3 select').prop("disabled",false);
+                jq('#clinical-service-w4 select').prop("disabled",false);
+            }
+            else{
+
+                jq('#clinical-service-w1 select').prop("disabled",true);
+                jq('#clinical-service-w2 select').prop("disabled",true);
+                jq('#clinical-service-w3 select').prop("disabled",true);
+                jq('#clinical-service-w4 select').prop("disabled",true);
+            }
+        }
+
+        function onCondomChecked() {
+            var val = jq(this).val();
+            var condomChecked = jq("#condom-checked  input:checkbox:checked");
+
+            if(val == 159777 &amp;&amp; condomChecked.length &gt; 0){
+                jq('#mCondom-w1 input[type=text]').prop("disabled",false);
+                jq('#mCondom-w2 input[type=text]').prop("disabled",false);
+                jq('#mCondom-w3 input[type=text]').prop("disabled",false);
+                jq('#mCondom-w4 input[type=text]').prop("disabled",false);
+
+                jq('#fCondom-w1 input[type=text]').prop("disabled",false);
+                jq('#fCondom-w2 input[type=text]').prop("disabled",false);
+                jq('#fCondom-w3 input[type=text]').prop("disabled",false);
+                jq('#fCondom-w4 input[type=text]').prop("disabled",false);
+            }
+            else{
+
+                jq('#mCondom-w1 input[type=text]').prop("disabled",true);
+                jq('#mCondom-w2 input[type=text]').prop("disabled",true);
+                jq('#mCondom-w3 input[type=text]').prop("disabled",true);
+                jq('#mCondom-w4 input[type=text]').prop("disabled",true);
+
+                jq('#fCondom-w1 input[type=text]').prop("disabled",true);
+                jq('#fCondom-w2 input[type=text]').prop("disabled",true);
+                jq('#fCondom-w3 input[type=text]').prop("disabled",true);
+                jq('#fCondom-w4 input[type=text]').prop("disabled",true);
+            }
+        }
 
         function onWeeklyCondomRequirementsChange() {
             var monthlyCR = '';
@@ -115,11 +214,11 @@
             </script>
         </ifMode>
         <!-- PEER EDUCATOR OUTREACH CALENDAR -->
-            <fieldset id="overdose-reporting-tab">
+            <fieldset>
                 <legend>
                     Peer Educator Outreach Calendar
                 </legend>
-                <table class="simple-table" id="overdose-reporting-tool">
+                <table class="simple-table">
                         <tr>
                             <td>
                                 <b>1. Name of hotspot</b>
@@ -255,22 +354,477 @@
                                  style="radio" />
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="support-services">
                         <td>
                             <b>11. Service provided in the last 1 Month</b>
                         </td>
                         <td>
+                            <i>*Pls tick the relevant box</i>
                             <div style="float: left; padding-right: 50px">
-                            <obs conceptId="165302" answerConceptId="159777" answerLabel="Condoms" style="checkbox" /> <br />
-                            <obs conceptId="165302" answerConceptId="165303" answerLabel="N and S" style="checkbox"/> <br />
+                            <obs conceptId="165302" answerConceptId="159777" answerLabel="Condoms" id="condom-checked" style="checkbox" /> <br />
+                            <obs conceptId="165302" answerConceptId="165303" answerLabel="N and S" id="needles-checked" style="checkbox"/> <br />
                             </div>
                             <div style="float: left;padding-right: 50px">
                             <obs conceptId="165302" answerConceptId="165004" answerLabel="Contact" style="checkbox"/> <br />
-                            <obs conceptId="165302" answerConceptId="161643" answerLabel="Visited clinic" style="checkbox"/> <br />
+                            <obs conceptId="165302" answerConceptId="161643" answerLabel="Visited clinic" id="visited-clinic" style="checkbox"/> <br />
                             </div>
                           </td>
                     </tr>
                 </table>
+        </fieldset>
+        <fieldset>
+            <legend>Monthly service uptake</legend>
+
+            <table class="simple-table">
+                <tr>
+                    <td>
+                        Week 1:
+                    </td>
+                    <td>
+                       <table>
+                        <tr>
+                           <td>
+                               N and S distributed :
+                               <obs conceptId="165058" id="ns-first-week" />
+                           </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Lubes distributed : &#160;&#160;
+                                <obs conceptId="165057"/>
+
+                            </td>
+                         </tr>
+                       </table>
+                    </td>
+                    <td>
+                    <table>
+                        <tr>
+                          <td>
+                        Male condoms distributed : &#160;&#160;
+                        <obs conceptId="165055" id="mCondom-w1"/>
+                         </td>
+                        </tr>
+                        <tr>
+                            <td>
+                        Female condoms distributed :
+                        <obs conceptId="165056" id="fCondom-w1"/>
+                          </td>
+                        </tr>
+                    </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                        Health education :
+                        <!-- health education topics -->
+                        <obs conceptId="165147" id="education-topic"
+                             answerConceptIds="165148,
+                                               165150,
+                                               165151,
+                                               1382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1914AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               165149"
+                             answerLabels="1 - PreP Messaging,
+                                           2 - HIV Self Testing Message,
+                                           3 - Substance Abuse Message,
+                                           4 - Family Planning Message,
+                                           5 - HIV/STI Message,
+                                           6 - PEP Message"
+                             style="dropdown"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                        Referred :  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="1272" id="referred"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                        HIV self test kits distributed :
+                        <obs id="self-test-kits-distributed" conceptId="165222"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                        Received clinical service : &#160;&#160;&#160;&#160;&#160;&#160;
+                        <obs conceptId="1774" id="clinical-service-w1"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                        Crisis / violence reported:
+                        <obs conceptId="1774" id="reported-violence"
+                             answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerLabel="Yes,No"
+                             style="dropdown"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                        Remarks
+                        <obs conceptId="160632" cols="20" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Week 2:
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    N and S distributed :
+                                    <obs conceptId="165058" id="ns-second-week" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lubes distributed : &#160;&#160;
+                                    <obs conceptId="165057"/>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    Male condoms distributed : &#160;&#160;
+                                    <obs id="mCondom-w2" conceptId="165055"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Female condoms distributed :
+                                    <obs id="fCondom-w2" conceptId="165056"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    Health education :
+                                    <!-- health education topics -->
+                                    <obs conceptId="165147" id="education-topic"
+                                         answerConceptIds="165148,
+                                               165150,
+                                               165151,
+                                               1382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1914AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               165149"
+                                         answerLabels="1 - PreP Messaging,
+                                           2 - HIV Self Testing Message,
+                                           3 - Substance Abuse Message,
+                                           4 - Family Planning Message,
+                                           5 - HIV/STI Message,
+                                           6 - PEP Message"
+                                         style="dropdown"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Referred :    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                    <obs conceptId="1272" id="referred"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="Yes,No"
+                                         style="dropdown"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    HIV self test kits distributed :
+                                    <obs id="self-test-kits-distributed" conceptId="165222"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Received clinical service :  &#160;&#160;&#160;&#160;&#160;&#160;
+                                    <obs conceptId="1774" id="clinical-service-w2"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="Yes,No"
+                                         style="dropdown"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    Crisis / violence reported:
+                                    <obs conceptId="1774" id="reported-violence"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="Yes,No"
+                                         style="dropdown"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Remarks
+                                    <obs conceptId="160632" cols="20" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Week 3:
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    N and S distributed :
+                                    <obs conceptId="165058" id="ns-third-week"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lubes distributed : &#160;&#160;
+                                    <obs conceptId="165057"/>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    Male condoms distributed :   &#160;&#160;
+                                    <obs id="mCondom-w3" conceptId="165055"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Female condoms distributed :
+                                    <obs id="fCondom-w3" conceptId="165056"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    Health education :
+                                    <!-- health education topics -->
+                                    <obs conceptId="165147" id="education-topic"
+                                         answerConceptIds="165148,
+                                               165150,
+                                               165151,
+                                               1382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1914AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               165149"
+                                         answerLabels="1 - PreP Messaging,
+                                           2 - HIV Self Testing Message,
+                                           3 - Substance Abuse Message,
+                                           4 - Family Planning Message,
+                                           5 - HIV/STI Message,
+                                           6 - PEP Message"
+                                         style="dropdown"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Referred :    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                    <obs conceptId="1272" id="referred"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="Yes,No"
+                                         style="dropdown"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    HIV self test kits distributed :
+                                    <obs id="self-test-kits-distributed" conceptId="165222"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Received clinical service :   &#160;&#160;&#160;&#160;&#160;&#160;
+                                    <obs conceptId="1774" id="clinical-service-w3"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="Yes,No"
+                                         style="dropdown"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    Crisis / violence reported:
+                                    <obs conceptId="1774" id="reported-violence"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="Yes,No"
+                                         style="dropdown"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Remarks
+                                    <obs conceptId="160632"  cols="20" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Week 4:
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    N and S distributed :
+                                    <obs conceptId="165058" id="ns-fourth-week"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Lubes distributed : &#160;&#160;
+                                    <obs conceptId="165057"/>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    Male condoms distributed :   &#160;&#160;
+                                    <obs id="mCondom-w4" conceptId="165055"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Female condoms distributed :
+                                    <obs id="fCondom-w4" conceptId="165056"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    Health education :
+                                    <!-- health education topics -->
+                                    <obs conceptId="165147" id="education-topic"
+                                         answerConceptIds="165148,
+                                               165150,
+                                               165151,
+                                               1382AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               1914AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                               165149"
+                                         answerLabels="1 - PreP Messaging,
+                                           2 - HIV Self Testing Message,
+                                           3 - Substance Abuse Message,
+                                           4 - Family Planning Message,
+                                           5 - HIV/STI Message,
+                                           6 - PEP Message"
+                                         style="dropdown"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Referred :      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                    <obs conceptId="1272" id="referred"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="Yes,No"
+                                         style="dropdown"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    HIV self test kits distributed :
+                                    <obs id="self-test-kits-distributed" conceptId="165222"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Received clinical service :  &#160;&#160;&#160;&#160;&#160;&#160;
+                                    <obs conceptId="1774" id="clinical-service-w4"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="Yes,No"
+                                         style="dropdown"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    Crisis / violence reported:
+                                    <obs conceptId="1774" id="reported-violence"
+                                         answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="Yes,No"
+                                         style="dropdown"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Remarks
+                                    <obs conceptId="160632"  cols="20" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </fieldset>
     </div>
     <div class="ke-form-footer">

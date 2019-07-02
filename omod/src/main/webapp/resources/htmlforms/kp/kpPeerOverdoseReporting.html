@@ -40,34 +40,24 @@
 
     <script type="text/javascript">
         jQuery(function ($) {
-            jq("#risk-factors-specify").hide();
             jq("#other-drugs-specify").hide();
             jq("#referred-specify").hide();
             onReferredSelected;
 
-            jq('#other-risk-factors :input[type=checkbox]').click(onOtherRiskFactorsSelected);
+//            jq('#other-risk-factors :input[type=checkbox]').click(onOtherRiskFactorsSelected);
             jq('#other-drugs :input[type=checkbox]').click(onOtherDrugsSelected);
             jq('#referred :input[type=radio]').change(onReferredSelected);
-            onReferredSelected;
+
             beforeSubmit.push(function () {
             });
 
         })
 
-   function onOtherRiskFactorsSelected() {
-          var val = jq(this).val();
-       var otherRiskFactorsChecked = jq("#other-risk-factors input:checkbox:checked");
-            if(val == 5622 &amp;&amp; otherRiskFactorsChecked.length >0 ){
-                jq("#risk-factors-specify").show();
-            }
-            else{
-                jq("#risk-factors-specify").hide();
-            }
-        }
+
    function onOtherDrugsSelected() {
             var val = jq(this).val();
             var otherDrugsChecked = jq("#other-drugs input:checkbox:checked");
-            if(val == 5622 &amp;&amp; otherDrugsChecked.length >0 ){
+            if(val == 5622 &amp;&amp; otherDrugsChecked.length &gt; 0 ){
                 jq("#other-drugs-specify").show();
             }
             else{
