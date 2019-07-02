@@ -97,6 +97,37 @@ public class ActionsPanelFragmentController {
         }else if (userRolesStr.contains(ROLE_FACILITIES)) {
             userApp = APP_FACILITIES;
         }
+        //Mapping forms to kp tools
+        List<SimpleObject> communityOutreachObj = new ArrayList<SimpleObject>();
+        List<SimpleObject> clinicalObj = new ArrayList<SimpleObject>();
+        List<SimpleObject> programLevelObj = new ArrayList<SimpleObject>();
+        List<SimpleObject> commodityObj = new ArrayList<SimpleObject>();
+        List<SimpleObject> summaryReportingObj = new ArrayList<SimpleObject>();
+
+        Set<String> communityOutreachForms = new HashSet<String>();
+        Set<String> clinicalForms = new HashSet<String>();
+        Set<String> programLevelForms = new HashSet<String>();
+        Set<String> c = new HashSet<String>();
+        Set<String> summaryReportingForms = new HashSet<String>();
+
+
+        communityOutreachForms.add("185dec84-df6f-4fc7-a370-15aa8be531ec"); //Contact form
+        communityOutreachForms.add("050a7f12-5c52-4cad-8834-863695af335d"); //Referral and Linkage form
+        communityOutreachForms.add("63917c60-3fea-11e9-b210-d663bd873d93");  //Tracing Form
+        communityOutreachForms.add("bd12f98a-fcfe-4472-a858-17f28457932b");  //Referral form
+        clinicalForms.add("c7f47cea-207b-11e9-ab14-d663bd873d93");  //Client enrollment form
+        clinicalForms.add("318ad7be-e4da-481f-bcdd-0368cb7601c8");  //STI Treatment form
+        clinicalForms.add("7ba743c8-d8e6-44ad-aeed-8d2ff9e985db");  //Alcohol screening form
+        clinicalForms.add("5fe533ee-0c40-4a1f-a071-dc4d0fbb0c17");  //KP Depression screening form
+        clinicalForms.add("d753bab3-0bbb-43f5-9796-5e95a5d641f3");  //HCW Overdose reporting form
+        clinicalForms.add("92fd9c5a-c84a-483b-8d78-d4d7a600db30");  //KP Peer overdose reporting form
+        clinicalForms.add("59ed8e62-7f1f-40ae-a2e3-eabe350277ce");  //TB Screening form
+        clinicalForms.add("99979576-8854-11e9-bc42-526af7764f64");  //Client HIV Status form
+        clinicalForms.add("402dc5d7-46da-42d4-b2be-f43ea4ad87b0");  //HTS Initial test
+        clinicalForms.add("b08471f6-0892-4bf7-ab2b-bf79797b8ea4");  //HTS Confirmatory test form
+        clinicalForms.add("92e041ac-9686-11e9-bc42-526af7764f64"); //kp Clinical visit form
+
+        programLevelForms.add("10cd2ca0-8d25-4876-b97c-b568a912957e");  //Violence screening form
 
         AppDescriptor currentApp = kenyaUi.getCurrentApp(request);
         AppDescriptor app = null;
@@ -109,7 +140,7 @@ public class ActionsPanelFragmentController {
         }
 
         List<FormDescriptor> completedForms = new ArrayList<FormDescriptor>();
-        List<SimpleObject> availableForms = new ArrayList<SimpleObject>();
+        List<SimpleObject> otherForms = new ArrayList<SimpleObject>();
 
         List<Encounter> encounters = new ArrayList<Encounter>();
 
@@ -130,16 +161,21 @@ public class ActionsPanelFragmentController {
                 }
             }
 
-
-
-		/*List<Visit> activeVisits = Context.getVisitService().getActiveVisitsByPatient(patient);
-		Visit lastVisit = null;
-		if (activeVisits.size() > 0) {
-			lastVisit = activeVisits.get(activeVisits.size() - 1);
-		}
-*/
             for (FormDescriptor descriptor : formManager.getAllUncompletedFormsForVisit(currentApp, visit)) {
-                availableForms.add(ui.simplifyObject(descriptor.getTarget()));
+
+                if(communityOutreachForms.contains(descriptor.getTarget().getUuid())){
+
+                    communityOutreachObj.add(ui.simplifyObject(descriptor.getTarget()));
+                }
+                else if(clinicalForms.contains(descriptor.getTarget().getUuid())){
+                    clinicalObj.add(ui.simplifyObject(descriptor.getTarget()));
+                }
+
+                else if(programLevelForms.contains(descriptor.getTarget().getUuid())){
+                    programLevelObj.add(ui.simplifyObject(descriptor.getTarget()));
+                }
+                else
+                otherForms.add(ui.simplifyObject(descriptor.getTarget()));
             }
 
             Collections.sort(encounters, new Comparator<Encounter>() {
@@ -150,9 +186,11 @@ public class ActionsPanelFragmentController {
             });
 
         }
-        model.addAttribute("availableForms", availableForms);
+        model.addAttribute("otherForms", otherForms);
+        model.addAttribute("communityOutreachForms", communityOutreachObj);
+        model.addAttribute("clinicalForms", clinicalObj);
+        model.addAttribute("programLevelForms", programLevelObj);
         model.addAttribute("encounters", encounters);
-
     }
 
 }
