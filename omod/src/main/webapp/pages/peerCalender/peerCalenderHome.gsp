@@ -7,11 +7,12 @@
 %>
 
 <div class="ke-page-sidebar">
-	this is the side bar
+	${ ui.includeFragment("kenyaemr", "peerSearch/peerSearchForm", [ defaultWhich: "checked-in" ]) }
 </div>
 
 <div class="ke-page-content">
-	search results here
+	${ ui.includeFragment("kenyaemr", "peerSearch/peerSearchResults", [ pageProvider: "kenyaemr", page: "peerCalender/peerViewClients" ]) }
+
 </div>
 
 <script type="text/javascript">

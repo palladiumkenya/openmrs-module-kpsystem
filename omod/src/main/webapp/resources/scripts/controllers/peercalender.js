@@ -43,23 +43,6 @@ kenyaemrApp.controller('PatientSearchForm', ['$scope', 'PatientService', functio
 }]);
 
 /**
- * Controller for peer search form
- */
-kenyaemrApp.controller('PeerSearchForm', ['$scope', 'PatientService', function($scope, patientService) {
-
-	$scope.query = '';
-
-	$scope.init = function() {
-		$scope.which = "";
-		$scope.$evalAsync($scope.updateSearch); // initiate an initial search
-	};
-
-	$scope.updateSearch = function() {
-		patientService.updateSearch($scope.query, $scope.which);
-	};
-}]);
-
-/**
  * Controller for patient search results
  */
 kenyaemrApp.controller('PatientSearchResults', ['$scope', '$http', function($scope, $http) {
@@ -73,6 +56,7 @@ kenyaemrApp.controller('PatientSearchResults', ['$scope', '$http', function($sco
 	 * @param which
 	 */
 	$scope.init = function(appId, pageProvider, page) {
+		console.log('I am getting here');
 		$scope.appId = appId;
 		$scope.pageProvider = pageProvider;
 		$scope.page = page;
@@ -82,6 +66,8 @@ kenyaemrApp.controller('PatientSearchResults', ['$scope', '$http', function($sco
 	 * Listens for the 'patient-search' event
 	 */
 	$scope.$on('patient-search', function(event, data) {
+		console.log('data========>>>>',data);
+		console.log('event========>>>>',event);
 		$scope.query = data.query;
 		$scope.which = data.which;
 		$scope.refresh();
@@ -94,6 +80,8 @@ kenyaemrApp.controller('PatientSearchResults', ['$scope', '$http', function($sco
 		$http.get(ui.fragmentActionLink('kenyaemr', 'search', 'patients', { appId: $scope.appId, q: $scope.query, which: $scope.which })).
 			success(function(data) {
 				$scope.results = data;
+			console.log('this is the results====',$scope.results)
+
 		});
 	};
 
@@ -104,90 +92,6 @@ kenyaemrApp.controller('PatientSearchResults', ['$scope', '$http', function($sco
 	$scope.onResultClick = function(patient) {
 		ui.navigate($scope.pageProvider, $scope.page, { patientId: patient.id });
 	};
-
-}]);
-
-
-/**
- * Controller for peer search results
- */
-kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', function($scope, $http,$q,$timeout) {
-
-	$scope.query = '';
-	$scope.results = [];
-
-	/**
-	 * Initializes the controller
-	 * @param appId the current app id
-	 * @param which
-	 */
-	$scope.init = function(appId, pageProvider, page) {
-		console.log('getting here=========PeerSearchResults');
-		$scope.appId = appId;
-		$scope.pageProvider = pageProvider;
-		$scope.page = page;
-	};
-
-	/**
-	 * Listens for the 'peer-search' event
-	 */
-	$scope.$on('patient-search', function(event, data) {
-		$scope.query = data.query;
-		$scope.which = "all";
-		$scope.refresh();
-	});
-
-	/**
-	 * Refreshes the person search
-	 */
-	$scope.refresh = function() {
-		console.log('$scope.appId',$scope.appId);
-		console.log('$scope.query',$scope.query);
-		console.log('$scope.which',$scope.which);
-		$http.get(ui.fragmentActionLink('kenyaemr', 'search', 'patients', { appId: $scope.appId, q: $scope.query, which: $scope.which })).
-		success(function(data) {
-			$scope.results = data;
-			console.log('PeerSearchResults======================',$scope.results);
-
-		});
-	};
-
-	/**
-	 * Result click event handler
-	 * @param patient the clicked patient
-	 */
-	$scope.onResultClick = function(patient) {
-		console.log( 'this is the patient----------->>>>>>>>>',patient);
-		$scope.getRelationships()
-			.then(function(posts) {
-				$scope.clientResults = posts;
-				console.log('results for relationshipppppppppppppppp',posts);
-
-
-			});
-		$timeout(function() {
-			ui.navigate($scope.pageProvider, $scope.page, { patientId: patient.id });
-		},1000);
-
-
-	};
-
-	$scope.getRelationships= function( ) {
-		var deferred = $q.defer();
-		var uuids = '7a4b7711-69d1-441d-b15b-83d06c623cc9';
-		var v ='full';
-		// get posts form backends
-		console.log('thi s is called');
-		$http.get('/openmrs/ws/rest/v1/relationship?v=full&person=7a4b7711-69d1-441d-b15b-83d06c623cc9')
-			.then(function (result) {
-				console.log('llllllllllllllll',result);
-					deferred.resolve(result.data);
-
-			}, function (error) {
-					deferred.reject(error);
-			});
-		return deferred.promise;
-	}
 
 }]);
 
@@ -220,7 +124,6 @@ kenyaemrApp.controller('SimilarPatients', ['$scope', '$http', function($scope, $
 		$http.get(ui.fragmentActionLink('kenyaemr', 'search', 'patients', { appId: $scope.appId, q: query, which: 'all' })).
 			success(function(data) {
 				$scope.results = data;
-				console.log('such resuts form patientjs',$scope.results);
 			});
 	};
 
