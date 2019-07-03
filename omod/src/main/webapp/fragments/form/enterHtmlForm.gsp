@@ -25,6 +25,9 @@
 		}
 		<% } %>
 
+        // change all submit buttons to read "Save" and not the default "Enter Form"
+        jQuery('input.submitButton').val("Save");
+
 		// Inject discard button
 		jQuery('#discard-button').click(function() { ui.navigate('${ command.returnUrl }'); })
 				.insertAfter(jQuery('input.submitButton'));
