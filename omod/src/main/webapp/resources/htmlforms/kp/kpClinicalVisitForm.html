@@ -1013,12 +1013,60 @@
 
         }
 
+
+
         var test_resultsChanged  = function () {
             var testResult = getValue("test_results.value");
-            if(testResult==1065){
-                jq("#risktxt input").prop("disabled", false);
+            if(testResult==703){
+                jq("#linked_to_art input").prop("disabled", false).removeClass('disabled');
+
+                jq("#care_and_treatment").prop("disabled", false).removeClass('disabled');
+                $('.care_and_treatment').find("select").prop("selectedIndex",0).removeClass('disabled');
             }else{
-                jq("#risktxt input").prop("disabled", true);
+                jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
+                jq("#care_and_treatment").prop("disabled", true).addClass('disabled');
+                $('.care_and_treatment').find('input:text').val('');
+                jq('.care_and_treatment').find('input:text').val('');
+
+                $('.care_and_treatment').find("select").prop("selectedIndex",0).addClass('disabled');
+
+                jq("#linkedFacility input").prop("disabled", true).addClass('disabled');
+            }
+
+        }
+        var linked_to_art_tsChanged  = function () {
+
+            var linked = getValue("linked_to_art.value");
+            if(linked=="true"){
+
+                jq("#linkedFacility input").prop("disabled", false).removeClass('disabled');
+            }else{
+                jq("#linkedFacility input").prop("disabled", true).addClass('disabled');
+            }
+
+        }
+        var viralElegible  = function () {
+
+            var viral = getValue("viral_elegible.value");
+            if(viral==1065){
+                jq('#viral_results select').prop('disabled', false).removeClass('disabled');
+                jq('#viral_done select').prop('disabled', false).removeClass('disabled');
+            }else{
+                jq('#viral_results select').prop('disabled', true).addClass('disabled');
+                jq('#viral_done select').prop('disabled', true).addClass('disabled');
+            }
+
+        }
+
+        var viralDone  = function () {
+
+            var viral = getValue("viral_done.value");
+            if(viral==1065){
+
+                jq('#viral_results select').prop('disabled', false).removeClass('disabled');
+            }else{
+
+                jq('#viral_results select').prop('disabled', true).addClass('disabled');
             }
 
         }
@@ -1114,6 +1162,10 @@
             jq("#pep_type select").change(pep_type);
 
             jq("#test_results select").change(test_resultsChanged);
+            jq('#linked_to_art').click(linked_to_art_tsChanged);
+            jq("#viral_done select").change(viralDone);
+            jq("#viral_elegible select").change(viralElegible);
+
 
 
 
@@ -1128,6 +1180,8 @@
             jq("#apointment input").prop("disabled", false);
             jq("#edd input").prop("disabled", false);
             jq("#encounter-date input").prop("disabled", false);
+            jq("#nexttDate input").prop("disabled", false);
+
 
 
 
@@ -1190,7 +1244,7 @@
         <table width="100%">
             <tr>
                 <td>Date:
-                    <encounterDate id="encounter-date"/>
+                    <encounterDate id="encounter-date" showTime="true" allowFutureDates="false"/>
                 </td>
                 <td>Location:
                     <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
@@ -1572,10 +1626,10 @@
                     <td width="156" valign="top"><p>  <obs id="test_results" class="consent" conceptId="159427"
                                                            style="dropdown" answerConceptIds="664,703,1118" answerLabels="Negative,Positive, Not done"/></p></td>
 
-                    <td width="156" valign="top"><p>  <obs id="hepatitisb" class="consent" conceptId="1648"
+                    <td width="156" valign="top"><p>  <obs id="linked_to_art" class="consent" conceptId="1648"
                                                            style="yes_no"  /></p></td>
 
-                    <td width="156" valign="top"><p>  <obs id="familyplaningtxt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    <td width="156" valign="top"><p>  <obs id="linkedFacility" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                     /></p></td>
 
                 </tr>
@@ -1647,61 +1701,66 @@
 
         </fieldset>
         <!--        ===========================CARE AND TREATMENT=====================-->
-
+            <div class="care_and_treatment">
         <fieldset>
             <legend>Care and treatment</legend>
-            <table border="0" width="100%" cellspacing="0" cellpadding="0" class="simple-table">
-                <tr>
-                    <td width="156" valign="top"><p><b>Facility of HIV Care</b></p></td>
-                    <td width="156" valign="top"><p><b>Initiated on ART this month</b></p></td>
-                    <td width="156" valign="top"><p><b>Active on ART</b></p></td>
-                    <td width="156" valign="top"><p><b>Eligible for Viral Load</b></p></td>
-                    <td width="156" valign="top"><p><b>Viral Load Test Done</b></p></td>
-                    <td width="156" valign="top"><p><b>Viral Load Results</b></p></td>
 
-                </tr>
-                <tr>
+                <table border="0" width="100%" cellspacing="0" cellpadding="0" class="simple-table">
 
-                    <td width="156" valign="top"><p>  <obs id="care_provided" class="consent" conceptId="165239"
-                                                           style="dropdown" answerConceptIds="163266,162723,160563"
-                                                           answerLabels="Provided here, Provided elsewhere, Referred"
+                    <tr>
+                        <td width="156" valign="top"><p><b>Facility of HIV Care</b></p></td>
+                        <td width="156" valign="top"><p><b>Initiated on ART this month</b></p></td>
+                        <td width="156" valign="top"><p><b>Active on ART</b></p></td>
+                        <td width="156" valign="top"><p><b>Eligible for Viral Load</b></p></td>
+                        <td width="156" valign="top"><p><b>Viral Load Test Done</b></p></td>
+                        <td width="156" valign="top"><p><b>Viral Load Results</b></p></td>
 
-                    /></p>
-                        <p>if Provided elsewhere Specify:<obs id="care_provided_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    </tr>
+                    <tr>
+
+                        <td width="156" valign="top"><p>  <obs id="care_provided" class="consent" conceptId="165239"
+                                                               style="dropdown" answerConceptIds="163266,162723,160563"
+                                                               answerLabels="Provided here, Provided elsewhere, Referred"
+
                         /></p>
-                    </td>
-                    <td width="156" valign="top"><p>  <obs class="consent" conceptId="165240"
-                                                           answerConceptIds="1065,1066,1175"
-                                                           answerLabels="Yes, No, Not applicable"
-                                                           style="dropdown" />
-                    </p></td>
-                    <td width="156" valign="top"><p>  <obs id="hepb_treated" class="consent" conceptId="160119"
-                                                           answerConceptIds="1065,1066,1175"
-                                                           answerLabels="Yes, No, Not applicable"
-                                                           style="dropdown" />
-                    </p></td>
+                            <p>if Provided elsewhere Specify:<obs id="care_provided_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                            /></p>
+                        </td>
+                        <td width="156" valign="top"><p>  <obs class="consent" conceptId="165240"
+                                                               answerConceptIds="1065,1066,1175"
+                                                               answerLabels="Yes, No, Not applicable"
+                                                               style="dropdown" />
+                        </p></td>
+                        <td width="156" valign="top"><p>  <obs id="hepb_treated" class="consent" conceptId="160119"
+                                                               answerConceptIds="1065,1066,1175"
+                                                               answerLabels="Yes, No, Not applicable"
+                                                               style="dropdown" />
+                        </p></td>
 
-                    <td width="156" valign="top"><p>  <obs id="hepatitisb" class="consent" conceptId="165242"
-                                                           answerConceptIds="1065,1066,1175"
-                                                           answerLabels="Yes, No, Not applicable"
-                                                           style="dropdown" />
-                    </p></td>
-                    <td width="156" valign="top"><p>  <obs id="hepb_screened" class="consent" conceptId="165243"
-                                                           answerConceptIds="1065,1066,1175"
-                                                           answerLabels="Yes, No, Not applicable"
-                                                           style="dropdown" />
-                    </p></td>
+                        <td width="156" valign="top"><p>  <obs id="viral_elegible" class="consent" conceptId="165242"
+                                                               answerConceptIds="1065,1066,1175"
+                                                               answerLabels="Yes, No, Not applicable"
+                                                               style="dropdown" />
+                        </p></td>
+                        <td width="156" valign="top"><p>  <obs id="viral_done" class="consent" conceptId="165243"
+                                                               answerConceptIds="1065,1066,1175"
+                                                               answerLabels="Yes, No, Not applicable"
+                                                               style="dropdown" />
+                        </p></td>
 
-                    <td width="156" valign="top"><p>  <obs id="hepb_screened" class="consent" conceptId="165246"
-                                                           answerConceptIds="165244,165245,164369,1175"
-                                                           answerLabels="Suppressed, Not Suppressed,Results not yet received, Not applicable"
-                                                           style="dropdown" />
-                    </p></td>
-                </tr>
+                        <td width="156" valign="top"><p>  <obs id="viral_results" class="consent" conceptId="165246"
+                                                               answerConceptIds="165244,165245,164369,1175"
+                                                               answerLabels="Suppressed, Not Suppressed,Results not yet received, Not applicable"
+                                                               style="dropdown" />
+                        </p></td>
+                    </tr>
 
-            </table>
+                </table>
+
+
 
         </fieldset>
+            </div>
         <!--        ===============================OTHER SERVICES========================-->
 
         <fieldset>
@@ -1757,7 +1816,7 @@
                 <tr>
 
                     <td width="156" valign="top"><p>Clinical Notes</p></td>
-                    <td width="156" valign="top"><p>  <obs id="clinical" class="remarks" conceptId="165248"
+                    <td width="156" valign="top"><p>  <obs id="clinical" class="remarks" conceptId="165248" rows="5" cols="50"
                     /></p></td>
 
                 </tr>
@@ -1766,7 +1825,8 @@
 
                     <td width="156" valign="top"><p>Next Visit Date</p></td>
 
-
+                    <td ><p>  <obs id="nexttDate" class="consent" conceptId="5096"
+                    /></p></td>
                 </tr>
             </table>
 
