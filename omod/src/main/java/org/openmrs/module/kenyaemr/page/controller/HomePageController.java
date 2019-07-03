@@ -11,12 +11,21 @@ package org.openmrs.module.kenyaemr.page.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.appframework.domain.AppDescriptor;
+import org.openmrs.module.appframework.service.AppFrameworkService;
+import org.openmrs.module.kenyaemr.EmrConstants;
+import org.openmrs.module.kenyaemr.api.KenyaEmrService;
 import org.openmrs.module.kenyaui.KenyaUiUtils;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
+import org.openmrs.util.OpenmrsUtil;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Home page controller
@@ -24,9 +33,29 @@ import javax.servlet.http.HttpSession;
 public class HomePageController {
 
 	private final Log log = LogFactory.getLog(this.getClass());
-	
+
 	public String controller(PageModel model, UiUtils ui, HttpSession session, @SpringBean KenyaUiUtils kenyaUi) {
-		
+
+		// Redirect to setup page if module is not yet configured
+		if (Context.getService(KenyaEmrService.class).isSetupRequired()) {
+			kenyaUi.notifySuccess(session, "First-Time Setup Needed");
+			return "redirect:" + ui.pageLink(EmrConstants.MODULE_ID, "admin/firstTimeSetup");
+		}
+
+		// Get apps for the current user
+		//TODO: process app configurations defined for reference app. they result in errors on userHome page
+		List<AppDescriptor> apps = Context.getService(AppFrameworkService.class).getAppsForCurrentUser();
+
+		// Sort by order property
+		Collections.sort(apps, new Comparator<AppDescriptor>() {
+			@Override
+			public int compare(AppDescriptor left, AppDescriptor right) {
+				return OpenmrsUtil.compareWithNullAsGreatest(left.getOrder(), right.getOrder());
+			}
+		});
+
+		model.addAttribute("apps", apps);
+
 		return null;
 	}
 
