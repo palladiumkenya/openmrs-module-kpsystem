@@ -122,7 +122,6 @@ kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', 
 	 * @param which
 	 */
 	$scope.init = function(appId, pageProvider, page) {
-		console.log('getting here=========PeerSearchResults');
 		$scope.appId = appId;
 		$scope.pageProvider = pageProvider;
 		$scope.page = page;
@@ -141,13 +140,9 @@ kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', 
 	 * Refreshes the person search
 	 */
 	$scope.refresh = function() {
-		console.log('$scope.appId',$scope.appId);
-		console.log('$scope.query',$scope.query);
-		console.log('$scope.which',$scope.which);
 		$http.get(ui.fragmentActionLink('kenyaemr', 'search', 'patients', { appId: $scope.appId, q: $scope.query, which: $scope.which })).
 		success(function(data) {
 			$scope.results = data;
-			console.log('PeerSearchResults======================',$scope.results);
 
 		});
 	};
@@ -156,31 +151,25 @@ kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', 
 	 * Result click event handler
 	 * @param patient the clicked patient
 	 */
-	$scope.onResultClick = function(patient) {
-		console.log( 'this is the patient----------->>>>>>>>>',patient);
+	$scope.onPeerEducatorResultClick = function(patient) {
 		$scope.getRelationships()
 			.then(function(posts) {
-				$scope.clientResults = posts;
-				console.log('results for relationshipppppppppppppppp',posts);
-
-
+				$scope.clientResults = posts.results;
 			});
 		$timeout(function() {
-			ui.navigate($scope.pageProvider, $scope.page, { patientId: patient.id });
+			// ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: patient.id });
+			//ui.navigate($scope.pageProvider, $scope.page, { patientId: patient.id });
 		},1000);
 
 
 	};
-
 	$scope.getRelationships= function( ) {
 		var deferred = $q.defer();
 		var uuids = '7a4b7711-69d1-441d-b15b-83d06c623cc9';
-		var v ='full';
+		var v ='custom:(uuid,id,personA:(uuid,display,id,birthdate,gender,age))';
 		// get posts form backends
-		console.log('thi s is called');
-		$http.get('/openmrs/ws/rest/v1/relationship?v=full&person=7a4b7711-69d1-441d-b15b-83d06c623cc9')
+		$http.get('/openmrs/ws/rest/v1/relationship?v='+ v + '&person=7a4b7711-69d1-441d-b15b-83d06c623cc9')
 			.then(function (result) {
-				console.log('llllllllllllllll',result);
 					deferred.resolve(result.data);
 
 			}, function (error) {
@@ -189,7 +178,16 @@ kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', 
 		return deferred.promise;
 	}
 
+	$scope.onPeerResultClick = function(patient) {
+		ui.navigate('kenyaemr', 'enterForm', { patientId: patient.personA.id,
+			formUuid:'99979576-8854-11e9-bc42-526af7764f64',appId:'kenyaemr.medicalEncounter',
+			returnUrl:'peerCalender/peerCalenderHome'});
+
+	};
+
+
 }]);
+
 
 /**
  * Controller for similar patients (on registration form)
@@ -220,7 +218,6 @@ kenyaemrApp.controller('SimilarPatients', ['$scope', '$http', function($scope, $
 		$http.get(ui.fragmentActionLink('kenyaemr', 'search', 'patients', { appId: $scope.appId, q: query, which: 'all' })).
 			success(function(data) {
 				$scope.results = data;
-				console.log('such resuts form patientjs',$scope.results);
 			});
 	};
 
