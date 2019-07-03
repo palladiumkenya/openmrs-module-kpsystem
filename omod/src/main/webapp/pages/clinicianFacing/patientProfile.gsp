@@ -55,6 +55,10 @@
                     </div>
                 </div>
 
+                <div>
+                    ${ ui.includeFragment("kenyaemr", "patient/patientRelationships", [patient: currentPatient]) }
+                </div>
+
                 <div class="info-section">
                     <div class="info-header">
                         <i class="fa fa-info-circle"></i>
