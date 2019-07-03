@@ -3,7 +3,7 @@
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
  * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
- *
+ * <p>
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
@@ -31,6 +31,9 @@ import org.openmrs.ui.framework.page.PageContext;
 import org.openmrs.ui.framework.page.PageRequest;
 
 import java.util.*;
+
+import static org.openmrs.module.kenyaemr.metadata.CommonMetadata._Form.*;
+import static org.openmrs.module.kenyaemr.metadata.TbMetadata._Form.TB_SCREENING;
 
 /**
  * Patient forms
@@ -75,7 +78,7 @@ public class ActionsPanelFragmentController {
         Set<Role> userRoles = loggedInUser.getAllRoles();
         String userApp = null;
         Set<String> userRolesStr = new HashSet<String>();
-        for (Role userRole : userRoles ) {
+        for (Role userRole : userRoles) {
             userRolesStr.add(userRole.getName());
         }
 
@@ -89,12 +92,11 @@ public class ActionsPanelFragmentController {
             userApp = APP_TRIAGE;
         } else if (userRolesStr.contains(ROLE_DATA_CLERK)) {
             userApp = APP_DATA_CLERK;
-        }
-        else if (userRolesStr.contains(ROLE_DIRECTORY)) {
+        } else if (userRolesStr.contains(ROLE_DIRECTORY)) {
             userApp = APP_DIRECTORY;
-        }else if (userRolesStr.contains(ROLE_ADMIN)) {
+        } else if (userRolesStr.contains(ROLE_ADMIN)) {
             userApp = APP_ADMIN;
-        }else if (userRolesStr.contains(ROLE_FACILITIES)) {
+        } else if (userRolesStr.contains(ROLE_FACILITIES)) {
             userApp = APP_FACILITIES;
         }
         //Mapping forms to kp tools
@@ -107,27 +109,29 @@ public class ActionsPanelFragmentController {
         Set<String> communityOutreachForms = new HashSet<String>();
         Set<String> clinicalForms = new HashSet<String>();
         Set<String> programLevelForms = new HashSet<String>();
-        Set<String> c = new HashSet<String>();
+        Set<String> commodityForms = new HashSet<String>();
         Set<String> summaryReportingForms = new HashSet<String>();
 
 
-        communityOutreachForms.add("185dec84-df6f-4fc7-a370-15aa8be531ec"); //Contact form
-        communityOutreachForms.add("050a7f12-5c52-4cad-8834-863695af335d"); //Referral and Linkage form
-        communityOutreachForms.add("63917c60-3fea-11e9-b210-d663bd873d93");  //Tracing Form
-        communityOutreachForms.add("bd12f98a-fcfe-4472-a858-17f28457932b");  //Referral form
-        clinicalForms.add("c7f47cea-207b-11e9-ab14-d663bd873d93");  //Client enrollment form
-        clinicalForms.add("318ad7be-e4da-481f-bcdd-0368cb7601c8");  //STI Treatment form
-        clinicalForms.add("7ba743c8-d8e6-44ad-aeed-8d2ff9e985db");  //Alcohol screening form
-        clinicalForms.add("5fe533ee-0c40-4a1f-a071-dc4d0fbb0c17");  //KP Depression screening form
-        clinicalForms.add("d753bab3-0bbb-43f5-9796-5e95a5d641f3");  //HCW Overdose reporting form
-        clinicalForms.add("92fd9c5a-c84a-483b-8d78-d4d7a600db30");  //KP Peer overdose reporting form
-        clinicalForms.add("59ed8e62-7f1f-40ae-a2e3-eabe350277ce");  //TB Screening form
-        clinicalForms.add("99979576-8854-11e9-bc42-526af7764f64");  //Client HIV Status form
-        clinicalForms.add("402dc5d7-46da-42d4-b2be-f43ea4ad87b0");  //HTS Initial test
-        clinicalForms.add("b08471f6-0892-4bf7-ab2b-bf79797b8ea4");  //HTS Confirmatory test form
-        clinicalForms.add("92e041ac-9686-11e9-bc42-526af7764f64"); //kp Clinical visit form
+        communityOutreachForms.add(KP_CONTACT_FORM); //Contact form
+        communityOutreachForms.add(REFERRAL_AND_LINKAGE); //Referral and Linkage form
+        communityOutreachForms.add(KP_CLIENT_TRACING_FORM);  //Tracing Form
+        communityOutreachForms.add(KP_REFERRAL_FORM);  //Referral form
+        communityOutreachForms.add(KP_PEER_CALENDAR_FORM);  //Referral form
 
-        programLevelForms.add("10cd2ca0-8d25-4876-b97c-b568a912957e");  //Violence screening form
+        clinicalForms.add(KP_CLIENT_ENROLLMENT);  //Client enrollment form
+        clinicalForms.add(KP_STI_TREATMENT_FORM);  //STI Treatment form
+        clinicalForms.add(KP_ALCOHOL_SCREENING_FORM);  //Alcohol screening form
+        clinicalForms.add(KP_DEPRESSION_SCREENING_FORM);  //KP Depression screening form
+        clinicalForms.add(KP_HCW_OVERDOSE_REPORTING_FORM);  //HCW Overdose reporting form
+        clinicalForms.add(KP_PEER_OVERDOSE_REPORTING_FORM);  //KP Peer overdose reporting form
+        clinicalForms.add(TB_SCREENING);  //TB Screening form
+        clinicalForms.add(KP_CLIENT_HIV_STATUS_FORM);  //Client HIV Status form
+        clinicalForms.add(HTS_INITIAL_TEST);  //HTS Initial test
+        clinicalForms.add(HTS_CONFIRMATORY_TEST);  //HTS Confirmatory test form
+        clinicalForms.add(KP_CLINICAL_VISIT_FORM); //kp Clinical visit form
+
+        programLevelForms.add(KP_VIOLENCE_SCREENING_FORM);  //Violence screening form
 
         AppDescriptor currentApp = kenyaUi.getCurrentApp(request);
         AppDescriptor app = null;
@@ -163,19 +167,15 @@ public class ActionsPanelFragmentController {
 
             for (FormDescriptor descriptor : formManager.getAllUncompletedFormsForVisit(currentApp, visit)) {
 
-                if(communityOutreachForms.contains(descriptor.getTarget().getUuid())){
+                if (communityOutreachForms.contains(descriptor.getTarget().getUuid())) {
 
                     communityOutreachObj.add(ui.simplifyObject(descriptor.getTarget()));
-                }
-                else if(clinicalForms.contains(descriptor.getTarget().getUuid())){
+                } else if (clinicalForms.contains(descriptor.getTarget().getUuid())) {
                     clinicalObj.add(ui.simplifyObject(descriptor.getTarget()));
-                }
-
-                else if(programLevelForms.contains(descriptor.getTarget().getUuid())){
+                } else if (programLevelForms.contains(descriptor.getTarget().getUuid())) {
                     programLevelObj.add(ui.simplifyObject(descriptor.getTarget()));
-                }
-                else
-                otherForms.add(ui.simplifyObject(descriptor.getTarget()));
+                } else
+                    otherForms.add(ui.simplifyObject(descriptor.getTarget()));
             }
 
             Collections.sort(encounters, new Comparator<Encounter>() {

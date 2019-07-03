@@ -43,6 +43,15 @@
                     </div>
                 </div>
 
+                <div class="info-section">
+                    <div class="info-header">
+                        <i class="fa fa-support"></i>
+                        <h3>Relationships</h3>
+                    </div>
+                    <div class="info-body">
+                        ${ ui.includeFragment("kenyaemr", "patient/patientRelationships", [patient: currentPatient]) }
+                    </div>
+                </div>
 
                 <div class="info-section">
                     <div class="info-header">
@@ -53,10 +62,6 @@
                     <div class="info-body">
                         No data
                     </div>
-                </div>
-
-                <div>
-                    ${ ui.includeFragment("kenyaemr", "patient/patientRelationships", [patient: currentPatient]) }
                 </div>
 
                 <div class="info-section">
