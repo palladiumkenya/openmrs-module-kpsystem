@@ -74,14 +74,14 @@ public class Moh257FragmentController {
 			}
 		}
 
-/*		Form moh257VisitForm = MetadataUtils.existing(Form.class, KpMetadata._Form.MOH_257_VISIT_SUMMARY);
-		List<Encounter> moh257VisitSummaryEncounters = patientWrapper.allEncounters(moh257VisitForm);
-		Collections.reverse(moh257VisitSummaryEncounters);*/
+		Form kpVisitForm = MetadataUtils.existing(Form.class, CommonMetadata._Form.KP_CONTACT_FORM);
+		List<Encounter> kpVisitSummaryEncounters = patientWrapper.allEncounters(kpVisitForm);
+		Collections.reverse(kpVisitSummaryEncounters);
 
 		model.addAttribute("page1AvailableForms", page1AvailableForms);
 		model.addAttribute("page1Encounters", page1Encounters);
-		model.addAttribute("page2Form", null);
-		model.addAttribute("page2Encounters", null);
+		model.addAttribute("page2Form", kpVisitForm);
+		model.addAttribute("page2Encounters", kpVisitSummaryEncounters);
 		model.addAttribute("inHivProgram", false);
 
 

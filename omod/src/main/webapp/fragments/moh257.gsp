@@ -13,12 +13,6 @@
 	<div class="ke-panel-content" style="background-color: #F3F9FF">
 
 		<fieldset>
-			<legend>New Forms</legend>
-
-			${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: page1AvailableForms, onFormClick: onFormClick ]) }
-		</fieldset>
-		<br />
-		<fieldset>
 			<legend>Previously Completed Forms</legend>
 			${ ui.includeFragment("kenyaemr", "widget/encounterStack", [ encounters: page1Encounters, onEncounterClick: onEncounterClick ]) }
 		</fieldset>
