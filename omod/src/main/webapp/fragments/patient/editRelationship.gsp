@@ -3,10 +3,10 @@
 
 	def rows = [
 		[
-			[ object: command, property: "person", label: "Person" ]
+			[ object: command, property: "person", label: "Peer Educator" ]
 		],
 		[
-			[ object: command, property: "isToPatient", label: "Relationship to client", config: [ options: typeOptions ] ]
+			[ object: command, property: "isToPatient", label: "Relationship to peer", config: [ options: typeOptions ] ]
 		],
 		[
 			[ object: command, property: "startDate", label: "Start date" ],

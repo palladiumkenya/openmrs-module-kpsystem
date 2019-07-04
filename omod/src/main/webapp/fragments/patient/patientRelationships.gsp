@@ -1,5 +1,5 @@
 <%
-	ui.decorateWith("kenyaui", "panel", [ heading: "Relationships", frameOnly: true ])
+	ui.decorateWith("kenyaui", "panel", [ heading: "", frameOnly: true ])
 %>
 <script type="text/javascript">
 	function onVoidRelationship(relId) {
@@ -47,7 +47,4 @@
 		<img src="${ ui.resourceLink("kenyaui", "images/glyphs/add.png") }" /> Add Relationship
 	</button>
 
-	<button type="button" onclick="ui.navigate('${ ui.pageLink("hivtestingservices", "familyAndPartnerTesting", [ patientId: patient.id, appId: "kenyaemr.medicalEncounter", returnUrl: ui.thisUrl() ])}')">
-		<img src="${ ui.resourceLink("kenyaui", "images/glyphs/edit.png") }" /> Family/Partner Tree
-	</button>
 </div>
