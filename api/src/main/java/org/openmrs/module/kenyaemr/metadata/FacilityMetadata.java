@@ -83,7 +83,9 @@ public class FacilityMetadata extends AbstractMetadataBundle {
 
 		if (full) {
 			ObjectSource<Location> source = new LocationMflCsvSource("metadata/mfl_2014-05-12.csv");
-			sync(source, mflSynchronization);
+			ObjectSource<Location> dices = new LocationMflCsvSource("metadata/kp_dices.csv");
+			//sync(source, mflSynchronization);
+			sync(dices, mflSynchronization);
 		}
 	}
 }
