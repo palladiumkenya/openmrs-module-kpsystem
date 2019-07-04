@@ -99,6 +99,7 @@ public class ActionsPanelFragmentController {
         } else if (userRolesStr.contains(ROLE_FACILITIES)) {
             userApp = APP_FACILITIES;
         }
+
         //Mapping forms to kp tools
         List<SimpleObject> communityOutreachObj = new ArrayList<SimpleObject>();
         List<SimpleObject> clinicalObj = new ArrayList<SimpleObject>();
@@ -106,32 +107,19 @@ public class ActionsPanelFragmentController {
         List<SimpleObject> commodityObj = new ArrayList<SimpleObject>();
         List<SimpleObject> summaryReportingObj = new ArrayList<SimpleObject>();
 
-        Set<String> communityOutreachForms = new HashSet<String>();
-        Set<String> clinicalForms = new HashSet<String>();
-        Set<String> programLevelForms = new HashSet<String>();
-        Set<String> commodityForms = new HashSet<String>();
-        Set<String> summaryReportingForms = new HashSet<String>();
+        String communityTools[] = new String[]{KP_CONTACT_FORM, REFERRAL_AND_LINKAGE, KP_CLIENT_TRACING_FORM, KP_REFERRAL_FORM, KP_PEER_CALENDAR_FORM};
+        String clinicalTools[] = new String[]{KP_CLIENT_ENROLLMENT, KP_STI_TREATMENT_FORM, KP_ALCOHOL_SCREENING_FORM, KP_DEPRESSION_SCREENING_FORM, KP_HCW_OVERDOSE_REPORTING_FORM, KP_PEER_OVERDOSE_REPORTING_FORM, TB_SCREENING,
+                KP_CLIENT_HIV_STATUS_FORM, HTS_INITIAL_TEST, HTS_CONFIRMATORY_TEST, KP_CLINICAL_VISIT_FORM};
+        String programtools[] = new String[]{KP_VIOLENCE_SCREENING_FORM};
+        String commodityTools[] = new String[]{};
+        String summaryReportingTools[] = new String[]{};
 
+        Set<String> communityOutreachForms = new HashSet(Arrays.asList(communityTools));
+        Set<String> clinicalForms = new HashSet(Arrays.asList(clinicalTools));
+        Set<String> programLevelForms = new HashSet(Arrays.asList(programtools));
+        Set<String> commodityForms = new HashSet(Arrays.asList(commodityTools));
+        Set<String> summaryReportingForms = new HashSet(Arrays.asList(summaryReportingTools));
 
-        communityOutreachForms.add(KP_CONTACT_FORM); //Contact form
-        communityOutreachForms.add(REFERRAL_AND_LINKAGE); //Referral and Linkage form
-        communityOutreachForms.add(KP_CLIENT_TRACING_FORM);  //Tracing Form
-        communityOutreachForms.add(KP_REFERRAL_FORM);  //Referral form
-        communityOutreachForms.add(KP_PEER_CALENDAR_FORM);  //Referral form
-
-        clinicalForms.add(KP_CLIENT_ENROLLMENT);  //Client enrollment form
-        clinicalForms.add(KP_STI_TREATMENT_FORM);  //STI Treatment form
-        clinicalForms.add(KP_ALCOHOL_SCREENING_FORM);  //Alcohol screening form
-        clinicalForms.add(KP_DEPRESSION_SCREENING_FORM);  //KP Depression screening form
-        clinicalForms.add(KP_HCW_OVERDOSE_REPORTING_FORM);  //HCW Overdose reporting form
-        clinicalForms.add(KP_PEER_OVERDOSE_REPORTING_FORM);  //KP Peer overdose reporting form
-        clinicalForms.add(TB_SCREENING);  //TB Screening form
-        clinicalForms.add(KP_CLIENT_HIV_STATUS_FORM);  //Client HIV Status form
-        clinicalForms.add(HTS_INITIAL_TEST);  //HTS Initial test
-        clinicalForms.add(HTS_CONFIRMATORY_TEST);  //HTS Confirmatory test form
-        clinicalForms.add(KP_CLINICAL_VISIT_FORM); //kp Clinical visit form
-
-        programLevelForms.add(KP_VIOLENCE_SCREENING_FORM);  //Violence screening form
 
         AppDescriptor currentApp = kenyaUi.getCurrentApp(request);
         AppDescriptor app = null;

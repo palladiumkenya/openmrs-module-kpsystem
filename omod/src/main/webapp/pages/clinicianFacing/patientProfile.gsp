@@ -46,11 +46,11 @@
                 <div class="info-section">
                     <div class="info-header">
                         <i class="fa fa-support"></i>
-                        <h3>Relationships</h3>
+                        <h3>Peer - Peer Educator Relationship</h3>
                     </div>
-                    <div class="info-body">
+
                         ${ ui.includeFragment("kenyaemr", "patient/patientRelationships", [patient: currentPatient]) }
-                    </div>
+
                 </div>
 
                 <div class="info-section">
