@@ -21,6 +21,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.kenyacore.CoreConstants;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
 import org.openmrs.module.kenyaemr.metadata.KpMetadata;
+import org.openmrs.module.kenyaemr.metadata.TbMetadata;
 import org.openmrs.module.kenyaemr.regimen.RegimenManager;
 import org.openmrs.module.kenyaemr.util.EmrUtils;
 import org.openmrs.module.kenyaemr.wrapper.PatientWrapper;
@@ -74,7 +75,7 @@ public class Moh257FragmentController {
 			}
 		}
 
-		Form kpVisitForm = MetadataUtils.existing(Form.class, CommonMetadata._Form.KP_CONTACT_FORM);
+		Form kpVisitForm = MetadataUtils.existing(Form.class, TbMetadata._Form.TB_SCREENING);
 		List<Encounter> kpVisitSummaryEncounters = patientWrapper.allEncounters(kpVisitForm);
 		Collections.reverse(kpVisitSummaryEncounters);
 
@@ -83,6 +84,7 @@ public class Moh257FragmentController {
 		model.addAttribute("page2Form", kpVisitForm);
 		model.addAttribute("page2Encounters", kpVisitSummaryEncounters);
 		model.addAttribute("inHivProgram", false);
+		model.addAttribute("inKpProgram", true);
 
 
 	}

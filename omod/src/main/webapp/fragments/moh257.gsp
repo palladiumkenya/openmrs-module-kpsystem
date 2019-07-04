@@ -8,23 +8,13 @@
 		"""kenyaemr.openEncounterDialog('${ currentApp.id }', ${ encounter.id });"""
 	}
 %>
-<div class="ke-panel-frame">
-	<div class="ke-panel-heading">Page 1 (Care Summary)</div>
-	<div class="ke-panel-content" style="background-color: #F3F9FF">
-
-		<fieldset>
-			<legend>Previously Completed Forms</legend>
-			${ ui.includeFragment("kenyaemr", "widget/encounterStack", [ encounters: page1Encounters, onEncounterClick: onEncounterClick ]) }
-		</fieldset>
-	</div>
-</div>
 
 <div class="ke-panel-frame">
-	<div class="ke-panel-heading">Page 2 (Initial and Followup Visits)</div>
+	<div class="ke-panel-heading">Initial and Followup Visits</div>
 	<div class="ke-panel-content" style="background-color: #F3F9FF">
 		${ ui.includeFragment("kenyaemr", "widget/encounterStack", [ encounters: page2Encounters, onEncounterClick: onEncounterClick ]) }
 		<br />
-		<% if (inHivProgram) { %>
+		<% if (inKpProgram) { %>
 			<div align="center">
 				${ ui.includeFragment("kenyaui", "widget/button", [
 						label: "Add Visit Summary",
@@ -35,7 +25,7 @@
 				]) }
 			</div>
 		<%}%>
-		<% if (!(inHivProgram)) { %>
+		<% if (!(inKpProgram)) { %>
 			<div class="ke-warning" align="center">
 				You need to enroll the patient into KP program before completing visit summary
 			</div>
