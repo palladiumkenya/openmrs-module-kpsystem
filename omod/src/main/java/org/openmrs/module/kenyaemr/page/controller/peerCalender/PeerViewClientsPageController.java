@@ -9,15 +9,59 @@
  */
 package org.openmrs.module.kenyaemr.page.controller.peerCalender;
 
+import org.openmrs.Patient;
+import org.openmrs.Person;
+import org.openmrs.Relationship;
+import org.openmrs.api.PersonService;
+import org.openmrs.api.context.Context;
 import org.openmrs.module.kenyaemr.EmrConstants;
 import org.openmrs.module.kenyaui.annotation.AppPage;
+import org.openmrs.ui.framework.SimpleObject;
+import org.openmrs.ui.framework.UiUtils;
+import org.openmrs.ui.framework.page.PageModel;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * View peer clients page for peer calender app
  */
 @AppPage(EmrConstants.APP_PEER_CALENDER)
 public class PeerViewClientsPageController {
+	PersonService person = Context.getPersonService();
 	
 	public void controller() {
+	}
+	public void get(@RequestParam("patientId") Patient patient, UiUtils ui,
+					PageModel model){
+		model.put("peers", getPeers(patient));
+	}
+
+	public List<SimpleObject> getPeers( Patient patient) {
+		List<SimpleObject> peer = new ArrayList<SimpleObject>();
+		Person p = person.getPerson(patient);
+		peer.add(SimpleObject.create(
+				"name",p.getGivenName()+" " + p.getMiddleName()
+						+" "+p.getFamilyName(),
+				"gender", p.getGender(),
+				"age", p.getAge(),
+				"birthdate", p.getBirthdate(),
+				"id",p.getId()
+		));
+
+		for (Relationship relationship : Context.getPersonService().getRelationshipsByPerson(patient)) {
+			if (relationship.getRelationshipType().getbIsToA().equals("Peer")) {
+				peer.add(SimpleObject.create(
+						"name",relationship.getPersonB().getGivenName()+" " + relationship.getPersonA().getMiddleName()
+						+" "+relationship.getPersonB().getFamilyName(),
+						"gender", relationship.getPersonB().getGender(),
+						"age", relationship.getPersonB().getAge(),
+						"birthdate", relationship.getPersonB().getBirthdate(),
+						"id",relationship.getPersonB().getId()
+				));
+			}
+		}
+		return peer;
 	}
 }

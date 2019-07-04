@@ -12,16 +12,4 @@
 		<div ng-if="results.length == 0" style="text-align: center; font-style: italic">None</div>
 		</div>
 
-
-	<div class="ke-panel-heading">Peers</div>
-	<div class="ke-panel-content">
-		<div>
-			${ ui.includeFragment("kenyaemr", "peerSearch/peerClientResult.full") }
-		</div>
-
-
-	</div>
-
-
-
 </div>

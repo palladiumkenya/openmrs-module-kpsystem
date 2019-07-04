@@ -151,40 +151,10 @@ kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', 
 	 * Result click event handler
 	 * @param patient the clicked patient
 	 */
-	$scope.onPeerEducatorResultClick = function(patient) {
-		$scope.getRelationships()
-			.then(function(posts) {
-				$scope.clientResults = posts.results;
-			});
-		$timeout(function() {
-			// ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: patient.id });
-			//ui.navigate($scope.pageProvider, $scope.page, { patientId: patient.id });
-		},1000);
-
+	$scope.onPeerEducatorResultClick = function(peer) {
+		ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: peer.id });
 
 	};
-	$scope.getRelationships= function( ) {
-		var deferred = $q.defer();
-		var uuids = '7a4b7711-69d1-441d-b15b-83d06c623cc9';
-		var v ='custom:(uuid,id,personA:(uuid,display,id,birthdate,gender,age))';
-		// get posts form backends
-		$http.get('/openmrs/ws/rest/v1/relationship?v='+ v + '&person=7a4b7711-69d1-441d-b15b-83d06c623cc9')
-			.then(function (result) {
-					deferred.resolve(result.data);
-
-			}, function (error) {
-					deferred.reject(error);
-			});
-		return deferred.promise;
-	}
-
-	$scope.onPeerResultClick = function(patient) {
-		ui.navigate('kenyaemr', 'enterForm', { patientId: patient.personA.id,
-			formUuid:'99979576-8854-11e9-bc42-526af7764f64',appId:'kenyaemr.medicalEncounter',
-			returnUrl:'peerCalender/peerCalenderHome'});
-
-	};
-
 
 }]);
 
