@@ -17,7 +17,7 @@
 		<% if (inKpProgram) { %>
 			<div align="center">
 				${ ui.includeFragment("kenyaui", "widget/button", [
-						label: "Add Visit Summary",
+						label: "Add Clinic Visit",
 						extra: "From column",
 						iconProvider: "kenyaui",
 						icon: "buttons/visit_retrospective.png",

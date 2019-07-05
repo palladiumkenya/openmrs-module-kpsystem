@@ -75,7 +75,7 @@ public class Moh257FragmentController {
 			}
 		}
 
-		Form kpVisitForm = MetadataUtils.existing(Form.class, TbMetadata._Form.TB_SCREENING);
+		Form kpVisitForm = MetadataUtils.existing(Form.class, CommonMetadata._Form.KP_CLINICAL_VISIT_FORM);
 		List<Encounter> kpVisitSummaryEncounters = patientWrapper.allEncounters(kpVisitForm);
 		Collections.reverse(kpVisitSummaryEncounters);
 
