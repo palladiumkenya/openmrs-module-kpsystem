@@ -882,8 +882,8 @@
             var tested = getValue("self_tested.value");
             if(tested==1065){
 
-                jq('#selftestFrequency select').prop('disabled', false).removeClass('disabled');
-                jq('#selftestResults select').prop('disabled', false).removeClass('disabled');
+                jq('#selftestFrequency input').prop('disabled', false).removeClass('disabled');
+                jq('#selftestResults input').prop('disabled', false).removeClass('disabled');
                 jq("#selftestDate input").prop("disabled", false);
 
             }
@@ -891,8 +891,8 @@
             else{
                 jq("#selftestDate input").val('');
                 jq("#selftestDate input").prop("disabled", true);
-                jq('#selftestFrequency select').prop('disabled', true).addClass('disabled');
-                jq('#selftestResults select').prop('disabled', true).addClass('disabled');
+                jq('#selftestFrequency input').prop('disabled', true).addClass('disabled');
+                jq('#selftestResults input').prop('disabled', true).addClass('disabled');
             }
 
         }
@@ -900,20 +900,20 @@
             var tested = getValue("confirm_test.value");
             if(tested==664){
 
-                jq('#facility select').prop('disabled', false).removeClass('disabled');
-                jq('#linktoart select').prop('disabled', true).addClass('disabled');
+                jq('#facility input').prop('disabled', false).removeClass('disabled');
+                jq('#linktoart input').prop('disabled', true).addClass('disabled');
                 jq("#linktxt input").prop("disabled", true);
 
             }
             else if(tested == 703){
-                jq('#linktoart select').prop('disabled', false).removeClass('disabled');
-                jq('#facility select').prop('disabled', false).removeClass('disabled');
+                jq('#linktoart input').prop('disabled', false).removeClass('disabled');
+                jq('#facility input').prop('disabled', false).removeClass('disabled');
 
             }
             else{
 
-                jq('#facility select').prop('disabled', true).addClass('disabled');
-                jq('#linktoart select').prop('disabled', true).addClass('disabled');
+                jq('#facility input').prop('disabled', true).addClass('disabled');
+                jq('#linktoart input').prop('disabled', true).addClass('disabled');
                 jq("#facilitytxt input").prop("disabled", true);
                 jq("#linktxt input").prop("disabled", true);
             }
@@ -1077,14 +1077,14 @@
 
 
             jq("#hiv_selfreported select").change(hivTesting);
-            jq("#hiv_tested select").change(hivTested);
-            jq("#hiv_selftest select").change(numberOfSelfTest);
-            jq("#self_tested select").change(SelfTested);
-            jq("#confirm_test select").change(confirmTest);
+            jq("#hiv_tested input").change(hivTested);
+            jq("#hiv_selftest input").change(numberOfSelfTest);
+            jq("#self_tested input").change(SelfTested);
+            jq("#confirm_test input").change(confirmTest);
 
-            jq("#facility select").change(confirmFacility);
-            jq("#linktoart select").change(linkToart);
-            jq("#care_provided select").change(providedElseWhere);
+            jq("#facility input").change(confirmFacility);
+            jq("#linktoart input").change(linkToart);
+            jq("#care_provided input").change(providedElseWhere);
             jq("#pep select").change(PEP);
             jq("#pep_type select").change(pep_type);
             jq("#pep_type select").change(pep_type);
@@ -1513,27 +1513,27 @@
                 </tr>
                 <tr>
                     <td width="156" valign="top"><p>  <obs id="hiv_selfreported" class="consent" conceptId="165214"
-                                                           style="dropdown" answerConceptIds="703,664, 1067" answerLabels="Positive,Negative, Unknown" /></p></td>
+                                                           style="radio" answerConceptIds="703,664, 1067" answerLabels="Positive,Negative, Unknown"  answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td width="156" valign="top"><p>  <obs id="hiv_settingoflasttest" class="consent" conceptId="165215"
-                                                           style="dropdown" answerConceptIds="165216,165217,1402" answerLabels="Universal HTS,Self-testing , Never teste" /></p></td>
+                                                           style="radio" answerConceptIds="165216,165217,1402" answerLabels="Universal HTS,Self-testing , Never tested"  answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="hiv_counselled" conceptId="159382"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                                           style="radio" answerConceptIds="1065,1066" answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="hiv_tested" conceptId="164401"
-                                                           style="dropdown" answerConceptIds="1065,1066,1175" /></p></td>
+                                                           style="radio" answerConceptIds="1065,1066,1175" answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="test_frequency" conceptId="165218"
-                                                           style="dropdown" /></p></td>
+                                                           style="radio" answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="received_results" conceptId="164848"
                                                            answerConceptIds="1065,
                                                             1066,1067"  answerLabels="Yes,No, Not applicable"
-                                                           style="dropdown" />
+                                                           style="radio" answerSeparator="&lt;br /&gt;"  />
                     </p></td>
                     <td ><p>  <obs id="test_results" conceptId="159427"
-                                                           style="dropdown" answerConceptIds="664,703,1118" answerLabels="Negative,Positive, Not done"/></p></td>
+                                                           style="radio" answerConceptIds="664,703,1118" answerLabels="Negative,Positive, Not done" answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="hepatitisb" conceptId="1648"
                                                            style="yes_no"  /></p></td>
@@ -1555,13 +1555,13 @@
             <legend>Self testing</legend>
             <table class="simple-table">
                 <tr>
-                    <td><p><b>HIV self-test education/demonstration </b></p></td>
+                    <td><p><b>HIV self-test education/<br/> demonstration </b></p></td>
                     <td><p><b>HIV self-test kits given</b></p></td>
                     <td><p><b>Self-tested for HIV</b></p></td>
                     <td><p><b>Date conducted</b></p></td>
                     <td><p><b>Frequency of test</b></p></td>
                     <td><p><b>Testing results</b></p></td>
-                    <td><p><b>Confirmatory HIV test results</b></p></td>
+                    <td><p><b>Confirmatory HIV <br/>test results</b></p></td>
                     <td><p><b>Facility name where <br/>confirmatory was done</b></p></td>
 
                     <td><p><b>Linked to ART</b></p></td>
@@ -1569,41 +1569,26 @@
 
                 </tr>
                 <tr>
-                    <td  width="156"><p>  <obs id="hepb_screened" conceptId="165220"
+                    <td  width="160"><p>  <obs id="self-test-demo" conceptId="165220"
                                    style="radio" answerConceptIds="1065,1066" /></p></td>
 
-                    <td><p>  <obs id="hiv_selftest" conceptId="165221"
-                                   style="dropdown" answerConceptIds="165222,165223"
-                                   answerLabels="For self use, For distribution" /></p>
-                        <p>Self test kits  <obs id="selftxt" class="remarks" conceptId="165222"
-                        /></p><p>Distributing <obs id="disttxt" class="remarks" conceptId="165223"
-                        /></p></td>
+                    <td><p>  <obs id="hiv_selftest" conceptId="165221"  style="radio" answerConceptIds="165222,165223" answerLabels="For self use, For distribution" answerSeparator="&lt;br /&gt;"  /></p>
+                     <p>Self test kits  <obs id="selftxt" class="remarks" conceptId="165222"/></p>
+                     <p>Distributing <obs id="disttxt" class="remarks" conceptId="165223" /></p></td>
 
-                    <td><p>  <obs conceptId="164952"
-                                   style="dropdown" answerConceptIds="1065,1066" id="self_tested" /></p></td>
+                    <td><p>  <obs conceptId="164952" style="radio" answerConceptIds="1065,1066" id="self_tested" answerSeparator="&lt;br /&gt;" /></p></td>
                     <td><p>  <obs id="selftestDate" conceptId="164400"
                     /></p></td>
 
-                    <td><p>  <obs id="selftestFrequency" conceptId="165231"
-                                   style="dropdown"  /></p></td>
+                    <td><p>  <obs id="selftestFrequency" conceptId="165231" style="radio" answerSeparator="&lt;br /&gt;"  /></p></td>
 
-                    <td><p>  <obs id="selftestResults" conceptId="165233"
-                                  style="dropdown" answerConceptIds="664,703,165232"
-                                  answerLabels="Negative, Positive, Inconclusive
-" /></p></td>
-                    <td><p>  <obs id="confirm_test" conceptId="165234"
-                                   style="dropdown" answerConceptIds="664,703,1118"
-                                   answerLabels="Negative, Positive, Not done"
-                    /></p></td>
-                    <td><p>  <obs id="facility" conceptId="165237"
-                                  style="dropdown"  /></p>
-                        <p> if off-site specify <obs id="facilitytxt" class="remarks" conceptId="162724"
-                        /></p></td>
+                    <td width="160"><p>  <obs id="selftestResults" conceptId="165233" style="radio" answerConceptIds="664,703,165232" answerLabels="Negative,Positive, Inconclusive" answerSeparator="&lt;br /&gt;"/></p></td>
 
-                    <td><p>  <obs id="linktoart" conceptId="165238"
-                                   style="dropdown"  /></p>
-                        <p>if yes facility linked to <obs id="arttxt" class="remarks" conceptId="161562"
-                        /></p></td>
+                    <td><p>  <obs id="confirm_test" conceptId="165234" style="radio" answerConceptIds="664,703,1118" answerLabels="Negative, Positive, Not done" answerSeparator="&lt;br /&gt;" /></p></td>
+                    <td><p>  <obs id="facility" conceptId="165237" style="radio" answerSeparator="&lt;br /&gt;" /></p>
+                    <p> if off-site specify <obs id="facilitytxt" class="remarks" conceptId="162724" /></p></td>
+                    <td><p>  <obs id="linktoart" conceptId="165238" style="radio"  /></p>
+                    <p>if yes facility linked to <obs id="arttxt" class="remarks" conceptId="161562" /></p></td>
                 </tr>
 
             </table>
@@ -1613,7 +1598,7 @@
 
         <fieldset>
             <legend>Care and treatment</legend>
-            <table border="0" width="100%" cellspacing="0" cellpadding="0" class="simple-table">
+            <table class="simple-table">
                 <tr>
                     <td ><p><b>Facility of HIV Care</b></p></td>
                     <td ><p><b>Initiated on ART this month</b></p></td>
@@ -1625,40 +1610,14 @@
                 </tr>
                 <tr>
 
-                    <td ><p>  <obs id="care_provided" conceptId="165239"
-                                                           style="dropdown" answerConceptIds="163266,162723,160563"
-                                                           answerLabels="Provided here, Provided elsewhere, Referred"
-
-                    /></p>
-                        <p>if Provided elsewhere Specify:<obs id="care_provided_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                        /></p>
+                    <td ><p>  <obs id="care_provided" conceptId="165239" style="radio" answerConceptIds="163266,162723,160563" answerLabels="Provided here, Provided elsewhere, Referred" answerSeparator="&lt;br /&gt;"/></p>
+                        <p>Provided elsewhere Specify:<br/> <obs id="care_provided_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></p>
                     </td>
-                    <td ><p>  <obs conceptId="165240"
-                                                           answerConceptIds="1065,1066,1175"
-                                                           answerLabels="Yes, No, Not applicable"
-                                                           style="dropdown" />
-                    </p></td>
-                    <td ><p>  <obs id="hepb_treated" conceptId="160119"
-                                                           answerConceptIds="1065,1066,1175"
-                                                           answerLabels="Yes, No, Not applicable"
-                                                           style="dropdown" />
-                    </p></td>
-
-                    <td ><p>  <obs id="hepatitisb" conceptId="165242"
-                                                           answerConceptIds="1065,1066,1175"
-                                                           answerLabels="Yes, No, Not applicable"
-                                                           style="dropdown" />
-                    </p></td>
-                    <td ><p>  <obs id="hepb_screened" conceptId="165243"
-                                                           answerConceptIds="1065,1066,1175"
-                                                           answerLabels="Yes, No, Not applicable"
-                                                           style="dropdown" />
-                    </p></td>
-
-                    <td ><p>  <obs id="hepb_screened" conceptId="165246"
-                                                           answerConceptIds="165244,165245,164369,1175"
-                                                           answerLabels="Suppressed, Not Suppressed,Results not yet received, Not applicable"
-                                                           style="dropdown" />
+                    <td ><p>  <obs conceptId="165240" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
+                    <td ><p>  <obs conceptId="160119" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
+                    <td ><p>  <obs conceptId="165242" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/> </p></td>
+                    <td ><p>  <obs conceptId="165243" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
+                    <td ><p>  <obs conceptId="165246" answerConceptIds="165244,165245,164369,1175" answerLabels="Suppressed,Not Suppressed,Results not yet received,Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/>
                     </p></td>
                 </tr>
 
@@ -1669,72 +1628,89 @@
 
         <fieldset>
             <legend>Other services</legend>
-            <table border="0" width="100%" cellspacing="0" cellpadding="0">
-
+            <table class="simple-table">
                 <tr>
-                    <td ><p>Condom education/demonstration </p></td>
-                    <td ><p><obs conceptId="165247"
-                                                         style="yes_no" /></p></td>
+                    <td>
+                        Service provided :
+                    </td>
+                    <td>
+                        <table class="simple-table" style=" float: left; ">
+                            <tr>
+                                <td>
+                                    Condom education/demonstration
+                                </td>
+                                <td>
+                                    <obs conceptId="165247" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Post Abortal Care provided
+                                </td>
+                                <td>
+                                    <obs conceptId="164820" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Link to Psychosocial
+                                </td>
+                                <td>
+                                    <obs conceptId="165302" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        Commodities given :
+                    </td>
+                    <td>
+                        <table class="simple-table" style=" float: right; ">
+                            <tr>
+                                <td>
+                                    No. of condoms
+                                </td>
+                                <td>
+                                    Male      &#160;&#160;&#160;&#160;&#160;&#160; <obs id="malecondoms" conceptId="165055"/>
+                                    Female     &#160;&#160; <obs id="femalecondoms" conceptId="165056"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    No. of lubes given
+                                </td>
+                                <td>
+                                    <obs id="lubes" conceptId="165057"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Number of needles and syringes given:
+                                </td>
+                                <td>
+                                    <obs id="lubes" conceptId="165058"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
                 <tr>
-                    <td ><p>Post Abortal Care provided</p></td>
-                    <td ><p><obs conceptId="164820"
-                                                         style="yes_no" /></p></td>
-
-                </tr>
-                <tr>
-
-                    <td ><p>No. of condoms</p></td>
-
-                    <td ><p> Male<obs id="malecondoms" conceptId="165055"/></p></td>
-
-                    <td ><p>female <obs id="femalecondoms" conceptId="165056"/></p></td>
-
-                    <td ><p>No. of lubes given <obs id="lubes" conceptId="165057"/></p></td>
-
-                    <td ><p>Number of needles and syringes given:  <obs id="lubes" conceptId="165058"/></p></td>
-
-                </tr>
-
-                <tr>
-
-                    <td ><p> PEP<obs id="pep" conceptId="164845"
-                                                             style="yes_no" /></p></td>
-                    <td ><p>Type of exposure for pep</p></td>
-                    <td ><p>  <obs id="pep_type" conceptId="165060"
-                                                           answerConceptIds="127910,
-                                                            165045, 5622"  answerLabels="Rape,Condom Burst, Others"
-                                                           style="dropdown" rows="2" />
-                    </p></td>
+                    <td > PEP &#160;&#160;  <obs id="pep" conceptId="164845" style="radio" answerSeparator="&lt;br /&gt;" /></td>
+                    <td >Type of exposure :<br/>
+                        <obs id="pep_type" conceptId="165060" answerConceptIds="127910,165045, 5622"  answerLabels="Rape,Condom Burst, Others" style="radio" answerSeparator="&lt;br /&gt;"  /></td>
                     <td width="156" id="pep_others" valign="top"><p>If OtherSpecify</p></td>
-                    <td ><p>  <obs id="pep_type_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                    /></p></td>
-
+                    <td ><p>  <obs id="pep_type_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
                 </tr>
                 <tr>
-                    <td  colspan="3"><p>Link to Psychosocial <obs conceptId="1710AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" required="true"
-                                                                                          style="yes_no" /></p></td>
-
-
-                </tr>
-                <tr>
-
                     <td ><p>Clinical Notes</p></td>
                     <td ><p>  <obs id="clinical" class="remarks" conceptId="165248"
                     /></p></td>
-
                 </tr>
                 <tr>
-
-
                     <td ><p>Next Visit Date</p></td>
-
-
                 </tr>
             </table>
-
         </fieldset>
-
     </div>
     <div class="ke-form-footer">
         <submit/>
