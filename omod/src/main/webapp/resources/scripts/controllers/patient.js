@@ -154,9 +154,40 @@ kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', 
 	 */
 	$scope.onPeerEducatorResultClick = function(peer) {
         $scope.effectiveDate = angular.element('#startDate').val();
-        ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: peer.id ,effectiveDate:$scope.effectiveDate});
+		$scope.datecopy = angular.copy( $scope.effectiveDate);
+		var date = getMonthDays($scope.datecopy);
+		$scope.effectiveDate = date +'-'+ $scope.effectiveDate;
+		var dateFormat = "yy-mm-dd";
+		var currentDate = $.datepicker.formatDate(dateFormat, new Date($scope.effectiveDate));
+
+		ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: peer.id ,effectiveDate:currentDate.substring(1)});
 
 	};
+
+
+
+
+	function getMonthDays(MonthYear) {
+		var months = [
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
+		];
+
+		var Value=MonthYear.split("-");
+		var month = (months.indexOf(Value[0]) + 1);
+		return new Date(Value[1], month, 0).getDate();
+	}
+
 
 }]);
 

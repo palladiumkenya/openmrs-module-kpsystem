@@ -33,12 +33,13 @@ public class PeerViewClientsPageController {
 	
 	public void controller() {
 	}
-	public void get(@RequestParam("patientId") Patient patient, UiUtils ui,
+	public void get(@RequestParam("patientId") Patient patient, UiUtils ui, @RequestParam("effectiveDate") String effectiveDate,
 					PageModel model){
-		model.put("peers", getPeers(patient));
+		model.put("peers", getPeers(patient,effectiveDate));
+		model.put("effectiveDate",effectiveDate);
 	}
 
-	public List<SimpleObject> getPeers( Patient patient) {
+	public List<SimpleObject> getPeers( Patient patient, String effectiveDate) {
 		List<SimpleObject> peer = new ArrayList<SimpleObject>();
 		Person p = person.getPerson(patient);
 		peer.add(SimpleObject.create(
