@@ -13,6 +13,7 @@
   -->
 <htmlform>
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
+    <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/getBrowserUrlParameter.js"></script>
     <style>
         .simple-table {
             border: solid 1px #DDEEEE;
@@ -44,7 +45,6 @@
         jQuery(function ($) {
 
             jq("#other-hotspots-specify").hide();
-
             jq('#hotspot-type select').click(onOtherHotspotSelected);
             getField('weekly-condom-requirements.value').change(onWeeklyCondomRequirementsChange);
             getField('weekly-lubes-requirements.value').change(onWeeklyLubesRequirementsChange);
@@ -53,6 +53,11 @@
             jq('#calculated-monthly-LR input[type=text]').attr("disabled","true");
             jq('#calculated-monthly-SR input[type=text]').attr("disabled","true");
 
+            //set encounter date to
+
+            var calendarEncDate = kpGetUrlParameter("effectiveDate");
+            setValue('encounter-date.value', calendarEncDate);
+            getField('encounter-date.value').prop("readonly", "readonly");
 
             jq('#ns-first-week input[type=text]').prop("disabled",true);
             jq('#ns-second-week input[type=text]').prop("disabled",true);
@@ -86,7 +91,8 @@
             beforeSubmit.push(function () {
             });
 
-        })
+        });
+
 
         function onNeedlesChecked() {
             var val = jq(this).val();
@@ -195,7 +201,7 @@
         <table width="100%">
             <tr>
                 <td>Date:
-                    <encounterDate id="encounter-date" showTime="true"/>
+                    <encounterDate id="encounter-date" showTime="false"/>
                 </td>
                 <td>Location:
                     <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
