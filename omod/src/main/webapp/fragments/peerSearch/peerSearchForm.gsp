@@ -14,7 +14,7 @@
 				changeMonth: true,
 				changeYear: true,
 				showButtonPanel: true,
-				dateFormat: 'MM yy',
+				dateFormat: 'MM-yy',
 				onClose: function(dateText, inst) {
 					jQuery(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
 				}
