@@ -30,7 +30,7 @@
 <form id="${ id }" ng-controller="PeerSearchForm" ng-init="init()">
 	<label  class="ke-field-label">Select Date</label>
 	<span class="ke-field-content">
-		<input name="startDate" id="startDate" ng-model="dateFilter" class="date-picker" />
+		<input name="startDate" id="startDate" class="date-picker" />
 	</span>
 	<label  class="ke-field-label">Which peer Educators</label>
 
