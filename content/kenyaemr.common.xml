@@ -340,7 +340,7 @@
         <property name="targetUuid" value="7492cffe-5874-4144-a1e6-c9e455472a35" />
         <property name="apps">
             <set>
-                <ref bean="kenyaemr.app.peerCalendar" />
+                <ref bean="kenyaemr.app.clinician" />
             </set>
         </property>
         <property name="icon" value="kenyaui:forms/generic.png" />
