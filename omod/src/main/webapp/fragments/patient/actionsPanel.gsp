@@ -55,12 +55,6 @@
 					Diagnosis
 				</a>
 			</li>
-			<li class="float-left" style="margin-top: 7px">
-				<a href="${ ui.pageLink("openhmis.inventory", "createOperation/entities", [patientId: currentPatient.patientId]) }" class="float-left">
-					<i class="fa fa-cubes fa-2x"></i>
-					Commodities
-				</a>
-			</li>
 		</ul>
 		<ul  id ="community-outreach-tools">
 

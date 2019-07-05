@@ -3,25 +3,11 @@
 
 	def menuItems = [
 			[
-					label: "Overview",
-					href: ui.pageLink("kenyaemr", "chart/chartViewPatient", [ patientId: currentPatient.id, section: "overview" ]),
-					active: (selection == "section-overview"),
-					iconProvider: "kenyaui",
-					icon: "buttons/patient_overview.png"
-			],
-			[
 					label: "Record Previous Visit",
 					href: ui.pageLink("kenyaemr", "chart/chartViewPatient", [ patientId: currentPatient.id, section: "moh257" ]),
 					active: (selection == "section-moh257"),
 					iconProvider: "kenyaui",
 					icon: "forms/moh257.png"
-			],
-			[
-					label: "Client summary",
-					href: ui.pageLink("kenyaemr", "chart/chartViewPatient", [ patientId: currentPatient.id, section: "summaries" ]),
-					active: (selection == "section-summaries"),
-					iconProvider: "kenyaui",
-					icon: "buttons/summary.png"
 			]
 
 	];
