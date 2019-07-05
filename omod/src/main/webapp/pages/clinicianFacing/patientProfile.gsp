@@ -86,27 +86,6 @@
                         ${ ui.includeFragment("kenyaemr", "patient/currentVitals", [ patient: currentPatient]) }
                     </div>
                 </div>
-
-                <div class="info-section allergies">
-                    <div class="info-header">
-                        <i class="icon-medical"></i>
-                        <h3>Diagnoses</h3>
-                    </div>
-                    <div class="info-body">
-                        None
-                    </div>
-                </div>
-
-                <div class="info-section allergies">
-                    <div class="info-header">
-                        <i class="icon-medical"></i>
-                        <h3>Medications</h3>
-                    </div>
-                    <div class="info-body">
-                        No Medications
-                    </div>
-                </div>
-
             </div>
 
             ${ ui.includeFragment("kenyaemr", "patient/actionsPanel", [visit: visit]) }
