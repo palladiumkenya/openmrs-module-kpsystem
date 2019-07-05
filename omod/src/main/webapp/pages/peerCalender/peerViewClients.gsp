@@ -1,7 +1,7 @@
 <%
 	//ui.decorateWith("kenyaemr", "standardPage", [ patient: currentPatient ])
 	ui.decorateWith("kenyaemr", "standardPage", [ layout: "sidebar" ])
-	//ui.includeJavascript("kenyaemr", "controllers/patient.js")
+	def kpVisitForm = "7492cffe-5874-4144-a1e6-c9e455472a35"
 
 %>
 
@@ -22,7 +22,7 @@
 				<th>Name</th>
 				<th>Gender</th>
 				<th>Age</th>
-				<th></th>
+				<th>Actions</th>
 			</tr>
 		<% peers.each { peer -> %>
 		<tr >
@@ -31,8 +31,8 @@
 			<td>${ peer.age }</td>
 			<td>
 				<button type="button"
-						onclick="ui.navigate('${ ui.pageLink("kenyaemr", "enterForm", [ patientId: peer.id, effectiveDate:effectiveDate,
-						formUuid:"7492cffe-5874-4144-a1e6-c9e455472a35",appId:"kenyaemr.medicalEncounter", returnUrl: ui.thisUrl() ])}')">
+						onclick="ui.navigate('${ ui.pageLink("kenyaemr", "enterForm", [ patientId: peer.id, effectiveDate: effectiveDate,
+						formUuid: kpVisitForm,appId:"kenyaemr.medicalEncounter", returnUrl: ui.thisUrl() ])}')">
 					 Enter Form
 				</button>
 			</td>
