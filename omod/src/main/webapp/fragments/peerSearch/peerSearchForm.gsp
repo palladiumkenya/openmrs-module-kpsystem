@@ -7,9 +7,32 @@
 
 	def id = config.id ?: ui.generateId();
 %>
-<form id="${ id }" ng-controller="PeerSearchForm" ng-init="init()">
-	<label  class="ke-field-label">Which peers</label>
 
+<script type="text/javascript">
+	jQuery(function() {
+		jQuery('.date-picker').datepicker( {
+				changeMonth: true,
+				changeYear: true,
+				showButtonPanel: true,
+				dateFormat: 'MM yy',
+				onClose: function(dateText, inst) {
+					jQuery(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+				}
+			});
+		});
+</script>
+<style>
+.ui-datepicker-calendar {
+	display: none;
+}
+</style>
+
+<form id="${ id }" ng-controller="PeerSearchForm" ng-init="init()">
+	<label  class="ke-field-label">Select Date</label>
+	<span class="ke-field-content">
+		<input name="startDate" id="startDate" ng-model="dateFilter" class="date-picker" />
+	</span>
+	<label  class="ke-field-label">Which peer Educators</label>
 
 	<label class="ke-field-label">ID or name (3 chars min)</label>
 	<span class="ke-field-content">

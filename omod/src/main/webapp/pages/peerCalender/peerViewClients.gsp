@@ -33,7 +33,7 @@
 				<button type="button"
 						onclick="ui.navigate('${ ui.pageLink("kenyaemr", "enterForm", [ patientId: peer.id,
 						formUuid:"7492cffe-5874-4144-a1e6-c9e455472a35",appId:"kenyaemr.medicalEncounter", returnUrl: ui.thisUrl() ])}')">
-					<img src="${ui.resourceLink("kenyaui", "images/glyphs/patient_m.png")}"/> Enter Form
+					 Enter Form
 				</button>
 			</td>
 		</tr>

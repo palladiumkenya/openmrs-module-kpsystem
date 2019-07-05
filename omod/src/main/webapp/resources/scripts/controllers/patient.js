@@ -114,6 +114,7 @@ kenyaemrApp.controller('PatientSearchResults', ['$scope', '$http', function($sco
 kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', function($scope, $http,$q,$timeout) {
 
 	$scope.query = '';
+    $scope.dateFilter = '';
 	$scope.results = [];
 
 	/**
@@ -152,7 +153,8 @@ kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', 
 	 * @param patient the clicked patient
 	 */
 	$scope.onPeerEducatorResultClick = function(peer) {
-		ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: peer.id });
+        $scope.effectiveDate = angular.element('#startDate').val();
+        ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: peer.id ,effectiveDate:$scope.effectiveDate});
 
 	};
 

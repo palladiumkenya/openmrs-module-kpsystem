@@ -51,6 +51,7 @@ public class PeerViewClientsPageController {
 		));
 
 		for (Relationship relationship : Context.getPersonService().getRelationshipsByPerson(patient)) {
+
 			if (relationship.getRelationshipType().getbIsToA().equals("Peer")) {
 				peer.add(SimpleObject.create(
 						"name",relationship.getPersonB().getGivenName()+" " + relationship.getPersonA().getMiddleName()
