@@ -43,6 +43,23 @@ kenyaemrApp.controller('PatientSearchForm', ['$scope', 'PatientService', functio
 }]);
 
 /**
+ * Controller for peer search form
+ */
+kenyaemrApp.controller('PeerSearchForm', ['$scope', 'PatientService', function($scope, patientService) {
+
+	$scope.query = '';
+
+	$scope.init = function() {
+		$scope.which = "";
+		$scope.$evalAsync($scope.updateSearch); // initiate an initial search
+	};
+
+	$scope.updateSearch = function() {
+		patientService.updateSearch($scope.query, $scope.which);
+	};
+}]);
+
+/**
  * Controller for patient search results
  */
 kenyaemrApp.controller('PatientSearchResults', ['$scope', '$http', function($scope, $http) {
@@ -77,7 +94,7 @@ kenyaemrApp.controller('PatientSearchResults', ['$scope', '$http', function($sco
 		$http.get(ui.fragmentActionLink('kenyaemr', 'search', 'patients', { appId: $scope.appId, q: $scope.query, which: $scope.which })).
 			success(function(data) {
 				$scope.results = data;
-			});
+		});
 	};
 
 	/**
@@ -89,6 +106,60 @@ kenyaemrApp.controller('PatientSearchResults', ['$scope', '$http', function($sco
 	};
 
 }]);
+
+
+/**
+ * Controller for peer search results
+ */
+kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', function($scope, $http,$q,$timeout) {
+
+	$scope.query = '';
+    $scope.dateFilter = '';
+	$scope.results = [];
+
+	/**
+	 * Initializes the controller
+	 * @param appId the current app id
+	 * @param which
+	 */
+	$scope.init = function(appId, pageProvider, page) {
+		$scope.appId = appId;
+		$scope.pageProvider = pageProvider;
+		$scope.page = page;
+	};
+
+	/**
+	 * Listens for the 'peer-search' event
+	 */
+	$scope.$on('patient-search', function(event, data) {
+		$scope.query = data.query;
+		$scope.which = "all";
+		$scope.refresh();
+	});
+
+	/**
+	 * Refreshes the person search
+	 */
+	$scope.refresh = function() {
+		$http.get(ui.fragmentActionLink('kenyaemr', 'search', 'patients', { appId: $scope.appId, q: $scope.query, which: $scope.which })).
+		success(function(data) {
+			$scope.results = data;
+
+		});
+	};
+
+	/**
+	 * Result click event handler
+	 * @param patient the clicked patient
+	 */
+	$scope.onPeerEducatorResultClick = function(peer) {
+        $scope.effectiveDate = angular.element('#startDate').val();
+        ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: peer.id ,effectiveDate:$scope.effectiveDate});
+
+	};
+
+}]);
+
 
 /**
  * Controller for similar patients (on registration form)

@@ -46,6 +46,14 @@
 		<constructor-arg value="300" />
 	</bean>
 
+	<bean id="kenyaemr.app.peerCalender" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
+		<constructor-arg value="kenyaemr.peerCalender" />
+		<constructor-arg value="Peer Calender" />
+		<constructor-arg value="kenyaemr/peerCalender/peerCalenderHome.page" />
+		<constructor-arg value="kenyaui:apps/peerCalendar.png" />
+		<constructor-arg value="350" />
+	</bean>
+
 	<bean id="kenyaemr.app.chart" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.medicalChart" />
 		<constructor-arg value="Chart" />
