@@ -160,7 +160,13 @@ kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', 
 		var dateFormat = "yy-mm-dd";
 		var currentDate = $.datepicker.formatDate(dateFormat, new Date($scope.effectiveDate));
 
-		ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: peer.id ,effectiveDate:currentDate.substring(1)});
+		var finalDate ='';
+		if(currentDate.charAt(0)   === "-"){
+			finalDate = currentDate.substring(1);
+		}else {
+			finalDate = currentDate
+		}
+		 ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: peer.id ,effectiveDate:finalDate});
 
 	};
 
