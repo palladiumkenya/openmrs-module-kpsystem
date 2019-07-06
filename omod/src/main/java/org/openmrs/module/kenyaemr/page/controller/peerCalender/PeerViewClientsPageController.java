@@ -21,7 +21,10 @@ import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,8 +33,10 @@ import java.util.List;
 @AppPage(EmrConstants.APP_PEER_CALENDER)
 public class PeerViewClientsPageController {
 	PersonService person = Context.getPersonService();
-	
-	public void controller() {
+    static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+
+
+    public void controller() {
 	}
 	public void get(@RequestParam("patientId") Patient patient, UiUtils ui, @RequestParam("effectiveDate") String effectiveDate,
 					PageModel model){
@@ -51,18 +56,35 @@ public class PeerViewClientsPageController {
 				"id",p.getId()
 		));
 
-		for (Relationship relationship : Context.getPersonService().getRelationshipsByPerson(patient)) {
 
-			if (relationship.getRelationshipType().getbIsToA().equals("Peer")) {
-				peer.add(SimpleObject.create(
-						"name",relationship.getPersonB().getGivenName()+" " + relationship.getPersonA().getMiddleName()
-						+" "+relationship.getPersonB().getFamilyName(),
-						"gender", relationship.getPersonB().getGender(),
-						"age", relationship.getPersonB().getAge(),
-						"birthdate", relationship.getPersonB().getBirthdate(),
-						"id",relationship.getPersonB().getId()
-				));
+
+		for (Relationship relationship : Context.getPersonService().getRelationshipsByPerson(patient)) {
+			try {
+				Date endDate = new Date();
+				Date startDate = DATE_FORMAT.parse(relationship.getStartDate().toString());
+				if( relationship.getEndDate() !=null){
+					endDate = DATE_FORMAT.parse(relationship.getEndDate().toString());
+				}
+
+				Date dateProvided = DATE_FORMAT.parse(effectiveDate);
+				if (relationship.getRelationshipType().getbIsToA().equals("Peer") && startDate.before(dateProvided)) {
+					if(endDate.after(dateProvided) || relationship.getEndDate() == null) {
+						peer.add(SimpleObject.create(
+								"name", relationship.getPersonB().getGivenName() + " " + relationship.getPersonA().getMiddleName()
+										+ " " + relationship.getPersonB().getFamilyName(),
+								"gender", relationship.getPersonB().getGender(),
+								"age", relationship.getPersonB().getAge(),
+								"birthdate", relationship.getPersonB().getBirthdate(),
+								"id", relationship.getPersonB().getId()
+						));
+					}
+				}
+			} catch (ParseException e) {
+				;
 			}
+
+
+
 		}
 		return peer;
 	}

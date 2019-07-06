@@ -5,6 +5,31 @@
 
 %>
 
+<style>
+.simple-table {
+	border: solid 1px #DDEEEE;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font: normal 13px Arial, sans-serif;
+}
+
+.simple-table thead th {
+	background-color: #DDEFEF;
+	border: solid 1px #DDEEEE;
+	color: #336B6B;
+	padding: 5px;
+	text-align: left;
+	text-shadow: 1px 1px 1px #fff;
+}
+
+.simple-table td {
+	border: solid 1px #DDEEEE;
+	color: #333;
+	padding: 5px;
+	text-shadow: 1px 1px 1px #fff;
+}
+</style>
+
 <div class="ke-page-sidebar">
 
 </div>
@@ -17,7 +42,7 @@
 		<% if (!peers) { %>
 		<div>0 Peers found!</div>
 		<% } else { %>
-		<table>
+		<table class="simple-table">
 			<tr>
 				<th>Name</th>
 				<th>Gender</th>
