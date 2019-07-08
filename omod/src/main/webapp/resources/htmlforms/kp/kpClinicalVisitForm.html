@@ -959,28 +959,26 @@
         }
 
 
-        var PEP  = function () {
-            var tested = getValue("pep.value");
-            if(tested==1065){
-
-                jq('#pep_type select').prop('disabled', false).removeClass('disabled');
+        var onPEPSelected  = function () {
+            var pep = getValue("pep_selected.value");
+            if(pep==1065){
+               jq("#pep_type input").prop("disabled", false);
             }
-
-            else{
-
-                jq('#pep_type select').prop('disabled', true).addClass('disabled');
+           else if(pep==1066){
+                jq("#pep_type input").prop("disabled", true);
+            }else {
+                jq("#pep_type input").prop("disabled", true);
             }
 
         }
-        var pep_type  = function () {
-            var pep = getValue("pep_type.value");
-            if(pep==5622){
-                jq("#pep_type_txt input").prop("disabled", false);
+        var onOtherExposureTypeSelected  = function () {
+            var otherExposure = getValue("pep_type.value");
+            if(otherExposure==5622){
+                jq("#pep_type_txt textarea").prop("disabled", false);
             }
-
             else{
-                jq("#pep_type_txt input").val('');
-                jq("#pep_type_txt input").prop("disabled", true);
+                jq("#pep_type_txt textarea").val('');
+                jq("#pep_type_txt textarea").prop("disabled", true);
             }
 
         }
@@ -1056,7 +1054,7 @@
             //Risk validations
             jq('#risk_screened').click(riskScreened);
             jq('#risk_results').click(riskResults);
-            jq('#risk_treated').click(riskcTreateed);
+          //  jq('#risk_treated').click(riskcTreateed);
             jq('#risk_referred').click(riskReferred);
 
             //Family validations
@@ -1085,9 +1083,8 @@
             jq("#facility input").change(confirmFacility);
             jq("#linktoart input").change(linkToart);
             jq("#care_provided input").change(providedElseWhere);
-            jq("#pep select").change(PEP);
-            jq("#pep_type select").change(pep_type);
-            jq("#pep_type select").change(pep_type);
+            jq("#pep_selected input").change(onPEPSelected);
+            jq("#pep_type input").change(onOtherExposureTypeSelected);
 
             jq("#test_results select").change(test_resultsChanged);
 
@@ -1105,28 +1102,8 @@
             jq("#edd input").prop("disabled", false);
             jq("#encounter-date input").prop("disabled", false);
 
-
-
-
-            $( "select" )
-                .change(function () {
-                    var typeOfPep = getValue("typeofpep.value");
-                    if(typeOfPep=="160632"){
-                        jq("#typeofpeptxt input").prop("disabled", false);
-                    }else{
-                        jq("#typeofpeptxt input").prop("disabled", true);
-                    }
-                })
-
-            $('input').on('click',function () {
-
-                // if(prep=="true"){
-                //     jq("#preptext input").prop("disabled", false);
-                // }else{
-                //     jq("#preptext input").prop("disabled", true);
-                // }
-
-            });
+            jq("#clinical textarea").prop("disabled", false);
+            jq("#tca input").prop("disabled", false);
 
         });
         //Before Submit
@@ -1695,19 +1672,19 @@
                     </td>
                 </tr>
                 <tr>
-                    <td > PEP &#160;&#160;  <obs id="pep" conceptId="164845" style="radio" answerSeparator="&lt;br /&gt;" /></td>
+                    <td > PEP :  &#160;&#160;  <obs id="pep_selected" conceptId="164845" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio"  /></td>
                     <td >Type of exposure :<br/>
-                        <obs id="pep_type" conceptId="165060" answerConceptIds="127910,165045, 5622"  answerLabels="Rape,Condom Burst, Others" style="radio" answerSeparator="&lt;br /&gt;"  /></td>
+                        <obs id="pep_type" conceptId="165060" answerConceptIds="127910,165045,5622"  answerLabels="Rape,Condom Burst,Others" style="radio" answerSeparator="&lt;br /&gt;" /></td>
                     <td width="156" id="pep_others" valign="top"><p>If OtherSpecify</p></td>
-                    <td ><p>  <obs id="pep_type_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></p></td>
+                    <td ><p>  <obs id="pep_type_txt" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  cols="20"/></p></td>
                 </tr>
                 <tr>
                     <td ><p>Clinical Notes</p></td>
-                    <td ><p>  <obs id="clinical" class="remarks" conceptId="165248"
-                    /></p></td>
+                    <td ><p>  <obs id="clinical"  conceptId="165248" cols="20"   /></p></td>
                 </tr>
                 <tr>
                     <td ><p>Next Visit Date</p></td>
+                    <td><obs id="tca" conceptId="5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
                 </tr>
             </table>
         </fieldset>
