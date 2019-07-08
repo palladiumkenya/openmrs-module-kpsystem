@@ -61,7 +61,11 @@ public class PeerViewClientsPageController {
 		for (Relationship relationship : Context.getPersonService().getRelationshipsByPerson(patient)) {
 			try {
 				Date endDate = new Date();
-				Date startDate = DATE_FORMAT.parse(relationship.getStartDate().toString());
+				Date startDate = new Date();
+				if(relationship.getStartDate() !=null) {
+					startDate = DATE_FORMAT.parse(relationship.getStartDate().toString());
+				}
+
 				if( relationship.getEndDate() !=null){
 					endDate = DATE_FORMAT.parse(relationship.getEndDate().toString());
 				}
