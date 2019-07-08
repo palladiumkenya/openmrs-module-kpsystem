@@ -55,28 +55,6 @@
 
                 <div class="info-section">
                     <div class="info-header">
-                        <i class="fa fa-support"></i>
-                        <h3>Client Support</h3>
-                        <i class="fa fa-plus-square right" style="color: steelblue" title="Add support details" onclick="location.href = '${addSocialStatusFormLink}'"></i>
-                    </div>
-                    <div class="info-body">
-                        No data
-                    </div>
-                </div>
-
-                <div class="info-section">
-                    <div class="info-header">
-                        <i class="fa fa-info-circle"></i>
-                        <h3>Social Status</h3>
-                        <i class="fa fa-plus-square right" style="color: steelblue" title="Add social status" onclick="location.href = '${addSocialStatusFormLink}'"></i>
-                    </div>
-                    <div class="info-body">
-                        ${ ui.includeFragment("kenyaemr", "program/kp/socialStatus", [ patient: currentPatient]) }
-                    </div>
-                </div>
-
-                <div class="info-section">
-                    <div class="info-header">
                         <i class="fa fa-history"></i>
                         <h3>KP Program History</h3>
                     </div>
@@ -108,27 +86,6 @@
                         ${ ui.includeFragment("kenyaemr", "patient/currentVitals", [ patient: currentPatient]) }
                     </div>
                 </div>
-
-                <div class="info-section allergies">
-                    <div class="info-header">
-                        <i class="icon-medical"></i>
-                        <h3>Diagnoses</h3>
-                    </div>
-                    <div class="info-body">
-                        None
-                    </div>
-                </div>
-
-                <div class="info-section allergies">
-                    <div class="info-header">
-                        <i class="icon-medical"></i>
-                        <h3>Medications</h3>
-                    </div>
-                    <div class="info-body">
-                        No Medications
-                    </div>
-                </div>
-
             </div>
 
             ${ ui.includeFragment("kenyaemr", "patient/actionsPanel", [visit: visit]) }
