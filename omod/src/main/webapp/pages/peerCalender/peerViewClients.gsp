@@ -44,13 +44,15 @@
 		<% } else { %>
 		<table class="simple-table">
 			<tr>
+				<th>#</th>
 				<th>Name</th>
 				<th>Gender</th>
 				<th>Age</th>
 				<th>Actions</th>
 			</tr>
-		<% peers.each { peer -> %>
+		<% peers.eachWithIndex { peer, index, indexPlusOne = index + 1  -> %>
 		<tr >
+			<td>${ indexPlusOne }</td>
 			<td>${ peer.name }</td>
 			<td>${ peer.gender }</td>
 			<td>${ peer.age }</td>
