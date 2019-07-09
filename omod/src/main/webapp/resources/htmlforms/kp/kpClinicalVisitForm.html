@@ -63,6 +63,9 @@
                 jq("#sti_treated input").prop("disabled", true);
                 jq("#sti_referred input").prop("disabled", true);
                 jq("#sti_txt input").prop("disabled", true);
+                jq("#sti_treated input").prop('checked', false);
+                jq("#sti_referred input").prop('checked', false);
+                jq("#sti_txt input").val('');
             }
             else{
                 jq("#sti_treated input").prop("disabled", false);
@@ -417,7 +420,7 @@
         var AlcoholReferredSelected = function (){
             var alcoholReferred= getValue("alcohol_referred.value");
 
-            if(alcoholReferred=="true"){
+            if(alcoholReferred==1065){
                 jq("#alcoholtxt input").prop("disabled", false);
             }else{
                 jq("#alcoholtxt input").prop("disabled", true);
@@ -828,27 +831,54 @@
         }
 
         var hivTesting  = function () {
-            var val = getField("hiv_selfreported.value").val();
-            if(val==1067){
+            var unknown = getValue("hiv_selfreported.value");
+            if(unknown==703){
                // jq("#provider-test").show();
-                jq('#hiv_settingoflasttest select').prop('disabled', true).addClass('disabled');
-            }else{
-               jq('#hiv_settingoflasttest select').prop('disabled', false).removeClass('disabled');
+                jq('#hiv_settingoflasttest input').prop('disabled', true).addClass('disabled');
+                jq('#test_frequency input').prop('disabled', true).addClass('disabled');
+                jq('#received_results input').prop('disabled', true).addClass('disabled');
+                jq('#test_results input').prop('disabled', true).addClass('disabled');
+                jq('#hiv_tested input').prop('disabled', true).addClass('disabled');
+
+                jq("#linked_to_art input").prop("disabled", false).removeClass('disabled');
+                $('#care_and_treatment').find('*').prop('disabled',false).removeClass('disabled');
+                $('#care_and_treatment').find('input:text').val('');
+                $('#care_and_treatment').find("select").prop("selectedIndex",0).removeClass('disabled');
+                jq("#linkedFacility input").prop("disabled", false).removeClass('disabled');
+
+                jq("#linkedFacility input").prop("disabled", false).removeClass('disabled');
+            }else {
+                jq('#hiv_settingoflasttest input').prop('disabled', false).removeClass('disabled');
+                jq('#hiv_settingoflasttest input').prop('disabled', false).removeClass('disabled');
+                jq('#test_frequency input').prop('disabled', false).removeClass('disabled');
+                jq('#received_results input').prop('disabled', false).removeClass('disabled');
+                jq('#test_results input').prop('disabled', false).removeClass('disabled');
+                jq('#hiv_tested input').prop('disabled', false).removeClass('disabled')
+                jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
+                $('#care_and_treatment').find('*').prop('disabled',true);
+                $('#care_and_treatment').find('input:text').val('');
+                $('#care_and_treatment').find("select").prop("selectedIndex",0).addClass('disabled');
+                jq("#linkedFacility input").prop("disabled", true).addClass('disabled');
+
+                jq("#linkedFacility input").prop("disabled", true).addClass('disabled');
             }
         }
 
         var hivTested  = function () {
             var tested = getValue("hiv_tested.value");
-            if(tested==1065){
-                jq('#test_frequency select').prop('disabled', false).removeClass('disabled');
-                jq('#received_results select').prop('disabled', false).removeClass('disabled');
-                jq('#test_results select').prop('disabled', false).removeClass('disabled');
+            if(tested==1066){
+                jq('#test_frequency input').prop('disabled', true).addClass('disabled');
+                jq('#received_results input').prop('disabled', true).addClass('disabled');
+                jq('#test_results input').prop('disabled', true).addClass('disabled');
+                jq('#linked_to_ART input').prop('disabled', true).addClass('disabled');
+
 
             }else{
 
-                jq('#test_frequency select').prop('disabled', true).addClass('disabled');
-                jq('#received_results select').prop('disabled', true).addClass('disabled');
-                jq('#test_results select').prop('disabled', true).addClass('disabled');
+                jq('#test_frequency input').prop('disabled', false).removeClass('disabled');
+                jq('#received_results input').prop('disabled', false).removeClass('disabled');
+                jq('#test_results input').prop('disabled', false).removeClass('disabled');
+                jq('#linked_to_ART input').prop('disabled', false).removeClass('disabled');
             }
 
         }
@@ -885,7 +915,6 @@
                 jq('#selftestFrequency input').prop('disabled', false).removeClass('disabled');
                 jq('#selftestResults input').prop('disabled', false).removeClass('disabled');
                 jq("#selftestDate input").prop("disabled", false);
-
             }
 
             else{
@@ -945,6 +974,20 @@
 
         }
 
+        var linkTo_ART  = function () {
+            var tested = getValue("linked_to_ART.value");
+            if(tested=="true"){
+                jq("#txtART input").prop("disabled", false);
+            }
+
+            else{
+                jq("#txtART input").val('');
+                jq("#txtART input").prop("disabled", true);
+            }
+
+        }
+
+
         var providedElseWhere  = function () {
             var tested = getValue("care_provided.value");
             if(tested==162723){
@@ -985,12 +1028,14 @@
 
         var test_resultsChanged  = function () {
             var testResult = getValue("test_results.value");
-            if(testResult==1065){
-                jq("#risktxt input").prop("disabled", false);
-            }else{
-                jq("#risktxt input").prop("disabled", true);
-            }
-
+            if(testResult==703){jq("#linked_to_art input").prop("disabled", false).removeClass('disabled');
+                $('#care_and_treatment').find("select").prop("selectedIndex",0).removeClass('disabled');
+                $('#care_and_treatment').find('*').prop('disabled',false);}
+            else{jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
+                $('#care_and_treatment').find('*').prop('disabled',true);
+                $('#care_and_treatment').find('input:text').val('');
+                $('#care_and_treatment').find("select").prop("selectedIndex",0).addClass('disabled');
+                jq("#linkedFacility input").prop("disabled", true).addClass('disabled'); }
         }
 
         //On Ready
@@ -1074,7 +1119,7 @@
             //jq("#provider-test").hide();
 
 
-            jq("#hiv_selfreported select").change(hivTesting);
+            jq("#hiv_selfreported input").change(hivTesting);
             jq("#hiv_tested input").change(hivTested);
             jq("#hiv_selftest input").change(numberOfSelfTest);
             jq("#self_tested input").change(SelfTested);
@@ -1086,7 +1131,9 @@
             jq("#pep_selected input").change(onPEPSelected);
             jq("#pep_type input").change(onOtherExposureTypeSelected);
 
-            jq("#test_results select").change(test_resultsChanged);
+            jq("#test_results input").change(test_resultsChanged);
+            jq("#linked_to_ART input").change(linkTo_ART);
+
 
 
 
@@ -1101,6 +1148,8 @@
             jq("#apointment input").prop("disabled", false);
             jq("#edd input").prop("disabled", false);
             jq("#encounter-date input").prop("disabled", false);
+            jq("#ConName input").prop("disabled", false);
+            jq("#ConDate input").prop("disabled", false);
 
             jq("#clinical textarea").prop("disabled", false);
             jq("#tca input").prop("disabled", false);
@@ -1510,12 +1559,12 @@
                                                            style="radio" answerSeparator="&lt;br /&gt;"  />
                     </p></td>
                     <td ><p>  <obs id="test_results" conceptId="159427"
-                                                           style="radio" answerConceptIds="664,703,1118" answerLabels="Negative,Positive, Not done" answerSeparator="&lt;br /&gt;" /></p></td>
+                                                           style="radio"  answerConceptIds="664,703,165232,138571,1118" answerLabels="Negative, Positive, Inconclusive,Known positive, Not Applicable" answerSeparator="&lt;br /&gt;" /></p></td>
 
-                    <td ><p>  <obs id="hepatitisb" conceptId="1648"
+                    <td ><p>  <obs id="linked_to_ART" conceptId="1648"
                                                            style="yes_no"  /></p></td>
 
-                    <td ><p>  <obs id="familyplaningtxt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    <td ><p>  <obs id="txtART" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                     /></p></td>
 
                 </tr>
@@ -1562,8 +1611,10 @@
                     <td width="160"><p>  <obs id="selftestResults" conceptId="165233" style="radio" answerConceptIds="664,703,165232" answerLabels="Negative,Positive, Inconclusive" answerSeparator="&lt;br /&gt;"/></p></td>
 
                     <td><p>  <obs id="confirm_test" conceptId="165234" style="radio" answerConceptIds="664,703,1118" answerLabels="Negative, Positive, Not done" answerSeparator="&lt;br /&gt;" /></p></td>
+
                     <td><p>  <obs id="facility" conceptId="165237" style="radio" answerSeparator="&lt;br /&gt;" /></p>
                     <p> if off-site specify <obs id="facilitytxt" class="remarks" conceptId="162724" /></p></td>
+
                     <td><p>  <obs id="linktoart" conceptId="165238" style="radio"  /></p>
                     <p>if yes facility linked to <obs id="arttxt" class="remarks" conceptId="161562" /></p></td>
                 </tr>
@@ -1572,6 +1623,7 @@
 
         </fieldset>
         <!--        ===========================CARE AND TREATMENT=====================-->
+        <div id="care_and_treatment">
 
         <fieldset>
             <legend>Care and treatment</legend>
@@ -1601,6 +1653,32 @@
             </table>
 
         </fieldset>
+        </div>
+
+<!--        ==============================================councelor name===========-->
+        <div id="care_and_treatment">
+
+            <fieldset>
+                <legend>Councelor name and Date</legend>
+                <table class="simple-table">
+                    <tr>
+                        <td ><p><b>Councelor name</b></p></td>
+
+                        <td ><p><b>Councelor name</b></p></td>
+                    </tr>
+                    <tr>
+
+                       <td ><p>  <obs id="ConName" conceptId="160632" class="remarks" answerConceptIds="162591"   answerSeparator="&lt;br /&gt;"/>
+                        </p></td>
+
+                        <td ><p>  <obs id="ConDate" conceptId="163526" class="remarks" answerConceptIds="162591"   answerSeparator="&lt;br /&gt;"/>
+                        </p></td>
+                    </tr>
+
+                </table>
+
+            </fieldset>
+        </div>
         <!--        ===============================OTHER SERVICES========================-->
 
         <fieldset>
@@ -1633,7 +1711,7 @@
                                     Link to Psychosocial
                                 </td>
                                 <td>
-                                    <obs conceptId="165302" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />
+<!--                                    <obs conceptId="165302" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />-->
                                 </td>
                             </tr>
                         </table>
