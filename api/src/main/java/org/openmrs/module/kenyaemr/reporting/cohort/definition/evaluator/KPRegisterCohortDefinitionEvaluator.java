@@ -51,12 +51,10 @@ public class KPRegisterCohortDefinitionEvaluator implements CohortDefinitionEval
 
         context = ObjectUtil.nvl(context, new EvaluationContext());
 
-        String qry = "SELECT hf.patient_id from kenyaemr_etl.etl_hei_follow_up_visit hf\n" +
-                "  INNER JOIN kenyaemr_etl.etl_hei_enrollment he\n" +
-                "  INNER JOIN kenyaemr_etl.etl_patient_demographics pd\n" +
-                "    on hf.patient_id = he.patient_id  and hf.patient_id = pd.patient_id\n" +
-                "where  he.visit_date <= hf.visit_date\n" +
-                "and date(pd.DOB) BETWEEN date(:startDate) AND date(:endDate);";
+        String qry = "select r.client_id from kp_etl.etl_client_registration r left outer join kp_etl.etl_clinical_visit v on r.client_id = v.client_id\n" +
+                "                                               left outer join kp_etl.etl_peer_calendar c on r.client_id = c.client_id\n" +
+                "where date(v.visit_date) between date(:startDate) and date(:endDate) or date(c.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by r.client_id;";
 
         SqlQueryBuilder builder = new SqlQueryBuilder();
         builder.append(qry);
