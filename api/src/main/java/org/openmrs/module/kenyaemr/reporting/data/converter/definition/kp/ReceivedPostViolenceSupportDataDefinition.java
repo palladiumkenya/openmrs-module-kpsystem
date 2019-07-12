@@ -18,21 +18,21 @@ import org.openmrs.module.reporting.evaluation.caching.Caching;
  * Serial No. Column
  */
 @Caching(strategy=ConfigurationPropertyCachingStrategy.class)
-public class receivedPostViolenceSupportDataDefinition extends BaseDataDefinition implements PersonDataDefinition {
+public class ReceivedPostViolenceSupportDataDefinition extends BaseDataDefinition implements PersonDataDefinition {
 
     public static final long serialVersionUID = 1L;
 
     /**
      * Default Constructor
      */
-    public receivedPostViolenceSupportDataDefinition() {
+    public ReceivedPostViolenceSupportDataDefinition() {
         super();
     }
 
     /**
      * Constructor to populate name only
      */
-    public receivedPostViolenceSupportDataDefinition(String name) {
+    public ReceivedPostViolenceSupportDataDefinition(String name) {
         super(name);
     }
 

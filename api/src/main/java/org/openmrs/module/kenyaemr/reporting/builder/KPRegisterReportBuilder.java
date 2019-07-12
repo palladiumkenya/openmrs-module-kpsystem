@@ -159,7 +159,7 @@ public class KPRegisterReportBuilder extends AbstractHybridReportBuilder {
         dsd.addColumn("Provided with Risk Reduction Counselling", new RiskReductionCounsellingDataDefinition(), "");
         dsd.addColumn("Reached with EBI", new ReachedWithEBIDataDefinition(), "");
         dsd.addColumn("Experienced Violence", new ExperiencedViolenceDataDefinition(), "");
-        dsd.addColumn("Received Post Violence support", new receivedPostViolenceSupportDataDefinition(), "");
+        dsd.addColumn("Received Post Violence support", new ReceivedPostViolenceSupportDataDefinition(), "");
         dsd.addColumn("Status in Program", new StatusInProgramDataDefinition(), "");
         dsd.addColumn("Next appointment Date", new AppointmentDateDataDefinition(), "");
         dsd.addColumn("Remarks", new RemarksDataDefinition(), "");
