@@ -25,7 +25,6 @@
         var StiScreened  = function () {
             var sti_screened = getValue("sti_screened.value");
             if(sti_screened ==1066) {
-
                 jq("#sti_treated input").prop("disabled", true);
                 jq("#sti_results input").prop("disabled", true);
                 jq("#sti_referred input").prop("disabled", true);
@@ -36,14 +35,17 @@
                 jq("#sti_txt input").val('');
             }
             else{
-
                 jq("#sti_results input").prop("disabled", false);
 
             }
         }
         var StiResults  = function () {
             var stiResults = getValue("sti_results.value");
-            if(stiResults==664){
+            if(stiResults==703){
+                jq("#sti_treated input").prop("disabled", false);
+                jq("#sti_referred input").prop("disabled", false);
+            }
+            else {
                 jq("#sti_treated input").prop("disabled", true);
                 jq("#sti_referred input").prop("disabled", true);
                 jq("#sti_txt input").prop("disabled", true);
@@ -51,22 +53,8 @@
                 jq("#sti_referred input").prop('checked', false);
                 jq("#sti_txt input").val('');
             }
-            else{
-                jq("#sti_treated input").prop("disabled", false);
-                jq("#sti_referred input").prop('checked', false);
-                jq("#sti_txt input").val('');
-            }
         }
-        var StiTreateed  = function () {
-            var stiTreated = getValue("sti_treated.value");
 
-            if(stiTreated==1066){
-                jq("#sti_referred input").prop("disabled", false);}
-            else{
-                jq("#sti_referred input").prop("disabled", true);
-                jq("#sti_txt input").prop("disabled", true);
-            }
-        }
         var StiReferred  = function () {
             var stiReferred = getValue("sti_referred.value");
             if(stiReferred==1065){
@@ -77,7 +65,11 @@
         }
         var tbScreened  = function () {
             var HepbScreened = getValue("tb_screened.value");
-            if(HepbScreened ==1066) {
+            if(HepbScreened ==1065) {
+                jq("#tb_results input").prop("disabled", false);
+            }
+            else{
+
                 jq("#tb_treated input").prop("disabled", true);
                 jq("#tb_results input").prop("disabled", true);
                 jq("#tb_referred input").prop("disabled", true);
@@ -88,42 +80,23 @@
                 jq("#tb_referred input").prop('checked', false);
                 jq("#tb_txt input").val('');
 
-
-            }
-            else{
-
-                jq("#tb_results input").prop("disabled", false);
             }
 
         }
         var tbResults  = function () {
             var HepbResults = getValue("tb_results.value");
 
-            if(HepbResults==664){
+            if(HepbResults==703){
+                jq("#tb_treated input").prop("disabled", false);
+                jq("#tb_referred input").prop("disabled", false);
+            }
+            else{
                 jq("#tb_treated input").prop("disabled", true);
                 jq("#tb_referred input").prop("disabled", true);
                 jq("#tb_txt input").prop("disabled", true);
             }
-            else{
-                jq("#tb_treated input").prop("disabled", false);
-                jq("#tb_referred input").prop("disabled", false);
-
-            }
-
         }
-        var tbTreated  = function () {
-            var HepbTreated = getValue("tb_treated.value");
 
-            if(HepbTreated==1066){
-                jq("#tb_referred input").prop("disabled", false);
-                jq("#tb_txt input").prop("disabled", false);
-            }
-            else{
-                jq("#tb_referred input").prop("disabled", true);
-                jq("#tb_txt input").prop("disabled", true);
-            }
-
-        }
         var tbReferred  = function () {
             var HepbReferred = getValue("tb_referred.value");
 
@@ -158,41 +131,27 @@
         var HepatitisbResults  = function () {
             var HepbResults = getValue("hepb_results.value");
 
-            if(HepbResults==664){
+            if(HepbResults==703){
+                jq("#hepb_treated input").prop("disabled", false);
+                jq("#hepb_referred input").prop("disabled", false);
+            }
+            else{
+
                 jq("#hepb_treated input").prop("disabled", true);
                 jq("#hepb_referred input").prop("disabled", true);
                 jq("#hepb_txt input").prop("disabled", true);
-            }
-            else{
-                jq("#hepb_treated input").prop("disabled", false);
-                jq("#hepb_referred input").prop("disabled", false);
 
             }
 
         }
-        var HepatitisbTreated  = function () {
-            var HepbTreated = getValue("hepb_treated.value");
 
-            if(HepbTreated==1066){
-                jq("#hepb_referred input").prop("disabled", false);
-                jq("#hepb_txt input").prop("disabled", false);
-            }
-            else{
-                jq("#hepb_referred input").prop("disabled", true);
-                jq("#hepb_txt input").prop("disabled", true);
-            }
-
-        }
         var HepatitisbReferred  = function () {
             var HepbReferred = getValue("hepb_referred.value");
-
-
             if(HepbReferred==1065){
                 jq("#hepb_txt input").prop("disabled", false);
             }else{
                 jq("#hepb_txt input").prop("disabled", true);
             }
-
         }
 
         var HepatitiscScreened  = function () {
@@ -218,29 +177,17 @@
         var HepatitiscResults  = function () {
             var HepbResults = getValue("hepc_results.value");
 
-            if(HepbResults==664){
+            if(HepbResults==703){
+                jq("#hepc_treated input").prop("disabled", false);
+                jq("#hepc_referred input").prop("disabled", false);
+            }
+            else {
                 jq("#hepc_treated input").prop("disabled", true);
                 jq("#hepc_referred input").prop("disabled", true);
                 jq("#hepctxt input").prop("disabled", true);
             }
-            else {
-                jq("#hepc_treated input").prop("disabled", false);
-            }
-
         }
-        var HepatitiscTreateed  = function () {
-            var HepbTreated = getValue("hepc_treated.value");
 
-            if(HepbTreated==1066){
-                jq("#hepc_referred input").prop("disabled", false);
-                jq("#hepctxt input").prop("disabled", false);
-            }
-            else{
-                jq("#hepc_referred input").prop("disabled", true);
-                jq("#hepctxt input").prop("disabled", true);
-            }
-
-        }
         var HepatiriscReferred  = function () {
             var HepbReferred = getValue("hepc_referred.value");
             if(HepbReferred==1065){
@@ -268,28 +215,19 @@
         }
         var OverdoseResultsSelected = function (){
             var overdoseResults= getValue("overdose_results.value");
-            if(overdoseResults==664 ){
+            if(overdoseResults==703 ){
+                jq("#overdose_treated input").prop("disabled", false);
+                jq("#naloxane input").prop("disabled", false);
+                jq("#overdose_referred input").prop("disabled", false);
+            }
+            else{
                 jq("#overdose_treated input").prop("disabled", true);
                 jq("#overdose_referred input").prop("disabled", true);
                 jq("#overdosetxt input").prop("disabled", true);
                 jq("#naloxane input").prop("disabled", true);
             }
-            else{
-                jq("#overdose_treated input").prop("disabled", false);
-                jq("#overdose_referred input").prop("disabled", false);
-                jq("#naloxane input").prop("disabled", false);
-            }
         }
-        var OverDoseTreatedSelected = function (){
-            var overdoseTreated= getValue("overdose_treated.value");
-            if(overdoseTreated==1066){
-                jq("#overdose_referred input").prop("disabled", false);
-            }
-            else{
-                jq("#overdose_referred input").prop("disabled", true);
-                jq("#overdosetxt input").prop("disabled", true);
-            }
-        }
+
         var OverdoseRefferredSelected = function (){
             var overdoseReferred= getValue("overdose_referred.value");
             if(overdoseReferred==1065){
@@ -302,32 +240,22 @@
 
         var AlcoholScreenedSelected = function (){
             var alcoholScreened= getValue("alcohol_screened.value");
-            var alcoholReferred= getValue("alcohol_referred.value");
 
-            if(alcoholScreened==1066){
+            if(alcoholScreened==1065){
+
+                jq("#alcohol_results input").prop("disabled", false);
+            }else{
                 jq("#alcohol_treated input").prop("disabled", true);
                 jq("#alcohol_referred input").prop("disabled", true);
                 jq("#alcohol_results input").prop("disabled", true);
-            }else{
-                jq("#alcohol_treated input").prop("disabled", false);
-                jq("#alcohol_referred input").prop("disabled", false);
-                jq("#alcohol_results input").prop("disabled", false);
-            }
-
-            if(alcoholScreened==1065 &amp;&amp; alcoholReferred==1065){
-                jq("#overdosetxt input").prop("disabled", false);
-            }
-            else{
-                jq("#overdosetxt input").prop("disabled", true);
             }
 
         }
         var AlcoholResultsSelected = function (){
             var alcoholResults= getValue("alcohol_results.value");
-            if(alcoholResults!=664){
+            if(alcoholResults==703){
                 jq("#alcohol_treated input").prop("disabled", false);
                 jq("#alcohol_referred input").prop("disabled", false);
-                jq("#alcoholtxt input").prop("disabled", false);
             }
             else{
                 jq("#alcohol_treated input").prop("disabled", true);
@@ -335,17 +263,7 @@
                 jq("#alcoholtxt input").prop("disabled", true);
             }
         }
-        var AlcoholTreatedSelected = function (){
-            var alcoholTreated= getValue("alcohol_treated.value");
-            if(alcoholTreated==1066){
-                jq("#alcohol_referred input").prop("disabled", false);
-                jq("#alcoholtxt input").prop("disabled", false);
-            }
-            else{
-                jq("#alcohol_referred input").prop("disabled", true);
-                jq("#alcoholtxt input").prop("disabled", true);
-            }
-        }
+
         var AlcoholReferredSelected = function (){
             var alcoholReferred= getValue("alcohol_referred.value");
 
@@ -365,32 +283,25 @@
                 jq("#abscess_referred input").prop("disabled", true);
                 jq("#abscess_results input").prop("disabled", true);
             }else{
-                jq("#abscess_results input").prop("disabled", true);
+                jq("#abscess_results input").prop("disabled", false);
             }
 
         }
         var AbscessResultsSelected = function (){
             var abscessResults= getValue("abscess_results.value");
 
-            if(abscessResults==664  ){
-                jq("#abscess_treated input").prop("disabled", true);
-                jq("#abscess_referred input").prop("disabled", true);
-            }
-            else{
+            if(abscessResults==703  ){
                 jq("#abscess_treated input").prop("disabled", false);
                 jq("#abscess_referred input").prop("disabled", false);
-            }
-        }
-        var AbscessTreatedSelected = function (){
-            var abscessTreated= getValue("abscess_treated.value");
-            if(abscessTreated==1066){
-                jq("#abscess_referred input").prop("disabled", false);
-            }
-            else{
                 jq("#abscesstxt input").prop("disabled", true);
             }
-
+            else{
+                jq("#abscess_treated input").prop("disabled", true);
+                jq("#abscess_referred input").prop("disabled", true);
+                jq("#abscesstxt input").prop("disabled", true);
+            }
         }
+
         var AbscessReferredSelected = function (){
             var abscessReferred= getValue("abscess_referred.value");
 
@@ -404,9 +315,6 @@
         var CervicalScreeningSelected = function (){
             var cervicalScreened= getValue("cerv_screened.value");
             if(cervicalScreened==1065){
-                jq("#cerv_referred input").prop("disabled", false);
-                jq("#cerv_cancertxt input").prop("disabled", false);
-                jq("#cerv_treated input").prop("disabled", false);
                 jq("#cerv_results input").prop("disabled", false);
             }
             else{
@@ -420,33 +328,18 @@
         }
         var CervicalResulltsSelected = function (){
             var cervicaResults= getValue("cerv_results.value");
-
-
-            if(cervicaResults==664){
+            if(cervicaResults==703){
+                jq("#cerv_referred input").prop("disabled", false);
+                jq("#cerv_treated input").prop("disabled", false);
+            }
+            else{
                 jq("#cerv_referred input").prop("disabled", true);
                 jq("#cerv_cancertxt input").prop("disabled", true);
                 jq("#cerv_treated input").prop("disabled", true);
             }
-            else{
-                jq("#cerv_referred input").prop("disabled", false);
-                jq("#cerv_cancertxt input").prop("disabled", false);
-                jq("#cerv_treated input").prop("disabled", false);
-            }
 
         }
-        var CervicalTreatedSelected = function (){
-            var cervicalTreated= getValue("cerv_treated.value");
 
-            if(cervicalTreated==1065){
-                jq("#cerv_referred input").prop("disabled", true);
-                jq("#cerv_cancertxt input").prop("disabled", true);
-            }
-            else{
-                jq("#cerv_referred input").prop("disabled", false);
-                jq("#cerv_cancertxt input").prop("disabled", false);
-            }
-
-        }
         var CervicalReferredSelected = function (){
             var cervicalReferred= getValue("cerv_referred.value");
 
@@ -462,21 +355,16 @@
         var prepScreened  = function () {
             var PrepScreened = getValue("prep_screened.value");
             var PrepReferred = getValue("prep_referred.value");
-            if(PrepScreened ==1066) {
-                //jq("#hepc_screened input").prop("disabled", true);
+            if(PrepScreened ==1065) {
+                jq("#prep_results input").prop("disabled", false);
+
+            }
+            else{
+
                 jq("#prep_results input").prop("disabled", true);
                 jq("#prep_treated input").prop("disabled", true);
                 jq("#prep_referred input").prop("disabled", true);
-                jq("#preptext input").prop("disabled", true);
             }
-            else{
-                jq("#prep_screened input").prop("disabled", false);
-                jq("#prep_results input").prop("disabled", false);
-                jq("#prep_treated input").prop("disabled", false);
-                jq("#prep_referred input").prop("disabled", false);
-
-            }
-
 
         }
         var prepResults  = function () {
@@ -494,20 +382,7 @@
             }
 
         }
-        var prepTreateed  = function () {
-            var PrepTreated = getValue("prep_treated.value");
 
-            if(PrepTreated==1066){
-                jq("#prep_referred input").prop("disabled", false);
-            }
-            else{
-
-                jq("#prep_referred input").prop("disabled", true);
-                jq("#preptext input").prop("disabled", true);
-
-            }
-
-        }
         var prepReferred  = function () {
             var PrepReferred = getValue("prep_referred.value");
             if(PrepReferred==1065){
@@ -553,19 +428,7 @@
             }
 
         }
-        var violenceTreateed  = function () {
-            var HepbTreated = getValue("vio_treated.value");
 
-            if(HepbTreated==1065){
-                jq("#vio_referred input").prop("disabled", true);
-                jq("#viotext input").prop("disabled", true);
-            }
-            else{
-
-                jq("#vio_referred input").prop("disabled", false);
-            }
-
-        }
         var violenceReferred  = function () {
             var vioReferred = getValue("vio_referred.value");
             if(vioReferred==1065){
@@ -579,19 +442,17 @@
         var riskScreened  = function () {
             var riskScreened = getValue("risk_screened.value");
             var riskReferred = getValue("risk_referred.value");
-            if(riskScreened ==1066) {
+            if(riskScreened ==1065) {
+
+                jq("#risk_results input").prop("disabled", false);
+
+            }
+            else{
 
                 jq("#risk_results input").prop("disabled", true);
                 jq("#risk_treated input").prop("disabled", true);
                 jq("#risk_referred input").prop("disabled", true);
-                jq("#risktxt input").prop("disabled", true);
-            }
-            else{
-                jq("#risk_screened input").prop("disabled", false);
-                jq("#risk_results input").prop("disabled", false);
-                jq("#risk_treated input").prop("disabled", false);
-                jq("#risk_referred input").prop("disabled", false);
-                //jq("#risktxt input").prop("disabled", false);
+
             }
 
         }
@@ -610,19 +471,7 @@
             }
 
         }
-        var riskcTreateed  = function () {
-            var riskTreated = getValue("risk_treated.value");
 
-            if(riskTreated==1066){
-                jq("#risk_referred input").prop("disabled", false);
-
-            }
-            else{
-                jq("#risk_referred input").prop("disabled", true);
-                jq("#risktxt input").prop("disabled", true);
-            }
-
-        }
         var riskReferred  = function () {
             var HepbReferred = getValue("risk_referred.value");
             if(HepbReferred==1065){
@@ -633,25 +482,16 @@
 
         }
 
-
-
-
-
         var familyScreened  = function () {
             var famScreened = getValue("fam_screened.value");
-            var famReferred = getValue("fam_referred.value");
-            if(famScreened ==1066) {
-                //jq("#hepc_screened input").prop("disabled", true);
+            if(famScreened ==1065) {
+                jq("#fam_results input").prop("disabled", false);
+            }
+            else{
+
                 jq("#fam_results input").prop("disabled", true);
                 jq("#fam_treated input").prop("disabled", true);
                 jq("#fam_referred input").prop("disabled", true);
-                jq("#famtxt input").prop("disabled", true);
-            }
-            else{
-                jq("#fam_screened input").prop("disabled", false);
-                jq("#fam_results input").prop("disabled", false);
-                jq("#fam_treated input").prop("disabled", false);
-                jq("#fam_referred input").prop("disabled", false);
 
             }
 
@@ -659,31 +499,19 @@
         var familyResults  = function () {
             var famResults = getValue("fam_results.value");
 
-            if(famResults==165078){
+            if(famResults==165087){
+                jq("#fam_treated input").prop("disabled", false);
+                jq("#fam_referred input").prop("disabled", false);
+                jq("#famtxt input").prop("disabled", true);
+            }
+            else{
                 jq("#fam_treated input").prop("disabled", true);
                 jq("#fam_referred input").prop("disabled", true);
                 jq("#famtxt input").prop("disabled", true);
             }
-            else{
-                jq("#fam_treated input").prop("disabled", false);
-                jq("#fam_referred input").prop("disabled", false);
-
-            }
 
         }
-        var familyTreated  = function () {
-            var famTreated = getValue("fam_treated.value");
 
-            if(famTreated==1065){
-                jq("#fam_referred input").prop("disabled", false);
-
-            }
-            else{
-                jq("#fam_referred input").prop("disabled", true);
-                jq("#famtxt input").prop("disabled", true);
-            }
-
-        }
         var familyReferred  = function () {
             var famReferred = getValue("fam_referred.value");
             if(famReferred==1065){
@@ -727,19 +555,7 @@
             }
 
         }
-        var menTreateed  = function () {
-            var menTreated = getValue("men_treated.value");
 
-            if(menTreated==1066){
-                jq("#men_referred input").prop("disabled", false);
-
-            }
-            else{
-                jq("#men_referred input").prop("disabled", true);
-                jq("#mentxt input").prop("disabled", true);
-            }
-
-        }
         var menReferred  = function () {
             var menReferred = getValue("men_referred.value");
             if(menReferred==1065){
@@ -790,13 +606,13 @@
                 jq('#test_frequency input').prop('disabled', true).addClass('disabled');
                 jq('#received_results input').prop('disabled', true).addClass('disabled');
                 jq('#test_results input').prop('disabled', true).addClass('disabled');
-                jq('#linked_to_ART input').prop('disabled', true).addClass('disabled');
+                jq('#linked_to_art input').prop('disabled', true).addClass('disabled');
 
             }else{
                 jq('#test_frequency input').prop('disabled', false).removeClass('disabled');
                 jq('#received_results input').prop('disabled', false).removeClass('disabled');
                 jq('#test_results input').prop('disabled', false).removeClass('disabled');
-                jq('#linked_to_ART input').prop('disabled', false).removeClass('disabled');
+                jq('#linked_to_art input').prop('disabled', false).removeClass('disabled');
             }
 
         }
@@ -893,14 +709,14 @@
         }
 
         var linkTo_ART  = function () {
-            var tested = getValue("linked_to_ART.value");
+            var tested = getValue("linked_to_art.value");
             if(tested=="true"){
-                jq("#txtART input").prop("disabled", false);
+                jq("#txtart input").prop("disabled", false).removeClass('disabled');
             }
 
             else{
-                jq("#txtART input").val('');
-                jq("#txtART input").prop("disabled", true);
+                jq("#txtart input").val('');
+                jq("#txtart input").prop("disabled", true);
             }
 
         }
@@ -943,12 +759,35 @@
             }
 
         }
+        var eligible_for_viral_load  = function () {
+            var viral = getValue("eligible_for_viral.value");
+            if(viral==1065){
+                jq("#viral_load input").prop("disabled", false);
+                jq("#viral_results input").prop("disabled", false);
+            }
+            else{
+                jq("#viral_load input").prop("disabled", true);
+                jq("#viral_results input").prop("disabled", true);
+            }
+
+        }
+
+
 
         var test_resultsChanged  = function () {
             var testResult = getValue("test_results.value");
-            if(testResult==703){jq("#linked_to_art input").prop("disabled", false).removeClass('disabled');
+            if(testResult==703 || testResult==138571){
+                jq("#linked_to_art input").prop("disabled", false).removeClass('disabled');
                 $('#care_and_treatment').find("select").prop("selectedIndex",0).removeClass('disabled');
                 $('#care_and_treatment').find('*').prop('disabled',false);}
+
+            else if(testResult==664 || testResult== 165232 || testResult == 118 ){
+                jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
+                jq("#txtart input").prop("disabled", true).addClass('disabled');
+                jq("#linked_to_art input").prop('checked', false);
+                jq("#txtart input").val('');
+            }
+
             else{jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
                 $('#care_and_treatment').find('*').prop('disabled',true);
                 $('#care_and_treatment').find('input:text').val('');
@@ -961,85 +800,68 @@
             // sti forms
             jq('#sti_screened').click(StiScreened);
             jq('#sti_results').click(StiResults);
-            jq('#sti_treated').click(StiTreateed);
             jq('#sti_referred').click(StiReferred);
             // tb form
             jq('#tb_screened').click(tbScreened);
             jq('#tb_results').click(tbResults);
-            jq('#tb_treated').click(tbTreated);
             jq('#tb_referred').click(tbReferred);
             // hepatitis c
             jq('#hepc_screened').click(HepatitiscScreened);
             jq('#hepc_results').click(HepatitiscResults);
-            jq('#hepc_treated').click(HepatitiscTreateed);
             jq('#hepc_referred').click(HepatiriscReferred);
             //hep b
             jq('#hepb_screened').click(HepatitisbScreened);
             jq('#hepb_results').click(HepatitisbResults);
-            jq('#hepb_treated').click(HepatitisbTreated);
             jq('#hepb_referred').click(HepatitisbReferred);
             //Overdose validations
             jq('#overdose_screened').click(OverdoseScreenedSelected);
             jq('#overdose_results').click(OverdoseResultsSelected);
-            jq('#overdose_treated').click(OverDoseTreatedSelected);
             jq('#overdose_referred').click(OverdoseRefferredSelected);
 
             //Alcohol validations
             jq('#alcohol_screened').click(AlcoholScreenedSelected);
             jq('#alcohol_results').click(AlcoholResultsSelected);
-            jq('#alcohol_treated').click(AlcoholTreatedSelected);
             jq('#alcohol_referred').click(AlcoholReferredSelected);
 
             //Abscess validations
             jq('#abscess_screened').click(AbscessScreenedSelected);
             jq('#abscess_results').click(AbscessResultsSelected);
-            jq('#abscess_treated').click(AbscessTreatedSelected);
             jq('#abscess_referred').click(AbscessReferredSelected);
 
             //Prep validations
             jq('#prep_screened').click(prepScreened);
             jq('#prep_results').click(prepResults);
-            jq('#prep_treated').click(prepTreateed);
             jq('#prep_referred').click(prepReferred);
 
             //Cervical validations selected
             jq('#cerv_screened').click(CervicalScreeningSelected);
             jq('#cerv_results').click(CervicalResulltsSelected);
-            jq('#cerv_treated').click(CervicalTreatedSelected);
             jq('#cerv_referred').click(CervicalReferredSelected);
 
             //Violence validations
             jq('#vio_screened').click(vilenceScreened);
             jq('#vio_results').click(violenceResults);
-            jq('#vio_treated').click(violenceTreateed);
             jq('#vio_referred').click(violenceReferred);
 
             //Risk validations
             jq('#risk_screened').click(riskScreened);
             jq('#risk_results').click(riskResults);
-          //  jq('#risk_treated').click(riskcTreateed);
             jq('#risk_referred').click(riskReferred);
 
             //Family validations
             jq('#fam_screened').click(familyScreened);
             jq('#fam_results').click(familyResults);
-            jq('#fam_treated').click(familyTreated);
             jq('#fam_referred').click(familyReferred);
 
             //Mental validations
             jq('#men_screened').click(menScreened);
             jq('#men_results').click(menResults);
-            jq('#men_treated').click(menTreateed);
+
             jq('#men_referred').click(menReferred);
-
-            // hiv testing validations
-            //default   hiv_selfreported
-            //jq("#provider-test").hide();
-
 
             jq("#hiv_selfreported input").change(hivTesting);
             jq("#hiv_tested input").change(hivTested);
-            jq("#hiv_selftest input").change(numberOfSelfTest);
+            //jq("#hiv_selftest input").change(numberOfSelfTest);
             jq("#self_tested input").change(SelfTested);
             jq("#confirm_test input").change(confirmTest);
 
@@ -1050,7 +872,8 @@
             jq("#pep_type input").change(onOtherExposureTypeSelected);
 
             jq("#test_results input").change(test_resultsChanged);
-            jq("#linked_to_ART input").change(linkTo_ART);
+            jq("#linked_to_art input").change(linkTo_ART);
+            jq("#eligible_for_viral input").change(eligible_for_viral_load);
 
 
 
@@ -1085,6 +908,10 @@
             jq("#men_screened input").prop("disabled", false);
             jq("#clinical textarea").prop("disabled", false);
             jq("#tca input").prop("disabled", false);
+            jq("#selftxt input").prop("disabled", false);
+            jq("#disttxt input").prop("disabled", false);
+
+
 
             jq("#care_provided input").prop("disabled", false);
 
@@ -1445,7 +1272,7 @@
                                                             1066"  answerLabels="Supported,Not Supported"
                                                            style="radio" />
                     </p></td>
-                    <td ><p>  <obs id="men_referred" conceptId="165281" required="true"
+                    <td ><p>  <obs id="men_referred" conceptId="165281"
                                                            style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="mentxt" class="remarks" conceptId="165282"
                     /></p></td>
@@ -1498,10 +1325,10 @@
                     <td ><p>  <obs id="test_results" conceptId="159427"
                                                            style="radio"  answerConceptIds="664,703,165232,138571,1118" answerLabels="Negative, Positive, Inconclusive,Known positive, Not Applicable" answerSeparator="&lt;br /&gt;" /></p></td>
 
-                    <td ><p>  <obs id="linked_to_ART" conceptId="1648"
+                    <td ><p>  <obs id="linked_to_art" conceptId="1648"
                                                            style="yes_no"  /></p></td>
 
-                    <td ><p>  <obs id="txtART" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    <td ><p>  <obs id="txtart" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                     /></p></td>
 
                 </tr>
@@ -1562,13 +1389,13 @@
 
 
         <!--        ==============================================councelor name===========-->
-        <div id="care_and_treatment">
+        <div>
 
             <fieldset>
-                <legend>Councelor name and Date</legend>
+                <legend>Councilor name and Date</legend>
                 <table class="simple-table">
                     <tr>
-                        <td ><p><b>Councelor name</b></p></td>
+                        <td ><p><b>Councilor name</b></p></td>
 
                         <td ><p><b>Date</b></p></td>
                     </tr>
@@ -1607,9 +1434,9 @@
                     </td>
                     <td ><p>  <obs conceptId="165240" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
                     <td ><p>  <obs conceptId="160119" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
-                    <td ><p>  <obs conceptId="165242" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/> </p></td>
-                    <td ><p>  <obs conceptId="165243" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
-                    <td ><p>  <obs conceptId="165246" answerConceptIds="165244,165245,164369,1175" answerLabels="Suppressed,Not Suppressed,Results not yet received,Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/>
+                    <td ><p>  <obs id="eligible_for_viral" conceptId="165242" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/> </p></td>
+                    <td ><p>  <obs id="viral_load" conceptId="165243" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
+                    <td ><p>  <obs id="viral_results" conceptId="165246" answerConceptIds="165244,165245,164369,1175" answerLabels="Suppressed,Not Suppressed,Results not yet received,Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/>
                     </p></td>
                 </tr>
 
@@ -1701,7 +1528,7 @@
                 </tr>
                 <tr>
                     <td ><p>Next Visit Date</p></td>
-                    <td><obs id="tca" conceptId="5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                    <td><obs id="tca" conceptId="5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true" /></td>
                 </tr>
             </table>
         </fieldset>
