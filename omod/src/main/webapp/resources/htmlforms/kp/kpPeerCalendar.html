@@ -144,6 +144,10 @@
 
                     if($(this).is(":checked")){
                         $('#healthGiven input').val(['1065']);
+                        return false;
+                    }
+                    else{
+                        $('#healthGiven input').val(['1066']);
                     }
                    // jQuery(this).attr('checked', $('#healthGiven input').val(['1065']));
                 });
