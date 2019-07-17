@@ -35,7 +35,7 @@ public class AppointmentDateDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id, v.appointment_date from etl_clinical_visit v;";
+        String qry = "select v.client_id, v.appointment_date from kp_etl.etl_clinical_visit v;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

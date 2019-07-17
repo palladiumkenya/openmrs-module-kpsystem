@@ -35,9 +35,8 @@ public class DiagnosedWithSTIDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select IFNULL(v.client_id,t.client_id) as client_id, IFNULL(v.sti_results,t.sti_results) as sti_results from kp_etl.etl_clinical_visit v\n" +
-                "left outer join kp_etl.etl_sti_treatment t on v.client_id = t.client_id\n" +
-                "where v.sti_results=\"Positive\" or t.sti_results=\"Positive\" group by client_id;";
+        String qry = "select IFNULL(v.client_id,t.client_id) as client_id, IFNULL(v.sti_results,IFNULL(t.drug_prescription,t.other_drug_prescription)) as sti_results from kp_etl.etl_clinical_visit v\n" +
+                "left outer join kp_etl.etl_sti_treatment t on v.client_id = t.client_id group by client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

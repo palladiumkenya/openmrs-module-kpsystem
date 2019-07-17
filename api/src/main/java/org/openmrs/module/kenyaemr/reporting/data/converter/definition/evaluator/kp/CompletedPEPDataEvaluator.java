@@ -35,7 +35,8 @@ public class CompletedPEPDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "";
+        String qry = "select v.client_id,v.pep_eligible from kp_etl.etl_clinical_visit v group by v.client_id;";
+
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

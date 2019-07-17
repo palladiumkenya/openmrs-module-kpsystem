@@ -3,7 +3,7 @@
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
  * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
- * <p>
+ *
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
@@ -26,9 +26,7 @@ import org.openmrs.module.reporting.data.converter.DataConverter;
 import org.openmrs.module.reporting.data.converter.ObjectFormatter;
 import org.openmrs.module.reporting.data.patient.definition.ConvertedPatientDataDefinition;
 import org.openmrs.module.reporting.data.patient.definition.PatientIdentifierDataDefinition;
-import org.openmrs.module.reporting.data.person.definition.ConvertedPersonDataDefinition;
-import org.openmrs.module.reporting.data.person.definition.GenderDataDefinition;
-import org.openmrs.module.reporting.data.person.definition.PreferredNameDataDefinition;
+import org.openmrs.module.reporting.data.person.definition.*;
 import org.openmrs.module.reporting.dataset.definition.DataSetDefinition;
 import org.openmrs.module.reporting.dataset.definition.PatientDataSetDefinition;
 import org.openmrs.module.reporting.evaluation.parameter.Mapped;
@@ -43,7 +41,7 @@ import java.util.List;
 ;
 
 @Component
-@Builds({"kenyaemr.common.report.kpRegister"})
+@Builds({"kenyaemr.kp.report.cohort.analysis.kpRegister"})
 public class KPRegisterReportBuilder extends AbstractHybridReportBuilder {
     public static final String DATE_FORMAT = "dd/MM/yyyy";
 
@@ -96,14 +94,17 @@ public class KPRegisterReportBuilder extends AbstractHybridReportBuilder {
 
         DataConverter nameFormatter = new ObjectFormatter("{familyName}, {givenName}");
         DataDefinition nameDef = new ConvertedPersonDataDefinition("name", new PreferredNameDataDefinition(), nameFormatter);
+        dsd.addColumn("id", new PersonIdDataDefinition(), "");
         dsd.addColumn("Serial Number", new SerialNumberDataDefinition(), "");
         dsd.addColumn("Name", nameDef, "");
         dsd.addColumn("Hotspot", new HotspotDataDefinition(), "");
         dsd.addColumn("Hotspot Typology", new HotspotTypologyDataDefinition(), "");
         dsd.addColumn("Ward", new WardDataDefinition(), "");
         dsd.addColumn("Phone Number", new PhoneNumberDataDefinition(), "");
-        dsd.addColumn("Unique Client No", identifierDef, "");
-        dsd.addColumn("DOB", new DobDataDefinition(), "");
+        dsd.addColumn("Unique Identifier code", identifierDef, "");
+        dsd.addColumn("Key Population Type", new KeyPopTypeDataDefinition(), "");
+        dsd.addColumn("DOB", new BirthdateDataDefinition(), "");
+        dsd.addColumn("Age", new AgeDataDefinition(), "");
         dsd.addColumn("Sex", new GenderDataDefinition(), "");
         dsd.addColumn("Date of First Contact", new DateOfFirstContactDataDefinition(), "");
         dsd.addColumn("Date of Enrollment", new DateOfEnrollmentDataDefinition(), "");

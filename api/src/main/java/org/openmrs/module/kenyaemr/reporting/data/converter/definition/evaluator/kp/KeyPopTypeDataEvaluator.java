@@ -10,8 +10,7 @@
 package org.openmrs.module.kenyaemr.reporting.data.converter.definition.evaluator.kp;
 
 import org.openmrs.annotation.Handler;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.hei.HEIEnrollmentDateDataDefinition;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.DobDataDefinition;
+import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.KeyPopTypeDataDefinition;
 import org.openmrs.module.reporting.data.person.EvaluatedPersonData;
 import org.openmrs.module.reporting.data.person.definition.PersonDataDefinition;
 import org.openmrs.module.reporting.data.person.evaluator.PersonDataEvaluator;
@@ -26,8 +25,8 @@ import java.util.Map;
 /**
  * Evaluates a PersonDataDefinition
  */
-@Handler(supports= DobDataDefinition.class, order=50)
-public class DobDataEvaluator implements PersonDataEvaluator {
+@Handler(supports= KeyPopTypeDataDefinition.class, order=50)
+public class KeyPopTypeDataEvaluator implements PersonDataEvaluator {
 
     @Autowired
     private EvaluationService evaluationService;
@@ -35,7 +34,7 @@ public class DobDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "";
+        String qry = "select c.client_id,c.key_population_type from kp_etl.etl_contact c group by c.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

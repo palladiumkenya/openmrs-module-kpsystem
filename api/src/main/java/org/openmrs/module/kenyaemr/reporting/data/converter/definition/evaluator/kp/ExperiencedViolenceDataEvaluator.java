@@ -35,7 +35,9 @@ public class ExperiencedViolenceDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "";
+        String qry = "select NULLIF(c.client_id,v.client_id) as client_id, NULLIF(c.experienced_violence,v.violence_screened) as experienced_violence from kp_etl.etl_peer_calendar c left outer join\n" +
+                "                                                   kp_etl.etl_clinical_visit v on c.client_id = v.client_id\n" +
+                "group by client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

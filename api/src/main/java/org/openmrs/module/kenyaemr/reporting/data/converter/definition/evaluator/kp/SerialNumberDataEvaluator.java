@@ -10,8 +10,8 @@
 package org.openmrs.module.kenyaemr.reporting.data.converter.definition.evaluator.kp;
 
 import org.openmrs.annotation.Handler;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.GenderDataDefinition;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.HotspotTypologyDataDefinition;
+import org.openmrs.module.kenyaemr.reporting.data.converter.definition.hei.HEISerialNumberDataDefinition;
+import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.SerialNumberDataDefinition;
 import org.openmrs.module.reporting.data.person.EvaluatedPersonData;
 import org.openmrs.module.reporting.data.person.definition.PersonDataDefinition;
 import org.openmrs.module.reporting.data.person.evaluator.PersonDataEvaluator;
@@ -26,8 +26,8 @@ import java.util.Map;
 /**
  * Evaluates a PersonDataDefinition
  */
-@Handler(supports= GenderDataDefinition.class, order=50)
-public class GenderDataEvaluator implements PersonDataEvaluator {
+@Handler(supports= SerialNumberDataDefinition.class, order=50)
+public class SerialNumberDataEvaluator implements PersonDataEvaluator {
 
     @Autowired
     private EvaluationService evaluationService;
@@ -35,7 +35,7 @@ public class GenderDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "";
+        String qry = "select c.client_id,c.client_id from kp_etl.etl_contact c;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

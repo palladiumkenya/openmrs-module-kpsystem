@@ -633,7 +633,7 @@ public class ETLMoh731BCohortLibrary {
 //knownPositiveFsw
     public CohortDefinition knownPositiveFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
                 "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
                 "inner join encounter en on h.client_id = en.patient_id\n" +
                 "where s.key_population_type = \"Female sex worker\" and h.final_test_result =\"Positive\"\n" +
@@ -650,7 +650,7 @@ public class ETLMoh731BCohortLibrary {
 //knownPositiveMsm
     public CohortDefinition knownPositiveMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
                 "                                                                                        inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
                 "                                                                                        inner join encounter en on h.client_id = en.patient_id\n" +
                 "where s.key_population_type = \"Male who have sex with Men\" and h.final_test_result =\"Positive\"\n" +
@@ -669,7 +669,7 @@ public class ETLMoh731BCohortLibrary {
 //knownPositiveMsw
     public CohortDefinition knownPositiveMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
                 "                                                                                        inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
                 "                                                                                        inner join encounter en on h.client_id = en.patient_id\n" +
                 "where s.key_population_type = \"Male sex worker\" and h.final_test_result =\"Positive\"\n" +
@@ -686,7 +686,7 @@ public class ETLMoh731BCohortLibrary {
 //knownPositivePwid
     public CohortDefinition knownPositivePwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
                 "                                                                                        inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
                 "                                                                                        inner join encounter en on h.client_id = en.patient_id\n" +
                 "where s.key_population_type = \"People who inject drugs\" and h.final_test_result =\"Positive\"\n" +
@@ -703,7 +703,7 @@ public class ETLMoh731BCohortLibrary {
 //knownPositivePwud
     public CohortDefinition knownPositivePwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
                 "                                                                                        inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
                 "                                                                                        inner join encounter en on h.client_id = en.patient_id\n" +
                 "where s.key_population_type = \"People who use drugs\" and h.final_test_result =\"Positive\"\n" +
@@ -732,7 +732,7 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsFsw
     public CohortDefinition receivedPositiveResultsFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
                 "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
                 "                                              where s.key_population_type = \"Female sex worker\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
                 "and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
@@ -748,7 +748,7 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsMsm
     public CohortDefinition receivedPositiveResultsMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
                 "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
                 "where s.key_population_type = \"Male who have sex with Men\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
                 "  and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
@@ -764,7 +764,7 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsMsw
     public CohortDefinition receivedPositiveResultsMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
                 "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
                 "where s.key_population_type = \"Male sex worker\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
                 "  and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
@@ -780,7 +780,7 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsPwid
     public CohortDefinition receivedPositiveResultsPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
                 "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
                 "where s.key_population_type = \"People who inject drugs\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
                 "  and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
@@ -796,7 +796,7 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsPwud
     public CohortDefinition receivedPositiveResultsPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
                 "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
                 "where s.key_population_type = \"People who use drugs\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
                 "  and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +

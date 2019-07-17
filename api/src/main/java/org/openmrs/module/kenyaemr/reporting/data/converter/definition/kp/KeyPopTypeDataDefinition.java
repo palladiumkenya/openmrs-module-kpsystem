@@ -14,27 +14,25 @@ import org.openmrs.module.reporting.data.person.definition.PersonDataDefinition;
 import org.openmrs.module.reporting.definition.configuration.ConfigurationPropertyCachingStrategy;
 import org.openmrs.module.reporting.evaluation.caching.Caching;
 
-import java.util.Date;
-
 /**
- * Appointment date Column
+ * Key pop type Column
  */
 @Caching(strategy=ConfigurationPropertyCachingStrategy.class)
-public class DobDataDefinition extends BaseDataDefinition implements PersonDataDefinition {
+public class KeyPopTypeDataDefinition extends BaseDataDefinition implements PersonDataDefinition {
 
     public static final long serialVersionUID = 1L;
 
     /**
      * Default Constructor
      */
-    public DobDataDefinition() {
+    public KeyPopTypeDataDefinition() {
         super();
     }
 
     /**
      * Constructor to populate name only
      */
-    public DobDataDefinition(String name) {
+    public KeyPopTypeDataDefinition(String name) {
         super(name);
     }
 
@@ -44,6 +42,6 @@ public class DobDataDefinition extends BaseDataDefinition implements PersonDataD
      * @see org.openmrs.module.reporting.data.DataDefinition#getDataType()
      */
     public Class<?> getDataType() {
-        return Date.class;
+        return Double.class;
     }
 }
