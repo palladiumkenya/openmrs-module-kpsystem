@@ -44,6 +44,9 @@
         var pgender = "<lookup expression="patient.gender" />";
         jQuery(function ($) {
 
+
+
+
             jq("#other-hotspots-specify").hide();
             jq('#hotspot-type select').click(onOtherHotspotSelected);
             getField('weekly-condom-requirements.value').change(onWeeklyCondomRequirementsChange);
@@ -54,6 +57,10 @@
             jq('#calculated-monthly-SR input[type=text]').attr("disabled","true");
 
             //set encounter date to
+
+            $("#totals").children().attr("disabled","disabled");
+            $("#myfieldeset").children().attr("disabled", "disabled");
+
 
             var calendarEncDate = kpGetUrlParameter("effectiveDate");
             setValue('encounter-date.value', calendarEncDate);
@@ -85,6 +92,69 @@
             jq('#needles-checked :input[type=checkbox]').change(onNeedlesChecked);
             jq('#condom-checked :input[type=checkbox]').change(onCondomChecked);
             jq('#visited-clinic :input[type=checkbox]').change(onVisitedClinicChecked);
+
+            jq('#needles-checked :input[type=checkbox]').change(onNeedlesChecked);
+
+
+            // Added to calculate monthly total(Ben)
+
+            getField('ns-first-week.value').change(MonthlySNdistributed);
+            getField('ns-second-week.value').change(MonthlySNdistributed);
+            getField('ns-third-week.value').change(MonthlySNdistributed);
+            getField('ns-fourth-week.value').change(MonthlySNdistributed);
+
+            getField('week1lubesDistributed.value').change(MonthlyLubedistributed);
+            getField('week2lube.value').change(MonthlyLubedistributed);
+            getField('week3lubes.value').change(MonthlyLubedistributed);
+            getField('week4lubes.value').change(MonthlyLubedistributed);
+
+            getField('mCondom-w1.value').change(MonthlyMaleCondomdistributed);
+            getField('mCondom-w2.value').change(MonthlyMaleCondomdistributed);
+            getField('mCondom-w3.value').change(MonthlyMaleCondomdistributed);
+            getField('mCondom-w4.value').change(MonthlyMaleCondomdistributed);
+
+            getField('fCondom-w1.value').change(MonthlyFemaleCondomDistributed);
+            getField('fCondom-w2.value').change(MonthlyFemaleCondomDistributed);
+            getField('fCondom-w3.value').change(MonthlyFemaleCondomDistributed);
+            getField('fCondom-w4.value').change(MonthlyFemaleCondomDistributed);
+
+            getField('referred.value').change(MonthlyReferred);
+            getField('referredWeek2.value').change(MonthlyReferred);
+            getField('referredwk3.value').change(MonthlyReferred);
+            getField('referredwk4.value').change(MonthlyReferred);
+
+            getField('self-test-kits-distributed.value').change(MonthlyHIVTestKitGiven);
+            getField('self-test-kits-distributedwk2.value').change(MonthlyHIVTestKitGiven);
+            getField('self-test-kits-distributedwk3.value').change(MonthlyHIVTestKitGiven);
+            getField('self-test-kits-distributedwk4.value').change(MonthlyHIVTestKitGiven);
+
+            getField('clinical-service-w1.value').change(MonthlyReceivedClinicalService);
+            getField('clinical-service-w2.value').change(MonthlyReceivedClinicalService);
+            getField('clinical-service-w3.value').change(MonthlyReceivedClinicalService);
+            getField('clinical-service-w4.value').change(MonthlyReceivedClinicalService);
+
+            getField('reported-violence.value').change(MonthlyCrisisReported);
+            getField('reported-violencewk2.value').change(MonthlyCrisisReported);
+            getField('reported-violencewk3.value').change(MonthlyCrisisReported);
+            getField('reported-violencewk4.value').change(MonthlyCrisisReported);
+
+
+            $('input').on('click',function () {
+                $('#monthly_service').find(':checkbox').each(function(){
+
+                    if($(this).is(":checked")){
+                        $('#healthGiven input').val(['1065']);
+                        return false;
+                    }
+                    else{
+                        $('#healthGiven input').val(['1066']);
+                    }
+                   // jQuery(this).attr('checked', $('#healthGiven input').val(['1065']));
+                });
+
+            });
+
+
 
 
 
@@ -161,6 +231,109 @@
             }
         }
 
+        function MonthlySNdistributed() {
+            var week1SyrengDistributed = getField('ns-first-week.value').val();
+            var week2SyrengDistributed = getField('ns-second-week.value').val();
+            var week3SyrengDistributed = getField('ns-third-week.value').val();
+            var week4SyrengDistributed = getField('ns-fourth-week.value').val();
+
+            var TotalSyrengDistributed = 0;
+            TotalSyrengDistributed = +week1SyrengDistributed + +week2SyrengDistributed + +week3SyrengDistributed + +week4SyrengDistributed;
+
+            $('#total_ns_distributed input').val(TotalSyrengDistributed);
+
+
+        }
+        function MonthlyLubedistributed() {
+            var week1Lub = getField('week1lubesDistributed.value').val();
+            var week2Lub = getField('week2lube.value').val();
+            var week3Lub = getField('week3lubes.value').val();
+            var week4Lub = getField('week4lubes.value').val();
+            var TotalLubes=0;
+            TotalLubes=+week1Lub + +week2Lub + +week3Lub + +week4Lub;
+
+            $('#totallubes_distributed input').val(TotalLubes);
+
+        }
+        function MonthlyMaleCondomdistributed() {
+            var week1MaleCondom = getField('mCondom-w1.value').val();
+            var week2MaleCondom=  getField('mCondom-w2.value').val();
+            var week3MaleCondom = getField('mCondom-w3.value').val();
+            var week4MaleCondom = getField('mCondom-w4.value').val();
+
+            var TotalMaleCondoms= 0;
+            TotalMaleCondoms= +week1MaleCondom + +week2MaleCondom + +week3MaleCondom + +week4MaleCondom;
+            $('#totalmCondom input').val(TotalMaleCondoms);
+
+        }
+        function HealthEducationGiven() {
+        var week1HealthEducationGiven = getField('healthEducationGiven.value').val();
+        var week2HealthEducationGiven  = getField('healthEducationGivenwk2.value').val();
+        var week3HealthEducationGiven  = getField('heathEducationGivenwk3.value').val();
+        var week4HealthEducationGiven  = getField('heathEducationGivenwk4.value').val();
+
+        if(week1HealthEducationGiven==true || week2HealthEducationGiven==true ||week3HealthEducationGiven==true || week4HealthEducationGiven==true){ $('#totalmCondom input').val(TotalMaleCondoms);}
+        }
+
+        function MonthlyFemaleCondomDistributed() {
+            var week1FemaleCondoms = getField('fCondom-w1.value').val();
+            var week2FemaleCondoms = getField('fCondom-w2.value').val();
+            var week3FemaleCondoms = getField('fCondom-w3.value').val();
+            var week4FemaleCondoms = getField('fCondom-w4.value').val();
+
+            var TotalFemaleCondoms=0;
+            TotalFemaleCondoms = +week1FemaleCondoms + +week2FemaleCondoms + +week3FemaleCondoms + +week4FemaleCondoms;
+
+            $('#totalfCondom input').val(TotalFemaleCondoms);
+
+        }
+        function MonthlyReferred() {
+            var week1Referred = getField('referred.value').val();
+            var week2Referred = getField('referredWeek2.value').val();
+            var week3Referred = getField('referredwk3.value').val();
+            var week4Referred = getField('referredwk4.value').val();
+
+            if(week1Referred == 1065 || week2Referred == 1065 || week3Referred == 1065 ||week4Referred== 1065){
+
+                $('#referred input').val(['1065']);
+            }
+
+
+        }
+        function MonthlyHIVTestKitGiven() {
+
+            var week1HIVtestGiven = getField('self-test-kits-distributed.value').val();
+            var week2HIVtestGiven = getField('self-test-kits-distributedwk2.value').val();
+            var week3HIVtestGiven = getField('self-test-kits-distributedwk3.value').val();
+            var week4HIVtestGiven = getField('self-test-kits-distributedwk4.value').val();
+
+
+            var TotalHIVselftestGiven = 0;
+            TotalHIVselftestGiven= +week1HIVtestGiven + +week2HIVtestGiven + +week3HIVtestGiven + +week4HIVtestGiven;
+
+            $('#totaltestGiven input').val(TotalHIVselftestGiven);
+
+        }
+
+        function MonthlyReceivedClinicalService() {
+            var week1ReceivedClinicalService = getField('clinical-service-w1.value').val();
+            var week2ReceivedClinicalService = getField('clinical-service-w2.value').val();
+            var week3ReceivedClinicalService = getField('clinical-service-w3.value').val();
+            var week4ReceivedClinicalService = getField('clinical-service-w4.value').val();
+
+            if(week1ReceivedClinicalService==1065 || week2ReceivedClinicalService == 1065 || week3ReceivedClinicalService ==1065  || week4ReceivedClinicalService==1065){
+                $('#received_service input').val(['1065']);
+            }
+        }
+        function MonthlyCrisisReported() {
+            var week1CrisisReported = getField('reported-violence.value').val();
+            var week2CrisisReported = getField('reported-violencewk2.value').val();
+            var week3CrisisReported = getField('reported-violencewk3.value').val();
+            var week4CrisisReported = getField('reported-violencewk4.value').val();
+
+            if(week1CrisisReported == 1065 || week2CrisisReported==1065 || week3CrisisReported==1065||week4CrisisReported==1065){$('#violence_reported input').val(['1065']);}
+
+        }
         function onWeeklyCondomRequirementsChange() {
             var monthlyCR = '';
             var weeklyCR = getValue('weekly-condom-requirements.value');
@@ -194,6 +367,10 @@
                 jq("#other-hotspots-specify").hide();
             }
         }
+
+
+
+
 
     </script>
 
@@ -378,7 +555,7 @@
                     </tr>
                 </table>
         </fieldset>
-        <fieldset>
+        <fieldset id="monthly_service">
             <legend>Monthly service uptake</legend>
 
             <table class="simple-table">
@@ -392,13 +569,13 @@
                         <tr>
                            <td>
                                N and S distributed :
-                               <obs conceptId="165309" id="ns-first-week" />
+                               <obs conceptId="165058" id="ns-first-week" />
                            </td>
                         </tr>
                         <tr>
                             <td>
                                 Lubes distributed : &#160;&#160;
-                                <obs conceptId="165313"/>
+                                <obs id="week1lubesDistributed" conceptId="165057"/>
 
                             </td>
                          </tr>
@@ -409,7 +586,7 @@
                         <tr>
                           <td>
                         Male condoms distributed : &#160;&#160;
-                        <obs conceptId="165310" id="mCondom-w1"/>
+                        <obs conceptId="165055" id="mCondom-w1"/>
                          </td>
                         </tr>
                         <tr>
@@ -424,6 +601,7 @@
                         <table>
                             <tr>
                                 Health education  &#160;&#160;&#160;&#160; <i>*Tick the relevant field(s)</i>
+                                <div  id="healthEducationGiven">
                                 <td>
                                     <div style="float: left; padding-right: 50px">
                                         <obs conceptId="165147" answerConceptId="165148" answerLabel="1 - PreP Messaging" style="checkbox" /> <br />
@@ -436,6 +614,7 @@
                                         <obs conceptId="165147" answerConceptId="165149" answerLabel="6 - PEP Message" style="checkbox"/> <br />
                                     </div>
                                 </td>
+                                </div>
                             </tr>
                             <tr>
                                 <td>
@@ -480,12 +659,8 @@
 
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                        Remarks
-                        <obs conceptId="160632" cols="20" />
-                                </td>
-                            </tr>
+
+
                         </table>
                     </td>
                 </tr>
@@ -506,7 +681,7 @@
                             <tr>
                                 <td>
                                     Lubes distributed : &#160;&#160;
-                                    <obs conceptId="165057"/>
+                                    <obs id="week2lube" conceptId="165057"/>
 
                                 </td>
                             </tr>
@@ -530,7 +705,7 @@
                     </td>
                     <td>
                         <table>
-                            <tr>
+                            <tr id="healthEducationGivenwk2">
                                 Health education  &#160;&#160;&#160;&#160; <i>*Tick the relevant field(s)</i>
                                 <td>
                                     <div style="float: left; padding-right: 50px">
@@ -548,7 +723,7 @@
                             <tr>
                                 <td>
                                     Referred :    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                                    <obs conceptId="1272" id="referred"
+                                    <obs conceptId="1272" id="referredWeek2"
                                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                          answerLabel="Yes,No"
                                          style="dropdown"/>
@@ -561,7 +736,7 @@
                             <tr>
                                 <td>
                                     HIV self test kits distributed :
-                                    <obs id="self-test-kits-distributed" conceptId="165222"/>
+                                    <obs id="self-test-kits-distributedwk2" conceptId="165222"/>
 
                                 </td>
                             </tr>
@@ -581,19 +756,14 @@
                             <tr>
                                 <td>
                                     Crisis / violence reported:
-                                    <obs conceptId="1774" id="reported-violence"
+                                    <obs conceptId="1774" id="reported-violencewk2"
                                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                          answerLabel="Yes,No"
                                          style="dropdown"/>
 
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    Remarks
-                                    <obs conceptId="160632" cols="20" />
-                                </td>
-                            </tr>
+
                         </table>
                     </td>
                 </tr>
@@ -614,7 +784,7 @@
                             <tr>
                                 <td>
                                     Lubes distributed : &#160;&#160;
-                                    <obs conceptId="165057"/>
+                                    <obs id="week3lubes" conceptId="165057"/>
 
                                 </td>
                             </tr>
@@ -638,7 +808,7 @@
                     </td>
                     <td>
                         <table>
-                            <tr>
+                            <tr id="heathEducationGivenwk3">
                                 Health education  &#160;&#160;&#160;&#160; <i>*Tick the relevant field(s)</i>
                                 <td>
                                     <div style="float: left; padding-right: 50px">
@@ -656,7 +826,7 @@
                             <tr>
                                 <td>
                                     Referred :    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                                    <obs conceptId="1272" id="referred"
+                                    <obs conceptId="1272" id="referredwk3"
                                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                          answerLabel="Yes,No"
                                          style="dropdown"/>
@@ -669,7 +839,7 @@
                             <tr>
                                 <td>
                                     HIV self test kits distributed :
-                                    <obs id="self-test-kits-distributed" conceptId="165222"/>
+                                    <obs id="self-test-kits-distributedwk3" conceptId="165222"/>
 
                                 </td>
                             </tr>
@@ -689,19 +859,14 @@
                             <tr>
                                 <td>
                                     Crisis / violence reported:
-                                    <obs conceptId="1774" id="reported-violence"
+                                    <obs conceptId="1774" id="reported-violencewk3"
                                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                          answerLabel="Yes,No"
                                          style="dropdown"/>
 
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    Remarks
-                                    <obs conceptId="160632"  cols="20" />
-                                </td>
-                            </tr>
+
                         </table>
                     </td>
                 </tr>
@@ -722,7 +887,7 @@
                             <tr>
                                 <td>
                                     Lubes distributed : &#160;&#160;
-                                    <obs conceptId="165057"/>
+                                    <obs id="week4lubes" conceptId="165057"/>
 
                                 </td>
                             </tr>
@@ -764,7 +929,7 @@
                             <tr>
                                 <td>
                                     Referred :      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-                                    <obs conceptId="1272" id="referred"
+                                    <obs conceptId="1272" id="referredwk4"
                                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                          answerLabel="Yes,No"
                                          style="dropdown"/>
@@ -777,7 +942,7 @@
                             <tr>
                                 <td>
                                     HIV self test kits distributed :
-                                    <obs id="self-test-kits-distributed" conceptId="165222"/>
+                                    <obs id="self-test-kits-distributedwk4" conceptId="165222"/>
 
                                 </td>
                             </tr>
@@ -797,23 +962,124 @@
                             <tr>
                                 <td>
                                     Crisis / violence reported:
-                                    <obs conceptId="1774" id="reported-violence"
+                                    <obs conceptId="1774" id="reported-violencewk4"
                                          answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                                          answerLabel="Yes,No"
                                          style="dropdown"/>
 
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    Remarks
-                                    <obs conceptId="160632"  cols="20" />
-                                </td>
-                            </tr>
+
                         </table>
                     </td>
                 </tr>
        </obsgroup>
+
+            </table>
+        </fieldset>
+
+        <fieldset id="totals" disabled="true">
+            <legend>This section is entirely for reporting purpose not included in the form</legend>
+
+            <table class="simple-table">
+
+                <div >
+                    <tr>
+                        <td>
+                            Totals:
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Total N and S distributed :
+                                        <obs conceptId="165341" id="total_ns_distributed"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Total Lubes distributed : &#160;&#160;
+                                        <obs id="totallubes_distributed" conceptId="165057"/>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Totals Male condoms distributed :   &#160;&#160;
+                                        <obs id="totalmCondom" conceptId="165343"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Totals Female condoms distributed :
+                                        <obs id="totalfCondom" conceptId="165344"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+
+                                <tr id="heathEducationGivenwk4">
+                                    <td>
+                                        Health education checked:      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                        <obs conceptId="165346" id="healthGiven" answerConceptIds="1065,1066" style="radio"
+                                        />
+                                    </td>
+                                    <td>
+                                        Referred selected:      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                        <obs conceptId="1749" id="referred" answerConceptIds="1065,1066" style="radio"
+                                        />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Total HIV self test kits distributed :
+                                        <obs id="totaltestGiven" conceptId="165345"/>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Received clinical service :  &#160;&#160;&#160;&#160;&#160;&#160;
+                                        <obs conceptId="1774" answerConceptIds="1065,1066" id="received_service" style="radio"
+
+
+                                        />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Crisis / violence reported:
+                                        <obs conceptId="123160" id="violence_reported"  answerConceptIds="1065,1066"  style="radio"
+
+
+                                        />
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Remarks
+                                        <obs conceptId="160632"  cols="20" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </div>
             </table>
         </fieldset>
     </div>
