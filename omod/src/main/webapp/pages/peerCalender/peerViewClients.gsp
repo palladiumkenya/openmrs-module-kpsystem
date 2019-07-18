@@ -62,6 +62,11 @@
 						formUuid: kpVisitForm,appId:"kenyaemr.medicalEncounter", returnUrl: ui.thisUrl() ])}')">
 					 Enter Form
 				</button>
+				<button type="button"
+						onclick="ui.navigate('${ ui.pageLink("kenyaemr", "editForm", [ patientId: peer.id,encounterId:15421,
+						formUuid: kpVisitForm,appId:"kenyaemr.medicalEncounter", returnUrl: ui.thisUrl() ])}')">
+					Edit Form
+				</button>
 			</td>
 		</tr>
 		<% }} %>
