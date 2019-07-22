@@ -35,8 +35,8 @@ public class CondomDistributedDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select IFNULL(p.client_id,c.client_id) as client_id, IFNULL(p.monthly_condoms_required,c.avg_weekly_sex_acts*4 ) as monthly_condoms_required from kp_etl.etl_peer_calendar p left outer join\n" +
-                "kp_etl.etl_contact c on p.client_id = c.client_id group by client_id;";
+        String qry = "select c.client_id as client_id ,coalesce(c.monthly_male_condoms_distributed,0) + coalesce(c.monthly_female_condoms_distributed,0) as monthly_condoms_distributed from kp_etl.etl_peer_calendar c\n" +
+                "group by c.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
