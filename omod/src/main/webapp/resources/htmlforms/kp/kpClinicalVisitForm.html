@@ -685,11 +685,13 @@
         var confirmFacility  = function () {
             var tested = getValue("facility.value");
             if(tested==165236){
+                jq("#facilitytxt input").val('');
                 jq("#facilitytxt input").prop("disabled", false);
             }
 
             else{
-                jq("#facilitytxt input").val('');
+                var default_location = "<lookup expression="kenyaemr.location()" />";
+                jq("#facilitytxt input").val(default_location);
                 jq("#facilitytxt input").prop("disabled", true);
             }
 
@@ -753,7 +755,7 @@
 
         }
         var onOtherExposureTypeSelected  = function () {
-            var otherExposure = getValue("pep_type.value");
+            var otherExposure = getValue("exposure_other.value");
             if(otherExposure==5622){
                 jq("#pep_type_txt textarea").prop("disabled", false);
             }
@@ -779,11 +781,17 @@
 
 
         var test_resultsChanged  = function () {
+            $('#pep_prep').find('*').prop('disabled',false);
             var testResult = getValue("test_results.value");
             if(testResult==703 || testResult==138571){
                 jq("#linked_to_art input").prop("disabled", false).removeClass('disabled');
-                $('#care_and_treatment').find("select").prop("selectedIndex",0).removeClass('disabled');
-                $('#care_and_treatment').find('*').prop('disabled',false);}
+                jq('#care_and_treatment').find("select").prop("selectedIndex",0).removeClass('disabled');
+                jq('#care_and_treatment').find('*').prop('disabled',false);
+                $('#pep_prep').find('*').prop('disabled',true);
+                $('#pep_prep').find('input:text').val('');
+                $('#pep_prep').find("select").prop("selectedIndex",0).addClass('disabled');
+            }
+
 
             else if(testResult==664 || testResult== 165232 || testResult == 118 ){
                 jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
@@ -875,7 +883,7 @@
             jq("#linktoart input").change(linkToart);
             jq("#care_provided input").change(providedElseWhere);
             jq("#pep_selected input").change(onPEPSelected);
-            jq("#pep_type input").change(onOtherExposureTypeSelected);
+            jq("#exposure_other input").change(onOtherExposureTypeSelected);
 
             jq("#test_results input").change(test_resultsChanged);
             jq("#linked_to_art input").change(linkTo_ART);
@@ -916,6 +924,8 @@
             jq("#tca input").prop("disabled", false);
             jq("#selftxt input").prop("disabled", false);
             jq("#disttxt input").prop("disabled", false);
+            jq("#partner input").prop("disabled", false);
+
 
 
 
@@ -1006,6 +1016,39 @@
 
 
     <div class="ke-form-content">
+
+
+        <fieldset>
+            <legend>Visit details</legend>
+            <table class="simple-table">
+                <tr>
+                    <td ><p>Implementing partner</p></td>
+                    <td ><p>  <obs id="partner"  conceptId="165347"   /></p></td>
+                </tr>
+                <tr>
+                    <td  colspan="2">Type of visit :  &#160;&#160;  <obs id="type_of_visit" conceptId="164181" answerConceptIds="162080,164142" answerLabels="Initial,Revisit
+" style="radio"  /></td>
+
+
+                </tr>
+                <tr id="pep_prep">
+
+                    <td >Reason for visit :<br/>
+                        <obs id="pep_type" conceptId="164082" answerConceptIds="5006,1068,165348,160523"  answerLabels="Asymptomatic ,Symptomatic ,Quarterly Screening checkup, Follow up" style="radio" answerSeparator="&lt;br /&gt;" />
+                    </td>
+
+
+                    <td >Service delivery Model:<br/>
+                        <obs id="pep_type" conceptId="160540" answerConceptIds="161235,160545"  answerLabels="Static,Outreach
+" style="radio" answerSeparator="&lt;br /&gt;" /></td>
+
+                </tr>
+
+
+            </table>
+        </fieldset>
+
+
 
         <fieldset id="Client_visit">
             <legend>Clinic Visit Form</legend>
@@ -1265,16 +1308,12 @@
                     <td ><p>Mental health</p></td>
                     <td ><p>  <obs id="men_screened" conceptId="165210" required="true"
                                                            style="radio" answerConceptIds="1065,1066" /></p></td>
-                    <td width="156">
-                        <div id="men_results" style="float: left; padding-right: 50px">
-                            <obs conceptId="165211" answerConceptId="165212" style="checkbox" /><br />
-                            <obs conceptId="165211" answerConceptId="157790" answerLabel="Mild depression"  style="checkbox" /><br />
-                            <obs conceptId="165211" answerConceptId="134017" answerLabel="Moderate depression"  style="checkbox" /><br />
-                            <obs conceptId="165211" answerConceptId="134011" answerLabel="Moderate-severe depression" style="checkbox" /><br />
-                            <obs conceptId="165211" answerConceptId="126627"  style="checkbox" /><br />
 
-                        </div>
-                    </td>
+                    <td ><p>  <obs id="men_screened" conceptId="165211"
+                                   style="radio" answerConceptIds="165212,157790,134017,134011,126627"
+                                  answerSeparator="&lt;br /&gt;"/></p></td>
+
+
                     <td ><p>  <obs id="men_treated" conceptId="165213"
                                                            answerConceptIds="1065,
                                                             1066"  answerLabels="Supported,Not Supported"
@@ -1354,7 +1393,7 @@
             <table class="simple-table">
                 <tr>
                     <td><p><b>HIV self-test education/<br/> demonstration </b></p></td>
-                    <td><p><b>HIV self-test kits given</b></p></td>
+                    <td><p><b>No. of HIV self-test kits given</b></p></td>
                     <td><p><b>Self-tested for HIV</b></p></td>
                     <td><p><b>Date conducted</b></p></td>
                     <td><p><b>Frequency of test</b></p></td>
@@ -1370,9 +1409,9 @@
                     <td  width="160"><p>  <obs id="self-test-demo" conceptId="165220"
                                    style="radio" answerConceptIds="1065,1066" /></p></td>
 
-                    <td><p>  <obs id="hiv_selftest" conceptId="165221"  style="radio" answerConceptIds="165222,165223" answerLabels="For self use, For distribution" answerSeparator="&lt;br /&gt;"  /></p>
-                     <p>Self test kits  <obs id="selftxt" class="remarks" conceptId="165222"/></p>
-                     <p>Distributing <obs id="disttxt" class="remarks" conceptId="165223" /></p></td>
+                    <td>
+                     <p>For Self test  <obs id="selftxt" class="remarks" conceptId="165222"/></p>
+                     <p>For Distributing <obs id="disttxt" class="remarks" conceptId="165223" /></p></td>
 
                     <td><p>  <obs conceptId="164952" style="radio" answerConceptIds="1065,1066" id="self_tested" answerSeparator="&lt;br /&gt;" /></p></td>
                     <td><p>  <obs id="selftestDate" conceptId="164400"
@@ -1523,12 +1562,22 @@
                         </table>
                     </td>
                 </tr>
-                <tr>
+                <tr id="pep_prep">
                     <td > PEP :  &#160;&#160;  <obs id="pep_selected" conceptId="164845" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio"  /></td>
                     <td >Type of exposure :<br/>
-                        <obs id="pep_type" conceptId="165060" answerConceptIds="127910,165045,5622"  answerLabels="Rape,Condom Burst,Others" style="radio" answerSeparator="&lt;br /&gt;" /></td>
+                        <obs conceptId="165060" answerConceptId="127910" style="checkbox" /><br />
+                        <obs conceptId="165060" answerConceptId="165059" style="checkbox" /><br />
+                        <obs id="exposure_other" conceptId="165060" answerConceptId="5622" style="checkbox" /><br />
+                    </td>
+
                     <td width="156" id="pep_others" valign="top"><p>If OtherSpecify</p></td>
                     <td ><p>  <obs id="pep_type_txt" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  cols="20"/></p></td>
+                </tr>
+
+                <tr>
+                    <td  colspan="2"> Link to psychosocial support :  &#160;&#160;  <obs id="linked_to_support" conceptId="163766" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio"  /></td>
+
+
                 </tr>
                 <tr>
                     <td ><p>Clinical Notes</p></td>
