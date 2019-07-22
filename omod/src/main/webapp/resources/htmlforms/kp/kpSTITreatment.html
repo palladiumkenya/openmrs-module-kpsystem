@@ -35,6 +35,34 @@
             jq('#given-condoms :input[type=radio]').change(condomsGiven);
             jq('#given-lubricants :input[type=radio]').change(lubesGiven);
 
+
+            $('input').on('click',function () {
+                $('#infected').find(':checkbox').each(function(){
+
+                    if($(this).is(":checked")){
+                        $('#infection_exists input').val(['1065']);
+                        return false;
+                    }
+                    else{
+                        $('#infection_exists input').val(['1066']);
+                    }
+
+                });
+
+                $('#on_treatment').find(':checkbox').each(function(){
+
+                    if($(this).is(":checked")){
+                        $('#drug_prescribed input').val(['1065']);
+                        return false;
+                    }
+                    else{
+                        $('#drug_prescribed input').val(['1066']);
+                    }
+
+                });
+
+            });
+
         })
 
 
@@ -270,7 +298,7 @@
             </table>
         </fieldset>
 
-        <fieldset>
+        <fieldset id="infected">
             <legend>Type of Syndrome/Infections</legend>
             <table class="simple-table" id="syndrome-table">
                 <tr>
@@ -359,7 +387,7 @@
             </table>
         </fieldset>
 
-        <fieldset>
+        <fieldset id="on_treatment">
             <legend>Drug prescription </legend>
             <table class ="simple-table" id = "drug-table">
 
@@ -612,6 +640,35 @@
                         <obs conceptId="5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true" labelText=" " id="returnVisitDate" />
                         <span style="color:red;"><strong>*</strong></span>
                     </td>
+                </tr>
+            </table>
+
+        </fieldset>
+
+        <fieldset disabled="true" >
+            <legend>This section is purely for reporting not part of form</legend>
+            <table id="reportSection">
+                <tr>
+                    <td>
+                        Syndrome/Infection exists?
+                    </td>
+                    <td>
+                        <obs id="infection_exists" conceptId="1169"
+                             answerConceptIds="1065,1066"
+                             style="radio" answerLabels="Yes,No" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Drug prescribed?
+                    </td>
+                    <td>
+                        <obs id="drug_prescribed" conceptId="165200"
+                             answerConceptIds="1065,1066"
+                             style="radio" answerLabels="Yes,No" />
+                    </td>
+
                 </tr>
             </table>
 
