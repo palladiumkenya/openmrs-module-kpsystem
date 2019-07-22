@@ -129,6 +129,23 @@
 				jq("#attempted-first input").prop("disabled", true);
 			}
 		}
+		function Seecond_atempt_kpReached() {
+			var reached = getValue("tracing-outcome.value");
+			if(reached == 1065){
+
+				jq("#attempted-third").hide();
+				jq("#attempted-second input").prop("disabled", false);
+				jq("#attempted-second input").prop("disabled", true);
+				jq("#attempted-third input").prop("disabled", true);
+			}else {
+				jq("#attempted-third").show();
+				jq("#attempted-second input").prop("disabled", true);
+				jq("#attempted-third input").prop("disabled", false);
+				jq("#attempted-first input").prop("disabled", true);
+			}
+		}
+
+
 		function kpNotReached() {
 			var val = jq(this).val();
 			var otherStatus = jq("#source-information input:radio:checked");
@@ -144,6 +161,7 @@
 			jq("#attempted-third input").prop("disabled", true);
 
 			jq('#tracing-outcome').click(kpReached);
+			jq('#secon_tracing_outcome').click(Seecond_atempt_kpReached);
 			//jq('#sti_screened').click(StiScreened);
 
 
@@ -306,7 +324,7 @@ Cohort register/ peer outreach calendar reviewed and client not lost to follow u
 				<tr>
 					<td>Tracing outcome</td>
 					<td>
-						<obs id="second_tracing-outcome" conceptId="164929"
+						<obs id="secon_tracing_outcome" conceptId="164929"
 							 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 							 answerLabels="KP reached,KP not reached but other informant reached,KP not reached"
 							 style="radio" />
@@ -387,7 +405,7 @@ Untraceable,Bedridden,Imprisoned,Found" answerSeparator="&lt;br /&gt;"
 				<tr id="comment-voluntary">
 					<td>Comments explaining the reason(s) for voluntary exit</td>
 					<td>
-						<obs id="comment-voluntary-exit" conceptId="160716AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="3" cols="80"/>
+						<obs id="comment-voluntary-exit" conceptId="160716" rows="3" cols="80"/>
 					</td>
 				</tr>
 

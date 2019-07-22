@@ -725,9 +725,13 @@
         var providedElseWhere  = function () {
             var tested = getValue("care_provided.value");
             if(tested==162723){
+                jq("#care_provided_txt input").val('');
                 jq("#care_provided_txt input").prop("disabled", false);
             }
-
+            else if(tested==163266){var default_location = "<lookup expression="kenyaemr.location()" />";
+                jq("#care_provided_txt input").val(default_location);
+                jq("#care_provided_txt input").prop("disabled", true);
+            }
             else{
                 jq("#care_provided_txt input").val('');
                 jq("#care_provided_txt input").prop("disabled", true);
@@ -798,6 +802,8 @@
         //On Ready
         $(document).ready(function () {
             // sti forms
+            var pgender = "<lookup expression="patient.gender" />";
+            if(pgender=="M"){jq("#cervical_cancer").hide();}else{jq("#cervical_cancer").show()}
             jq('#sti_screened').click(StiScreened);
             jq('#sti_results').click(StiResults);
             jq('#sti_referred').click(StiReferred);
@@ -1144,7 +1150,8 @@
                     /></p></td>
 
                 </tr>
-                <tr>
+
+                <tr id="cervical_cancer">
                     <td ><p>Cervical Cancer</p></td>
                     <td ><p>  <obs id="cerv_screened" conceptId="164934"
                                                            style="radio" answerConceptIds="1065,1066" /></p></td>
@@ -1161,6 +1168,7 @@
                     /></p></td>
 
                 </tr>
+
 
                 <tr>
                     <td ><p>PrEP</p></td>
