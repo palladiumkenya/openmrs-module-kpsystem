@@ -44,9 +44,6 @@
         var pgender = "<lookup expression="patient.gender" />";
         jQuery(function ($) {
 
-
-
-
             jq("#other-hotspots-specify").hide();
             jq('#hotspot-type select').click(onOtherHotspotSelected);
             getField('weekly-condom-requirements.value').change(onWeeklyCondomRequirementsChange);
@@ -60,11 +57,6 @@
 
             $("#totals").children().attr("disabled","disabled");
             $("#myfieldeset").children().attr("disabled", "disabled");
-
-
-            var calendarEncDate = kpGetUrlParameter("effectiveDate");
-            setValue('encounter-date.value', calendarEncDate);
-            getField('encounter-date.value').prop("readonly", "readonly");
 
             jq('#ns-first-week input[type=text]').prop("disabled",true);
             jq('#ns-second-week input[type=text]').prop("disabled",true);
@@ -374,11 +366,21 @@
 
     </script>
 
+    <ifMode mode="ENTER">
+        <script type="text/javascript">
+            jQuery(function ($) {
+                var calendarEncDate = kpGetUrlParameter("effectiveDate");
+                setValue('encounter-date.value', calendarEncDate);
+                getField('encounter-date.value').prop("readonly", "readonly");
+            });
+        </script>
+    </ifMode>
+
     <div class="ke-form-header">
         <table width="100%">
             <tr>
                 <td>Date:
-                    <encounterDate id="encounter-date" showTime="true"/>
+                    <encounterDate id="encounter-date" />
                 </td>
                 <td>Location:
                     <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>
