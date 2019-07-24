@@ -35,7 +35,7 @@ public class StartedARTDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,v.initiated_art_this_month  from kp_etl.etl_clinical_visit v;";
+        String qry = "select v.client_id,(case v.hiv_care_facility when \"Provided here\" then 1 when \"Provided elsewhere\" then 2 else 3 end) as started_art from etl_clinical_visit v where v.initiated_art_this_month = \"Yes\" group by v.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
