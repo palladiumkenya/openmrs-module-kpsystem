@@ -35,7 +35,9 @@ public class HIVStatusAtEnrollmentDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select e.client_id,case e.share_test_results when \"Yes I tested positive\" then \"KP\" when \"N\" then \"Negative\" else \"U\" end from kp_etl.etl_client_enrollment e group by e.client_id;";
+        String qry = "select e.client_id,e.share_test_results from etl_client_enrollment e;\n" +
+                "select e.client_id,coalesce((case e.share_test_results when \"Yes I tested positive\" then \"Known Positive\" else \"U\" end ),(case t.final_test_result when \"Positive\" then \"P\" when \"Negative\" then \"N\" else \"U\" end)) as hiv_status_at_enrollment from kp_etl.etl_client_enrollment e left outer join kp_etl.etl_hts_test t\n" +
+                "on (t.client_id = e.client_id and t.visit_date = e.visit_date) group by e.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

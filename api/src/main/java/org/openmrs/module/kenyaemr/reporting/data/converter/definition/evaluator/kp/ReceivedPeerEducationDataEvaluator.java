@@ -35,7 +35,7 @@ public class ReceivedPeerEducationDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select p.client_id, p.health_edu from kp_etl.etl_peer_calendar p;";
+        String qry = "select c.client_id, c.health_edu from kp_etl.etl_peer_calendar c group by c.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

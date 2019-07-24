@@ -35,7 +35,8 @@ public class TreatedForSTIDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,v.sti_treated from kp_etl.etl_clinical_visit v group by v.client_id;";
+        String qry = "select  r.client_id,coalesce(v.sti_treated,t.drug_prescription,t.other_drug_prescription) from  kp_etl.etl_client_registration r  left outer join kp_etl.etl_clinical_visit v on r.client_id = v.client_id left outer join kp_etl.etl_sti_treatment t\n" +
+                "on t.client_id = r.client_id where t.syndrome is not null or v.sti_results is not null group by r.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

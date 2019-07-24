@@ -27,7 +27,7 @@ import java.util.Map;
  * Evaluates a PersonDataDefinition
  */
 @Handler(supports= ReceivedPostViolenceSupportDataDefinition.class, order=50)
-public class ReceivedPostViolenceSupportDataEvaluator implements PersonDataEvaluator {
+public class   ReceivedPostViolenceSupportDataEvaluator implements PersonDataEvaluator {
 
     @Autowired
     private EvaluationService evaluationService;
