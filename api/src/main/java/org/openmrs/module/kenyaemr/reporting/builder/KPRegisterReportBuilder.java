@@ -165,7 +165,6 @@ public class KPRegisterReportBuilder extends AbstractHybridReportBuilder {
         dsd.addColumn("Next appointment Date", new AppointmentDateDataDefinition(), "");
         dsd.addColumn("Remarks", new RemarksDataDefinition(), "");
 
-
         return dsd;
     }
 }

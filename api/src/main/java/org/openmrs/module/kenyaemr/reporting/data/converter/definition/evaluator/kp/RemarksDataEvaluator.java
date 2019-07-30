@@ -35,7 +35,7 @@ public class RemarksDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select p.client_id, p.week1_remarks from kp_etl.etl_peer_calendar p;";
+        String qry = "select p.client_id, p.remarks from kp_etl.etl_peer_calendar p;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

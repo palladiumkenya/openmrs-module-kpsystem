@@ -47,7 +47,7 @@
     <bean id="kenyaemr.config.report" class="org.openmrs.module.kenyacore.report.ReportConfiguration">
         <property name="commonReports">
             <set>
-
+                <ref bean="kenyaemr.etl.common.report.moh731b" />
             </set>
         </property>
     </bean>
@@ -342,5 +342,15 @@
         <property name="order" value="201022" />
     </bean>
     <!-- ===================== Reports ===================== -->
-
+    <bean id="kenyaemr.etl.common.report.moh731b" class="org.openmrs.module.kenyacore.report.IndicatorReportDescriptor">
+        <property name="targetUuid" value="f8109c53-93bb-4561-b397-bb22ea317577" />
+        <property name="name" value="MOH 731B Report" />
+        <property name="description" value="MOH 731B Report based" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.reports" />
+            </set></property>
+        <!--<property name="template" value="kenyaemr:moh731_greencard_template.xls" />-->
+        <property name="template" value="" />
+    </bean>
 </beans>
