@@ -546,7 +546,7 @@
 
             if(menResults==664){
                 jq("#men_treated input").prop("disabled", true);
-                jq("#men_referred input").prop("disabled", true);
+                jq("#men_referred input").prop("disabled", true);test_resultsChanged
                 jq("#mentxt input").prop("disabled", true);
             }
             else{
@@ -787,24 +787,25 @@
                 jq("#linked_to_art input").prop("disabled", false).removeClass('disabled');
                 jq('#care_and_treatment').find("select").prop("selectedIndex",0).removeClass('disabled');
                 jq('#care_and_treatment').find('*').prop('disabled',false);
-                $('#pep_prep').find('*').prop('disabled',true);
-                $('#pep_prep').find('input:text').val('');
-                $('#pep_prep').find("select").prop("selectedIndex",0).addClass('disabled');
+               // $("#pep_prep").attr('disabled',"true");
+                $('#pepandprep').find('*').prop('disabled',true);
+                $('#pepandprep').find('select').prop('disabled',true);
+                $('#pepandprep').find('input:text').val('');
+                $('#pepandprep').find("select").prop("selectedIndex",0).addClass('disabled');
             }
 
 
-            else if(testResult==664 || testResult== 165232 || testResult == 118 ){
+            else {
                 jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
                 jq("#txtart input").prop("disabled", true).addClass('disabled');
                 jq("#linked_to_art input").prop('checked', false);
                 jq("#txtart input").val('');
-            }
-
-            else{jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
                 $('#care_and_treatment').find('*').prop('disabled',true);
                 $('#care_and_treatment').find('input:text').val('');
                 $('#care_and_treatment').find("select").prop("selectedIndex",0).addClass('disabled');
-                jq("#linkedFacility input").prop("disabled", true).addClass('disabled'); }
+                jq("#linkedFacility input").prop("disabled", true).addClass('disabled');
+            }
+
         }
 
         //On Ready
@@ -894,7 +895,6 @@
 
             $("INPUT[type=text],TEXTAREA").attr("disabled", "disabled");
             jq("#Client_visit input:radio").attr('disabled',true);
-            //$(this).attr("disabled", "");
             jq("#malecondoms input").prop("disabled", false);
             jq("#femalecondoms input").prop("disabled", false);
             jq("#lubes input").prop("disabled", false);
@@ -1309,7 +1309,7 @@
                     <td ><p>  <obs id="men_screened" conceptId="165210" required="true"
                                                            style="radio" answerConceptIds="1065,1066" /></p></td>
 
-                    <td ><p>  <obs id="men_screened" conceptId="165211"
+                    <td ><p>  <obs id="men_results" conceptId="165211"
                                    style="radio" answerConceptIds="165212,157790,134017,134011,126627"
                                   answerSeparator="&lt;br /&gt;"/></p></td>
 
@@ -1562,7 +1562,7 @@
                         </table>
                     </td>
                 </tr>
-                <tr id="pep_prep">
+                <tr id="pepandprep">
                     <td > PEP :  &#160;&#160;  <obs id="pep_selected" conceptId="164845" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio"  /></td>
                     <td >Type of exposure :<br/>
                         <obs conceptId="165060" answerConceptId="127910" style="checkbox" /><br />
