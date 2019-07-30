@@ -6,8 +6,6 @@
     ui.includeCss("kenyaemrorderentry", "font-awesome.css.map")
     ui.includeCss("kenyaemrorderentry", "../fontawesome-webfont.svg")
 
-
-    def addSocialStatusFormLink = ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/kpSocialStatus.xml", returnUrl: ui.thisUrl()])
     def editContactInfoLink =  ui.pageLink("registrationapp", "editSection", [ patientId: patient.id,sectionId: "contactInfo", appId:"referenceapplication.registrationapp.registerPatient", returnUrl: ui.thisUrl() ])
     def editAliasLink = ui.pageLink("registrationapp", "editSection", [ patientId: patient.id,sectionId: "alias", appId:"referenceapplication.registrationapp.registerPatient", returnUrl: ui.thisUrl() ])
     def addTriageFormLink = ui.pageLink("htmlformentryui", "htmlform/enterHtmlFormWithSimpleUi", [patientId: currentPatient.patientId, definitionUiResource: "kenyaemr:simpleuiforms/triage.xml", returnUrl: ui.thisUrl()])
@@ -41,6 +39,16 @@
                     <div class="info-body">
                         ${ ui.includeFragment("kenyaemr", "patient/patientSummary", [ patient: currentPatient ]) }
                     </div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-header">
+                        <i class="fa fa-support"></i>
+                        <h3>Peer - Contact Form</h3>
+                    </div>
+
+                    ${ ui.includeFragment("kenyaemr", "program/kp/clientContactForm", [patient: currentPatient]) }
+
                 </div>
 
                 <div class="info-section">

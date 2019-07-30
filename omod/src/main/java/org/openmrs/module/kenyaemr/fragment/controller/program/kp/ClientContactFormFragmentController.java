@@ -30,7 +30,7 @@ import java.util.Set;
 /**
  * Patient summary fragment
  */
-public class ClientSupportFragmentController {
+public class ClientContactFormFragmentController {
 	static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
 	public void controller(@FragmentParam("patient") Patient patient,
@@ -41,8 +41,8 @@ public class ClientSupportFragmentController {
 						   FragmentModel model) {
 
 
-		EncounterType encSocialStatus = MetadataUtils.existing(EncounterType.class, CommonMetadata._EncounterType.SOCIAL_STATUS);
-		Form formSocialStatus = MetadataUtils.existing(Form.class, CommonMetadata._Form.SOCIAL_STATUS);
+		EncounterType encSocialStatus = MetadataUtils.existing(EncounterType.class, CommonMetadata._EncounterType.KP_CONTACT);
+		Form formSocialStatus = MetadataUtils.existing(Form.class, CommonMetadata._Form.KP_CONTACT_FORM);
 
 		List<Encounter> encs = EmrUtils.AllEncounters(patient, encSocialStatus, formSocialStatus);
 		List<SimpleObject> simplifiedEncData = new ArrayList<SimpleObject>();
@@ -56,7 +56,7 @@ public class ClientSupportFragmentController {
 
 	public static SimpleObject buildEncounterData(Set<Obs> obsList, Encounter e) {
 
-		int KPTYPE = 160581;
+		int KPTYPE = 164929;
 		int HOTSPOT = 165005;
 		int SEX_ACTS_PER_WEEK = 165007;
 		int ANAL_SEX_ACTS_PER_WEEK = 165008;
@@ -85,6 +85,10 @@ public class ClientSupportFragmentController {
 					kpType = "Drug User";
 				} else if (obs.getValueCoded().getConceptId().equals(105)) {
 					kpType = "Drug Injector";
+				} else if (obs.getValueCoded().getConceptId().equals(165108)) {
+					kpType = "Transman";
+				} else if (obs.getValueCoded().getConceptId().equals(165107)) {
+					kpType = "Transwoman";
 				}
 			} else if (obs.getConcept().getConceptId().equals(HOTSPOT)) {
 				frequentedHotspot = obs.getValueCoded() != null ?  obs.getValueCoded().getName().getName() : "";
@@ -101,6 +105,7 @@ public class ClientSupportFragmentController {
 
 		return SimpleObject.create(
 				"encDate", encDate,
+				"encId", e.getEncounterId(),
 				"kpType", kpType != null? kpType : "",
 				"hotspot", frequentedHotspot != null ? frequentedHotspot : "",
 				"weeklySexActs", weeklySexActs != null ? weeklySexActs : "",

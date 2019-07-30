@@ -36,7 +36,6 @@
                 <ref bean="kenyaemr.common.form.kpPeerOverdoseReporting"/>
                 <ref bean="kenyaemr.common.form.kpHealthWorkerOverdoseReporting"/>
                 <ref bean="kenyaemr.common.form.kpViolenceScreening"/>
-                <ref bean="kenyaemr.common.form.kpContact"/>
                 <!--<ref bean="kenyaemr.common.form.kpHealthEducation"/>-->
                 <ref bean="kenyaemr.common.form.kpReferral"/>
                 <ref bean="kenyaemr.common.form.kpAlcoholScreening"/>
