@@ -16,24 +16,25 @@ import org.openmrs.module.reporting.definition.configuration.ConfigurationProper
 import org.openmrs.module.reporting.evaluation.caching.Caching;
 
 /**
- * Number Of Peers Under PE DataDefinition Column
+ * Number Of Peers Recieved Peer Education DataDefinition
+ * Column
  */
 @Caching(strategy=ConfigurationPropertyCachingStrategy.class)
-public class NumberOfPeersUnderPEDataDefinition extends BaseDataDefinition implements PersonDataDefinition {
+public class NumberOfPeersReceivedPeerEducationDataDefinition extends BaseDataDefinition implements PersonDataDefinition {
 
     public static final long serialVersionUID = 1L;
 
     /**
      * Default Constructor
      */
-    public NumberOfPeersUnderPEDataDefinition() {
+    public NumberOfPeersReceivedPeerEducationDataDefinition() {
         super();
     }
 
     /**
-     * Constructor to populate Number Of Peers Under PE DataDefinition
+     * Constructor to populate Number Of Peers Recieved Peer Education DataDefinition
      */
-    public NumberOfPeersUnderPEDataDefinition(String name) {
+    public NumberOfPeersReceivedPeerEducationDataDefinition(String name) {
         super(name);
     }
 

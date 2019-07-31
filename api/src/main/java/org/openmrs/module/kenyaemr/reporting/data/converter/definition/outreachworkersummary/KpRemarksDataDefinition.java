@@ -10,30 +10,29 @@
 package org.openmrs.module.kenyaemr.reporting.data.converter.definition.outreachworkersummary;
 
 import org.openmrs.module.reporting.data.BaseDataDefinition;
-import org.openmrs.module.reporting.data.encounter.definition.EncounterDataDefinition;
 import org.openmrs.module.reporting.data.person.definition.PersonDataDefinition;
 import org.openmrs.module.reporting.definition.configuration.ConfigurationPropertyCachingStrategy;
 import org.openmrs.module.reporting.evaluation.caching.Caching;
 
 /**
- * Number Of Peers Under PE DataDefinition Column
+ * Number KP Remarks DataDefinition Column
  */
 @Caching(strategy=ConfigurationPropertyCachingStrategy.class)
-public class NumberOfPeersUnderPEDataDefinition extends BaseDataDefinition implements PersonDataDefinition {
+public class KpRemarksDataDefinition extends BaseDataDefinition implements PersonDataDefinition {
 
     public static final long serialVersionUID = 1L;
 
     /**
      * Default Constructor
      */
-    public NumberOfPeersUnderPEDataDefinition() {
+    public KpRemarksDataDefinition() {
         super();
     }
 
     /**
-     * Constructor to populate Number Of Peers Under PE DataDefinition
+     * Constructor to populate Kp remarks DataDefinition
      */
-    public NumberOfPeersUnderPEDataDefinition(String name) {
+    public KpRemarksDataDefinition(String name) {
         super(name);
     }
 

@@ -13,7 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Cohort;
 import org.openmrs.annotation.Handler;
-import org.openmrs.module.kenyaemr.reporting.cohort.definition.KPRegisterCohortDefinition;
+import org.openmrs.module.kenyaemr.reporting.cohort.definition.OutreachWorkerCohortDefinition;
 import org.openmrs.module.reporting.cohort.EvaluatedCohort;
 import org.openmrs.module.reporting.cohort.definition.CohortDefinition;
 import org.openmrs.module.reporting.cohort.definition.evaluator.CohortDefinitionEvaluator;
@@ -29,10 +29,10 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * Evaluator for KP Cohort Register
+ * Evaluator for Outreach Worker Summary Register
  */
-@Handler(supports = {KPRegisterCohortDefinition.class})
-public class KPRegisterCohortDefinitionEvaluator implements CohortDefinitionEvaluator {
+@Handler(supports = {OutreachWorkerCohortDefinition.class})
+public class OutreachWorkerCohortDefinitionEvaluator implements CohortDefinitionEvaluator {
 
     private final Log log = LogFactory.getLog(this.getClass());
     @Autowired
@@ -41,7 +41,7 @@ public class KPRegisterCohortDefinitionEvaluator implements CohortDefinitionEval
     @Override
     public EvaluatedCohort evaluate(CohortDefinition cohortDefinition, EvaluationContext context) throws EvaluationException {
 
-        KPRegisterCohortDefinition definition = (KPRegisterCohortDefinition) cohortDefinition;
+        OutreachWorkerCohortDefinition definition = (OutreachWorkerCohortDefinition) cohortDefinition;
 
         if (definition == null)
             return null;
@@ -50,12 +50,8 @@ public class KPRegisterCohortDefinitionEvaluator implements CohortDefinitionEval
 
         context = ObjectUtil.nvl(context, new EvaluationContext());
 
-        String qry = "select r.client_id from kp_etl.etl_client_registration r left outer join kp_etl.etl_clinical_visit v on r.client_id = v.client_id and v.voided = 0\n" +
-                "                                                         left outer join kp_etl.etl_peer_calendar c on r.client_id = c.client_id  and v.voided = 0\n" +
-                "                                                         left outer join kp_etl.etl_client_enrollment e on r.client_id = e.client_id and e.voided = 0\n" +
-                "where date(v.visit_date) between date(:startDate) and date(:endDate) or date(c.visit_date) between date(:startDate) and date(:endDate)\n" +
-                "and r.voided = 0 and r.dead = 0\n" +
-                "group by r.client_id;";
+        String qry = "select r.person_a as peer_educator from openmrs.relationship r inner join kp_etl.etl_peer_calendar p on r.person_b= p.client_id\n" +
+                     "and p.visit_date between date(:startDate) and date(:endDate) group by r.person_a;";
 
         SqlQueryBuilder builder = new SqlQueryBuilder();
         builder.append(qry);

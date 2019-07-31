@@ -7,14 +7,13 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-package org.openmrs.module.kenyaemr.reporting.data.converter.definition.evaluator.outreachworkersummary;
+package org.openmrs.module.kenyaemr.reporting.data.converter.definition.evaluator.kp.outreachworkersummary;
 
 import org.openmrs.annotation.Handler;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.anc.ANCAZTDispensedDataDefinition;
 import org.openmrs.module.kenyaemr.reporting.data.converter.definition.outreachworkersummary.NumberOfPeersUnderPEDataDefinition;
-import org.openmrs.module.reporting.data.encounter.EvaluatedEncounterData;
-import org.openmrs.module.reporting.data.encounter.definition.EncounterDataDefinition;
-import org.openmrs.module.reporting.data.encounter.evaluator.EncounterDataEvaluator;
+import org.openmrs.module.reporting.data.person.EvaluatedPersonData;
+import org.openmrs.module.reporting.data.person.definition.PersonDataDefinition;
+import org.openmrs.module.reporting.data.person.evaluator.PersonDataEvaluator;
 import org.openmrs.module.reporting.evaluation.EvaluationContext;
 import org.openmrs.module.reporting.evaluation.EvaluationException;
 import org.openmrs.module.reporting.evaluation.querybuilder.SqlQueryBuilder;
@@ -27,16 +26,16 @@ import java.util.Map;
  * Number Of Peers Under this PE DataDefinition column
  */
 @Handler(supports= NumberOfPeersUnderPEDataDefinition.class, order=50)
-public class NumberOfPeersUnderPEDataEvaluator implements EncounterDataEvaluator {
+public class NumberOfPeersUnderPEDataEvaluator implements PersonDataEvaluator {
 
     @Autowired
     private EvaluationService evaluationService;
 
-    public EvaluatedEncounterData evaluate(EncounterDataDefinition definition, EvaluationContext context) throws EvaluationException {
-        EvaluatedEncounterData c = new EvaluatedEncounterData(definition, context);
+    public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
+        EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
         String qry = "select r.person_a as peer_educator,count(p.client_id) as number_of_peers from openmrs.relationship r inner join kp_etl.etl_peer_calendar p on r.person_b= p.client_id\n" +
-                     "and p.visit_date between date(:startDate) and date(:endDate) group by peer_educator;";
+                "group by r.person_a;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
