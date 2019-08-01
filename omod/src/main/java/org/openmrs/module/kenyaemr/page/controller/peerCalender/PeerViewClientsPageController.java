@@ -17,7 +17,6 @@ import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.kenyaemr.EmrConstants;
 import org.openmrs.module.kenyaemr.metadata.CommonMetadata;
-import org.openmrs.module.kenyaemr.reporting.EmrReportingUtils;
 import org.openmrs.module.kenyaemr.util.EmrUtils;
 import org.openmrs.module.kenyaui.annotation.AppPage;
 import org.openmrs.ui.framework.SimpleObject;
@@ -37,7 +36,7 @@ import java.util.List;
  */
 @AppPage(EmrConstants.APP_PEER_CALENDER)
 public class PeerViewClientsPageController {
-	PersonService person = Context.getPersonService();
+	PersonService personService = Context.getPersonService();
     static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
 
@@ -61,7 +60,7 @@ public class PeerViewClientsPageController {
 
 		Date fromDate = getFirstDateOfMonth(entryEndDate);
 
-		Encounter lastEncounterDuringPeriod = EmrUtils.lastEncounter(patient,
+		Encounter lastPeerCalendarForEducator = EmrUtils.lastEncounter(patient,
 				Context.getEncounterService().getEncounterTypeByUuid(CommonMetadata._EncounterType.KP_PEER_CALENDAR),
 				Context.getFormService().getFormByUuid(CommonMetadata._Form.KP_PEER_CALENDAR_FORM),
 				fromDate,
@@ -69,7 +68,8 @@ public class PeerViewClientsPageController {
 				);
 
 		List<SimpleObject> peer = new ArrayList<SimpleObject>();
-		Person p = person.getPerson(patient);
+		Person p = personService.getPerson(patient);
+
 		peer.add(SimpleObject.create(
 				"name",p.getGivenName()+" " + p.getMiddleName()
 						+" "+p.getFamilyName(),
@@ -77,7 +77,7 @@ public class PeerViewClientsPageController {
 				"age", p.getAge(),
 				"birthdate", p.getBirthdate(),
 				"id",p.getId(),
-				"encounter", lastEncounterDuringPeriod != null ? lastEncounterDuringPeriod.getEncounterId() : null
+				"encounter", lastPeerCalendarForEducator != null ? lastPeerCalendarForEducator.getEncounterId() : null
 		));
 
 
@@ -98,7 +98,8 @@ public class PeerViewClientsPageController {
 				if (relationship.getRelationshipType().getbIsToA().equals("Peer") && startDate.before(endDate)) {
 					if(endDate.after(endDate) || relationship.getEndDate() == null) {
 
-						Encounter lastEncounter = EmrUtils.lastEncounter(patient,
+						Person personB = relationship.getPersonB();
+						Encounter lastPeerCalendarForPeer = EmrUtils.lastEncounter(Context.getPatientService().getPatient(personB.getPersonId()),
 								Context.getEncounterService().getEncounterTypeByUuid(CommonMetadata._EncounterType.KP_PEER_CALENDAR),
 								Context.getFormService().getFormByUuid(CommonMetadata._Form.KP_PEER_CALENDAR_FORM),
 								fromDate,
@@ -106,13 +107,13 @@ public class PeerViewClientsPageController {
 						);
 
 						peer.add(SimpleObject.create(
-								"name", relationship.getPersonB().getGivenName() + " " + relationship.getPersonA().getMiddleName()
-										+ " " + relationship.getPersonB().getFamilyName(),
-								"gender", relationship.getPersonB().getGender(),
-								"age", relationship.getPersonB().getAge(),
-								"birthdate", relationship.getPersonB().getBirthdate(),
-								"id", relationship.getPersonB().getId(),
-								"encounter", lastEncounterDuringPeriod != null ? lastEncounter.getEncounterId() : null
+								"name", personB.getGivenName() + " " + personB.getMiddleName()
+										+ " " + personB.getFamilyName(),
+								"gender", personB.getGender(),
+								"age", personB.getAge(),
+								"birthdate", personB.getBirthdate(),
+								"id", personB.getId(),
+								"encounter", lastPeerCalendarForPeer != null ? lastPeerCalendarForPeer.getEncounterId() : null
 
 						));
 					}

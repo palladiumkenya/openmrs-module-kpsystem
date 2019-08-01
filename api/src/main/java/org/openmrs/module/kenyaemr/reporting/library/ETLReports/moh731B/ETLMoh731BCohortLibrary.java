@@ -31,11 +31,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition activeFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join encounter e on e.patient_id = en.client_id\n" +
-                "inner join kp_etl.kp_etl.etl_client_social_status s on en.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Female sex worker\"  and en.voided = 0\n" +
+        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join kp_etl.etl_clinical_visit v on en.client_id = v.client_id\n" +
+                "                                                            inner join kp_etl.etl_contact c on en.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Female sex worker\"  and en.voided = 0\n" +
                 "group by en.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(e.encounter_datetime)),date(:endDate))<=3;";
+                "    having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("activeFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -47,11 +47,11 @@ public class ETLMoh731BCohortLibrary {
     //activeMsm
     public CohortDefinition activeMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join encounter e on e.patient_id = en.client_id\n" +
-                "                                                            inner join kp_etl.kp_etl.etl_client_social_status s on en.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Male who have sex with Men\"  and en.voided = 0\n" +
+        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join kp_etl.etl_clinical_visit v on en.client_id = v.client_id\n" +
+                "                                                            inner join kp_etl.etl_contact c on en.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Men who have sex with men\"  and en.voided = 0\n" +
                 "group by en.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(e.encounter_datetime)),date(:endDate))<=3;";
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("activeMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -63,11 +63,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition activeMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join encounter e on e.patient_id = en.client_id\n" +
-                "                                                            inner join kp_etl.kp_etl.etl_client_social_status s on en.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Male sex worker\"  and en.voided = 0\n" +
+        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join kp_etl.etl_clinical_visit v on en.client_id = v.client_id\n" +
+                "                                                            inner join kp_etl.etl_contact c on en.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Male sex worker\"  and en.voided = 0\n" +
                 "group by en.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(e.encounter_datetime)),date(:endDate))<=3;";
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("activeMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -79,11 +79,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition activePwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join encounter e on e.patient_id = en.client_id\n" +
-                "                                                            inner join kp_etl.kp_etl.etl_client_social_status s on en.client_id = s.client_id\n" +
-                "where s.key_population_type = \"People who inject drugs\"  and en.voided = 0\n" +
+        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join kp_etl.etl_clinical_visit v on en.client_id = v.client_id\n" +
+                "                                                            inner join kp_etl.etl_contact c on en.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who inject drugs\"  and en.voided = 0\n" +
                 "group by en.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(e.encounter_datetime)),date(:endDate))<=3;";
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("activePwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -95,14 +95,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition activePwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join encounter e on e.patient_id = en.client_id\n" +
-                "                                                            inner join kp_etl.kp_etl.etl_client_social_status s on en.client_id = s.client_id\n" +
-                "where s.key_population_type = \"People who use drugs\"  and en.voided = 0\n" +
+        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join kp_etl.etl_clinical_visit v on en.client_id = v.client_id\n" +
+                "                                                            inner join kp_etl.etl_contact c on en.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"  and en.voided = 0\n" +
                 "group by en.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(e.encounter_datetime)),date(:endDate))<=3;                      inner join kp_etl.kp_etl.etl_client_social_status s on en.client_id = s.client_id\n" +
-                "where s.key_population_type = \"People who use drugs\"  and en.voided = 0\n" +
-                "group by en.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(e.encounter_datetime)),date(:endDate))<=3;";
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("activePwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -114,7 +111,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition activeTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select  en.client_id  from kp_etl.etl_client_enrollment en  inner join kp_etl.etl_clinical_visit v on en.client_id = v.client_id\n" +
+                "                                                            inner join kp_etl.etl_contact c on en.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Transgender\"  and en.voided = 0\n" +
+                "group by en.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("activeTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -126,10 +127,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition hivTestedFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where date(h.visit_date) between date(:startDate) and date(:endDate) and s.key_population_type = \"Female sex worker\"\n" +
-                "group by h.client_id;";
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "                where date(h.visit_date) between date(:startDate) and date(:endDate) and c.key_population_type = \"Female sex worker\"\n" +
+                "    group by h.client_id;";
         cd.setName("hivTestedFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -141,9 +142,9 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition hivTestedMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where date(h.visit_date) between date(:startDate) and date(:endDate) and s.key_population_type = \"Male who have sex with Men\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where date(h.visit_date) between date(:startDate) and date(:endDate) and c.key_population_type = \"Men who have sex with men\"\n" +
                 "group by h.client_id;";
         cd.setName("hivTestedMsm");
         cd.setQuery(sqlQuery);
@@ -156,9 +157,9 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition hivTestedMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where date(h.visit_date) between date(:startDate) and date(:endDate) and s.key_population_type = \"Male sex worker\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where date(h.visit_date) between date(:startDate) and date(:endDate) and c.key_population_type = \"Male sex worker\"\n" +
                 "group by h.client_id;";
         cd.setName("hivTestedMsw");
         cd.setQuery(sqlQuery);
@@ -171,9 +172,9 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition hivTestedPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where date(h.visit_date) between date(:startDate) and date(:endDate) and s.key_population_type = \"People who inject drugs\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where date(h.visit_date) between date(:startDate) and date(:endDate) and c.key_population_type = \"People who inject drugs\"\n" +
                 "group by h.client_id;";
         cd.setName("hivTestedPwid");
         cd.setQuery(sqlQuery);
@@ -186,9 +187,9 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition hivTestedPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where date(h.visit_date) between date(:startDate) and date(:endDate) and s.key_population_type = \"People who use drugs\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where date(h.visit_date) between date(:startDate) and date(:endDate) and c.key_population_type = \"People who use drugs\"\n" +
                 "group by h.client_id;";
         cd.setName("hivTestedPwud");
         cd.setQuery(sqlQuery);
@@ -201,7 +202,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition hivTestedTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where date(h.visit_date) between date(:startDate) and date(:endDate) and c.key_population_type = \"Transgender\"\n" +
+                "group by h.client_id;";
         cd.setName("hivTestedTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -213,17 +217,17 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition testedAtFacilityFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Female sex worker\"\n" +
-                " and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
-                "and h.hts_entry_point in (\"In Patient Department(IPD)\",\n" +
-                "                          \"Out Patient Department(OPD)Peadiatric Clinic\",\n" +
-                "                          \"Nutrition Clinic\",\n" +
-                "                          \"PMTCT\",\n" +
-                "                          \"TB\",\n" +
-                "                          \"CCC\",\n" +
-                "                          \"VCT\")\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                                     inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Female sex worker\"\n" +
+                "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "  and h.hts_entry_point in (\"In Patient Department(IPD)\",\n" +
+                "                            \"Out Patient Department(OPD)Peadiatric Clinic\",\n" +
+                "                            \"Nutrition Clinic\",\n" +
+                "                            \"PMTCT\",\n" +
+                "                            \"TB\",\n" +
+                "                            \"CCC\",\n" +
+                "                            \"VCT\")\n" +
                 "group by h.client_id;";
         cd.setName("testedAtFacilityFsw");
         cd.setQuery(sqlQuery);
@@ -236,9 +240,9 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition testedAtFacilityMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Male who have sex with Men\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Men who have sex with men\"\n" +
                 "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "  and h.hts_entry_point in (\"In Patient Department(IPD)\",\n" +
                 "                            \"Out Patient Department(OPD)Peadiatric Clinic\",\n" +
@@ -259,9 +263,9 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition testedAtFacilityMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Male sex worker\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Male sex worker\"\n" +
                 "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "  and h.hts_entry_point in (\"In Patient Department(IPD)\",\n" +
                 "                            \"Out Patient Department(OPD)Peadiatric Clinic\",\n" +
@@ -282,9 +286,9 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition testedAtFacilityPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"People who inject drugs\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who inject drugs\"\n" +
                 "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "  and h.hts_entry_point in (\"In Patient Department(IPD)\",\n" +
                 "                            \"Out Patient Department(OPD)Peadiatric Clinic\",\n" +
@@ -303,9 +307,9 @@ public class ETLMoh731BCohortLibrary {
         return cd;
     }    public CohortDefinition testedAtFacilityPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"People who use drugs\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
                 "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "  and h.hts_entry_point in (\"In Patient Department(IPD)\",\n" +
                 "                            \"Out Patient Department(OPD)Peadiatric Clinic\",\n" +
@@ -326,7 +330,18 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition testedAtFacilityTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Transgender\"\n" +
+                "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "  and h.hts_entry_point in (\"In Patient Department(IPD)\",\n" +
+                "                            \"Out Patient Department(OPD)Peadiatric Clinic\",\n" +
+                "                            \"Nutrition Clinic\",\n" +
+                "                            \"PMTCT\",\n" +
+                "                            \"TB\",\n" +
+                "                            \"CCC\",\n" +
+                "                            \"VCT\")\n" +
+                "group by h.client_id;";
         cd.setName("testedAtFacilityTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -338,9 +353,9 @@ public class ETLMoh731BCohortLibrary {
 //testedAtCommunityFsw
     public CohortDefinition testedAtCommunityFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Female sex worker\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                                     inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Female sex worker\"\n" +
                 "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "  and h.hts_entry_point in (\"Home Based Testing\",\n" +
                 "                            \"Mobile Outreach\",\n" +
@@ -357,9 +372,9 @@ public class ETLMoh731BCohortLibrary {
 //testedAtCommunityMsm
     public CohortDefinition testedAtCommunityMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Male who have sex with Men\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Men who have sex with men\"\n" +
                 "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "  and h.hts_entry_point in (\"Home Based Testing\",\n" +
                 "                            \"Mobile Outreach\",\n" +
@@ -376,9 +391,9 @@ public class ETLMoh731BCohortLibrary {
 //testedAtCommunityMsw
     public CohortDefinition testedAtCommunityMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Male sex worker\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Male sex worker\"\n" +
                 "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "  and h.hts_entry_point in (\"Home Based Testing\",\n" +
                 "                            \"Mobile Outreach\",\n" +
@@ -395,9 +410,9 @@ public class ETLMoh731BCohortLibrary {
 //testedAtCommunityPwid
     public CohortDefinition testedAtCommunityPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery = "select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"People who inject drugs\"\n" +
+        String sqlQuery = "select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who inject drugs\"\n" +
                 "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "  and h.hts_entry_point in (\"Home Based Testing\",\n" +
                 "                            \"Mobile Outreach\",\n" +
@@ -414,9 +429,9 @@ public class ETLMoh731BCohortLibrary {
 //testedAtCommunityPwud
     public CohortDefinition testedAtCommunityPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"People who use drugs\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
                 "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "  and h.hts_entry_point in (\"Home Based Testing\",\n" +
                 "                            \"Mobile Outreach\",\n" +
@@ -433,9 +448,9 @@ public class ETLMoh731BCohortLibrary {
 //testedAtCommunityTransgender
     public CohortDefinition testedAtCommunityTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"transgender\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Transgender\"\n" +
                 "  and date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "  and h.hts_entry_point in (\"Home Based Testing\",\n" +
                 "                            \"Mobile Outreach\",\n" +
@@ -453,8 +468,8 @@ public class ETLMoh731BCohortLibrary {
     public CohortDefinition testedNewFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
-                "inner join kp_etl.etl_client_social_status ss on t.client_id = e.client_id\n" +
-                "where ss.key_population_type = \"Female sex worker\"\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Female sex worker\"\n" +
                 "group by t.client_id\n" +
                 "having min(date(t.visit_date)) between  date(:startDate) and date(:endDate);";
         cd.setName("testedNewFsw");
@@ -469,8 +484,8 @@ public class ETLMoh731BCohortLibrary {
     public CohortDefinition testedNewMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
-                "                                       inner join kp_etl.etl_client_social_status ss on t.client_id = e.client_id\n" +
-                "where ss.key_population_type = \"Male who have sex with Men\"\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Men who have sex with men\"\n" +
                 "group by t.client_id\n" +
                 "having min(date(t.visit_date)) between  date(:startDate) and date(:endDate);";
         cd.setName("testedNewMsm");
@@ -485,8 +500,8 @@ public class ETLMoh731BCohortLibrary {
     public CohortDefinition testedNewMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
-                "                                       inner join kp_etl.etl_client_social_status ss on t.client_id = e.client_id\n" +
-                "where ss.key_population_type = \"Male sex worker\"\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Male sex worker\"\n" +
                 "group by t.client_id\n" +
                 "having min(date(t.visit_date)) between  date(:startDate) and date(:endDate);";
         cd.setName("testedNewMsw");
@@ -501,8 +516,8 @@ public class ETLMoh731BCohortLibrary {
     public CohortDefinition testedNewPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
-                "                                       inner join kp_etl.etl_client_social_status ss on t.client_id = e.client_id\n" +
-                "where ss.key_population_type = \"People who inject drugs\"\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who inject drugs\"\n" +
                 "group by t.client_id\n" +
                 "having min(date(t.visit_date)) between  date(:startDate) and date(:endDate);";
         cd.setName("testedNewPwid");
@@ -517,8 +532,8 @@ public class ETLMoh731BCohortLibrary {
     public CohortDefinition testedNewPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
-                "                                       inner join kp_etl.etl_client_social_status ss on t.client_id = e.client_id\n" +
-                "where ss.key_population_type = \"People who use drugs\"\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
                 "group by t.client_id\n" +
                 "having min(date(t.visit_date)) between  date(:startDate) and date(:endDate);";
         cd.setName("testedNewPwud");
@@ -532,7 +547,11 @@ public class ETLMoh731BCohortLibrary {
 //testedAtNewTransgender
     public CohortDefinition testedAtNewTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Transgender\"\n" +
+                "group by t.client_id\n" +
+                "having min(date(t.visit_date)) between  date(:startDate) and date(:endDate);";
         cd.setName("testedAtNewTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -545,8 +564,8 @@ public class ETLMoh731BCohortLibrary {
     public CohortDefinition testedRepeatFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.etl_client_social_status ss on t.client_id = e.client_id\n" +
-                "where ss.key_population_type = \"Female sex worker\"\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = e.client_id\n" +
+                "where c.key_population_type = \"Female sex worker\"\n" +
                 "group by t.client_id having count(distinct(t.visit_id)) >1;";
         cd.setName("testedRepeatFsw");
         cd.setQuery(sqlQuery);
@@ -560,8 +579,8 @@ public class ETLMoh731BCohortLibrary {
     public CohortDefinition testedRepeatMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.etl_client_social_status ss on t.client_id = e.client_id\n" +
-                "where ss.key_population_type = \"Male who have sex with Men\"\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = e.client_id\n" +
+                "where c.key_population_type = \"Men who have sex with men\"\n" +
                 "group by t.client_id having count(distinct(t.visit_id)) >1;";
         cd.setName("testedRepeatMsm");
         cd.setQuery(sqlQuery);
@@ -576,8 +595,8 @@ public class ETLMoh731BCohortLibrary {
     public CohortDefinition testedRepeatMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.etl_client_social_status ss on t.client_id = e.client_id\n" +
-                "where ss.key_population_type = \"Male sex worker\"\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = e.client_id\n" +
+                "where c.key_population_type = \"Male sex worker\"\n" +
                 "group by t.client_id having count(distinct(t.visit_id)) >1;";
         cd.setName("testedRepeatMsw");
         cd.setQuery(sqlQuery);
@@ -591,8 +610,8 @@ public class ETLMoh731BCohortLibrary {
     public CohortDefinition testedRepeatPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.etl_client_social_status ss on t.client_id = e.client_id\n" +
-                "where ss.key_population_type = \"People who inject drugs\"\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = e.client_id\n" +
+                "where c.key_population_type = \"People who inject drugs\"\n" +
                 "group by t.client_id having count(distinct(t.visit_id)) >1;";
         cd.setName("testedRepeatPwid");
         cd.setQuery(sqlQuery);
@@ -606,8 +625,8 @@ public class ETLMoh731BCohortLibrary {
     public CohortDefinition testedRepeatPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.etl_client_social_status ss on t.client_id = e.client_id\n" +
-                "where ss.key_population_type = \"People who inject drugs\"\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = e.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
                 "group by t.client_id having count(distinct(t.visit_id)) >1;";
         cd.setName("testedRepeatPwud");
         cd.setQuery(sqlQuery);
@@ -620,7 +639,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition testedRepeatTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_client_enrollment e on t.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on t.client_id = e.client_id\n" +
+                "where c.key_population_type = \"Transgender\"\n" +
+                "group by t.client_id having count(distinct(t.visit_id)) >1;";
         cd.setName("testedRepeatTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -633,12 +655,14 @@ public class ETLMoh731BCohortLibrary {
 //knownPositiveFsw
     public CohortDefinition knownPositiveFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "inner join encounter en on h.client_id = en.patient_id\n" +
-                "where s.key_population_type = \"Female sex worker\" and h.final_test_result =\"Positive\"\n" +
-                "group by h.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(en.encounter_datetime)),date(:endDate))<=3;";
+        String sqlQuery ="select e.client_id from kp_etl.etl_client_enrollment e\n" +
+                "                          inner join kp_etl.etl_contact c on e.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_clinical_visit v on e.client_id = v.client_id\n" +
+                "                          left outer join kp_etl.etl_hts_test t on e.client_id = t.client_id\n" +
+                "where c.key_population_type = \"Female sex worker\" and  coalesce(v.test_results = \"Positive\" ,v.hiv_self_rep_status=\"Positive\",e.share_test_results =\"Yes I tested positive\",\n" +
+                "                                                                t.final_test_result =\"Positive\")\n" +
+                "group by e.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("knownPositiveFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -650,12 +674,14 @@ public class ETLMoh731BCohortLibrary {
 //knownPositiveMsm
     public CohortDefinition knownPositiveMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                                                                        inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "                                                                                        inner join encounter en on h.client_id = en.patient_id\n" +
-                "where s.key_population_type = \"Male who have sex with Men\" and h.final_test_result =\"Positive\"\n" +
-                "group by h.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(en.encounter_datetime)),date(:endDate))<=3;\n";
+        String sqlQuery ="select e.client_id from kp_etl.etl_client_enrollment e\n" +
+                "                          inner join kp_etl.etl_contact c on e.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_clinical_visit v on e.client_id = v.client_id\n" +
+                "                          left outer join kp_etl.etl_hts_test t on e.client_id = t.client_id\n" +
+                "where c.key_population_type = \"Men who have sex with men\" and  coalesce(v.test_results = \"Positive\" ,v.hiv_self_rep_status=\"Positive\",e.share_test_results =\"Yes I tested positive\",\n" +
+                "                                                                t.final_test_result =\"Positive\")\n" +
+                "group by e.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("knownPositiveMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -665,16 +691,17 @@ public class ETLMoh731BCohortLibrary {
         return cd;
     }
 
-
 //knownPositiveMsw
     public CohortDefinition knownPositiveMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                                                                        inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "                                                                                        inner join encounter en on h.client_id = en.patient_id\n" +
-                "where s.key_population_type = \"Male sex worker\" and h.final_test_result =\"Positive\"\n" +
-                "group by h.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(en.encounter_datetime)),date(:endDate))<=3;";
+        String sqlQuery ="select e.client_id from kp_etl.etl_client_enrollment e\n" +
+                "                          inner join kp_etl.etl_contact c on e.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_clinical_visit v on e.client_id = v.client_id\n" +
+                "                          left outer join kp_etl.etl_hts_test t on e.client_id = t.client_id\n" +
+                "where c.key_population_type = \"Male sex worker\" and  coalesce(v.test_results = \"Positive\" ,v.hiv_self_rep_status=\"Positive\",e.share_test_results =\"Yes I tested positive\",\n" +
+                "                                                                        t.final_test_result =\"Positive\")\n" +
+                "group by e.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("knownPositiveMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -686,12 +713,14 @@ public class ETLMoh731BCohortLibrary {
 //knownPositivePwid
     public CohortDefinition knownPositivePwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                                                                        inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "                                                                                        inner join encounter en on h.client_id = en.patient_id\n" +
-                "where s.key_population_type = \"People who inject drugs\" and h.final_test_result =\"Positive\"\n" +
-                "group by h.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(en.encounter_datetime)),date(:endDate))<=3;";
+        String sqlQuery ="select e.client_id from kp_etl.etl_client_enrollment e\n" +
+                "                          inner join kp_etl.etl_contact c on e.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_clinical_visit v on e.client_id = v.client_id\n" +
+                "                          left outer join kp_etl.etl_hts_test t on e.client_id = t.client_id\n" +
+                "where c.key_population_type = \"People who inject drugs\" and  coalesce(v.test_results = \"Positive\" ,v.hiv_self_rep_status=\"Positive\",e.share_test_results =\"Yes I tested positive\",\n" +
+                "                                                              t.final_test_result =\"Positive\")\n" +
+                "group by e.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("knownPositivePwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -703,12 +732,14 @@ public class ETLMoh731BCohortLibrary {
 //knownPositivePwud
     public CohortDefinition knownPositivePwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                                                                        inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "                                                                                        inner join encounter en on h.client_id = en.patient_id\n" +
-                "where s.key_population_type = \"People who use drugs\" and h.final_test_result =\"Positive\"\n" +
-                "group by h.client_id\n" +
-                "having timestampdiff(MONTH,Max(date(en.encounter_datetime)),date(:endDate))<=3;";
+        String sqlQuery ="select e.client_id from kp_etl.etl_client_enrollment e\n" +
+                "                          inner join kp_etl.etl_contact c on e.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_clinical_visit v on e.client_id = v.client_id\n" +
+                "                          left outer join kp_etl.etl_hts_test t on e.client_id = t.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\" and  coalesce(v.test_results = \"Positive\" ,v.hiv_self_rep_status=\"Positive\",e.share_test_results =\"Yes I tested positive\",\n" +
+                "                                                                      t.final_test_result =\"Positive\")\n" +
+                "group by e.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("knownPositivePwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -720,7 +751,14 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition knownPositiveTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select e.client_id from kp_etl.etl_client_enrollment e\n" +
+                "                          inner join kp_etl.etl_contact c on e.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_clinical_visit v on e.client_id = v.client_id\n" +
+                "                          left outer join kp_etl.etl_hts_test t on e.client_id = t.client_id\n" +
+                "where c.key_population_type = \"Transgender\" and  coalesce(v.test_results = \"Positive\" ,v.hiv_self_rep_status=\"Positive\",e.share_test_results =\"Yes I tested positive\",\n" +
+                "                                                                      t.final_test_result =\"Positive\")\n" +
+                "group by e.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("knownPositiveTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -732,9 +770,9 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsFsw
     public CohortDefinition receivedPositiveResultsFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "                                              where s.key_population_type = \"Female sex worker\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "                                              where c.key_population_type = \"Female sex worker\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
                 "and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "group by h.client_id;";
         cd.setName("receivedPositiveResultsFsw");
@@ -748,9 +786,9 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsMsm
     public CohortDefinition receivedPositiveResultsMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Male who have sex with Men\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Male who have sex with Men\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
                 "  and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "group by h.client_id;";
         cd.setName("receivedPositiveResultsMsm");
@@ -764,9 +802,9 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsMsw
     public CohortDefinition receivedPositiveResultsMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"Male sex worker\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Male sex worker\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
                 "  and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "group by h.client_id;";
         cd.setName("receivedPositiveResultsMsw");
@@ -780,9 +818,9 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsPwid
     public CohortDefinition receivedPositiveResultsPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"People who inject drugs\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who inject drugs\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
                 "  and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "group by h.client_id;";
         cd.setName("receivedPositiveResultsPwid");
@@ -796,9 +834,9 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsPwud
     public CohortDefinition receivedPositiveResultsPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select h.client_id from kp_etl.kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
-                "                                              inner join kp_etl.kp_etl.etl_client_social_status s on h.client_id = s.client_id\n" +
-                "where s.key_population_type = \"People who use drugs\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
                 "  and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
                 "group by h.client_id;";
         cd.setName("receivedPositiveResultsPwud");
@@ -812,7 +850,11 @@ public class ETLMoh731BCohortLibrary {
 //receivedPositiveResultsTransgender
     public CohortDefinition receivedPositiveResultsTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select h.client_id from kp_etl.etl_hts_test h inner join kp_etl.etl_client_enrollment e on h.client_id = e.client_id\n" +
+                "                                              inner join kp_etl.etl_contact c on h.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Transgender\" and h.final_test_result =\"Positive\" and h.patient_given_result = \"Yes\"\n" +
+                "  and  date(h.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by h.client_id;";
         cd.setName("receivedPositiveResultsTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -824,12 +866,14 @@ public class ETLMoh731BCohortLibrary {
 //linkedFsw
     public CohortDefinition linkedFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="\n" +
-                "select k.client_id from ((select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_hts_referral_and_linkage r on t.client_id=r.client_id where  timestampdiff(MONTH,date(t.visit_date),date(:enddate))<=3 and t.final_test_result=\"Positive\")\n" +
-                "union all (select hs.client_id from kp_etl.etl_hiv_status hs\n" +
-                "                       where hs.current_in_care =\"Yes\" and timestampdiff(MONTH,date(hs.test_date),date(:enddate))<=3 ))k  inner join kp_etl.etl_client_social_status ss on ss.client_id = k.client_id\n" +
-                "and ss.key_population_type = \"Female sex worker\"\n" +
-                "group by k.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                " and (v.hiv_care_facility is not null or v.other_hiv_care_facility is not null)\n" +
+                "where c.key_population_type =\"Female sex worker\"\n" +
+                "group by v.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3 and\n" +
+                "       timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("linkedFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -843,11 +887,13 @@ public class ETLMoh731BCohortLibrary {
 //linkedMsm
     public CohortDefinition linkedMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select k.client_id from ((select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_hts_referral_and_linkage r on t.client_id=r.client_id where  timestampdiff(MONTH,date(t.visit_date),date(:enddate))<=3 and t.final_test_result=\"Positive\")\n" +
-                "                         union all (select hs.client_id from kp_etl.etl_hiv_status hs\n" +
-                "                                    where hs.current_in_care =\"Yes\" and timestampdiff(MONTH,date(hs.test_date),date(:enddate))<=3 ))k  inner join kp_etl.etl_client_social_status ss on ss.client_id = k.client_id\n" +
-                "                                                                                                                                                                                   and ss.key_population_type = \"Male who have sex with Men\"\n" +
-                "group by k.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                         and (v.hiv_care_facility is not null or v.other_hiv_care_facility is not null)\n" +
+                "where c.key_population_type =\"Men who have sex with men\"\n" +
+                "group by v.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("linkedMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -859,11 +905,13 @@ public class ETLMoh731BCohortLibrary {
 //linkedMsw
     public CohortDefinition linkedMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select k.client_id from ((select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_hts_referral_and_linkage r on t.client_id=r.client_id where  timestampdiff(MONTH,date(t.visit_date),date(:enddate))<=3 and t.final_test_result=\"Positive\")\n" +
-                "                         union all (select hs.client_id from kp_etl.etl_hiv_status hs\n" +
-                "                                    where hs.current_in_care =\"Yes\" and timestampdiff(MONTH,date(hs.test_date),date(:enddate))<=3 ))k  inner join kp_etl.etl_client_social_status ss on ss.client_id = k.client_id\n" +
-                "                                                                                                                                                                                   and ss.key_population_type = \"Male sex worker\"\n" +
-                "group by k.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                " and (v.hiv_care_facility is not null or v.other_hiv_care_facility is not null)\n" +
+                "where c.key_population_type =\"Male sex worker\"\n" +
+                "group by v.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("linkedMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -875,11 +923,13 @@ public class ETLMoh731BCohortLibrary {
 //linkedPwid
     public CohortDefinition linkedPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select k.client_id from ((select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_hts_referral_and_linkage r on t.client_id=r.client_id where  timestampdiff(MONTH,date(t.visit_date),date(:enddate))<=3 and t.final_test_result=\"Positive\")\n" +
-                "                         union all (select hs.client_id from kp_etl.etl_hiv_status hs\n" +
-                "                                    where hs.current_in_care =\"Yes\" and timestampdiff(MONTH,date(hs.test_date),date(:enddate))<=3 ))k  inner join kp_etl.etl_client_social_status ss on ss.client_id = k.client_id\n" +
-                "                                                                                                                                                                                   and ss.key_population_type = \"People who inject drugs\"\n" +
-                "group by k.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                         and (v.hiv_care_facility is not null or v.other_hiv_care_facility is not null)\n" +
+                "where c.key_population_type =\"People who inject drugs\"\n" +
+                "group by v.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("linkedPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -891,11 +941,13 @@ public class ETLMoh731BCohortLibrary {
 //linkedPwud
     public CohortDefinition linkedPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select k.client_id from ((select t.client_id from kp_etl.etl_hts_test t inner join kp_etl.etl_hts_referral_and_linkage r on t.client_id=r.client_id where  timestampdiff(MONTH,date(t.visit_date),date(:enddate))<=3 and t.final_test_result=\"Positive\")\n" +
-                "                         union all (select hs.client_id from kp_etl.etl_hiv_status hs\n" +
-                "                                    where hs.current_in_care =\"Yes\" and timestampdiff(MONTH,date(hs.test_date),date(:enddate))<=3 ))k  inner join kp_etl.etl_client_social_status ss on ss.client_id = k.client_id\n" +
-                "                                                                                                                                                                                   and ss.key_population_type = \"People who use drugs\"\n" +
-                "group by k.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                         and (v.hiv_care_facility is not null or v.other_hiv_care_facility is not null)\n" +
+                "where c.key_population_type =\"People who use drugs\"\n" +
+                "group by v.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("linkedPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -907,7 +959,13 @@ public class ETLMoh731BCohortLibrary {
 //linkedTransgender
     public CohortDefinition linkedTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "                          inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                         and (v.hiv_care_facility is not null or v.other_hiv_care_facility is not null)\n" +
+                "where c.key_population_type =\"Transgender\"\n" +
+                "group by v.client_id\n" +
+                "having timestampdiff(MONTH,Max(date(v.visit_date)),date(:endDate))<=3;";
         cd.setName("linkedTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -919,12 +977,13 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id \n" +
-                "join  inv_item i on tr.item_id = i.item_id\n" +
-                "where i.name like \"%condom%\" and ss.key_population_type =\"Female sex worker\" and \n" +
-                "date(tr.date_created) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                "                             as condoms_distributed from kp_etl.etl_contact c left outer join\n" +
+                "                              kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Female sex worker\" group by c.client_id\n" +
+                "                         having condoms_distributed >=1 )k;";
         cd.setName("receivingCondomsFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -936,12 +995,13 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "join  inv_item i on tr.item_id = i.item_id\n" +
-                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"Male who have sex with Men\"\n" +
-                "date(tr.date_created) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                "                             as condoms_distributed from kp_etl.etl_contact c left outer join\n" +
+                "                              kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Men who have sex with men\" group by c.client_id\n" +
+                "                         having condoms_distributed >=1 )k;";
         cd.setName("receivingCondomsMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -953,12 +1013,13 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "join  inv_item i on tr.item_id = i.item_id\n" +
-                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"Male sex worker\"\n" +
-                "date(tr.date_created) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                "                             as condoms_distributed from kp_etl.etl_contact c left outer join\n" +
+                "                              kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Male sex worker\" group by c.client_id\n" +
+                "                         having condoms_distributed >=1 )k;";
         cd.setName("receivingCondomsMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -971,12 +1032,13 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id \n" +
-                "join  inv_item i on tr.item_id = i.item_id\n" +
-                "where i.name like \"%condom%\" and ss.key_population_type =\"People who inject drugs\" and \n" +
-                "date(tr.date_created) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                "                             as condoms_distributed from kp_etl.etl_contact c left outer join\n" +
+                "                              kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"People who inject drugs\" group by c.client_id\n" +
+                "                         having condoms_distributed >=1 )k;";
         cd.setName("receivingCondomsPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -988,12 +1050,13 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id \n" +
-                "join  inv_item i on tr.item_id = i.item_id\n" +
-                "where i.name like \"%condom%\" and ss.key_population_type =\"People who use drugs\" and \n" +
-                "date(tr.date_created) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                "                             as condoms_distributed from kp_etl.etl_contact c left outer join\n" +
+                "                              kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"People who use drugs\" group by c.client_id\n" +
+                "                         having condoms_distributed >=1 )k;";
         cd.setName("receivingCondomsPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1005,7 +1068,13 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                "                             as condoms_distributed from kp_etl.etl_contact c left outer join\n" +
+                "                              kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                              left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Transgender\" group by c.client_id\n" +
+                "                         having condoms_distributed >=1 )k;";
         cd.setName("receivingCondomsTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1017,7 +1086,16 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsPerNeedPerNeedFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                " as condoms_distributed,\n" +
+                "       coalesce(coalesce(p.monthly_condoms_required,0),coalesce(c.avg_weekly_sex_acts*4,0)) as monthly_condom_requirement\n" +
+                "           from kp_etl.etl_contact c left outer join\n" +
+                "           kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and  date(s.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "where c.key_population_type = \"Female sex worker\"\n" +
+                " group by c.client_id\n" +
+                "having condoms_distributed>=monthly_condom_requirement and condoms_distributed !=0) k;";
         cd.setName("receivingCondomsPerNeedPerNeedFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1029,7 +1107,16 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsPerNeedMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                " as condoms_distributed,\n" +
+                "       coalesce(coalesce(p.monthly_condoms_required,0),coalesce(c.avg_weekly_sex_acts*4,0)) as monthly_condom_requirement\n" +
+                "           from kp_etl.etl_contact c left outer join\n" +
+                "           kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and  date(s.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "where c.key_population_type = \"Men who have sex with men\"\n" +
+                " group by c.client_id\n" +
+                "having condoms_distributed>=monthly_condom_requirement and condoms_distributed !=0) k;";
         cd.setName("receivingCondomsPerNeedMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1042,7 +1129,16 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsPerNeedMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                " as condoms_distributed,\n" +
+                "       coalesce(coalesce(p.monthly_condoms_required,0),coalesce(c.avg_weekly_sex_acts*4,0)) as monthly_condom_requirement\n" +
+                "           from kp_etl.etl_contact c left outer join\n" +
+                "           kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and  date(s.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "where c.key_population_type = \"Male sex worker\"\n" +
+                " group by c.client_id\n" +
+                "having condoms_distributed>=monthly_condom_requirement and condoms_distributed !=0) k;";
         cd.setName("receivingCondomsPerNeedMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1054,7 +1150,16 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsPerNeedPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                " as condoms_distributed,\n" +
+                "       coalesce(coalesce(p.monthly_condoms_required,0),coalesce(c.avg_weekly_sex_acts*4,0)) as monthly_condom_requirement\n" +
+                "           from kp_etl.etl_contact c left outer join\n" +
+                "           kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and  date(s.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "where c.key_population_type = \"People who inject drugs\"\n" +
+                " group by c.client_id\n" +
+                "having condoms_distributed>=monthly_condom_requirement and condoms_distributed !=0) k;";
         cd.setName("receivingCondomsPerNeedPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1068,7 +1173,16 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsPerNeedPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                " as condoms_distributed,\n" +
+                "       coalesce(coalesce(p.monthly_condoms_required,0),coalesce(c.avg_weekly_sex_acts*4,0)) as monthly_condom_requirement\n" +
+                "           from kp_etl.etl_contact c left outer join\n" +
+                "           kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and  date(s.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
+                " group by c.client_id\n" +
+                "having condoms_distributed>=monthly_condom_requirement and condoms_distributed !=0) k;";
         cd.setName("receivingCondomsPerNeedPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1080,7 +1194,16 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingCondomsPerNeedTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.female_condoms_no),0)+ coalesce(sum(v.male_condoms_no),0)+coalesce(sum(s.no_of_condoms),0)+coalesce(p.monthly_male_condoms_distributed,0)+coalesce(p.monthly_male_condoms_distributed,0))\n" +
+                " as condoms_distributed,\n" +
+                "       coalesce(coalesce(p.monthly_condoms_required,0),coalesce(c.avg_weekly_sex_acts*4,0)) as monthly_condom_requirement\n" +
+                "           from kp_etl.etl_contact c left outer join\n" +
+                "           kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "           left outer join kp_etl.etl_sti_treatment s on c.client_id = s.client_id and  date(s.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "where c.key_population_type = \"Transgender\"\n" +
+                " group by c.client_id\n" +
+                "having condoms_distributed>=monthly_condom_requirement and condoms_distributed !=0) k;";
         cd.setName("receivingCondomsPerNeedTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1092,12 +1215,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "join  inv_item i on tr.item_id = i.item_id\n" +
-                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"Female sex worker\"\n" +
-                "date(tr.date_created) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0) + p.monthly_n_and_s_distributed) as needles_and_syringes_given from kp_etl.etl_contact c left outer join\n" +
+                "                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             where c.key_population_type = \"Female sex worker\" group by c.client_id\n" +
+                "    having needles_and_syringes_given >=1 )k;";
         cd.setName("receivingNeedlesAndSyringesPerNeedFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1109,12 +1231,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "join  inv_item i on tr.item_id = i.item_id\n" +
-                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"Male who have sex with Men\"\n" +
-                "date(tr.date_created) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0) + p.monthly_n_and_s_distributed) as needles_and_syringes_given from kp_etl.etl_contact c left outer join\n" +
+                "                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             where c.key_population_type = \"Men who have sex with men\" group by c.client_id\n" +
+                "    having needles_and_syringes_given >=1 )k;";
         cd.setName("receivingNeedlesAndSyringesMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1126,12 +1247,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "join  inv_item i on tr.item_id = i.item_id\n" +
-                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"Male sex worker\"\n" +
-                "date(tr.date_created) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0) + p.monthly_n_and_s_distributed) as needles_and_syringes_given from kp_etl.etl_contact c left outer join\n" +
+                "                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             where c.key_population_type = \"Male sex worker\" group by c.client_id\n" +
+                "    having needles_and_syringes_given >=1 )k;";
         cd.setName("receivingNeedlesAndSyringesMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1143,12 +1263,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join inv_transaction tr on ce.client_id = tr.patient_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "join inv_item i on tr.item_id = i.item_id\n" +
-                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"People who inject drugs\"\n" +
-                "date(tr.date_created) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0) + p.monthly_n_and_s_distributed) as needles_and_syringes_given from kp_etl.etl_contact c left outer join\n" +
+                "                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             where c.key_population_type = \"People who inject drugs\" group by c.client_id\n" +
+                "    having needles_and_syringes_given >=1 )k;";
         cd.setName("receivingNeedlesAndSyringesPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1161,12 +1280,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  inv_transaction tr on ce.client_id = tr.patient_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "join  inv_item i on tr.item_id = i.item_id\n" +
-                "where i.name like \"%Needles  & syringes%\" and ss.key_population_type =\"People who use drugs\"\n" +
-                "date(tr.date_created) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0) + p.monthly_n_and_s_distributed) as needles_and_syringes_given from kp_etl.etl_contact c left outer join\n" +
+                "                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             where c.key_population_type = \"People who use drugs\" group by c.client_id\n" +
+                "    having needles_and_syringes_given >=1 )k;";
         cd.setName("receivingNeedlesAndSyringesPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1179,7 +1297,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0) + p.monthly_n_and_s_distributed) as needles_and_syringes_given from kp_etl.etl_contact c left outer join\n" +
+                "                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                             where c.key_population_type = \"Transgender\" group by c.client_id\n" +
+                "    having needles_and_syringes_given >=1 )k;";
         cd.setName("receivingNeedlesAndSyringesTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1192,7 +1314,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesPerNeedFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0)+coalesce(p.monthly_n_and_s_distributed,0))\n" +
+                "                                                                                                                     as needles_syringes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_syringes_required,0),coalesce(c.avg_daily_drug_injections*28,0)) as monthly_needles_syringes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   where c.key_population_type = \"Female sex worker\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having needles_syringes_distributed>=monthly_needles_syringes_requirements and needles_syringes_distributed !=0 ) k;";
         cd.setName("receivingNeedlesAndSyringesPerNeedFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1204,7 +1334,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesPerNeedMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0)+coalesce(p.monthly_n_and_s_distributed,0))\n" +
+                "                                                                                                                     as needles_syringes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_syringes_required,0),coalesce(c.avg_daily_drug_injections*28,0)) as monthly_needles_syringes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   where c.key_population_type = \"Men who have sex with men\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having needles_syringes_distributed>=monthly_needles_syringes_requirements and needles_syringes_distributed !=0 ) k;";
         cd.setName("receivingNeedlesAndSyringesPerNeedPerNeedMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1215,7 +1353,15 @@ public class ETLMoh731BCohortLibrary {
     }
     public CohortDefinition receivingNeedlesAndSyringesPerNeedMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0)+coalesce(p.monthly_n_and_s_distributed,0))\n" +
+                "                                                                                                                     as needles_syringes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_syringes_required,0),coalesce(c.avg_daily_drug_injections*28,0)) as monthly_needles_syringes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   where c.key_population_type = \"Male sex worker\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having needles_syringes_distributed>=monthly_needles_syringes_requirements and needles_syringes_distributed !=0 ) k;";
         cd.setName("receivingNeedlesAndSyringesPerNeedPerNeedMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1227,7 +1373,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesPerNeedPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0)+coalesce(p.monthly_n_and_s_distributed,0))\n" +
+                "                                                                                                                     as needles_syringes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_syringes_required,0),coalesce(c.avg_daily_drug_injections*28,0)) as monthly_needles_syringes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   where c.key_population_type = \"People who inject drugs\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having needles_syringes_distributed>=monthly_needles_syringes_requirements and needles_syringes_distributed !=0 ) k;";
         cd.setName("receivingNeedlesAndSyringesPerNeedPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1239,7 +1393,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesPerNeedPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0)+coalesce(p.monthly_n_and_s_distributed,0))\n" +
+                "                                                                                                                     as needles_syringes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_syringes_required,0),coalesce(c.avg_daily_drug_injections*28,0)) as monthly_needles_syringes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   where c.key_population_type = \"People who use drugs\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having needles_syringes_distributed>=monthly_needles_syringes_requirements and needles_syringes_distributed !=0 ) k;";
         cd.setName("receivingNeedlesAndSyringesPerNeedPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1251,7 +1413,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingNeedlesAndSyringesPerNeedTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.syringes_needles_no),0)+coalesce(p.monthly_n_and_s_distributed,0))\n" +
+                "                                                                                                                     as needles_syringes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_syringes_required,0),coalesce(c.avg_daily_drug_injections*28,0)) as monthly_needles_syringes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   where c.key_population_type = \"Transgender\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having needles_syringes_distributed>=monthly_needles_syringes_requirements and needles_syringes_distributed !=0 ) k;";
         cd.setName("receivingNeedlesAndSyringesPerNeedTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1264,7 +1434,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0) + p.monthly_lubes_distributed + t.no_of_lubes) as lubes_given from kp_etl.etl_contact c left outer join\n" +
+                "                                                                                                                                                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_sti_treatment t on c.client_id = t.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Female sex worker\" group by c.client_id\n" +
+                "                         having lubes_given >=1 )k;";
         cd.setName("receivingLubricantsFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1276,7 +1451,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0) + p.monthly_lubes_distributed + t.no_of_lubes) as lubes_given from kp_etl.etl_contact c left outer join\n" +
+                "                                                                                                                                                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_sti_treatment t on c.client_id = t.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Men who have sex with men\" group by c.client_id\n" +
+                "                         having lubes_given >=1 )k;";
         cd.setName("receivingLubricantsMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1288,7 +1468,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0) + p.monthly_lubes_distributed + t.no_of_lubes) as lubes_given from kp_etl.etl_contact c left outer join\n" +
+                "                                                                                                                                                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_sti_treatment t on c.client_id = t.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Male sex worker\" group by c.client_id\n" +
+                "                         having lubes_given >=1 )k;";
         cd.setName("receivingLubricantsMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1300,7 +1485,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0) + p.monthly_lubes_distributed + t.no_of_lubes) as lubes_given from kp_etl.etl_contact c left outer join\n" +
+                "                                                                                                                                                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_sti_treatment t on c.client_id = t.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"People who inject drugs\" group by c.client_id\n" +
+                "                         having lubes_given >=1 )k;";
         cd.setName("receivingLubricantsPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1312,7 +1502,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0) + p.monthly_lubes_distributed + t.no_of_lubes) as lubes_given from kp_etl.etl_contact c left outer join\n" +
+                "                                                                                                                                                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_sti_treatment t on c.client_id = t.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"People who use drugs\" group by c.client_id\n" +
+                "                         having lubes_given >=1 )k;";
         cd.setName("receivingLubricantsPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1324,7 +1519,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0) + p.monthly_lubes_distributed + t.no_of_lubes) as lubes_given from kp_etl.etl_contact c left outer join\n" +
+                "                                                                                                                                                            kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                                                                                                                                             left outer join kp_etl.etl_sti_treatment t on c.client_id = t.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Transgender\" group by c.client_id\n" +
+                "                         having lubes_given >=1 )k;";
         cd.setName("receivingLubricantsTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1336,7 +1536,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsPerNeedFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0)+coalesce(p.monthly_lubes_distributed,0))\n" +
+                "                                                                                                                             as lubes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_lubes_required,0),coalesce(c.avg_weekly_anal_sex_acts*4,0)) as monthly_lubes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Female sex worker\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having lubes_distributed >=monthly_lubes_requirements and lubes_distributed !=0 ) k;";
         cd.setName("receivingLubricantsPerNeedFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1348,7 +1556,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsPerNeedMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0)+coalesce(p.monthly_lubes_distributed,0))\n" +
+                "                                                                                                                             as lubes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_lubes_required,0),coalesce(c.avg_weekly_anal_sex_acts*4,0)) as monthly_lubes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Men who have sex with men\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having lubes_distributed >=monthly_lubes_requirements and lubes_distributed !=0 ) k;";
         cd.setName("receivingLubricantsPerNeedMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1360,7 +1576,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsPerNeedMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0)+coalesce(p.monthly_lubes_distributed,0))\n" +
+                "                                                                                                                             as lubes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_lubes_required,0),coalesce(c.avg_weekly_anal_sex_acts*4,0)) as monthly_lubes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Male sex worker\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having lubes_distributed >=monthly_lubes_requirements and lubes_distributed !=0 ) k;";
         cd.setName("receivingLubricantsPerNeedMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1372,7 +1596,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsPerNeedPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0)+coalesce(p.monthly_lubes_distributed,0))\n" +
+                "                                                                                                                             as lubes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_lubes_required,0),coalesce(c.avg_weekly_anal_sex_acts*4,0)) as monthly_lubes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"People who inject drugs\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having lubes_distributed >=monthly_lubes_requirements and lubes_distributed !=0 ) k;";
         cd.setName("receivingLubricantsPerNeedPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1384,7 +1616,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsPerNeedPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0)+coalesce(p.monthly_lubes_distributed,0))\n" +
+                "                                                                                                                             as lubes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_lubes_required,0),coalesce(c.avg_weekly_anal_sex_acts*4,0)) as monthly_lubes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"People who use drugs\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having lubes_distributed >=monthly_lubes_requirements and lubes_distributed !=0 ) k;";
         cd.setName("receivingLubricantsPerNeedPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1396,7 +1636,15 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingLubricantsPerNeedTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select k.client_id from (select c.client_id,(coalesce(sum(v.lubes_no),0)+coalesce(p.monthly_lubes_distributed,0))\n" +
+                "                                                                                                                             as lubes_distributed,\n" +
+                "                                coalesce(coalesce(p.monthly_lubes_required,0),coalesce(c.avg_weekly_anal_sex_acts*4,0)) as monthly_lubes_requirements\n" +
+                "                         from kp_etl.etl_contact c left outer join\n" +
+                "                                  kp_etl.etl_peer_calendar p on c.client_id = p.client_id and date(p.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                                                   left outer join kp_etl.etl_clinical_visit v on c.client_id = v.client_id and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "                         where c.key_population_type = \"Transgender\"\n" +
+                "                         group by c.client_id\n" +
+                "                         having lubes_distributed >=monthly_lubes_requirements and lubes_distributed !=0 ) k;";
         cd.setName("receivingLubricantsPerNeedTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1408,8 +1656,10 @@ public class ETLMoh731BCohortLibrary {
 /*screenedForSTIFsw*/
     public CohortDefinition screenedForSTIFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select sc.client_id from kp_etl.etl_sti_screening sc inner join kp_etl.etl_client_social_status ss on ss.client_id = sc.client_id\n" +
-                "where sc.sti_screening_done = \"Yes\" and ss.key_population_type = \"Female sex worker\"  and sc.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Female sex worker\" and v.sti_screened = \"Y\" and v.visit_date\n" +
+                "between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForSTIFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1422,8 +1672,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForSTIMsm
     public CohortDefinition screenedForSTIMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select sc.client_id from kp_etl.etl_sti_screening sc inner join kp_etl.etl_client_social_status ss on ss.client_id = sc.client_id\n" +
-                "where sc.sti_screening_done = \"Yes\" and ss.key_population_type = \"Male who have sex with Men\"  and sc.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Men who have sex with men\" and v.sti_screened = \"Y\" and v.visit_date\n" +
+                "between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForSTIMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1435,8 +1687,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForSTIMsw
     public CohortDefinition screenedForSTIMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select sc.client_id from kp_etl.etl_sti_screening sc inner join kp_etl.etl_client_social_status ss on ss.client_id = sc.client_id\n" +
-                "where sc.sti_screening_done = \"Yes\" and ss.key_population_type = \"Male sex worker\"  and sc.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Male sex worker\" and v.sti_screened = \"Y\" and v.visit_date\n" +
+                "between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForSTIMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1448,8 +1702,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition screenedForSTIPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select sc.client_id from kp_etl.etl_sti_screening sc inner join kp_etl.etl_client_social_status ss on ss.client_id = sc.client_id\n" +
-                "where sc.sti_screening_done = \"Yes\" and ss.key_population_type = \"People who inject drugs\" and sc.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who inject drugs\" and v.sti_screened = \"Y\" and v.visit_date\n" +
+                "between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForSTIPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1461,8 +1717,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition screenedForSTIPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select sc.client_id from kp_etl.etl_sti_screening sc inner join kp_etl.etl_client_social_status ss on ss.client_id = sc.client_id\n" +
-                "where sc.sti_screening_done = \"Yes\" and ss.key_population_type = \"People who use drugs\" and sc.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who use drugs\" and v.sti_screened = \"Y\" and v.visit_date\n" +
+                "between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForSTIPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1474,7 +1732,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition screenedForSTITransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Transgender\" and v.sti_screened = \"Y\" and v.visit_date\n" +
+                "between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForSTITransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1487,8 +1748,10 @@ public class ETLMoh731BCohortLibrary {
     //screenedForHCVFsw
     public CohortDefinition screenedForHCVFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis C\" and ss.key_population_type = \"Female sex worker\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Female sex worker\" and v.hepatitisC_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHCVFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1501,8 +1764,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForHCVMsm
     public CohortDefinition screenedForHCVMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis C\" and ss.key_population_type = \"Male who have sex with Men\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Men who have sex with men\" and v.hepatitisC_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHCVMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1515,8 +1780,10 @@ public class ETLMoh731BCohortLibrary {
     //screenedForHCVMsw
     public CohortDefinition screenedForHCVMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis C\" and ss.key_population_type = \"Male sex worker\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Male sex worker\" and v.hepatitisC_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHCVMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1528,8 +1795,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForHCVPwid
     public CohortDefinition screenedForHCVPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis C\" and ss.key_population_type = \"People who inject drugs\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who inject drugs\" and v.hepatitisC_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHCVPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1541,8 +1810,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForHCVPwud
     public CohortDefinition screenedForHCVPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis C\" and ss.key_population_type = \"People who use drugs\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who use drugs\" and v.hepatitisC_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHCVPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1555,7 +1826,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForHCVTransgender
     public CohortDefinition screenedForHCVTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Transgender\" and v.hepatitisC_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHCVTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1568,8 +1842,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForHBVFsw
     public CohortDefinition screenedForHBVFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and ss.key_population_type = \"Female sex worker\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);\n";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Female sex worker\" and v.hepatitisB_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHBVFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1581,8 +1857,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForHBVMsm
     public CohortDefinition screenedForHBVMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and ss.key_population_type = \"Male who have sex with Men\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Men who have sex with men\" and v.hepatitisB_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHBVMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1595,8 +1873,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForHBVMsw
     public CohortDefinition screenedForHBVMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and ss.key_population_type = \"Male sex worker\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Male sex worker\" and v.hepatitisB_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHBVMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1608,8 +1888,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForHBVPwid
     public CohortDefinition screenedForHBVPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and ss.key_population_type = \"People who inject drugs\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who inject drugs\" and v.hepatitisB_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHBVPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1622,8 +1904,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForHBVPwud
     public CohortDefinition screenedForHBVPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and ss.key_population_type = \"People who use drugs\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who use drugs\" and v.hepatitisB_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHBVPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1635,7 +1919,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedForHBVTransgender
     public CohortDefinition screenedForHBVTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Transgender\" and v.hepatitisB_screened = \"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedForHBVTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1647,8 +1934,10 @@ public class ETLMoh731BCohortLibrary {
 //positiveHBVFsw
     public CohortDefinition positiveHBVFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Positive\" and ss.key_population_type = \"Female sex worker\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Female sex worker\" and v.hepatitisB_results=\"P\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("positiveHBVFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1660,8 +1949,10 @@ public class ETLMoh731BCohortLibrary {
 //positiveHBVMsm
     public CohortDefinition positiveHBVMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Positive\" and ss.key_population_type = \"Male who have sex with Men\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Men who have sex with men\" and v.hepatitisB_results=\"P\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("positiveHBVMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1673,8 +1964,10 @@ public class ETLMoh731BCohortLibrary {
 //positiveHBVMsw
     public CohortDefinition positiveHBVMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Positive\" and ss.key_population_type = \"Male sex worker\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Male sex worker\" and v.hepatitisB_results=\"P\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("positiveHBVMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1686,8 +1979,10 @@ public class ETLMoh731BCohortLibrary {
 //positiveHBVPwid
     public CohortDefinition positiveHBVPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Positive\" and ss.key_population_type = \"People who inject drugs\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who inject drugs\" and v.hepatitisB_results=\"P\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("completedPEPWithin28Days");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1699,8 +1994,10 @@ public class ETLMoh731BCohortLibrary {
 //positiveHBVPwud
     public CohortDefinition positiveHBVPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Positive\" and ss.key_population_type = \"People who use drugs\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who use drugs\" and v.hepatitisB_results=\"P\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("positiveHBVPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1712,7 +2009,10 @@ public class ETLMoh731BCohortLibrary {
 //positiveHBVTransgender
     public CohortDefinition positiveHBVTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Transgender\" and v.hepatitisB_results=\"P\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("completedPEPWithin28Days");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1724,8 +2024,10 @@ public class ETLMoh731BCohortLibrary {
 //treatedHBVFsw
     public CohortDefinition treatedHBVFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Positive\" and treated =\"Yes\" and ss.key_population_type = \"Female sex worker\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Female sex worker\" and v.hepatitisB_treated=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("treatedHBVFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1737,8 +2039,10 @@ public class ETLMoh731BCohortLibrary {
 //treatedHBVMsm
     public CohortDefinition treatedHBVMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Positive\" and treated =\"Yes\" and ss.key_population_type = \"Male who have sex with Men\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Men who have sex with men\" and v.hepatitisB_treated=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("treatedHBVMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1750,8 +2054,10 @@ public class ETLMoh731BCohortLibrary {
 //treatedHBVMsw
     public CohortDefinition treatedHBVMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Positive\" and treated =\"Yes\" and ss.key_population_type = \"Male sex worker\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Male sex worker\" and v.hepatitisB_treated=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("treatedHBVMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1764,8 +2070,10 @@ public class ETLMoh731BCohortLibrary {
     //treatedHBVPwid
     public CohortDefinition treatedHBVPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Positive\" and treated =\"Yes\" and ss.key_population_type = \"People who inject drugs\" and hp.voided = 0 and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who inject drugs\" and v.hepatitisB_treated=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("treatedHBVPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1778,9 +2086,10 @@ public class ETLMoh731BCohortLibrary {
     //treatedHBVPwud
     public CohortDefinition treatedHBVPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Positive\" and treated =\"Yes\" and ss.key_population_type = \"People who use drugs\" and hp.voided = 0" +
-                "and date(hp.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who use drugs\" and v.hepatitisB_treated=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("treatedHBVPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1792,7 +2101,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition treatedHBVTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Transgender\" and v.hepatitisB_treated=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("treatedHBVTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1804,8 +2116,8 @@ public class ETLMoh731BCohortLibrary {
 //negativeHBVVaccinatedFsw
     public CohortDefinition negativeHBVVaccinatedFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Vaccinated\" and treated =\"Yes\" and ss.key_population_type = \"Female sex worker\" and hp.voided = 0\n" +
+        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_contact c on ss.client_id = hp.client_id\n" +
+                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Vaccinated\" and treated =\"Yes\" and c.key_population_type = \"Female sex worker\" and hp.voided = 0\n" +
                 "  and date(hp.visit_date) between date(:startDate) and date(:endDate);";
         cd.setName("negativeHBVVaccinatedFsw");
         cd.setQuery(sqlQuery);
@@ -1818,8 +2130,8 @@ public class ETLMoh731BCohortLibrary {
 //negativeHBVVaccinatedMsm
     public CohortDefinition negativeHBVVaccinatedMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Vaccinated\" and treated =\"Yes\" and ss.key_population_type = \"Male who have sex with Men\" and hp.voided = 0\n" +
+        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_contact c on ss.client_id = hp.client_id\n" +
+                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Vaccinated\" and treated =\"Yes\" and c.key_population_type = \"Male who have sex with Men\" and hp.voided = 0\n" +
                 "  and date(hp.visit_date) between date(:startDate) and date(:endDate);";
         cd.setName("negativeHBVVaccinatedMsm");
         cd.setQuery(sqlQuery);
@@ -1832,8 +2144,8 @@ public class ETLMoh731BCohortLibrary {
 //negativeHBVVaccinatedMsw
     public CohortDefinition negativeHBVVaccinatedMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Vaccinated\" and treated =\"Yes\" and ss.key_population_type = \"Male sex worker\" and hp.voided = 0\n" +
+        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_contact c on ss.client_id = hp.client_id\n" +
+                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Vaccinated\" and treated =\"Yes\" and c.key_population_type = \"Male sex worker\" and hp.voided = 0\n" +
                 "  and date(hp.visit_date) between date(:startDate) and date(:endDate);";
         cd.setName("negativeHBVVaccinatedMsw");
         cd.setQuery(sqlQuery);
@@ -1846,8 +2158,8 @@ public class ETLMoh731BCohortLibrary {
 //negativeHBVVaccinatedPwid
     public CohortDefinition negativeHBVVaccinatedPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Vaccinated\" and treated =\"Yes\" and ss.key_population_type = \"People who inject drugs\" and hp.voided = 0\n" +
+        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_contact c on ss.client_id = hp.client_id\n" +
+                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Vaccinated\" and treated =\"Yes\" and c.key_population_type = \"People who inject drugs\" and hp.voided = 0\n" +
                 "and date(hp.visit_date) between date(:startDate) and date(:endDate);";
         cd.setName("negativeHBVVaccinatedPwid");
         cd.setQuery(sqlQuery);
@@ -1860,8 +2172,8 @@ public class ETLMoh731BCohortLibrary {
 //negativeHBVVaccinatedPwud
     public CohortDefinition negativeHBVVaccinatedPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_client_social_status ss on ss.client_id = hp.client_id\n" +
-                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Vaccinated\" and treated =\"Yes\" and ss.key_population_type = \"People who use drugs\" and hp.voided = 0\n" +
+        String sqlQuery ="select hp.client_id from kp_etl.etl_hepatitis_screening hp inner join kp_etl.etl_contact c on ss.client_id = hp.client_id\n" +
+                "where hp.hepatitis_screening_done = \"Hepatitis B\" and results =\"Vaccinated\" and treated =\"Yes\" and c.key_population_type = \"People who use drugs\" and hp.voided = 0\n" +
                 "and date(hp.visit_date) between date(:startDate) and date(:endDate);";
         cd.setName("negativeHBVVaccinatedPwud");
         cd.setQuery(sqlQuery);
@@ -1886,9 +2198,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedTBFsw
     public CohortDefinition screenedTBFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"Female sex worker\" and tb.voided = 0\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Female sex worker\" and v.tb_screened=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedTBFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1900,9 +2213,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedTBMsm
     public CohortDefinition screenedTBMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"Male who have sex with Men\" and tb.voided = 0\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Men who have sex with men\" and v.tb_screened=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedTBMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1914,9 +2228,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedTBMsw
     public CohortDefinition screenedTBMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"Male sex worker\" and tb.voided = 0\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Male sex worker\" and v.tb_screened=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedTBMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1928,9 +2243,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedTBPwid
     public CohortDefinition screenedTBPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"People who inject drugs\" and tb.voided = 0\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who inject drugs\" and v.tb_screened=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedTBPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1942,9 +2258,10 @@ public class ETLMoh731BCohortLibrary {
 //screenedTBPwud
     public CohortDefinition screenedTBPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"People who use drugs\" and tb.voided = 0 \n" +
-                "and date(tb.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who use drugs\" and v.tb_screened=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("completedPEPWithin28Days");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1956,7 +2273,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition screenedTBTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Transgender\" and v.tb_screened=\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("screenedTBTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1968,9 +2288,10 @@ public class ETLMoh731BCohortLibrary {
 //diagnosedTBFsw
     public CohortDefinition diagnosedTBFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"Female sex worker\" and tb.voided = 0 and tb.tb_results_status = \"TB Confirmed\"\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Female sex worker\" and v.tb_results =\"Positive\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("diagnosedTBFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1983,9 +2304,10 @@ public class ETLMoh731BCohortLibrary {
 //diagnosedTBMsm
     public CohortDefinition diagnosedTBMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"Male who have sex with Men\" and tb.voided = 0 and tb.tb_results_status = \"TB Confirmed\"\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Men who have sex with men\" and v.tb_results =\"Positive\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("diagnosedTBMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -1997,9 +2319,10 @@ public class ETLMoh731BCohortLibrary {
 //diagnosedTBMsw
     public CohortDefinition diagnosedTBMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"Male sex worker\" and tb.voided = 0 and tb.tb_results_status = \"TB Confirmed\"\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Male sex worker\" and v.tb_results =\"Positive\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("diagnosedTBMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2011,9 +2334,10 @@ public class ETLMoh731BCohortLibrary {
 //diagnosedTBPwid
     public CohortDefinition diagnosedTBPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"People who inject drugs\" and tb.voided = 0 and tb.tb_results_status = \"TB Confirmed\"\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who inject drugs\" and v.tb_results =\"Positive\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("diagnosedTBPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2025,9 +2349,10 @@ public class ETLMoh731BCohortLibrary {
 //diagnosedTBPwud
     public CohortDefinition diagnosedTBPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"People who use drugs\" and tb.voided = 0 and tb.tb_results_status = \"TB Confirmed\"\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who use drugs\" and v.tb_results =\"Positive\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("diagnosedTBPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2039,7 +2364,10 @@ public class ETLMoh731BCohortLibrary {
 //diagnosedTBTransgender
     public CohortDefinition diagnosedTBTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Transgender\" and v.tb_results =\"Positive\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("diagnosedTBTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2051,9 +2379,10 @@ public class ETLMoh731BCohortLibrary {
 //startedOnTBTxFsw
     public CohortDefinition startedOnTBTxFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"Female sex worker\" and tb.voided = 0 and tb.tb_results_status = \"TB Confirmed\" and tb.start_anti_TB = \"Yes\"\n" +
-                "  and date(tb.tb_treatment_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Female sex worker\" and v.tb_treated =\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("startedOnTBTxFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2065,9 +2394,10 @@ public class ETLMoh731BCohortLibrary {
 //startedOnTBTxMsm
     public CohortDefinition startedOnTBTxMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"Male who have sex with Men\" and tb.voided = 0 and tb.tb_results_status = \"TB Confirmed\" and tb.start_anti_TB = \"Yes\"\n" +
-                "  and date(tb.tb_treatment_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Men who have sex with men\" and v.tb_treated =\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("startedOnTBTxMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2079,9 +2409,10 @@ public class ETLMoh731BCohortLibrary {
 //startedOnTBTxMsw
     public CohortDefinition startedOnTBTxMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"Male sex worker\" and tb.voided = 0 and tb.tb_results_status = \"TB Confirmed\" and tb.start_anti_TB = \"Yes\"\n" +
-                "  and date(tb.tb_treatment_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Male sex worker\" and v.tb_treated =\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("startedOnTBTxMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2093,9 +2424,10 @@ public class ETLMoh731BCohortLibrary {
     //startedOnTBTxPwid
     public CohortDefinition startedOnTBTxPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"People who inject drugs\" and tb.voided = 0 and tb.tb_results_status = \"TB Confirmed\" and tb.start_anti_TB = \"Yes\"\n" +
-                "  and date(tb.tb_treatment_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who inject drugs\" and v.tb_treated =\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("startedOnTBTxPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2108,9 +2440,10 @@ public class ETLMoh731BCohortLibrary {
 //startedOnTBTxPwud
     public CohortDefinition startedOnTBTxPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_client_social_status ss on ss.client_id = tb.client_id\n" +
-                "where  ss.key_population_type = \"People who use drugs\" and tb.voided = 0 and tb.tb_results_status = \"TB Confirmed\" and tb.start_anti_TB = \"Yes\"\n" +
-                "  and date(tb.tb_treatment_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"People who use drugs\" and v.tb_treated =\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("startedOnTBTxPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2122,7 +2455,10 @@ public class ETLMoh731BCohortLibrary {
 //startedOnTBTxTransgender
     public CohortDefinition startedOnTBTxTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c\n" +
+                "                            on c.client_id = v.client_id\n" +
+                "where c.key_population_type=\"Transgender\" and v.tb_treated =\"Y\" and v.visit_date\n" +
+                "    between date(:startDate) and date(:endDate) and v.voided = 0 group by v.client_id;";
         cd.setName("startedOnTBTxTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2134,12 +2470,10 @@ public class ETLMoh731BCohortLibrary {
     //tbClientsOnHAARTFsw
     public CohortDefinition tbClientsOnHAARTFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb inner join kp_etl.etl_hts_referral_and_linkage r on tb.client_id = r.client_id\n" +
-                "inner join kp_etl.etl_hiv_status hs on tb.client_id = hs.client_id\n" +
-                "inner join kp_etl.etl_client_social_status ss on tb.client_id = ss.client_id\n" +
-                "where r.art_start_date <= tb.visit_date or (hs.art_start_date <= tb.visit_date and hs.current_in_care =\"Yes\")\n" +
-                "    and ss.key_population_type = \"Female sex worker\"\n" +
-                "and date(tb.visit_date) between date(:startDate) and date(:endDate) group by tb.client_id;\n";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where (v.tb_results = \"Positive\" and v.active_art =\"Yes\") or (v.tb_results = \"Positive\" and v.initiated_art_this_month = \"Yes\")\n" +
+                "                                                               and c.key_population_type = \"Female sex worker\"\n" +
+                "                                                               and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("tbClientsOnHAARTFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2152,12 +2486,10 @@ public class ETLMoh731BCohortLibrary {
 //tbClientsOnHAARTMsm
     public CohortDefinition tbClientsOnHAARTMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb left join kp_etl.etl_hts_referral_and_linkage r on tb.client_id = r.client_id\n" +
-                "                                             inner join kp_etl.etl_hiv_status hs on tb.client_id = hs.client_id\n" +
-                "                                             inner join kp_etl.etl_client_social_status ss on tb.client_id = ss.client_id\n" +
-                "where (r.art_start_date <= tb.visit_date or (hs.art_start_date <= tb.visit_date and hs.current_in_care =\"Yes\"))\n" +
-                "  and ss.key_population_type = \"Male who have sex with Men\" and tb.tb_results_status = \"TB Confirmed\"\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate) group by tb.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where (v.tb_results = \"Positive\" and v.active_art =\"Yes\") or (v.tb_results = \"Positive\" and v.initiated_art_this_month = \"Yes\")\n" +
+                "                                                               and c.key_population_type = \"Men who have sex with men\"\n" +
+                "                                                               and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("tbClientsOnHAARTMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2170,12 +2502,10 @@ public class ETLMoh731BCohortLibrary {
     //tbClientsOnHAARTMsw
     public CohortDefinition tbClientsOnHAARTMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb left join kp_etl.etl_hts_referral_and_linkage r on tb.client_id = r.client_id\n" +
-                "                                             inner join kp_etl.etl_hiv_status hs on tb.client_id = hs.client_id\n" +
-                "                                             inner join kp_etl.etl_client_social_status ss on tb.client_id = ss.client_id\n" +
-                "where (r.art_start_date <= tb.visit_date or (hs.art_start_date <= tb.visit_date and hs.current_in_care =\"Yes\"))\n" +
-                "  and ss.key_population_type = \"Male sex worker\" and tb.tb_results_status = \"TB Confirmed\"\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate) group by tb.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where (v.tb_results = \"Positive\" and v.active_art =\"Yes\") or (v.tb_results = \"Positive\" and v.initiated_art_this_month = \"Yes\")\n" +
+                "                                                               and c.key_population_type = \"Male sex worker\"\n" +
+                "                                                               and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("tbClientsOnHAARTMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2187,12 +2517,10 @@ public class ETLMoh731BCohortLibrary {
     //tbClientsOnHAARTPwid
     public CohortDefinition tbClientsOnHAARTPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb left join kp_etl.etl_hts_referral_and_linkage r on tb.client_id = r.client_id\n" +
-                "                                             inner join kp_etl.etl_hiv_status hs on tb.client_id = hs.client_id\n" +
-                "                                             inner join kp_etl.etl_client_social_status ss on tb.client_id = ss.client_id\n" +
-                "where (r.art_start_date <= tb.visit_date or (hs.art_start_date <= tb.visit_date and hs.current_in_care =\"Yes\"))\n" +
-                "  and ss.key_population_type = \"People who inject drugs\" and tb.tb_results_status = \"TB Confirmed\"\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate) group by tb.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where (v.tb_results = \"Positive\" and v.active_art =\"Yes\") or (v.tb_results = \"Positive\" and v.initiated_art_this_month = \"Yes\")\n" +
+                "                                                               and c.key_population_type = \"People who inject drugs\"\n" +
+                "                                                               and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("tbClientsOnHAARTPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2205,12 +2533,10 @@ public class ETLMoh731BCohortLibrary {
 //tbClientsOnHAARTPwud
     public CohortDefinition tbClientsOnHAARTPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select tb.client_id from kp_etl.etl_tb_screening tb left join kp_etl.etl_hts_referral_and_linkage r on tb.client_id = r.client_id\n" +
-                "                                             inner join kp_etl.etl_hiv_status hs on tb.client_id = hs.client_id\n" +
-                "                                             inner join kp_etl.etl_client_social_status ss on tb.client_id = ss.client_id\n" +
-                "where (r.art_start_date <= tb.visit_date or (hs.art_start_date <= tb.visit_date and hs.current_in_care =\"Yes\"))\n" +
-                "  and ss.key_population_type = \"People who use drugs\" and tb.tb_results_status = \"TB Confirmed\"\n" +
-                "  and date(tb.visit_date) between date(:startDate) and date(:endDate) group by tb.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where (v.tb_results = \"Positive\" and v.active_art =\"Yes\") or (v.tb_results = \"Positive\" and v.initiated_art_this_month = \"Yes\")\n" +
+                "                                                               and c.key_population_type = \"People who use drugs\"\n" +
+                "                                                               and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("tbClientsOnHAARTPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2222,7 +2548,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition tbClientsOnHAARTTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where (v.tb_results = \"Positive\" and v.active_art =\"Yes\") or (v.tb_results = \"Positive\" and v.initiated_art_this_month = \"Yes\")\n" +
+                "                                                               and c.key_population_type = \"Transgender\"\n" +
+                "                                                               and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("tbClientsOnHAARTTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2234,9 +2563,13 @@ public class ETLMoh731BCohortLibrary {
     //initiatedPrEPFsw
     public CohortDefinition initiatedPrEPFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select p.client_id from kp_etl.kp_etl.etl_prep_pep_screening p inner join kp_etl.etl_client_social_status ss on p.client_id = ss.client_id\n" +
-                "where status = \"Negative\" and ss.key_population_type = \"Female sex worker\" and screened_for = \"PrEP\" and status = \"Initiated\" and p.visit_date between date(:startDate) and date(:endDate)\n" +
-                "group by p.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("initiatedPrEPFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2248,9 +2581,13 @@ public class ETLMoh731BCohortLibrary {
 //initiatedPrEPMsm
     public CohortDefinition initiatedPrEPMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select p.client_id from kp_etl.kp_etl.etl_prep_pep_screening p inner join kp_etl.etl_client_social_status ss on p.client_id = ss.client_id\n" +
-                "where status = \"Negative\" and ss.key_population_type = \"Male who have sex with Men\" and screened_for = \"PrEP\" and status = \"Initiated\" and p.visit_date between date(:startDate) and date(:endDate)\n" +
-                "group by p.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("initiatedPrEPMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2262,9 +2599,13 @@ public class ETLMoh731BCohortLibrary {
 //initiatedPrEPMsw
     public CohortDefinition initiatedPrEPMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select p.client_id from kp_etl.kp_etl.etl_prep_pep_screening p inner join kp_etl.etl_client_social_status ss on p.client_id = ss.client_id\n" +
-                "where status = \"Negative\" and ss.key_population_type = \"Male sex worker\" and screened_for = \"PrEP\" and status = \"Initiated\" and p.visit_date between date(:startDate) and date(:endDate)\n" +
-                "group by p.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("initiatedPrEPMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2276,9 +2617,13 @@ public class ETLMoh731BCohortLibrary {
     //initiatedPrEPPwid
     public CohortDefinition initiatedPrEPPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select p.client_id from kp_etl.kp_etl.etl_prep_pep_screening p inner join kp_etl.etl_client_social_status ss on p.client_id = ss.client_id\n" +
-                "where status = \"Negative\" and ss.key_population_type = \"People who inject drugs\" and screened_for = \"PrEP\" and status = \"Initiated\" and p.visit_date between date(:startDate) and date(:endDate)\n" +
-                "group by p.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("initiatedPrEPPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2291,9 +2636,13 @@ public class ETLMoh731BCohortLibrary {
 //initiatedPrEPPwud
     public CohortDefinition initiatedPrEPPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select p.client_id from kp_etl.kp_etl.etl_prep_pep_screening p inner join kp_etl.etl_client_social_status ss on p.client_id = ss.client_id\n" +
-                "where status = \"Negative\" and ss.key_population_type = \"People who use drugs\" and screened_for = \"PrEP\" and status = \"Initiated\" and p.visit_date between date(:startDate) and date(:endDate)\n" +
-                "group by p.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("initiatedPrEPPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2305,7 +2654,13 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition initiatedPrEPTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("initiatedPrEPTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2317,7 +2672,12 @@ public class ETLMoh731BCohortLibrary {
     //currentOnPrEPFsw
     public CohortDefinition currentOnPrEPFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "           inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Female sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id\n" +
+                "having max(v.prep_treated =\"Y\");";
         cd.setName("currentOnPrEPFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2329,7 +2689,12 @@ public class ETLMoh731BCohortLibrary {
 //currentOnPrEPMsm
     public CohortDefinition currentOnPrEPMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "           inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Men who have sex with men\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id\n" +
+                "having max(v.prep_treated =\"Y\");";
         cd.setName("currentOnPrEPMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2341,7 +2706,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition currentOnPrEPMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "           inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Male sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id\n" +
+                "having max(v.prep_treated =\"Y\");";
         cd.setName("currentOnPrEPMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2353,7 +2723,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition currentOnPrEPPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "           inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who inject drugs\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id\n" +
+                "having max(v.prep_treated =\"Y\");";
         cd.setName("currentOnPrEPPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2365,7 +2740,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition currentOnPrEPPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "           inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id\n" +
+                "having max(v.prep_treated =\"Y\");";
         cd.setName("currentOnPrEPPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2377,7 +2757,12 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition currentOnPrEPTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "           inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Transgender\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id\n" +
+                "having max(v.prep_treated =\"Y\");";
         cd.setName("currentOnPrEPTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2389,13 +2774,13 @@ public class ETLMoh731BCohortLibrary {
 //turningPositiveWhileOnPrEPFsw
     public CohortDefinition turningPositiveWhileOnPrEPFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select p.client_id from kp_etl.etl_prep_pep_screening p inner join kp_etl.etl_client_social_status ss  on p.client_id = ss.client_id\n" +
-                "inner join kp_etl.etl_hts_test t on t.client_id = p.client_id\n" +
-                "where ss.key_population_type = \"Female sex worker\"\n" +
-                "  and p.screened_for =\"PrEP\" and  p.status=\"Initiated\"\n" +
-                "  and date(t.visit_date) >date(p.visit_date) and t.final_test_result=\"Positive\"\n" +
-                "and date(t.visit_date) between date(:startDate) and date(:endDate)\n" +
-                "group by p.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Female sex worker\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("turningPositiveWhileOnPrEPFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2407,13 +2792,13 @@ public class ETLMoh731BCohortLibrary {
 //turningPositiveWhileOnPrEPMsm
     public CohortDefinition turningPositiveWhileOnPrEPMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select p.client_id from kp_etl.etl_prep_pep_screening p inner join kp_etl.etl_client_social_status ss  on p.client_id = ss.client_id\n" +
-                "                                                 inner join kp_etl.etl_hts_test t on t.client_id = p.client_id\n" +
-                "where ss.key_population_type = \"Male who have sex with Men\"\n" +
-                "  and p.screened_for =\"PrEP\" and  p.status=\"Initiated\"\n" +
-                "  and date(t.visit_date) >date(p.visit_date) and t.final_test_result=\"Positive\"\n" +
-                "  and date(t.visit_date) between date(:startDate) and date(:endDate)\n" +
-                "group by p.client_id;\n";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Men who have sex with men\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("turningPositiveWhileOnPrEPMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2425,13 +2810,13 @@ public class ETLMoh731BCohortLibrary {
 //turningPositiveWhileOnPrEPMsw
     public CohortDefinition turningPositiveWhileOnPrEPMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select p.client_id from kp_etl.etl_prep_pep_screening p inner join kp_etl.etl_client_social_status ss  on p.client_id = ss.client_id\n" +
-                "                                                 inner join kp_etl.etl_hts_test t on t.client_id = p.client_id\n" +
-                "where ss.key_population_type = \"Male sex worker\"\n" +
-                "  and p.screened_for =\"PrEP\" and  p.status=\"Initiated\"\n" +
-                "  and date(t.visit_date) >date(p.visit_date) and t.final_test_result=\"Positive\"\n" +
-                "  and date(t.visit_date) between date(:startDate) and date(:endDate)\n" +
-                "group by p.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Male sex worker\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("turningPositiveWhileOnPrEPMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2443,13 +2828,13 @@ public class ETLMoh731BCohortLibrary {
 //turningPositiveWhileOnPrEPPwid
     public CohortDefinition turningPositiveWhileOnPrEPPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select p.client_id from kp_etl.etl_prep_pep_screening p inner join kp_etl.etl_client_social_status ss  on p.client_id = ss.client_id\n" +
-                "                                                 inner join kp_etl.etl_hts_test t on t.client_id = p.client_id\n" +
-                "where ss.key_population_type = \"People who inject drugs\"\n" +
-                "  and p.screened_for =\"PrEP\" and  p.status=\"Initiated\"\n" +
-                "  and date(t.visit_date) >date(p.visit_date) and t.final_test_result=\"Positive\"\n" +
-                "  and date(t.visit_date) between date(:startDate) and date(:endDate)\n" +
-                "group by p.client_id;";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who inject drugs\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("turningPositiveWhileOnPrEPPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2461,13 +2846,13 @@ public class ETLMoh731BCohortLibrary {
 //turningPositiveWhileOnPrEPPwud
     public CohortDefinition turningPositiveWhileOnPrEPPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select p.client_id from kp_etl.etl_prep_pep_screening p inner join kp_etl.etl_client_social_status ss  on p.client_id = ss.client_id\n" +
-                "                                                 inner join kp_etl.etl_hts_test t on t.client_id = p.client_id\n" +
-                "where ss.key_population_type = \"People who use drugs\"\n" +
-                "  and p.screened_for =\"PrEP\" and  p.status=\"Initiated\"\n" +
-                "  and date(t.visit_date) >date(p.visit_date) and t.final_test_result=\"Positive\"\n" +
-                "  and date(t.visit_date) between date(:startDate) and date(:endDate)\n" +
-                "group by p.client_id;\n";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"People who use drugs\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("turningPositiveWhileOnPrEPPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2479,7 +2864,13 @@ public class ETLMoh731BCohortLibrary {
 //turningPositiveWhileOnPrEPTransgender
     public CohortDefinition turningPositiveWhileOnPrEPTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v inner join kp_etl.etl_hts_test t on v.client_id = t.client_id\n" +
+                "                                                    inner join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type = \"Transgender\"\n" +
+                "  and v.prep_treated =\"Y\"\n" +
+                "  and date(t.visit_date) >date(v.visit_date) and t.final_test_result=\"Positive\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate)\n" +
+                "group by v.client_id;";
         cd.setName("turningPositiveWhileOnPrEPTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2491,12 +2882,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolenceFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  kp_etl.etl_violence_screening vs on ce.client_id = vs.client_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "where vs.form_of_violence in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\") \n" +
-                "and ss.key_population_type =\"Female sex worker\"\n" +
-                "and date(vs.incident_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_results in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\")\n" +
+                "  and c.key_population_type =\"Female sex worker\"\n" +
+                "    and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("experiencingViolenceFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2508,12 +2898,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolenceMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  kp_etl.etl_violence_screening vs on ce.client_id = vs.client_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "where vs.form_of_violence in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\") \n" +
-                "and ss.key_population_type =\"Male who have sex with Men\"\n" +
-                "and date(vs.incident_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_results in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\")\n" +
+                "  and c.key_population_type =\"Men who have sex with men\"\n" +
+                "    and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("experiencingViolenceMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2525,12 +2914,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolenceMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  kp_etl.etl_violence_screening vs on ce.client_id = vs.client_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "where vs.form_of_violence in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\") \n" +
-                "and ss.key_population_type =\"Male sex worker\"\n" +
-                "and date(vs.incident_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_results in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\")\n" +
+                "  and c.key_population_type =\"Male sex worker\"\n" +
+                "    and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("experiencingViolenceMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2542,12 +2930,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolencePwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  kp_etl.etl_violence_screening vs on ce.client_id = vs.client_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "where vs.form_of_violence in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\") \n" +
-                "and ss.key_population_type =\"People who inject drugs\"\n" +
-                "and date(vs.incident_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_results in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\")\n" +
+                "  and c.key_population_type =\"People who inject drugs\"\n" +
+                "    and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("experiencingViolencePwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2559,12 +2946,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolencePwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="select ce.client_id from kp_etl.etl_client_enrollment ce\n" +
-                "join  kp_etl.etl_violence_screening vs on ce.client_id = vs.client_id \n" +
-                "join etl_client_social_status ss on ce.client_id = ss.client_id\n" +
-                "where vs.form_of_violence in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\") \n" +
-                "and ss.key_population_type =\"People who use drugs\"\n" +
-                "and date(vs.incident_date) between date(:startDate) and date(:endDate);";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_results in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\")\n" +
+                "  and c.key_population_type =\"People who use drugs\"\n" +
+                "    and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("experiencingViolencePwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2576,7 +2962,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition experiencingViolenceTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_results in (\"Verbal abuse\",\"Physical abuse\",\"Discrimination\",\"Sexual abuse/Rape\",\"illegal arrest\",\"other\")\n" +
+                "  and c.key_population_type =\"Transgender\"\n" +
+                "    and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("experiencingViolenceTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2588,7 +2978,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingViolenceSupportFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_treated = \"Supported\"\n" +
+                "  and c.key_population_type =\"Female sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("receivingViolenceSupportFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2600,7 +2994,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingViolenceSupportMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_treated = \"Supported\"\n" +
+                "  and c.key_population_type =\"Men who have sex with men\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("receivingViolenceSupportMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2613,7 +3011,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingViolenceSupportMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_treated = \"Supported\"\n" +
+                "  and c.key_population_type =\"Male sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("receivingViolenceSupportMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2625,7 +3027,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingViolenceSupportPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_treated = \"Supported\"\n" +
+                "  and c.key_population_type =\"People who inject drugs\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("receivingViolenceSupportPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2637,7 +3043,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingViolenceSupportPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_treated = \"Supported\"\n" +
+                "  and c.key_population_type =\"People who use drugs\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("receivingViolenceSupportPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2649,7 +3059,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingViolenceSupportTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.violence_treated = \"Supported\"\n" +
+                "  and c.key_population_type =\"Transgender\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("receivingViolenceSupportTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2661,7 +3075,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition numberExposedFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type=\"Female sex worker\" and (v.exposure_type in (\"Rape\",\"Condom burst\",\"Others\") or v.other_exposure_type is not null)  and c.key_population_type =\"Female sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("numberExposedFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2673,7 +3090,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition numberExposedMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type=\"Men who have sex with men\" and (v.exposure_type in (\"Rape\",\"Condom burst\",\"Others\") or v.other_exposure_type is not null)  and c.key_population_type =\"Female sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("numberExposedMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2685,7 +3105,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition numberExposedMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type=\"Male sex worker\" and (v.exposure_type in (\"Rape\",\"Condom burst\",\"Others\") or v.other_exposure_type is not null)  and c.key_population_type =\"Female sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("numberExposedMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2697,7 +3120,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition numberExposedPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type=\"People who inject drugs\" and (v.exposure_type in (\"Rape\",\"Condom burst\",\"Others\") or v.other_exposure_type is not null)  and c.key_population_type =\"Female sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("numberExposedPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2709,7 +3135,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition numberExposedPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type=\"People who use drugs\" and (v.exposure_type in (\"Rape\",\"Condom burst\",\"Others\") or v.other_exposure_type is not null)  and c.key_population_type =\"Female sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("numberExposedPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2721,7 +3150,10 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition numberExposedTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where c.key_population_type=\"Transgender\" and (v.exposure_type in (\"Rape\",\"Condom burst\",\"Others\") or v.other_exposure_type is not null)  and c.key_population_type =\"Female sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;";
         cd.setName("numberExposedTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2733,7 +3165,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingPEPWithin72HrsFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.pep_eligible= \"Y\"\n" +
+                "  and c.key_population_type =\"Female sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;\n";
         cd.setName("receivingPEPWithin72HrsFsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2745,7 +3181,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingPEPWithin72HrsMsm(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.pep_eligible= \"Y\"\n" +
+                "  and c.key_population_type =\"Men who have sex with men\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;\n";
         cd.setName("receivingPEPWithin72HrsMsm");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2757,7 +3197,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingPEPWithin72HrsMsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.pep_eligible= \"Y\"\n" +
+                "  and c.key_population_type =\"Male sex worker\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;\n";
         cd.setName("receivingPEPWithin72HrsMsw");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2769,7 +3213,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingPEPWithin72HrsPwid(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.pep_eligible= \"Y\"\n" +
+                "  and c.key_population_type =\"People who inject drugs\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;\n";
         cd.setName("receivingPEPWithin72HrsPwid");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2781,7 +3229,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition  receivingPEPWithin72HrsPwud(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.pep_eligible= \"Y\"\n" +
+                "  and c.key_population_type =\"People who use drugs\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;\n";
         cd.setName("receivingPEPWithin72HrsPwud");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2793,7 +3245,11 @@ public class ETLMoh731BCohortLibrary {
 
     public CohortDefinition receivingPEPWithin72HrsTransgender(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
-        String sqlQuery ="";
+        String sqlQuery ="select v.client_id from kp_etl.etl_clinical_visit v\n" +
+                "                          join kp_etl.etl_contact c on v.client_id = c.client_id\n" +
+                "where v.pep_eligible= \"Y\"\n" +
+                "  and c.key_population_type =\"Transgender\"\n" +
+                "  and date(v.visit_date) between date(:startDate) and date(:endDate) group by v.client_id;\n";
         cd.setName("receivingPEPWithin72HrsTransgender");
         cd.setQuery(sqlQuery);
         cd.addParameter(new Parameter("startDate", "Start Date", Date.class));
@@ -2803,7 +3259,7 @@ public class ETLMoh731BCohortLibrary {
         return cd;
     }
 
-    public CohortDefinition completedPEPWith28DaysFsw(){
+/*    public CohortDefinition completedPEPWith28DaysFsw(){
         SqlCohortDefinition cd = new SqlCohortDefinition();
         String sqlQuery ="";
         cd.setName("completedPEPWith28DaysFsw");
@@ -2872,7 +3328,7 @@ public class ETLMoh731BCohortLibrary {
         cd.setDescription("completedPEPWith28DaysTransgender");
 
         return cd;
-    }
+    }*/
 
 
 }

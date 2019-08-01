@@ -32,7 +32,7 @@ import java.util.List;
  * Report builder for ETL MOH 731B for Key Population
  */
 @Component
-@Builds({"kp.etl.common.report.moh731b"})
+@Builds({"kenyaemr.etl.common.report.moh731b"})
 public class ETLMOH731BReportBuilder extends AbstractReportBuilder {
     @Autowired
     private CommonDimensionLibrary commonDimensions;
@@ -223,13 +223,13 @@ public class ETLMOH731BReportBuilder extends AbstractReportBuilder {
         cohortDsd.addColumn("Treated_HBV_PWUD", "HBV Treated Pwud", ReportUtils.map(moh731bIndicators.treatedHBVPwud(), indParams),"");
         cohortDsd.addColumn("Treated_HBV_Transgender", "HBV Treated Transgender", ReportUtils.map(moh731bIndicators.treatedHBVTransgender(), indParams),"");
 
-        cohortDsd.addColumn("NegativeHBV_Vaccinated_FSW", "Negative HBV Vaccinated Fsw", ReportUtils.map(moh731bIndicators.negativeHBVVaccinatedFsw(), indParams),"");
+     /*   cohortDsd.addColumn("NegativeHBV_Vaccinated_FSW", "Negative HBV Vaccinated Fsw", ReportUtils.map(moh731bIndicators.negativeHBVVaccinatedFsw(), indParams),"");
         cohortDsd.addColumn("NegativeHBV_Vaccinated_MSM", "Negative HBV Vaccinated Msm", ReportUtils.map(moh731bIndicators.negativeHBVVaccinatedMsm(), indParams),"");
         cohortDsd.addColumn("NegativeHBV_Vaccinated_MSW", "Negative HBV Vaccinated Msw", ReportUtils.map(moh731bIndicators.negativeHBVVaccinatedMsw(), indParams),"");
         cohortDsd.addColumn("NegativeHBV_Vaccinated_PWID", "Negative HBV Vaccinated Pwid", ReportUtils.map(moh731bIndicators.negativeHBVVaccinatedPwid(), indParams),"");
         cohortDsd.addColumn("NegativeHBV_Vaccinated_PWUD", "Negative HBV Vaccinated Pwud", ReportUtils.map(moh731bIndicators.negativeHBVVaccinatedPwud(), indParams),"");
         cohortDsd.addColumn("NegativeHBV_Vaccinated_Transgender", "Negative HBV Vaccinated Transgender", ReportUtils.map(moh731bIndicators.negativeHBVVaccinatedTransgender(), indParams),"");
-
+*/
         cohortDsd.addColumn("Screened_TB_FSW", "Screened TB Fsw", ReportUtils.map(moh731bIndicators.screenedTBFsw(), indParams),"");
         cohortDsd.addColumn("Screened_TB_MSM", "Screened TB Msm", ReportUtils.map(moh731bIndicators.screenedTBMsm(), indParams),"");
         cohortDsd.addColumn("Screened_TB_MSW", "Screened TB Msw", ReportUtils.map(moh731bIndicators.screenedTBMsw(), indParams),"");
@@ -307,12 +307,14 @@ public class ETLMOH731BReportBuilder extends AbstractReportBuilder {
         cohortDsd.addColumn("Receiving_PEP_Within_72hrs_PWUD", "Receiving PEP Within 72 hours Pwud", ReportUtils.map(moh731bIndicators.receivingPEPWithin72HrsPwud(), indParams),"");
         cohortDsd.addColumn("Receiving_PEP_Within_72hrs_Transgender", "Receiving PEP Within 72 hours Transgender", ReportUtils.map(moh731bIndicators.receivingPEPWithin72HrsTransgender(), indParams),"");
 
+/*
         cohortDsd.addColumn("Completed_PEP_Within_28_Days_FSW", "Completed PEP within 28 days Fsw", ReportUtils.map(moh731bIndicators.completedPEPWith28DaysFsw(), indParams),"");
         cohortDsd.addColumn("Completed_PEP_Within_28_Days_MSM", "Completed PEP within 28 days Msm", ReportUtils.map(moh731bIndicators.completedPEPWith28DaysMsm(), indParams),"");
         cohortDsd.addColumn("Completed_PEP_Within_28_Days_MSW", "Completed PEP within 28 days Msw", ReportUtils.map(moh731bIndicators.completedPEPWith28DaysMsw(), indParams),"");
         cohortDsd.addColumn("Completed_PEP_Within_28_Days_PWID", "Completed PEP within 28 days Pwid", ReportUtils.map(moh731bIndicators.completedPEPWith28DaysPwid(), indParams),"");
         cohortDsd.addColumn("Completed_PEP_Within_28_Days_PWUD", "Completed PEP within 28 days Pwud", ReportUtils.map(moh731bIndicators.completedPEPWith28DaysPwud(), indParams),"");
         cohortDsd.addColumn("Completed_PEP_Within_28_Days_Transgender", "Completed PEP within 28 days Transgender", ReportUtils.map(moh731bIndicators.completedPEPWith28DaysTransgender(), indParams),"");
+*/
 
         return cohortDsd;
 
