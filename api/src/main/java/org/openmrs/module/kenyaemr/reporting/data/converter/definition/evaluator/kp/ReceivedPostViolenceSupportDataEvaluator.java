@@ -10,7 +10,6 @@
 package org.openmrs.module.kenyaemr.reporting.data.converter.definition.evaluator.kp;
 
 import org.openmrs.annotation.Handler;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.ExperiencedViolenceDataDefinition;
 import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.ReceivedPostViolenceSupportDataDefinition;
 import org.openmrs.module.reporting.data.person.EvaluatedPersonData;
 import org.openmrs.module.reporting.data.person.definition.PersonDataDefinition;
@@ -35,7 +34,7 @@ public class   ReceivedPostViolenceSupportDataEvaluator implements PersonDataEva
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id, v.violence_treated from kp_etl.etl_clinical_visit v;";
+        String qry = "select v.client_id, v.violence_treated from kp_etl.etl_clinical_visit v where v.violence_treated = \"Supported\" group by v.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
