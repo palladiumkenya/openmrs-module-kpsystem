@@ -35,7 +35,7 @@ public class ProvidedWithClinicalServicesDataEvaluator implements PersonDataEval
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select c.client_id,c.received_clinical_service from kp_etl.etl_peer_calendar c;";
+        String qry = "select c.client_id,c.received_clinical_service from kp_etl.etl_peer_calendar c where c.received_clinical_service = \"Yes\";";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

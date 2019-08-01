@@ -35,7 +35,7 @@ public class CurrentlyOnPrEPDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,v.prep_treated from kp_etl.etl_clinical_visit v;";
+        String qry = "select v.client_id,v.prep_treated from kp_etl.etl_clinical_visit v where v.prep_treated = \"Initiated\" group by v.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
