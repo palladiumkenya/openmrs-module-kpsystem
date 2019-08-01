@@ -629,7 +629,7 @@ public class ETLMoh731BIndicatorLibrary {
     public CohortIndicator receivingPEPWithin72HrsTransgender() {
         return cohortIndicator("", ReportUtils.map(moh731BCohorts.receivingPEPWithin72HrsTransgender(), "startDate=${startDate},endDate=${endDate}"));
     }
-    public CohortIndicator completedPEPWith28DaysFsw() {
+   /* public CohortIndicator completedPEPWith28DaysFsw() {
         return cohortIndicator("", ReportUtils.map(moh731BCohorts.completedPEPWith28DaysFsw(), "startDate=${startDate},endDate=${endDate}"));
     }
 
@@ -648,7 +648,7 @@ public class ETLMoh731BIndicatorLibrary {
     }
     public CohortIndicator completedPEPWith28DaysTransgender() {
         return cohortIndicator("", ReportUtils.map(moh731BCohorts.completedPEPWith28DaysTransgender(), "startDate=${startDate},endDate=${endDate}"));
-    }
+    }*/
 }
 
 

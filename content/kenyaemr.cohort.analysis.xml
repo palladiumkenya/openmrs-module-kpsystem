@@ -17,20 +17,7 @@
     <bean id="kenyaemr.config.report.cohort.analysis" class="org.openmrs.module.kenyacore.report.ReportConfiguration">
         <property name="cohortAnalysis">
             <set>
-                <!--pre art beans declared here-->
-                <!--<ref bean="kenyaemr.hiv.report.cohort.analysis.preArt.6" />
-                <ref bean="kenyaemr.hiv.report.cohort.analysis.preArt.12" />
-                <ref bean="kenyaemr.hiv.report.cohort.analysis.preArt.24" />
-                <ref bean="kenyaemr.hiv.report.cohort.analysis.preArt.36" />
-                <ref bean="kenyaemr.hiv.report.cohort.analysis.preArt.48" />
-                <ref bean="kenyaemr.hiv.report.cohort.analysis.preArt.60" />-->
-                <!--art beans to follow here -->
-                <ref bean="kenyaemr.hiv.report.art.cohort.analysis.art.6" />
-                <ref bean="kenyaemr.hiv.report.art.cohort.analysis.art.12" />
-                <ref bean="kenyaemr.hiv.report.art.cohort.analysis.art.24" />
-                <ref bean="kenyaemr.hiv.report.art.cohort.analysis.art.36" />
-                <ref bean="kenyaemr.hiv.report.art.cohort.analysis.art.48" />
-                <ref bean="kenyaemr.hiv.report.art.cohort.analysis.art.60" />
+                <ref bean="kenyaemr.kp.report.cohort.analysis.kpRegister" />
             </set>
         </property>
     </bean>
@@ -145,4 +132,14 @@
         <property name="repeatingSection" value="sheet:1,row:4,dataset:artCohortAnalysis" />
     </bean>
 
-</beans>
+    <!-- KP register-->
+    <bean id="kenyaemr.kp.report.cohort.analysis.kpRegister" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
+        <property name="targetUuid" value="601fb262-ec35-48bb-a1e8-44e0274a06d0" />
+        <property name="name" value="KP Cohort Register" />
+        <property name="description" value="KP Cohort Register" />
+        <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
+        <property name="template" value="kenyaemr:kp/KP_Cohort_Register.xls" />
+        <property name="repeatingSection" value="sheet:1,row:7,dataset:KPRegister" />
+    </bean>
+
+ </beans>
