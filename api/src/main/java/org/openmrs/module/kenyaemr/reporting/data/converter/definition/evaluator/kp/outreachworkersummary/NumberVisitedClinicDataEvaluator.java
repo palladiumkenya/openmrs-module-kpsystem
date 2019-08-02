@@ -35,7 +35,7 @@ public class NumberVisitedClinicDataEvaluator implements PersonDataEvaluator {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
         String qry = "select r.person_a as peer_educator,count(p.client_id) as visited_clinic from openmrs.relationship r inner join kp_etl.etl_peer_calendar p on r.person_b= p.client_id\n" +
-                     "where p.service_provided_within_last_month = \"Visited Clinic\" group by peer_educator;";
+                     "where p.service_provided_within_last_month = \"Visited Clinic\" and r.voided = 0 group by peer_educator;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
