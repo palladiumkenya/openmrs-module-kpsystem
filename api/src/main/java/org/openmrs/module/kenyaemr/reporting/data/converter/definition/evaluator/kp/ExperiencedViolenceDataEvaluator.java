@@ -11,7 +11,6 @@ package org.openmrs.module.kenyaemr.reporting.data.converter.definition.evaluato
 
 import org.openmrs.annotation.Handler;
 import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.ExperiencedViolenceDataDefinition;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.ReachedWithEBIDataDefinition;
 import org.openmrs.module.reporting.data.person.EvaluatedPersonData;
 import org.openmrs.module.reporting.data.person.definition.PersonDataDefinition;
 import org.openmrs.module.reporting.data.person.evaluator.PersonDataEvaluator;
@@ -35,8 +34,8 @@ public class ExperiencedViolenceDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select NULLIF(c.client_id,v.client_id) as client_id, NULLIF(c.experienced_violence,v.violence_screened) as experienced_violence from kp_etl.etl_peer_calendar c left outer join\n" +
-                "                                                   kp_etl.etl_clinical_visit v on c.client_id = v.client_id\n" +
+        String qry = "select coalesce(c.client_id,v.client_id) as client_id, coalesce(c.experienced_violence,v.violence_screened) as experienced_violence from kp_etl.etl_peer_calendar c left outer join\n" +
+                "kp_etl.etl_clinical_visit v on c.client_id = v.client_id\n" +
                 "group by client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
