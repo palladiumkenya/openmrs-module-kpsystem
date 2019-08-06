@@ -10,8 +10,7 @@
 package org.openmrs.module.kenyaemr.reporting.data.converter.definition.evaluator.kp;
 
 import org.openmrs.annotation.Handler;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.ScreenedTBDataDefinition;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.VLSuppressedDataDefinition;
+import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.VLDoneDataDefinition;
 import org.openmrs.module.reporting.data.person.EvaluatedPersonData;
 import org.openmrs.module.reporting.data.person.definition.PersonDataDefinition;
 import org.openmrs.module.reporting.data.person.evaluator.PersonDataEvaluator;
@@ -26,8 +25,8 @@ import java.util.Map;
 /**
  * Evaluates a PersonDataDefinition
  */
-@Handler(supports= ScreenedTBDataDefinition.class, order=50)
-public class ScreenedTBDataEvaluator implements PersonDataEvaluator {
+@Handler(supports= VLDoneDataDefinition.class, order=50)
+public class VLDoneDataEvaluator implements PersonDataEvaluator {
 
     @Autowired
     private EvaluationService evaluationService;
@@ -35,7 +34,7 @@ public class ScreenedTBDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,v.tb_screened from kp_etl.etl_clinical_visit v group by v.client_id having max(date(v.visit_date)) between date(:startDate) and date(:endDate);";
+        String qry = "select v.client_id,v.vl_test_done from kp_etl.etl_clinical_visit v group by v.client_id having max(date(v.visit_date)) between date(:startDate) and date(:endDate);";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

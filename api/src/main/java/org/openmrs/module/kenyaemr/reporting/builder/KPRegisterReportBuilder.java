@@ -123,6 +123,7 @@ public class KPRegisterReportBuilder extends AbstractHybridReportBuilder {
         dsd.addColumn("Current care facility", new CurrentCareFacilityDataDefinition(), "");
         dsd.addColumn("HIV Care Outcome", new HIVCareOutcomeDataDefinition(), "");
         dsd.addColumn("ART Outcome", new ARTOutcomeDataDefinition(), "");
+        dsd.addColumn("VL Done", new VLDoneDataDefinition(), "");
         dsd.addColumn("Due date for VL", new VLDueDateDataDefinition(), "");
         dsd.addColumn("Received VL results", new ReceivedVLResultsDataDefinition(), "");
         dsd.addColumn("Attained Viral Load Suppression", new VLSuppressedDataDefinition(), "");

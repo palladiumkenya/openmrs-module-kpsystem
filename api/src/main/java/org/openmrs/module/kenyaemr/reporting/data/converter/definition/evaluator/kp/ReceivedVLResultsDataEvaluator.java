@@ -35,7 +35,7 @@ public class ReceivedVLResultsDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,v.received_vl_results from kp_etl.etl_clinical_visit v group by v.client_id;";
+        String qry = "select v.client_id,v.received_vl_results from kp_etl.etl_clinical_visit v group by v.client_id having max(date(v.visit_date)) between date(:startDate) and date(:endDate);";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
