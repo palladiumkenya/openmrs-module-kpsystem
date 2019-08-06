@@ -35,7 +35,7 @@ public class CurrentlyOnARTDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,(case v.hiv_care_facility when \"Provided here\" then 1 when \"Provided elsewhere\" then 2 else 3 end) as active_on_art from kp_etl.etl_clinical_visit v where v.active_art = \"Yes\" and (v.linked_to_art = \"Yes\" or v.self_test_linked_art = \"Yes\") group by v.client_id;";
+        String qry = "select v.client_id,(case v.hiv_care_facility when \"Provided here\" then 1 when \"Provided elsewhere\" then 2 else 3 end) as active_on_art from kp_etl.etl_clinical_visit v where v.active_art = \"Yes\" and (v.linked_to_art = \"Yes\" or v.self_test_linked_art = \"Yes\") group by v.client_id having max(date(v.visit_date)) between date(:startDate) and date(:endDate);";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
