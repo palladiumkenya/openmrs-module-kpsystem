@@ -41,12 +41,11 @@
         }
     </style>
     <script type="text/javascript">
-
+        var pgender = "<lookup expression="patient.gender" />";
         function onHistoricalStatusDateChange() {
 
             var today = new Date()//.getTime();        //get current date
             var patientId = <lookup expression="patient.patientId"/>;
-
 
             /*this data should not be in Future */
             if (ENC_DATE &gt; today) {
@@ -78,7 +77,19 @@
                 duration: 'fast',
                 stepMonths: 0
             });
-
+            jq("#other-hotspots-specify").hide();
+            jq('#hotspot-type select').click(onOtherHotspotSelected);
+      //Gender validations
+            if (pgender == 'F') {
+                jq("#key_pop_type input[value=160578]").prop("checked", false);
+                jq("#key_pop_type input[value=165084]").prop("checked", false);
+                jq("#key_pop_type input[value=160578]").prop("disabled", true);
+                jq("#key_pop_type input[value=165084]").prop("disabled", true);
+            }
+            if (pgender == 'M') {
+                jq("#key_pop_type input[value=165083]").prop("checked", false);
+                jq("#key_pop_type input[value=165083]").prop("disabled", true);
+            }
 
             $('input').on('click',function () {
 
@@ -172,7 +183,15 @@
                 }
             }
         });
-
+        function onOtherHotspotSelected() {
+            var val = jq(this).val();
+            if(val == 5622 ){
+                jq("#other-hotspots-specify").show();
+            }
+            else{
+                jq("#other-hotspots-specify").hide();
+            }
+        }
         beforeSubmit.push(function() {
             var hotspot_frequented = getField('hotspot_frequented.value').val();
             var start_sex = getField("startSex.value").val();
@@ -199,7 +218,7 @@
     <div class="ke-form-header">
         <table width="100%">
             <tr>
-                <td align="left">Enrollment Date:
+                <td align="left">Date of first contact:
                     <encounterDate id="encounter-date" showTime="true"/>
                 </td>
                 <td align="right">Location:
@@ -229,6 +248,16 @@
 
                 </td>
                 <tr>
+                    <td>Alternative Contact Person</td>
+                    <td>
+                    Name :
+                        <obs id="altname" conceptId="160638"/>
+                        &#160;&#160;&#160;
+                    Contact :
+                    <obs id="mobile" conceptId="160642"/>
+                    </td>
+                </tr>
+                <tr>
                     <td >Have you been contacted by a peer educator?</td>
                     <td>
                         <obs id="peer-educator" conceptId="165004"
@@ -253,8 +282,50 @@
                         </td>
                         <td >Type of Hotspot</td>
                         <td >
-                            <obs conceptId="165005" id="typeof_hotspot"/>
-
+                            <obs conceptId="165005"
+                                 answerConceptIds="165011,
+                                                   165012,
+                                                   165013,
+                                                   165014,
+                                                   1536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
+                                                   165015,
+                                                   165016,
+                                                   165017,
+                                                   165018,
+                                                   165019,
+                                                   165020,
+                                                   165021,
+                                                   165022,
+                                                   165023,
+                                                   165024,
+                                                   165025,
+                                                   165026,
+                                                   165297,
+                                                   5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Street,
+                                              Injecting den,
+                                              Uninhabitable building,
+                                              Park,
+                                              Homes,
+                                              Beach,
+                                              Casino,
+                                              Bar with lodging,
+                                              Bar without lodging,
+                                              Sex den,
+                                              Strip club,
+                                              Highways,
+                                              Brothel,
+                                              Guest house/Hotels/Lodgings,
+                                              Massage parlor,
+                                              Chang’aa den,
+                                              Barbershop/Salon,
+                                              Virtual Space,
+                                              Other (Specify)"
+                                 id="hotspot-type"
+                                 style="dropdown" />
+                           <br/><br/>
+                            <obs conceptId="165298" id="other-hotspots-specify"/>
+                            <br />
                         </td>
                 </tr>
                 <tr id="year_started_sex">
@@ -304,30 +375,6 @@
                 </tr>
             </table>
         </fieldset>
-
-        <fieldset>
-            <legend>Alternative Contact Person</legend>
-
-            <table class="simple-table">
-                <tr>
-                    <td width="100" valign="top">Name</td>
-                    <td width="100" valign="top">
-                        <obs id="fname" conceptId="160638"/>
-                    </td>
-                    <td width="100" valign="top">Alias</td>
-                    <td width="100" valign="top">
-                        <obs id="alias" conceptId="165038"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="100" valign="top">Contact</td>
-                    <td width="100" valign="top">
-                        <obs id="mobile" conceptId="160642"/>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-
 
     </div>
 

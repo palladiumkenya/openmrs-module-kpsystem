@@ -672,7 +672,7 @@
 
             <table class="simple-table" id="client-support">
                 <tr>
-                    <td>Would you like to be contacted in case you are due for a clinical appointment?</td>
+                    <td>In case you are due for clinical services, could we contact you?</td>
                     <td>
                         <obs id="contacted-incase-of-appointment" conceptId="165036"
                              answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -682,10 +682,13 @@
                 </tr>
                 <tr id ="contact-method">
                     <td>How would you like to be contacted?</td>
-                    <td>
-                        <obs id="cContacted" conceptId="164966"
-                             answerConceptIds="161642,165037,1555,159635,5619"
-                             answerLabels="Treatment supporter,Peer educator,Outreach worker,Phone number,Clinician/HTS Counsellor"/>
+                 <td>
+                        <obs conceptId="164966" answerConceptId="161642" answerLabel="Treatment supporter" id="ts-checked" style="checkbox" /> <br />
+                        <obs conceptId="164966" answerConceptId="165037" answerLabel="Peer educator" id="pe-checked" style="checkbox"/> <br />
+                        <obs conceptId="164966" answerConceptId="1555" answerLabel="Outreach worker" style="checkbox"/> <br />
+                        <obs conceptId="164966" answerConceptId="159635" answerLabel="Phone number" id="visited-clinic" style="checkbox"/> <br />
+                        <obs conceptId="164966" answerConceptId="5619" answerLabel="Clinician/HTS Counsellor" id="visited-clinic" style="checkbox"/> <br />
+
                     </td>
                 </tr>
             </table>
