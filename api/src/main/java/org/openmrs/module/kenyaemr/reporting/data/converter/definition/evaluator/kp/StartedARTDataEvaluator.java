@@ -35,7 +35,15 @@ public class StartedARTDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,(case v.hiv_care_facility when \"Provided here\" then 1 when \"Provided elsewhere\" then 2 else 3 end) as started_art from kp_etl.etl_clinical_visit v where v.initiated_art_this_month = \"Yes\" group by v.client_id;";
+        String qry = "select r.client_id r, case coalesce(max(t.final_test_result),max(v.self_test_results),max(v.hiv_self_rep_status)) when \"Positive\"  then\n" +
+                "    (case when max(v.hiv_care_facility)=\"Provided here\" then (case when max(v.initiated_art_this_month) = \"Yes\" then 1\n" +
+                "                                                                   when timestampdiff(Month,mid(max(concat(v.initiated_art_this_month,v.visit_date)),11),date(:endDate))=1 then 5 else \"\" end)\n" +
+                "          when max(v.hiv_care_facility)=\"Provided elsewhere\" then (case when timestampdiff(Month,mid(max(concat(v.initiated_art_this_month,v.visit_date)),11),date(:endDate))=1 then 6\n" +
+                "                                                                        when max(v.initiated_art_this_month) = \"Yes\" then 2 else \"\" end)\n" +
+                "          when max(active_art) = \"No\" then 3 else \"\" end) when \"Negative\" then 4 else \"\" end as started_art\n" +
+                "from kp_etl.etl_client_registration r left outer join etl_hts_test t on r.client_id = t.client_id  left outer join kp_etl.etl_clinical_visit v on r.client_id = v.client_id\n" +
+                "where v.client_id is not null or t.client_id is not null\n" +
+                "group by r.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

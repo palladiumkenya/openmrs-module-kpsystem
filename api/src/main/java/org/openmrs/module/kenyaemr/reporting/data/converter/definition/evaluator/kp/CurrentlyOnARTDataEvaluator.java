@@ -35,7 +35,12 @@ public class CurrentlyOnARTDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,(case v.hiv_care_facility when \"Provided here\" then 1 when \"Provided elsewhere\" then 2 else 3 end) as active_on_art from kp_etl.etl_clinical_visit v where v.active_art = \"Yes\" and (v.linked_to_art = \"Yes\" or v.self_test_linked_art = \"Yes\") group by v.client_id having max(date(v.visit_date)) between date(:startDate) and date(:endDate);";
+        String qry = "select r.client_id r, case coalesce(max(t.final_test_result),max(v.self_test_results),max(v.hiv_self_rep_status)) when \"Positive\"  then\n" +
+                "    (case when max(v.active_art) = \"Yes\" then (case when max(v.hiv_care_facility)=\"Provided here\" then 1 when max(v.hiv_care_facility)=\"Provided elsewhere\" then 2 else \"\" end)\n" +
+                "          when max(v.active_art) = \"No\" then 3 else \"\" end) when \"Negative\" then 4 else \"\" end as active_art\n" +
+                "    from kp_etl.etl_client_registration r left outer join etl_hts_test t on r.client_id = t.client_id  left outer join kp_etl.etl_clinical_visit v on r.client_id = v.client_id\n" +
+                "where v.client_id is not null or t.client_id is not null\n" +
+                "group by r.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
