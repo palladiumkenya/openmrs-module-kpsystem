@@ -58,35 +58,6 @@
             $("#totals").children().attr("disabled","disabled");
             $("#myfieldeset").children().attr("disabled", "disabled");
 
-            jq('#ns-first-week input[type=text]').prop("disabled",true);
-            jq('#ns-second-week input[type=text]').prop("disabled",true);
-            jq('#ns-third-week input[type=text]').prop("disabled",true);
-            jq('#ns-fourth-week input[type=text]').prop("disabled",true);
-
-            jq('#mCondom-w1 input[type=text]').prop("disabled",true);
-            jq('#mCondom-w2 input[type=text]').prop("disabled",true);
-            jq('#mCondom-w3 input[type=text]').prop("disabled",true);
-            jq('#mCondom-w4 input[type=text]').prop("disabled",true);
-
-            jq('#fCondom-w1 input[type=text]').prop("disabled",true);
-            jq('#fCondom-w2 input[type=text]').prop("disabled",true);
-            jq('#fCondom-w3 input[type=text]').prop("disabled",true);
-            jq('#fCondom-w4 input[type=text]').prop("disabled",true);
-
-
-            jq('#clinical-service-w1 select').prop("disabled",true);
-            jq('#clinical-service-w2 select').prop("disabled",true);
-            jq('#clinical-service-w3 select').prop("disabled",true);
-            jq('#clinical-service-w4 select').prop("disabled",true);
-
-
-
-            jq('#needles-checked :input[type=checkbox]').change(onNeedlesChecked);
-            jq('#condom-checked :input[type=checkbox]').change(onCondomChecked);
-            jq('#visited-clinic :input[type=checkbox]').change(onVisitedClinicChecked);
-
-            jq('#needles-checked :input[type=checkbox]').change(onNeedlesChecked);
-
 
             // Added to calculate monthly total(Ben)
 
@@ -154,74 +125,6 @@
             });
 
         });
-
-
-        function onNeedlesChecked() {
-            var val = jq(this).val();
-            var needlesChecked = jq("#needles-checked input:checkbox:checked");
-
-            if(val == 165303 &amp;&amp; needlesChecked.length &gt; 0){
-                jq('#ns-first-week input[type=text]').prop("disabled",false);
-                jq('#ns-second-week input[type=text]').prop("disabled",false);
-                jq('#ns-third-week input[type=text]').prop("disabled",false);
-                jq('#ns-fourth-week input[type=text]').prop("disabled",false);
-            }
-            else{
-
-                jq('#ns-first-week input[type=text]').prop("disabled",true);
-                jq('#ns-second-week input[type=text]').prop("disabled",true);
-                jq('#ns-third-week input[type=text]').prop("disabled",true);
-                jq('#ns-fourth-week input[type=text]').prop("disabled",true);
-            }
-        }
-
-        function onVisitedClinicChecked() {
-            var val = jq(this).val();
-            var visitedChecked = jq("#visited-clinic  input:checkbox:checked");
-
-            if(val == 161643 &amp;&amp; visitedChecked.length &gt; 0){
-                jq('#clinical-service-w1 select').prop("disabled",false);
-                jq('#clinical-service-w2 select').prop("disabled",false);
-                jq('#clinical-service-w3 select').prop("disabled",false);
-                jq('#clinical-service-w4 select').prop("disabled",false);
-            }
-            else{
-
-                jq('#clinical-service-w1 select').prop("disabled",true);
-                jq('#clinical-service-w2 select').prop("disabled",true);
-                jq('#clinical-service-w3 select').prop("disabled",true);
-                jq('#clinical-service-w4 select').prop("disabled",true);
-            }
-        }
-
-        function onCondomChecked() {
-            var val = jq(this).val();
-            var condomChecked = jq("#condom-checked  input:checkbox:checked");
-
-            if(val == 159777 &amp;&amp; condomChecked.length &gt; 0){
-                jq('#mCondom-w1 input[type=text]').prop("disabled",false);
-                jq('#mCondom-w2 input[type=text]').prop("disabled",false);
-                jq('#mCondom-w3 input[type=text]').prop("disabled",false);
-                jq('#mCondom-w4 input[type=text]').prop("disabled",false);
-
-                jq('#fCondom-w1 input[type=text]').prop("disabled",false);
-                jq('#fCondom-w2 input[type=text]').prop("disabled",false);
-                jq('#fCondom-w3 input[type=text]').prop("disabled",false);
-                jq('#fCondom-w4 input[type=text]').prop("disabled",false);
-            }
-            else{
-
-                jq('#mCondom-w1 input[type=text]').prop("disabled",true);
-                jq('#mCondom-w2 input[type=text]').prop("disabled",true);
-                jq('#mCondom-w3 input[type=text]').prop("disabled",true);
-                jq('#mCondom-w4 input[type=text]').prop("disabled",true);
-
-                jq('#fCondom-w1 input[type=text]').prop("disabled",true);
-                jq('#fCondom-w2 input[type=text]').prop("disabled",true);
-                jq('#fCondom-w3 input[type=text]').prop("disabled",true);
-                jq('#fCondom-w4 input[type=text]').prop("disabled",true);
-            }
-        }
 
         function MonthlySNdistributed() {
             var week1SyrengDistributed = getField('ns-first-week.value').val();
@@ -987,7 +890,7 @@
         </fieldset>
 
         <fieldset id="totals" disabled="true">
-            <legend>This section is entirely for reporting purpose not included in the form</legend>
+            <legend>Peer Calendar Summary</legend>
 
             <table class="simple-table">
 

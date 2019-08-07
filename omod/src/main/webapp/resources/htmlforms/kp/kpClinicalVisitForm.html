@@ -567,10 +567,23 @@
         }
 
         var hivTesting  = function () {
-            var unknown = getValue("hiv_selfreported.value");
-            if(unknown==703){
-               // jq("#provider-test").show();
-               // jq('#hiv_settingoflasttest input').prop('disabled', true).addClass('disabled');
+            var selfReportedStatus = getValue("hiv_selfreported.value");
+            var testSetting = jq('#hiv_settingoflasttest');
+            var hivCounselled = jq('#hiv_counselled');
+            var testFrequency = jq('#test_frequency');
+            var receivedResults = jq('#received_results');
+            var testResults = jq('#test_results');
+            var hivTested = jq('#hiv_tested');
+            var linkedART = jq('#linked_to_art');
+            var careFacility = jq('#care_provided');
+
+            if(selfReportedStatus==703){
+                jq("#hiv_settingoflasttest input[value=1402]").prop("disabled", true);
+                jq("#hiv_settingoflasttest input[value=1402]").prop("checked", false);
+
+                jq("#care_provided input[value=1175]").prop("disabled", true);
+                jq("#care_provided input[value=1175]").prop("checked", false);
+
                 jq('#test_frequency input').prop('disabled', true).addClass('disabled');
                 jq('#received_results input').prop('disabled', true).addClass('disabled');
                 jq('#test_results input').prop('disabled', true).addClass('disabled');
@@ -580,12 +593,13 @@
                 $('#care_and_treatment').find('*').prop('disabled',false).removeClass('disabled');
                 $('#care_and_treatment').find('input:text').val('');
                 $('#care_and_treatment').find("select").prop("selectedIndex",0).removeClass('disabled');
-                jq("#linkedFacility input").prop("disabled", false).removeClass('disabled');
 
-                jq("#linkedFacility input").prop("disabled", false).removeClass('disabled');
-            }else {
+                clearHiddenSections([testSetting,hivCounselled,testFrequency,receivedResults,testResults,hivTested]);
+            }
+            if(selfReportedStatus==1067){
                 jq('#hiv_settingoflasttest input').prop('disabled', false).removeClass('disabled');
                 jq('#hiv_settingoflasttest input').prop('disabled', false).removeClass('disabled');
+
                 jq('#test_frequency input').prop('disabled', false).removeClass('disabled');
                 jq('#received_results input').prop('disabled', false).removeClass('disabled');
                 jq('#test_results input').prop('disabled', false).removeClass('disabled');
@@ -594,9 +608,24 @@
                 $('#care_and_treatment').find('*').prop('disabled',true);
                 $('#care_and_treatment').find('input:text').val('');
                 $('#care_and_treatment').find("select").prop("selectedIndex",0).addClass('disabled');
-                jq("#linkedFacility input").prop("disabled", true).addClass('disabled');
 
-                jq("#linkedFacility input").prop("disabled", true).addClass('disabled');
+                jq("#txtart input").val('');
+                clearHiddenSections([careFacility,testSetting,hivCounselled,linkedART]);
+            }
+            if(selfReportedStatus==664) {
+                jq("#hiv_settingoflasttest input[value=1402]").prop("disabled", true);
+                jq("#hiv_settingoflasttest input[value=1402]").prop("checked", false);
+                jq('#test_frequency input').prop('disabled', false).removeClass('disabled');
+                jq('#received_results input').prop('disabled', false).removeClass('disabled');
+                jq('#test_results input').prop('disabled', false).removeClass('disabled');
+                jq('#hiv_tested input').prop('disabled', false).removeClass('disabled')
+                jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
+                $('#care_and_treatment').find('*').prop('disabled',true);
+                $('#care_and_treatment').find('input:text').val('');
+                $('#care_and_treatment').find("select").prop("selectedIndex",0).addClass('disabled');
+
+                jq("#txtart input").val('');
+                clearHiddenSections([careFacility,testSetting,hivCounselled,linkedART]);
             }
         }
 
@@ -659,18 +688,54 @@
             }
 
         }
+
+        var selfTestedResults  = function () {
+            var tested = getValue("selftestResults.value");
+            var testConfirmation = jq('#confirm_test');
+            var confirmationFacility = jq('#facility');
+            var linkedART = jq('#linktoart');
+            var careFacility = jq('#care_provided');
+            if(tested==664){
+                jq("#care_provided input[value=1175]").prop("disabled", false);
+                jq("#care_provided input[value=1175]").prop("checked", true);
+
+                jq('#confirm_test input').prop('disabled', true).addClass('disabled');
+                jq('#facility input').prop('disabled', true).addClass('disabled');
+                jq('#linktoart input').prop('disabled', true).addClass('disabled');
+                clearHiddenSections([careFacility,testConfirmation,confirmationFacility,linkedART]);
+            } else{
+
+                jq("#care_provided input[value=1175]").prop("disabled", true);
+                jq("#care_provided input[value=1175]").prop("checked", false);
+
+                jq('#confirm_test input').prop('disabled', false).removeClass('disabled');
+                jq('#facility input').prop('disabled', false).removeClass('disabled');
+                jq('#linktoart input').prop('disabled', false).removeClass('disabled');
+                clearHiddenSections([careFacility,testConfirmation,confirmationFacility,linkedART]);
+            }
+
+        }
         var confirmTest  = function () {
             var tested = getValue("confirm_test.value");
+            var careFacility = jq('#care_provided');
             if(tested==664){
 
+                jq("#care_provided input[value=1175]").prop("disabled", false);
+                jq("#care_provided input[value=1175]").prop("checked", true);
                 jq('#facility input').prop('disabled', false).removeClass('disabled');
                 jq('#linktoart input').prop('disabled', true).addClass('disabled');
                 jq("#linktxt input").prop("disabled", true);
+
+                clearHiddenSections([careFacility]);
 
             }
             else if(tested == 703){
                 jq('#linktoart input').prop('disabled', false).removeClass('disabled');
                 jq('#facility input').prop('disabled', false).removeClass('disabled');
+                jq("#care_provided input[value=1175]").prop("disabled", true);
+                jq("#care_provided input[value=1175]").prop("checked", false);
+
+                clearHiddenSections([careFacility]);
 
             }
             else{
@@ -679,6 +744,10 @@
                 jq('#linktoart input').prop('disabled', true).addClass('disabled');
                 jq("#facilitytxt input").prop("disabled", true);
                 jq("#linktxt input").prop("disabled", true);
+
+                jq("#care_provided input[value=1175]").prop("disabled", false);
+                jq("#care_provided input[value=1175]").prop("checked", true);
+
             }
 
         }
@@ -725,18 +794,36 @@
 
 
         var providedElseWhere  = function () {
-            var tested = getValue("care_provided.value");
-            if(tested==162723){
+            var careProvided = getValue("care_provided.value");
+            if(careProvided==162723){
                 jq("#care_provided_txt input").val('');
                 jq("#care_provided_txt input").prop("disabled", false);
+
+                jq('#initiatedART input').prop('disabled', false).addClass('disabled');
+                jq('#activeART input').prop('disabled', false).addClass('disabled');
+                jq('#eligible_for_viral input').prop('disabled', false).addClass('disabled');
+                jq('#viral_load input').prop('disabled', false).addClass('disabled');
+                jq('#viral_results input').prop('disabled', false).addClass('disabled');
             }
-            else if(tested==163266){var default_location = "<lookup expression="kenyaemr.location()" />";
+            else if(careProvided==163266){
+                var default_location = "<lookup expression="kenyaemr.location()" />";
                 jq("#care_provided_txt input").val(default_location);
                 jq("#care_provided_txt input").prop("disabled", true);
+
+                jq('#initiatedART input').prop('disabled', false).addClass('disabled');
+                jq('#activeART input').prop('disabled', false).addClass('disabled');
+                jq('#eligible_for_viral input').prop('disabled', false).addClass('disabled');
+                jq('#viral_load input').prop('disabled', false).addClass('disabled');
+                jq('#viral_results input').prop('disabled', false).addClass('disabled');
             }
-            else{
+            else if(careProvided==1175){
                 jq("#care_provided_txt input").val('');
                 jq("#care_provided_txt input").prop("disabled", true);
+                jq('#initiatedART input').prop('disabled', true).addClass('disabled');
+                jq('#activeART input').prop('disabled', true).addClass('disabled');
+                jq('#eligible_for_viral input').prop('disabled', true).addClass('disabled');
+                jq('#viral_load input').prop('disabled', true).addClass('disabled');
+                jq('#viral_results input').prop('disabled', true).addClass('disabled');
             }
 
         }
@@ -783,6 +870,7 @@
         var test_resultsChanged  = function () {
             $('#pep_prep').find('*').prop('disabled',false);
             var testResult = getValue("test_results.value");
+            var careFacility = jq('#care_provided');
             if(testResult==703 || testResult==138571){
                 jq("#linked_to_art input").prop("disabled", false).removeClass('disabled');
                 jq('#care_and_treatment').find("select").prop("selectedIndex",0).removeClass('disabled');
@@ -790,6 +878,9 @@
                 $('#pep_prep').find('*').prop('disabled',true);
                 $('#pep_prep').find('input:text').val('');
                 $('#pep_prep').find("select").prop("selectedIndex",0).addClass('disabled');
+
+                jq("#care_provided input[value=1175]").prop("disabled", true);
+                jq("#care_provided input[value=1175]").prop("checked", false);
             }
 
 
@@ -798,13 +889,18 @@
                 jq("#txtart input").prop("disabled", true).addClass('disabled');
                 jq("#linked_to_art input").prop('checked', false);
                 jq("#txtart input").val('');
+
+                clearHiddenSections([careFacility]);
             }
 
-            else{jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
+            else{
+                jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
                 $('#care_and_treatment').find('*').prop('disabled',true);
                 $('#care_and_treatment').find('input:text').val('');
                 $('#care_and_treatment').find("select").prop("selectedIndex",0).addClass('disabled');
-                jq("#linkedFacility input").prop("disabled", true).addClass('disabled'); }
+
+                clearHiddenSections([careFacility]);
+            }
         }
 
         //On Ready
@@ -877,6 +973,7 @@
             jq("#hiv_tested input").change(hivTested);
             //jq("#hiv_selftest input").change(numberOfSelfTest);
             jq("#self_tested input").change(SelfTested);
+            jq("#selftestResults input").change(selfTestedResults);
             jq("#confirm_test input").change(confirmTest);
 
             jq("#facility input").change(confirmFacility);
@@ -940,6 +1037,22 @@
 
 
         });
+        clearHiddenSections = function(parentObj) {
+            for(var i=0; i &lt; parentObj.length; i++){
+                parentObj[i].find('input[type=radio]').each(function() {
+                    this.checked = false;
+                });
+                parentObj[i].find('input[type=checkbox]').each(function() {
+                    this.checked = false;
+                });
+                parentObj[i].find('input[type=text]').each(function() {
+                    this.val("");
+                });
+                parentObj[i].find('select').each(function() {
+                    this.selectedIndex =0;
+                });
+            }
+        }
     </script>
     <style>
         .simple-table {
@@ -1011,10 +1124,6 @@
 
     </ifMode>
     <!-- ============ end work flow =================-->
-
-
-
-
     <div class="ke-form-content">
 
 
@@ -1022,25 +1131,38 @@
             <legend>Visit details</legend>
             <table class="simple-table">
                 <tr>
-                    <td ><p>Implementing partner</p></td>
-                    <td ><p>  <obs id="partner"  conceptId="165347"   /></p></td>
+                    <td>Type of visit :  </td>
+                        <td>
+                            <obs id="type_of_visit"
+                                 conceptId="164181"
+                                 answerConceptIds="162080,164142"
+                                 answerLabels="Initial,Revisit"
+                                 style="radio"  />
+                         </td>
+
+
+                </tr>
+                <tr id="visit-reason">
+                    <td >Reason for visit : </td>
+                    <td>
+                        <obs id="pep_type"
+                             conceptId="164082"
+                             answerConceptIds="5006,1068,165348,160523"
+                             answerLabels="Asymptomatic ,Symptomatic ,Quarterly Screening checkup, Follow up"
+                             style="radio"
+                             answerSeparator="&lt;br /&gt;" />
+                    </td>
                 </tr>
                 <tr>
-                    <td  colspan="2">Type of visit :  &#160;&#160;  <obs id="type_of_visit" conceptId="164181" answerConceptIds="162080,164142" answerLabels="Initial,Revisit
-" style="radio"  /></td>
-
-
-                </tr>
-                <tr id="pep_prep">
-
-                    <td >Reason for visit :<br/>
-                        <obs id="pep_type" conceptId="164082" answerConceptIds="5006,1068,165348,160523"  answerLabels="Asymptomatic ,Symptomatic ,Quarterly Screening checkup, Follow up" style="radio" answerSeparator="&lt;br /&gt;" />
+                    <td >Service delivery Model: </td>
+                    <td>
+                        <obs id="pep_type"
+                             conceptId="160540"
+                             answerConceptIds="161235,160545"
+                             answerLabels="Static,Outreach"
+                             style="radio"
+                             answerSeparator="&lt;br /&gt;" />
                     </td>
-
-
-                    <td >Service delivery Model:<br/>
-                        <obs id="pep_type" conceptId="160540" answerConceptIds="161235,160545"  answerLabels="Static,Outreach
-" style="radio" answerSeparator="&lt;br /&gt;" /></td>
 
                 </tr>
 
@@ -1309,8 +1431,15 @@
                     <td ><p>  <obs id="men_screened" conceptId="165210" required="true"
                                                            style="radio" answerConceptIds="1065,1066" /></p></td>
 
-                    <td ><p>  <obs id="men_screened" conceptId="165211"
-                                   style="radio" answerConceptIds="165212,157790,134017,134011,126627"
+                    <td ><p>  <obs id="men_screened"
+                                   conceptId="165211"
+                                   style="radio"
+                                   answerConceptIds="165212,157790,134017,134011,126627"
+                                   answerLabels="Depression unlikely,
+                                                 Mild depression,
+                                                 Moderate Major Depression,
+                                                 Moderate Recurrent Major Depression,
+                                                 Severe Depression"
                                   answerSeparator="&lt;br /&gt;"/></p></td>
 
 
@@ -1353,7 +1482,7 @@
                                                            style="radio" answerConceptIds="703,664, 1067" answerLabels="Positive,Negative, Unknown"  answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td width="156" valign="top"><p>  <obs id="hiv_settingoflasttest" class="consent" conceptId="165215"
-                                                           style="radio" answerConceptIds="165216,165217,1402" answerLabels="Universal HTS,Self-testing , Never tested"  answerSeparator="&lt;br /&gt;" /></p></td>
+                                                           style="radio" answerConceptIds="165216,165217,1402" answerLabels="Universal HTS,Self-testing ,Never tested"  answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="hiv_counselled" conceptId="159382"
                                                            style="radio" answerConceptIds="1065,1066" answerSeparator="&lt;br /&gt;" /></p></td>
@@ -1476,11 +1605,11 @@
                 </tr>
                 <tr>
 
-                    <td ><p>  <obs id="care_provided" conceptId="165239" style="radio" answerConceptIds="163266,162723,160563" answerLabels="Provided here, Provided elsewhere, Referred" answerSeparator="&lt;br /&gt;"/></p>
+                    <td ><p>  <obs id="care_provided" conceptId="165239" style="radio" answerConceptIds="163266,162723,1175" answerLabels="Provided here, Provided elsewhere, N/A" answerSeparator="&lt;br /&gt;"/></p>
                         <p>Provided elsewhere Specify:<br/> <obs id="care_provided_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></p>
                     </td>
-                    <td ><p>  <obs conceptId="165240" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
-                    <td ><p>  <obs conceptId="160119" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
+                    <td ><p>  <obs id="initiatedART" conceptId="165240" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
+                    <td ><p>  <obs id="activeART" conceptId="160119" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
                     <td ><p>  <obs id="eligible_for_viral" conceptId="165242" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/> </p></td>
                     <td ><p>  <obs id="viral_load" conceptId="165243" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
                     <td ><p>  <obs id="viral_results" conceptId="165246" answerConceptIds="165244,165245,164369,1175" answerLabels="Suppressed,Not Suppressed,Results not yet received,Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/>
