@@ -35,7 +35,7 @@ public class HIVSelfTestDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,v.self_tested from kp_etl.etl_clinical_visit v group by v.client_id having max(v.visit_date);";
+        String qry = "select v.client_id,v.self_tested from kp_etl.etl_clinical_visit v where v.active_art = \"No\" or v.initiated_art_this_month = \"No\" group by v.client_id having max(v.visit_date);";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
