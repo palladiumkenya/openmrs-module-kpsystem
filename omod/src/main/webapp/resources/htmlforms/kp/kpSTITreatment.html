@@ -27,6 +27,7 @@
             jq("#lubes-no").hide();
             jq("#lubricants-number").hide();
 
+            jq("#hidden-summary").hide();
             jq('#other-syndrome-selected :input[type=checkbox]').click(onOtherSyndromeSelected);
             jq('#other-drug-selected :input[type=checkbox]').click(onOtherDrugSelected);
 
@@ -645,7 +646,7 @@
 
         </fieldset>
 
-        <fieldset disabled="true" >
+        <fieldset disabled="true" id="hidden-summary" >
             <legend>This section is purely for reporting not part of form</legend>
             <table id="reportSection">
                 <tr>
