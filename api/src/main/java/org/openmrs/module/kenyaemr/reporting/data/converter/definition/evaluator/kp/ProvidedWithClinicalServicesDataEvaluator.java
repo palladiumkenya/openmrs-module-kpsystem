@@ -11,7 +11,6 @@ package org.openmrs.module.kenyaemr.reporting.data.converter.definition.evaluato
 
 import org.openmrs.annotation.Handler;
 import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.ProvidedWithClinicalServicesDataDefinition;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.ReceivedPeerEducationDataDefinition;
 import org.openmrs.module.reporting.data.person.EvaluatedPersonData;
 import org.openmrs.module.reporting.data.person.definition.PersonDataDefinition;
 import org.openmrs.module.reporting.data.person.evaluator.PersonDataEvaluator;
@@ -35,7 +34,7 @@ public class ProvidedWithClinicalServicesDataEvaluator implements PersonDataEval
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select c.client_id,c.received_clinical_service from kp_etl.etl_peer_calendar c where c.received_clinical_service = \"Yes\";";
+        String qry = "select c.client_id,c.received_clinical_service from kp_etl.etl_peer_calendar c group by c.client_id;;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
