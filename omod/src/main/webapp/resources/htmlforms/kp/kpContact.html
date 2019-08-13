@@ -12,10 +12,7 @@
   ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
 -->
 <htmlform>
-
-
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
-
     <style>
         .simple-table {
             border: solid 1px #DDEEEE;
@@ -215,8 +212,21 @@
 
 
     </script>
+<!--    <div class="ke-form-header">-->
+<!--        <table width="100%">-->
+<!--            <tr>-->
+<!--                <td align="left">Date of first contact:-->
+<!--                    <encounterDate id="encounter-date" showTime="true"/>-->
+<!--                </td>-->
+<!--                <td align="right">Location:-->
+<!--                    <encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--    </div>-->
+
     <div class="ke-form-header">
-        <table width="100%">
+        <table style="width: 100%">
             <tr>
                 <td align="left">Date of first contact:
                     <encounterDate id="encounter-date" showTime="true"/>
@@ -227,7 +237,6 @@
             </tr>
         </table>
     </div>
-
     <div class="ke-form-content">
         <fieldset>
             <legend>Contact Form</legend>
@@ -244,7 +253,7 @@
                 </tr>
                 <td>Unique Identifier code</td>
                 <td>
-                    <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
+                    <span id="kp-id"><patient id="upn" field="identifier" conceptId="162576" /></span>
 
                 </td>
                 <tr>

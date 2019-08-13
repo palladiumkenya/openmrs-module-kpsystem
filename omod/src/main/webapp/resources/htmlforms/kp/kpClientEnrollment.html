@@ -105,7 +105,7 @@
             }
             if(val == 1066){
                 jq("#contact-method").hide();
-                clearHiddenSections(jq('#cContacted'));
+                //clearHiddenSections(jq('#cContacted'));
             }
         }
 
@@ -262,7 +262,7 @@
             var testDeclineReason = getField('decline-reason.value').val();
             var receivingCare = getValue('receiving-care.value');
             var contactForAppointment = getValue('contacted-incase-of-appointment.value');
-            var contactMethod = getField('cContacted.value').val();
+            //var contactMethod = getField('Contacted.value').val();
             var partner_number = getField('mobile.value').val();
 
             if (contactedByPeerEducator =="") {
@@ -484,7 +484,7 @@
                     }
                     else{
 
-                        jq('#cContacted').val('');
+                        //jq('#cContacted').val('');
                         jq('#contacted-incase-of-appointment').val('');
 
 
