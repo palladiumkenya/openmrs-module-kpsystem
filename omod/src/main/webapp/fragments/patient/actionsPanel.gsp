@@ -68,7 +68,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: communityOutreachForms, onFormClick: onCOFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: communityOutreachForms, onFormClick: onCOFormClick ]) }
 
 			</a>
 			</li>
@@ -86,7 +86,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: clinicalForms, onFormClick: onCFFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: clinicalForms, onFormClick: onCFFormClick ]) }
 
 			</a>
 			</li>
@@ -104,7 +104,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: programLevelForms, onFormClick: onPLFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: programLevelForms, onFormClick: onPLFormClick ]) }
 
 			</a>
 			</li>
@@ -123,7 +123,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: otherForms, onFormClick: onOtherFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: otherForms, onFormClick: onOtherFormClick ]) }
 
 			</a>
 			</li>
@@ -138,7 +138,7 @@
 						"""kenyaemr.openEncounterDialog('${ currentApp.id }', ${ encounter.id });"""
 					}
 				%>
-				${ ui.includeFragment("kenyaemr", "widget/encounterLightStack", [ encounters: encounters, onEncounterClick: onEncounterClick ]) }
+				${ ui.includeFragment("kenyaemr", "widget/encounterStack", [ encounters: encounters, onEncounterClick: onEncounterClick ]) }
 			</a>
 			</li>
 

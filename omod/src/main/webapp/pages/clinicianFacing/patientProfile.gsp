@@ -57,16 +57,7 @@
                         <h3>Peer - Peer Educator Relationship</h3>
                     </div>
 
-                        ${ ui.includeFragment("kenyaemr", "patient/patientRelationships", [patient: currentPatient]) }
-
-                </div>
-                <div class="info-section">
-                    <div class="info-header">
-                        <i class="fa fa-support"></i>
-                        <h3>Peer - Contact Form</h3>
-                    </div>
-
-                    ${ ui.includeFragment("kenyaemr", "patient/patientContact", [patient: currentPatient]) }
+                    ${ ui.includeFragment("kenyaemr", "patient/patientRelationships", [patient: currentPatient]) }
 
                 </div>
 
