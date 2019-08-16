@@ -35,7 +35,7 @@ public class NumberAddressedViolenceDataEvaluator implements PersonDataEvaluator
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
         String qry = "select r.person_a as peer_educator,count(p.violence_reported) as violence_reported from openmrs.relationship r inner join kp_etl.etl_peer_calendar p on r.person_b= p.client_id where r.voided = 0\n" +
-                "where p.violence_reported =\"Yes\" group by peer_educator;";
+                "and p.violence_reported =\"Yes\" group by peer_educator;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

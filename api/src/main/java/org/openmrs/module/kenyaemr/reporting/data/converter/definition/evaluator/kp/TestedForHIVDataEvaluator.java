@@ -35,7 +35,7 @@ public class TestedForHIVDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,concat(v.hiv_tested) from kp_etl.etl_clinical_visit v where v.visit_date between date(:startDate) and date(:endDate) group by v.client_id;";
+        String qry = "select v.client_id,v.hiv_tested from kp_etl.etl_clinical_visit v where v.visit_date group by v.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

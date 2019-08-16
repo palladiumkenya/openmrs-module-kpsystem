@@ -34,7 +34,7 @@ public class EverTestedForHIVDataEvaluator implements EncounterDataEvaluator {
     public EvaluatedEncounterData evaluate(EncounterDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedEncounterData c = new EvaluatedEncounterData(definition, context);
 
-        String qry = "select encounter_id, ever_tested_for_hiv from kenyaemr_etl.etl_hts_test ";
+        String qry = "select encounter_id, ever_tested_for_hiv from kenyaemr_etl.etl_hts_test";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
