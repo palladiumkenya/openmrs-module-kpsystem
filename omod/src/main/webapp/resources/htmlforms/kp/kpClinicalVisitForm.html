@@ -832,9 +832,9 @@
         var onPEPSelected  = function () {
             var pep = getValue("pep_selected.value");
             if(pep==1065){
-               jq("#pep_type input").prop("disabled", false);
+                jq("#pep_type input").prop("disabled", false);
             }
-           else if(pep==1066){
+            else if(pep==1066){
                 jq("#pep_type input").prop("disabled", true);
             }else {
                 jq("#pep_type input").prop("disabled", true);
@@ -867,40 +867,33 @@
 
 
 
+
         var test_resultsChanged  = function () {
             $('#pep_prep').find('*').prop('disabled',false);
             var testResult = getValue("test_results.value");
-            var careFacility = jq('#care_provided');
             if(testResult==703 || testResult==138571){
                 jq("#linked_to_art input").prop("disabled", false).removeClass('disabled');
                 jq('#care_and_treatment').find("select").prop("selectedIndex",0).removeClass('disabled');
                 jq('#care_and_treatment').find('*').prop('disabled',false);
-                $('#pep_prep').find('*').prop('disabled',true);
-                $('#pep_prep').find('input:text').val('');
-                $('#pep_prep').find("select").prop("selectedIndex",0).addClass('disabled');
-
-                jq("#care_provided input[value=1175]").prop("disabled", true);
-                jq("#care_provided input[value=1175]").prop("checked", false);
+                // $("#pep_prep").attr('disabled',"true");
+                $('#pepandprep').find('*').prop('disabled',true);
+                $('#pepandprep').find('select').prop('disabled',true);
+                $('#pepandprep').find('input:text').val('');
+                $('#pepandprep').find("select").prop("selectedIndex",0).addClass('disabled');
             }
 
 
-            else if(testResult==664 || testResult== 165232 || testResult == 118 ){
+            else {
                 jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
                 jq("#txtart input").prop("disabled", true).addClass('disabled');
                 jq("#linked_to_art input").prop('checked', false);
                 jq("#txtart input").val('');
-
-                clearHiddenSections([careFacility]);
-            }
-
-            else{
-                jq("#linked_to_art input").prop("disabled", true).addClass('disabled');
                 $('#care_and_treatment').find('*').prop('disabled',true);
                 $('#care_and_treatment').find('input:text').val('');
                 $('#care_and_treatment').find("select").prop("selectedIndex",0).addClass('disabled');
-
-                clearHiddenSections([careFacility]);
+                jq("#linkedFacility input").prop("disabled", true).addClass('disabled');
             }
+
         }
 
         //On Ready
@@ -991,7 +984,6 @@
 
             $("INPUT[type=text],TEXTAREA").attr("disabled", "disabled");
             jq("#Client_visit input:radio").attr('disabled',true);
-            //$(this).attr("disabled", "");
             jq("#malecondoms input").prop("disabled", false);
             jq("#femalecondoms input").prop("disabled", false);
             jq("#lubes input").prop("disabled", false);
@@ -1132,13 +1124,13 @@
             <table class="simple-table">
                 <tr>
                     <td>Type of visit :  </td>
-                        <td>
-                            <obs id="type_of_visit"
-                                 conceptId="164181"
-                                 answerConceptIds="162080,164142"
-                                 answerLabels="Initial,Revisit"
-                                 style="radio"  />
-                         </td>
+                    <td>
+                        <obs id="type_of_visit"
+                             conceptId="164181"
+                             answerConceptIds="162080,164142"
+                             answerLabels="Initial,Revisit"
+                             style="radio"  />
+                    </td>
 
 
                 </tr>
@@ -1187,17 +1179,17 @@
                 <tr>
                     <td ><p>STI</p></td>
                     <td ><p>  <obs id="sti_screened" conceptId="161558" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td width="300"><p>  <obs conceptId="165199"
-                                                           answerConceptIds="664,
+                                              answerConceptIds="664,
                                                             703"  answerLabels="Negative,Positive"
-                                                           style="radio" id="sti_results" />
+                                              style="radio" id="sti_results" />
                     </p></td>
                     <td ><p>  <obs id="sti_treated" conceptId="165200"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
 
                     <td ><p>  <obs id="sti_referred" conceptId="165249"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="sti_txt" class="remarks" conceptId="165250"
                     /></p></td>
 
@@ -1205,16 +1197,16 @@
                 <tr>
                     <td ><p>TB</p></td>
                     <td ><p>  <obs id="tb_screened" conceptId="165197" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="tb_results" conceptId="165198" answerConceptIds="664,
                                                             703"  answerLabels="Negative,Positive"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="tb_treated" conceptId="1111"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
 
                     <td ><p>  <obs id="tb_referred" conceptId="162310"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="tb_txt" class="remarks" conceptId="163323"
                     /></p></td>
 
@@ -1222,17 +1214,17 @@
                 <tr>
                     <td ><p>Hepatitis B</p></td>
                     <td ><p>  <obs id="hepb_screened" conceptId="165040" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="hepb_results" conceptId="1322"
-                                                           answerConceptIds="664,
+                                   answerConceptIds="664,
                                                             703"  answerLabels="Negative,Positive"
-                                                           style="radio" rows="2" />
+                                   style="radio" rows="2" />
                     </p></td>
                     <td ><p>  <obs id="hepb_treated" conceptId="165251"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
 
                     <td ><p>  <obs id="hepb_referred" conceptId="165252"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="hepb_txt" class="remarks" conceptId="165253"
                     /></p></td>
 
@@ -1240,16 +1232,16 @@
                 <tr>
                     <td ><p>Hepatitis C</p></td>
                     <td ><p>  <obs id="hepc_screened" conceptId="165041" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="hepc_results" conceptId="161471"
-                                                           answerConceptIds="664,
+                                   answerConceptIds="664,
                                                             703"  answerLabels="Negative,Positive"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="hepc_treated" conceptId="165254"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs conceptId="165255"
-                                                           style="radio" answerConceptIds="1065,1066" id="hepc_referred" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" id="hepc_referred" /></p></td>
                     <td ><p>  <obs id="hepctxt" class="remarks" conceptId="165256"
                     /></p></td>
 
@@ -1258,14 +1250,14 @@
                 <tr>
                     <td ><p>Overdose management</p></td>
                     <td ><p>  <obs id="overdose_screened" conceptId="165042" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="overdose_results" conceptId="165046"
-                                                           answerConceptIds="664,
+                                   answerConceptIds="664,
                                                             703"  answerLabels="Negative,Positive"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="overdose_treated" conceptId="165257"
-                                                           style="radio" answerConceptIds="1065,1066" /></p>
+                                   style="radio" answerConceptIds="1065,1066" /></p>
 
                         <p> Received  naloxone <obs id="naloxane" conceptId="165201"
                                                     answerConceptIds="1065,
@@ -1274,7 +1266,7 @@
                         </p>
                     </td>
                     <td ><p>  <obs id="overdose_referred" conceptId="165258"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="overdosetxt" class="remarks" conceptId="165259"
                     /></p></td>
 
@@ -1284,16 +1276,16 @@
                 <tr>
                     <td ><p>Abscess</p></td>
                     <td ><p>  <obs conceptId="165044" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" id="abscess_screened" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" id="abscess_screened" /></p></td>
                     <td ><p>  <obs id="abscess_results"  conceptId="165051"
-                                                           answerConceptIds="664,
+                                   answerConceptIds="664,
                                                             703"  answerLabels="Negative,Positive"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="abscess_treated" conceptId="165260"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="abscess_referred" conceptId="165261"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="abscesstxt" class="remarks" conceptId="165262"
                     /></p></td>
 
@@ -1301,16 +1293,16 @@
                 <tr>
                     <td ><p>Alcohol and drug abuse</p></td>
                     <td ><p>  <obs id="alcohol_screened" conceptId="165043" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="alcohol_results" conceptId="165047"
-                                                           answerConceptIds="664,
+                                   answerConceptIds="664,
                                                             703"  answerLabels="Negative,Positive"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="alcohol_treated" conceptId="165263"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs conceptId="165264"
-                                                           style="radio" answerConceptIds="1065,1066" id="alcohol_referred" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" id="alcohol_referred" /></p></td>
                     <td ><p>  <obs id="alcoholtxt" class="remarks" conceptId="165265"
                     /></p></td>
 
@@ -1319,16 +1311,16 @@
                 <tr id="cervical_cancer">
                     <td ><p>Cervical Cancer</p></td>
                     <td ><p>  <obs id="cerv_screened" conceptId="164934"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="cerv_results" conceptId="165196"
-                                                           answerConceptIds="664,
+                                   answerConceptIds="664,
                                                             703"  answerLabels="Negative,Positive"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="cerv_treated" conceptId="165266"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs conceptId="165267"
-                                                           id="cerv_referred"  style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   id="cerv_referred"  style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="cerv_cancertxt" class="remarks" conceptId="165268"
                     /></p></td>
 
@@ -1338,19 +1330,19 @@
                 <tr>
                     <td ><p>PrEP</p></td>
                     <td ><p>  <obs id="prep_screened" conceptId="165076" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="prep_results" conceptId="165202"
-                                                           answerConceptIds="165087,
+                                   answerConceptIds="165087,
                                                             165078"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="prep_treated" conceptId="165203"
-                                                           answerConceptIds="1065,
+                                   answerConceptIds="1065,
                                                             1066"  answerLabels="Initiated,Not Initiated"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="prep_referred" conceptId="165270"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="preptext"  class="remarks" conceptId="165271"
                     /></p></td>
 
@@ -1358,7 +1350,7 @@
                 <tr>
                     <td ><p>Violence</p></td>
                     <td ><p>  <obs id="vio_screened" conceptId="165204" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
 
                     <td >
                         <div id="vio_results" style="float: left; padding-right: 50px">
@@ -1372,12 +1364,12 @@
                         </div>
                     </td>
                     <td ><p>  <obs id="vio_treated" conceptId="165208"
-                                                           answerConceptIds="1065,
+                                   answerConceptIds="1065,
                                                             1066"  answerLabels="Supported,Not Supported"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="vio_referred" conceptId="165273"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="viotext"  class="remarks" conceptId="165274"
                     /></p></td>
 
@@ -1385,22 +1377,22 @@
                 <tr>
                     <td ><p>Risk Reduction Counselling</p></td>
                     <td ><p>  <obs id="risk_screened" conceptId="165045" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="risk_results" conceptId="165050"
-                                                           answerConceptIds="165087,
+                                   answerConceptIds="165087,
                                                             165078"  answerLabels="Eligible,Not Eligible"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="risk_treated" conceptId="165053"
-                                                           answerConceptIds="1065,
+                                   answerConceptIds="1065,
                                                             1066"  answerLabels="Supported,Not Supported"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
 
                     <td ><p>Counseling EBI provided?  <obs id="risk_referred" conceptId="161595"
-                                                                                   answerConceptIds="1065,
+                                                           answerConceptIds="1065,
                                                             1066"  answerLabels="Yes,No"
-                                                                                   style="radio" />
+                                                           style="radio" />
                     </p></td>
                     <td ><p>  <obs id="risktxt" class="remarks" conceptId="165277"
                     /></p></td>
@@ -1409,19 +1401,19 @@
                 <tr>
                     <td ><p>Family Planning</p></td>
                     <td ><p>  <obs id="fam_screened" conceptId="1382" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="fam_results" conceptId="165209"
-                                                           answerConceptIds="165087,
+                                   answerConceptIds="165087,
                                                             165078"  answerLabels="Eligible,Not Eligible"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="fam_treated" conceptId="160653"
-                                                           answerConceptIds="1065,
+                                   answerConceptIds="1065,
                                                             1066"  answerLabels="yes,No"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="fam_referred" conceptId="165279"
-                                                           style="radio" answerConceptIds="1065,1066"/></p></td>
+                                   style="radio" answerConceptIds="1065,1066"/></p></td>
                     <td ><p>  <obs id="famtxt" class="remarks" conceptId="165280"
                     /></p></td>
 
@@ -1429,27 +1421,20 @@
                 <tr>
                     <td ><p>Mental health</p></td>
                     <td ><p>  <obs id="men_screened" conceptId="165210" required="true"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
 
-                    <td ><p>  <obs id="men_screened"
-                                   conceptId="165211"
-                                   style="radio"
-                                   answerConceptIds="165212,157790,134017,134011,126627"
-                                   answerLabels="Depression unlikely,
-                                                 Mild depression,
-                                                 Moderate Major Depression,
-                                                 Moderate Recurrent Major Depression,
-                                                 Severe Depression"
-                                  answerSeparator="&lt;br /&gt;"/></p></td>
+                    <td ><p>  <obs id="men_results" conceptId="165211"
+                                   style="radio" answerConceptIds="165212,157790,134017,134011,126627"
+                                   answerSeparator="&lt;br /&gt;"/></p></td>
 
 
                     <td ><p>  <obs id="men_treated" conceptId="165213"
-                                                           answerConceptIds="1065,
+                                   answerConceptIds="1065,
                                                             1066"  answerLabels="Supported,Not Supported"
-                                                           style="radio" />
+                                   style="radio" />
                     </p></td>
                     <td ><p>  <obs id="men_referred" conceptId="165281"
-                                                           style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" /></p></td>
                     <td ><p>  <obs id="mentxt" class="remarks" conceptId="165282"
                     /></p></td>
 
@@ -1485,24 +1470,24 @@
                                                            style="radio" answerConceptIds="165216,165217,1402" answerLabels="Universal HTS,Self-testing ,Never tested"  answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="hiv_counselled" conceptId="159382"
-                                                           style="radio" answerConceptIds="1065,1066" answerSeparator="&lt;br /&gt;" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066" answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="hiv_tested" conceptId="164401"
-                                                           style="radio" answerConceptIds="1065,1066,1175" answerSeparator="&lt;br /&gt;" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066,1175" answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="test_frequency" conceptId="165218"
-                                                           style="radio" answerSeparator="&lt;br /&gt;" /></p></td>
+                                   style="radio" answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="received_results" conceptId="164848"
-                                                           answerConceptIds="1065,
+                                   answerConceptIds="1065,
                                                             1066,1067"  answerLabels="Yes,No, Not applicable"
-                                                           style="radio" answerSeparator="&lt;br /&gt;"  />
+                                   style="radio" answerSeparator="&lt;br /&gt;"  />
                     </p></td>
                     <td ><p>  <obs id="test_results" conceptId="159427"
-                                                           style="radio"  answerConceptIds="664,703,165232,138571,1118" answerLabels="Negative, Positive, Inconclusive,Known positive, Not Applicable" answerSeparator="&lt;br /&gt;" /></p></td>
+                                   style="radio"  answerConceptIds="664,703,165232,138571,1118" answerLabels="Negative, Positive, Inconclusive,Known positive, Not Applicable" answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td ><p>  <obs id="linked_to_art" conceptId="1648"
-                                                           style="yes_no"  /></p></td>
+                                   style="yes_no"  /></p></td>
 
                     <td ><p>  <obs id="txtart" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                     /></p></td>
@@ -1536,11 +1521,11 @@
                 </tr>
                 <tr>
                     <td  width="160"><p>  <obs id="self-test-demo" conceptId="165220"
-                                   style="radio" answerConceptIds="1065,1066" /></p></td>
+                                               style="radio" answerConceptIds="1065,1066" /></p></td>
 
                     <td>
-                     <p>For Self test  <obs id="selftxt" class="remarks" conceptId="165222"/></p>
-                     <p>For Distributing <obs id="disttxt" class="remarks" conceptId="165223" /></p></td>
+                        <p>For Self test  <obs id="selftxt" class="remarks" conceptId="165222"/></p>
+                        <p>For Distributing <obs id="disttxt" class="remarks" conceptId="165223" /></p></td>
 
                     <td><p>  <obs conceptId="164952" style="radio" answerConceptIds="1065,1066" id="self_tested" answerSeparator="&lt;br /&gt;" /></p></td>
                     <td><p>  <obs id="selftestDate" conceptId="164400"
@@ -1553,10 +1538,10 @@
                     <td><p>  <obs id="confirm_test" conceptId="165234" style="radio" answerConceptIds="664,703,1118" answerLabels="Negative, Positive, Not done" answerSeparator="&lt;br /&gt;" /></p></td>
 
                     <td><p>  <obs id="facility" conceptId="165237" style="radio" answerSeparator="&lt;br /&gt;" /></p>
-                    <p> if off-site specify <obs id="facilitytxt" class="remarks" conceptId="162724" /></p></td>
+                        <p> if off-site specify <obs id="facilitytxt" class="remarks" conceptId="162724" /></p></td>
 
                     <td><p>  <obs id="linktoart" conceptId="165238" style="radio"  /></p>
-                    <p>if yes facility linked to <obs id="arttxt" class="remarks" conceptId="161562" /></p></td>
+                        <p>if yes facility linked to <obs id="arttxt" class="remarks" conceptId="161562" /></p></td>
                 </tr>
 
             </table>
@@ -1591,34 +1576,34 @@
         <!--        ===========================CARE AND TREATMENT=====================-->
         <div id="care_and_treatment">
 
-        <fieldset>
-            <legend>Care and treatment</legend>
-            <table class="simple-table">
-                <tr>
-                    <td ><p><b>Facility of HIV Care</b></p></td>
-                    <td ><p><b>Initiated on ART this month</b></p></td>
-                    <td ><p><b>Active on ART</b></p></td>
-                    <td ><p><b>Eligible for Viral Load</b></p></td>
-                    <td ><p><b>Viral Load Test Done</b></p></td>
-                    <td ><p><b>Viral Load Results</b></p></td>
+            <fieldset>
+                <legend>Care and treatment</legend>
+                <table class="simple-table">
+                    <tr>
+                        <td ><p><b>Facility of HIV Care</b></p></td>
+                        <td ><p><b>Initiated on ART this month</b></p></td>
+                        <td ><p><b>Active on ART</b></p></td>
+                        <td ><p><b>Eligible for Viral Load</b></p></td>
+                        <td ><p><b>Viral Load Test Done</b></p></td>
+                        <td ><p><b>Viral Load Results</b></p></td>
 
-                </tr>
-                <tr>
+                    </tr>
+                    <tr>
 
-                    <td ><p>  <obs id="care_provided" conceptId="165239" style="radio" answerConceptIds="163266,162723,1175" answerLabels="Provided here, Provided elsewhere, N/A" answerSeparator="&lt;br /&gt;"/></p>
-                        <p>Provided elsewhere Specify:<br/> <obs id="care_provided_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></p>
-                    </td>
-                    <td ><p>  <obs id="initiatedART" conceptId="165240" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
-                    <td ><p>  <obs id="activeART" conceptId="160119" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
-                    <td ><p>  <obs id="eligible_for_viral" conceptId="165242" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/> </p></td>
-                    <td ><p>  <obs id="viral_load" conceptId="165243" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
-                    <td ><p>  <obs id="viral_results" conceptId="165246" answerConceptIds="165244,165245,164369,1175" answerLabels="Suppressed,Not Suppressed,Results not yet received,Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/>
-                    </p></td>
-                </tr>
+                        <td ><p>  <obs id="care_provided" conceptId="165239" style="radio" answerConceptIds="163266,162723,1175" answerLabels="Provided here, Provided elsewhere, N/A" answerSeparator="&lt;br /&gt;"/></p>
+                            <p>Provided elsewhere Specify:<br/> <obs id="care_provided_txt" class="remarks" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></p>
+                        </td>
+                        <td ><p>  <obs id="initiatedART" conceptId="165240" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
+                        <td ><p>  <obs id="activeART" conceptId="160119" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
+                        <td ><p>  <obs id="eligible_for_viral" conceptId="165242" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/> </p></td>
+                        <td ><p>  <obs id="viral_load" conceptId="165243" answerConceptIds="1065,1066,1175" answerLabels="Yes, No, Not applicable" style="radio" answerSeparator="&lt;br /&gt;" /> </p></td>
+                        <td ><p>  <obs id="viral_results" conceptId="165246" answerConceptIds="165244,165245,164369,1175" answerLabels="Suppressed,Not Suppressed,Results not yet received,Not applicable" style="radio" answerSeparator="&lt;br /&gt;"/>
+                        </p></td>
+                    </tr>
 
-            </table>
+                </table>
 
-        </fieldset>
+            </fieldset>
         </div>
 
         <!--        ===============================OTHER SERVICES========================-->
@@ -1691,7 +1676,7 @@
                         </table>
                     </td>
                 </tr>
-                <tr id="pep_prep">
+                <tr id="pepandprep">
                     <td > PEP :  &#160;&#160;  <obs id="pep_selected" conceptId="164845" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio"  /></td>
                     <td >Type of exposure :<br/>
                         <obs conceptId="165060" answerConceptId="127910" style="checkbox" /><br />

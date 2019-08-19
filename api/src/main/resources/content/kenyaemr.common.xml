@@ -25,7 +25,6 @@
         </property>
         <property name="commonVisitForms">
             <set>
-                <ref bean="kenyaemr.common.form.referralAndLinkage"/>
                 <ref bean="kenyaemr.common.form.htsinitialtest"/>
                 <ref bean="kenyaemr.common.form.htsconfirmatorytest"/>
                 <!--<ref bean="kenyaemr.common.form.kpAppointmentCreation"/>-->
@@ -134,22 +133,6 @@
         <property name="icon" value="kenyaui:forms/generic.png" />
         <property name="htmlform" value="kenyaemr:hts/htsConfirmatoryTest.html" />
         <property name="order" value="201001" />
-    </bean>
-
-    <!-- HTS linkage and referral form -->
-    <bean id="kenyaemr.common.form.referralAndLinkage" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-        <property name="targetUuid" value="050a7f12-5c52-4cad-8834-863695af335d" />
-        <property name="apps">
-            <set>
-                <ref bean="kenyaemr.app.registration" />
-                <ref bean="kenyaemr.app.clinician" />
-                <ref bean="kenyaemr.app.chart" />
-            </set>
-        </property>
-
-        <property name="icon" value="kenyaui:forms/generic.png" />
-        <property name="htmlform" value="kenyaemr:hts/referralAndLinkage.html" />
-        <property name="order" value="201002" />
     </bean>
 
     <!-- kp Appointments -->
