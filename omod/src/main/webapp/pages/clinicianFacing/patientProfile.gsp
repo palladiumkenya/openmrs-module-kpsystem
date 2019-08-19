@@ -57,11 +57,7 @@
                         <h3>Peer - Peer Educator Relationship</h3>
                     </div>
 
-<<<<<<< HEAD
                     ${ ui.includeFragment("kenyaemr", "patient/patientRelationships", [patient: currentPatient]) }
-=======
-                        ${ ui.includeFragment("kenyaemr", "patient/patientRelationships", [patient: currentPatient]) }
->>>>>>> Validations on enrollment form, clinc form mental health screening
 
                 </div>
 
