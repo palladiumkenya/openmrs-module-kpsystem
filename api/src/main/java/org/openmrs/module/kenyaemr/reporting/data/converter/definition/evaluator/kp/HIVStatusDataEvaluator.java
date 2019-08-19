@@ -35,15 +35,7 @@ public class HIVStatusDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select r.client_id,case coalesce(max(t.final_test_result),max(v.test_confirmatory_results),max(v.self_test_results),max(v.hiv_self_rep_status)) when \"Negative\"  then (case when timestampdiff(Month,mid(max(concat(t.final_test_result,t.visit_date)),11),date(:endDate))between 1 and 3 THEN \"PN\"\n" +
-                "    when timestampdiff(Month,mid(max(concat(t.final_test_result,t.visit_date)),11),date(:endDate))<1 then \"N\" when timestampdiff(Month,mid(max(concat(t.final_test_result,t.visit_date)),11),date(:endDate))>3 then \"U\" end) when \"Positive\" then\n" +
-                "    (case when (timestampdiff(Month,(coalesce((mid(max(concat(t.final_test_result,t.visit_date)),11)),(mid(max(concat(v.test_confirmatory_results,v.visit_date)),11)),(mid(max(concat(v.self_test_results,v.visit_date)),11)),(mid(max(concat(v.hiv_self_rep_status,v.visit_date)),11)))),date(:endDate)))<1 then \"P\"\n" +
-                "        when (timestampdiff(Month,(coalesce((mid(max(concat(t.final_test_result,t.visit_date)),11)),(mid(max(concat(v.test_confirmatory_results,v.visit_date)),11)),(mid(max(concat(v.self_test_results,v.visit_date)),11)),(mid(max(concat(v.hiv_self_rep_status,v.visit_date)),11)))),date(:endDate)))>1 then \"Known Positive\" end )\n" +
-                "    when \"Known Positive\" then \"Known Positive\" else \"\" end as hiv_status\n" +
-                "from kp_etl.etl_client_registration r left join kp_etl.etl_clinical_visit v on r.client_id = v.client_id\n" +
-                "left join kp_etl.etl_hts_test t on r.client_id = t.client_id\n" +
-                "where v.client_id is not null or t.client_id is not null\n" +
-                "group by r.client_id;";
+        String qry = "select v.client_id,v.prep_treated from kp_etl.etl_clinical_visit v;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

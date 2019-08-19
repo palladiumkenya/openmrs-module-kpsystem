@@ -35,7 +35,7 @@ public class StatusInProgramDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select r.client_id, 1 from kp_etl.etl_client_registration r;";
+        String qry = "select r.client_id,1 from kp_etl.etl_client_registration r;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
