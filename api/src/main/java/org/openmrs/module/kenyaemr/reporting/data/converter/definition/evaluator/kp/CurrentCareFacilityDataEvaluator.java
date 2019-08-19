@@ -35,8 +35,7 @@ public class CurrentCareFacilityDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select IFNULL(v.client_id,e.client_id) as client_id, IFNULL(IFNULL(v.hiv_care_facility,v.other_hiv_care_facility),e.care_facility_name) as hiv_care_facility from kp_etl.etl_clinical_visit v left outer join\n" +
-                "                                                                                                                                                               kp_etl.etl_client_enrollment e on v.client_id = e.client_id group by client_id;";
+        String qry = "select v.client_id,v.hiv_care_facility from kp_etl.etl_clinical_visit v group by v.client_id having max(date(v.visit_date)) between date(:startDate) and date(:endDate);";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

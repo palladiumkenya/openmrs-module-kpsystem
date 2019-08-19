@@ -35,8 +35,7 @@ public class HIVStatusDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select t.client_id,mid(max(concat(t.visit_date,t.final_test_result)),11) as hiv_status\n" +
-                "from kp_etl.etl_hts_test t group by t.client_id;";
+        String qry = "select v.client_id,v.prep_treated from kp_etl.etl_clinical_visit v;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

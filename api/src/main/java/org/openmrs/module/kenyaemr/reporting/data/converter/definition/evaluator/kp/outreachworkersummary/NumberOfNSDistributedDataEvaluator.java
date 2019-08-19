@@ -34,7 +34,7 @@ public class NumberOfNSDistributedDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select r.person_a as peer_educator,sum(p.monthly_n_and_s_distributed) as n_s_distributed from openmrs.relationship r inner join kp_etl.etl_peer_calendar p on r.person_b= p.client_id\n" +
+        String qry = "select r.person_a as peer_educator,sum(p.monthly_n_and_s_distributed) as n_s_distributed from openmrs.relationship r inner join kp_etl.etl_peer_calendar p on r.person_b= p.client_id where r.voided = 0\n" +
                 "group by peer_educator;\n";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();

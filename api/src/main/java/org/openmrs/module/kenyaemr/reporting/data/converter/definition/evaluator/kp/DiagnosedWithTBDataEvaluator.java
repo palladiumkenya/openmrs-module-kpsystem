@@ -35,7 +35,7 @@ public class DiagnosedWithTBDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select v.client_id,v.tb_results from kp_etl.etl_clinical_visit v where v.tb_results = \"Positive\" group by v.client_id;";
+        String qry = "select v.client_id,case v.tb_results when \"Positive\" then \"Y\" when \"Negative\" then \"N\" else \"\" end as diagnosed_with_tb from kp_etl.etl_clinical_visit v group by v.client_id having max(date(v.visit_date)) between date(:startDate) and date(:endDate);";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

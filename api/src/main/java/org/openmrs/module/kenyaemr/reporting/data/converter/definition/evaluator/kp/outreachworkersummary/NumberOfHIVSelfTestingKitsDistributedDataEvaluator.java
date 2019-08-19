@@ -34,7 +34,7 @@ public class NumberOfHIVSelfTestingKitsDistributedDataEvaluator implements Perso
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select r.person_a as peer_educator,sum(p.monthly_self_test_kits_distributed) as self_testing_kits_distributed from openmrs.relationship r inner join kp_etl.etl_peer_calendar p on r.person_b= p.client_id\n" +
+        String qry = "select r.person_a as peer_educator,sum(p.monthly_self_test_kits_distributed) as self_testing_kits_distributed from openmrs.relationship r inner join kp_etl.etl_peer_calendar p on r.person_b= p.client_id where r.voided = 0\n" +
                 "group by peer_educator;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();

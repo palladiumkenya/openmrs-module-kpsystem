@@ -35,7 +35,7 @@ public class HIVTestFrequencyDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select t.client_id, if (count(client_id)>1, \"Repeat\",\"Initial\" )as hiv_test_frequency from kp_etl.etl_hts_test t group by t.client_id;;";
+        String qry = "select v.client_id, v.test_frequency from kp_etl.etl_clinical_visit v group by v.client_id having max(v.visit_date);";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

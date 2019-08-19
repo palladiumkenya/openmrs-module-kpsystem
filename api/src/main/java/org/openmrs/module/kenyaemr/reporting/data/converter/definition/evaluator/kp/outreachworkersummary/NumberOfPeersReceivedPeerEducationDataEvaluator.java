@@ -35,7 +35,7 @@ public class NumberOfPeersReceivedPeerEducationDataEvaluator implements PersonDa
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
         String qry = "select r.person_a as peer_educator,count(p.client_id) as received_peer_edu from openmrs.relationship r inner join kp_etl.etl_peer_calendar p on r.person_b= p.client_id\n" +
-                     "and p.health_edu =\"Yes\" group by peer_educator;\n";
+                     "and p.health_edu =\"Yes\" where r.voided = 0 group by peer_educator;\n";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);

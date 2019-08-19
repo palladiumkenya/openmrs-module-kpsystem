@@ -10,8 +10,7 @@
 package org.openmrs.module.kenyaemr.reporting.data.converter.definition.evaluator.kp;
 
 import org.openmrs.annotation.Handler;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.ReceivedPostViolenceSupportDataDefinition;
-import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.StatusInProgramDataDefinition;
+import org.openmrs.module.kenyaemr.reporting.data.converter.definition.kp.VLDoneDataDefinition;
 import org.openmrs.module.reporting.data.person.EvaluatedPersonData;
 import org.openmrs.module.reporting.data.person.definition.PersonDataDefinition;
 import org.openmrs.module.reporting.data.person.evaluator.PersonDataEvaluator;
@@ -26,8 +25,8 @@ import java.util.Map;
 /**
  * Evaluates a PersonDataDefinition
  */
-@Handler(supports= StatusInProgramDataDefinition.class, order=50)
-public class StatusInProgramDataEvaluator implements PersonDataEvaluator {
+@Handler(supports= VLDoneDataDefinition.class, order=50)
+public class VLDoneDataEvaluator implements PersonDataEvaluator {
 
     @Autowired
     private EvaluationService evaluationService;
@@ -35,7 +34,7 @@ public class StatusInProgramDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select r.client_id,1 from kp_etl.etl_client_registration r;";
+        String qry = "select v.client_id,v.vl_test_done from kp_etl.etl_clinical_visit v group by v.client_id having max(date(v.visit_date)) between date(:startDate) and date(:endDate);";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
