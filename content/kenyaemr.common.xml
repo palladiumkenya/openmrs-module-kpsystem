@@ -25,6 +25,7 @@
         </property>
         <property name="commonVisitForms">
             <set>
+
                 <ref bean="kenyaemr.common.form.htsinitialtest"/>
                 <ref bean="kenyaemr.common.form.htsconfirmatorytest"/>
                 <!--<ref bean="kenyaemr.common.form.kpAppointmentCreation"/>-->
@@ -35,6 +36,7 @@
                 <ref bean="kenyaemr.common.form.kpPeerOverdoseReporting"/>
                 <ref bean="kenyaemr.common.form.kpHealthWorkerOverdoseReporting"/>
                 <ref bean="kenyaemr.common.form.kpViolenceScreening"/>
+                <ref bean="kenyaemr.common.form.kpContact"/>
                 <!--<ref bean="kenyaemr.common.form.kpHealthEducation"/>-->
                 <ref bean="kenyaemr.common.form.kpReferral"/>
                 <ref bean="kenyaemr.common.form.kpAlcoholScreening"/>
@@ -67,32 +69,32 @@
 
     <!-- National Identification Number -->
     <bean id="kenyaemr.common.identifier.national" class="org.openmrs.module.kenyacore.identifier.IdentifierDescriptor">
-        <property name="targetUuid" value="49af6cdc-7968-4abb-bf46-de10d7f4859f" />
+        <property name="targetUuid" value="${metadata.identifiertype.NATIONAL_ID}" />
         <property name="order" value="100" />
     </bean>
 
     <!-- Patient Clinic Number -->
     <bean id="kenyaemr.common.identifier.pcn" class="org.openmrs.module.kenyacore.identifier.IdentifierDescriptor">
-        <property name="targetUuid" value="b4d66522-11fc-45c7-83e3-39a1af21ae0d" />
+        <property name="targetUuid" value="${metadata.identifiertype.PATIENT_CLINIC_NUMBER}" />
         <property name="order" value="200" />
     </bean>
 
     <!-- Old Identification Number -->
     <bean id="kenyaemr.common.identifier.old" class="org.openmrs.module.kenyacore.identifier.IdentifierDescriptor">
-        <property name="targetUuid" value="8d79403a-c2cc-11de-8d13-0010c6dffd0f" />
+        <property name="targetUuid" value="${metadata.identifiertype.OLD}" />
         <property name="order" value="300" />
     </bean>
 
     <!-- OpenMRS ID -->
     <bean id="kenyaemr.common.identifier.mrn" class="org.openmrs.module.kenyacore.identifier.IdentifierDescriptor">
-        <property name="targetUuid" value="dfacd928-0370-4315-99d7-6ec1c9f7ae76" />
+        <property name="targetUuid" value="${metadata.identifiertype.MEDICAL_RECORD_NUMBER}" />
     </bean>
 
     <!-- ===================== Forms ===================== -->
 
     <!-- TB Screening -->
     <bean id="kenyaemr.common.form.tbScreening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-        <property name="targetUuid" value="59ed8e62-7f1f-40ae-a2e3-eabe350277ce" />
+        <property name="targetUuid" value="${metadata.form.TB_SCREENING}" />
         <property name="apps">
             <set>
                 <ref bean="kenyaemr.app.intake" />
@@ -134,6 +136,8 @@
         <property name="htmlform" value="kenyaemr:hts/htsConfirmatoryTest.html" />
         <property name="order" value="201001" />
     </bean>
+
+
 
     <!-- kp Appointments -->
     <bean id="kenyaemr.common.form.kpAppointmentCreation" class="org.openmrs.module.kenyacore.form.FormDescriptor">
@@ -362,5 +366,4 @@
         <!--<property name="template" value="kenyaemr:moh731_greencard_template.xls" />-->
         <property name="template" value="" />
     </bean>
-
 </beans>

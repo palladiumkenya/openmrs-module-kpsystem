@@ -19,17 +19,13 @@
 
 	<import resource="content/kenyaemr.common.xml" />
 	<import resource="content/kenyaemr.kp.xml" />
-	<import resource="content/kenyaemr.common.xml" />
-	<import resource="content/kenyaemr.cohort.analysis.xml" />
-	<!--<import resource="content/kenyaemr.tb.xml" />-->
 
 	<!-- ===================== App descriptors ===================== -->
 
 	<bean id="kenyaemr.app.registration" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.registration" />
 		<constructor-arg value="Registration" />
-		<constructor-arg value="kenyaemr/registration/registrationSearch.page" />
-		<!--<constructor-arg value="registrationapp/registerPatient.page?appId=referenceapplication.registrationapp.registerPatient" />-->
+		<constructor-arg value="registrationapp/registerPatient.page?appId=referenceapplication.registrationapp.registerPatient" />
 		<constructor-arg value="kenyaui:apps/registration.png" />
 		<constructor-arg value="100" />
 	</bean>
@@ -42,17 +38,9 @@
 		<constructor-arg value="200" />
 	</bean>
 
-	<bean id="kenyaemr.app.hts" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
-		<constructor-arg value="kenyaemr.hivtesting" />
-		<constructor-arg value="HIV Testing Services" />
-		<constructor-arg value="kenyaemr/hivTesting/htsHome.page" />
-		<constructor-arg value="kenyaui:apps/hts.png" />
-		<constructor-arg value="250" />
-	</bean>
-
 	<bean id="kenyaemr.app.clinician" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.medicalEncounter" />
-		<constructor-arg value="Provider" />
+		<constructor-arg value="Clinician" />
 		<constructor-arg value="kenyaemr/clinician/clinicianHome.page" />
 		<constructor-arg value="kenyaui:apps/clinician.png" />
 		<constructor-arg value="300" />
@@ -74,13 +62,13 @@
 		<constructor-arg value="400" />
 	</bean>
 
-<!--	<bean id="kenyaemr.app.inventory" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
+	<bean id="kenyaemr.app.inventory" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.inventory" />
 		<constructor-arg value="Inventory" />
 		<constructor-arg value="openhmis.inventory/inventoryLanding.page" />
 		<constructor-arg value="kenyaui:apps/inventory.png" />
-		<constructor-arg value="410" />
-	</bean>-->
+		<constructor-arg value="450" />
+	</bean>
 
 	<bean id="kenyaemr.app.reports" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.reports" />
@@ -90,13 +78,13 @@
 		<constructor-arg value="500" />
 	</bean>
 
-	<!--<bean id="kenyaemr.app.facilityDashboard" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
+	<bean id="kenyaemr.app.facilityDashboard" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.facilityDashboard" />
 		<constructor-arg value="Facility Dashboard" />
 		<constructor-arg value="kenyaemr/facilityDashboard/facilityDashboardHome.page" />
 		<constructor-arg value="kenyaui:apps/facilityDashboard.png" />
 		<constructor-arg value="510" />
-	</bean>-->
+	</bean>
 
 	<bean id="kenyaemr.app.directory" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
 		<constructor-arg value="kenyaemr.directory" />
@@ -222,13 +210,13 @@
 	</bean>
 
 	<bean id="kenyaEmrBuildProperties" class="org.openmrs.module.kenyaemr.util.BuildProperties">
-		<property name="version" value="17.0.0-beta" />
+		<property name="version" value="${project.version}" />
 		<property name="buildDate">
 			<bean factory-bean="iso8601DateFactory" factory-method="parse">
-				<constructor-arg value="2019-08-07T12:35:49+0000" />
+				<constructor-arg value="${moduleBuildDate}" />
 			</bean>
 		</property>
-		<property name="developer" value="Test"/>
+		<property name="developer" value="${user.name}"/>
 	</bean>
 
 </beans>
