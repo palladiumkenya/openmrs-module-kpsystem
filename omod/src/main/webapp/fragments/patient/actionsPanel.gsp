@@ -28,7 +28,7 @@
 		<ul class="float-left">
 			<h3>General Actions</h3>
 			<li class="float-left" style="margin-top: 7px">
-				<a href="${ ui.pageLink("registrationapp", "registerPatient", [appId:"referenceapplication.registrationapp.registerPatient"]) }" class="float-left">
+				<a href="${ ui.pageLink("kenyaemr", "registration/registrationSearch") }" class="float-left">
 					<i class="fa fa-user"></i>
 					Register Client
 				</a>
@@ -68,7 +68,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: communityOutreachForms, onFormClick: onCOFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: communityOutreachForms, onFormClick: onCOFormClick ]) }
 
 			</a>
 			</li>
@@ -86,7 +86,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: clinicalForms, onFormClick: onCFFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: clinicalForms, onFormClick: onCFFormClick ]) }
 
 			</a>
 			</li>
@@ -104,7 +104,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: programLevelForms, onFormClick: onPLFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: programLevelForms, onFormClick: onPLFormClick ]) }
 
 			</a>
 			</li>
@@ -123,7 +123,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: otherForms, onFormClick: onOtherFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: otherForms, onFormClick: onOtherFormClick ]) }
 
 			</a>
 			</li>
@@ -138,7 +138,7 @@
 						"""kenyaemr.openEncounterDialog('${ currentApp.id }', ${ encounter.id });"""
 					}
 				%>
-				${ ui.includeFragment("kenyaemr", "widget/encounterStack", [ encounters: encounters, onEncounterClick: onEncounterClick ]) }
+				${ ui.includeFragment("kenyaemr", "widget/encounterLightStack", [ encounters: encounters, onEncounterClick: onEncounterClick ]) }
 			</a>
 			</li>
 
@@ -148,32 +148,32 @@
 </div>
 <script type="text/javascript">
 
-	//On ready
-	jQuery(function () {
-		//defaults
+    //On ready
+    jQuery(function () {
+        //defaults
 
-		<% if (programLevelForms) { %>
-		jQuery("#program-level-tools").show();
-		<% } else { %>
-		jQuery("#program-level-tools").hide();
-		<% } %>
+         <% if (programLevelForms) { %>
+        jQuery("#program-level-tools").show();
+        <% } else { %>
+        jQuery("#program-level-tools").hide();
+        <% } %>
 
-		<% if (clinicalForms) { %>
-		jQuery("#clinical-tools").show();
-		<% } else { %>
-		jQuery("#clinical-tools").hide();
-		<% } %>
+        <% if (clinicalForms) { %>
+        jQuery("#clinical-tools").show();
+        <% } else { %>
+        jQuery("#clinical-tools").hide();
+        <% } %>
 
-		<% if (communityOutreachForms) { %>
-		jQuery("#community-outreach-tools").show();
-		<% } else { %>
-		jQuery("#community-outreach-tools").hide();
-		<% } %>
+        <% if (communityOutreachForms) { %>
+        jQuery("#community-outreach-tools").show();
+        <% } else { %>
+        jQuery("#community-outreach-tools").hide();
+        <% } %>
 
-		<% if (otherForms) { %>
-		jQuery("#other-tools").show();
-		<% } else { %>
-		jQuery("#other-tools").hide();
-		<% } %>
-	});
+        <% if (otherForms) { %>
+        jQuery("#other-tools").show();
+        <% } else { %>
+        jQuery("#other-tools").hide();
+        <% } %>
+    });
 </script>
