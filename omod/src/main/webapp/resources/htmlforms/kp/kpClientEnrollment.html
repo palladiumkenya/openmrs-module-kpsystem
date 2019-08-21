@@ -105,7 +105,7 @@
             }
             if(val == 1066){
                 jq("#contact-method").hide();
-                clearHiddenSections(jq('#cContacted'));
+                //clearHiddenSections(jq('#cContacted'));
             }
         }
 
@@ -262,7 +262,7 @@
             var testDeclineReason = getField('decline-reason.value').val();
             var receivingCare = getValue('receiving-care.value');
             var contactForAppointment = getValue('contacted-incase-of-appointment.value');
-            var contactMethod = getField('cContacted.value').val();
+            //var contactMethod = getField('Contacted.value').val();
             var partner_number = getField('mobile.value').val();
 
             if (contactedByPeerEducator =="") {
@@ -484,7 +484,7 @@
                     }
                     else{
 
-                        jq('#cContacted').val('');
+                        //jq('#cContacted').val('');
                         jq('#contacted-incase-of-appointment').val('');
 
 
@@ -682,7 +682,7 @@
                 </tr>
                 <tr id ="contact-method">
                     <td>How would you like to be contacted?</td>
-                 <td>
+                    <td>
                         <obs conceptId="164966" answerConceptId="161642" answerLabel="Treatment supporter" id="ts-checked" style="checkbox" /> <br />
                         <obs conceptId="164966" answerConceptId="165037" answerLabel="Peer educator" id="pe-checked" style="checkbox"/> <br />
                         <obs conceptId="164966" answerConceptId="1555" answerLabel="Outreach worker" style="checkbox"/> <br />
