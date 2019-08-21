@@ -37,8 +37,6 @@
                 <ref bean="kenyaemr.common.form.kpHealthWorkerOverdoseReporting"/>
                 <ref bean="kenyaemr.common.form.kpViolenceScreening"/>
                 <ref bean="kenyaemr.common.form.kpContact"/>
-                <!--<ref bean="kenyaemr.common.form.kpHealthEducation"/>-->
-                <ref bean="kenyaemr.common.form.kpReferral"/>
                 <ref bean="kenyaemr.common.form.kpAlcoholScreening"/>
                 <ref bean="kenyaemr.common.form.kpClinicalVisitForm" />
             </set>
@@ -285,20 +283,7 @@
         <property name="htmlform" value="kenyaemr:kp/kpViolenceScreening.html" />
         <property name="order" value="201019" />
     </bean>
-    <!-- kp client Referrals -->
-    <bean id="kenyaemr.common.form.kpReferral" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-        <property name="targetUuid" value="bd12f98a-fcfe-4472-a858-17f28457932b" />
-        <property name="apps">
-            <set>
-                <ref bean="kenyaemr.app.registration" />
-                <ref bean="kenyaemr.app.clinician" />
-                <ref bean="kenyaemr.app.chart" />
-            </set>
-        </property>
-        <property name="icon" value="kenyaui:forms/generic.png" />
-        <property name="htmlform" value="kenyaemr:kp/kpReferral.html" />
-        <property name="order" value="201020" />
-    </bean>
+
 
     <!-- kp alcohol screening -->
     <bean id="kenyaemr.common.form.kpAlcoholScreening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
