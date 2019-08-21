@@ -115,10 +115,11 @@
 			}
 		}
 		function kpReached() {
-			var reached = getValue("tracing-outcome.value");
+			var reached = getValue("first_tracing-outcome.value");
 			if(reached == 1065){
 				jq("#attempted-second").hide();
 				jq("#attempted-third").hide();
+				jq("#attempted-first input").prop("disabled", false);
 				jq("#attempted-second input").prop("disabled", true);
 				jq("#attempted-third input").prop("disabled", true);
 			}else {
@@ -127,21 +128,24 @@
 				jq("#attempted-second input").prop("disabled", false);
 				jq("#attempted-third input").prop("disabled", true);
 				jq("#attempted-first input").prop("disabled", true);
+				jq("#first_tracing-outcome input").prop("disabled", false);
+
 			}
 		}
 		function Seecond_atempt_kpReached() {
-			var reached = getValue("tracing-outcome.value");
+			var reached = getValue("second_tracing_outcome.value");
 			if(reached == 1065){
 
 				jq("#attempted-third").hide();
 				jq("#attempted-second input").prop("disabled", false);
-				jq("#attempted-second input").prop("disabled", true);
+				jq("#attempted-first input").prop("disabled", true);
 				jq("#attempted-third input").prop("disabled", true);
 			}else {
 				jq("#attempted-third").show();
 				jq("#attempted-second input").prop("disabled", true);
 				jq("#attempted-third input").prop("disabled", false);
 				jq("#attempted-first input").prop("disabled", true);
+				jq("#second_tracing_outcome input").prop("disabled", false);
 			}
 		}
 
@@ -160,8 +164,8 @@
 			jq("#attempted-second input").prop("disabled", true);
 			jq("#attempted-third input").prop("disabled", true);
 
-			jq('#tracing-outcome').click(kpReached);
-			jq('#secon_tracing_outcome').click(Seecond_atempt_kpReached);
+			jq('#first_tracing-outcome').click(kpReached);
+			jq('#second_tracing_outcome').click(Seecond_atempt_kpReached);
 			//jq('#sti_screened').click(StiScreened);
 
 
@@ -274,14 +278,14 @@ Cohort register/ peer outreach calendar reviewed and client not lost to follow u
 				<tr>
 					<td>Date</td>
 					<td>
-						<obs id="date-of-tracing-attempt" conceptId="160753"/>
+						<obs id="date-of-first_tracing-attempt" conceptId="160753" allowFutureDates="false"/>
 
 					</td>
 				</tr>
 				<tr>
 					<td>Tracing type</td>
 					<td>
-						<obs id="tracing-type" conceptId="164966"
+						<obs id="first_tracing-type" conceptId="164966"
 							 answerConceptIds="1650,164965"
 							 answerLabels="Phone,Physical"
 							 style="radio" />
@@ -290,7 +294,7 @@ Cohort register/ peer outreach calendar reviewed and client not lost to follow u
 				<tr>
 					<td>Tracing outcome</td>
 					<td>
-						<obs id="tracing-outcome" conceptId="164929"
+						<obs id="first_tracing-outcome" conceptId="164929"
 							 answerConceptIds="1065,5622,1066"
 							 answerLabels="KP reached,KP not reached but other informant reached,KP not reached"
 							 style="radio" />
@@ -308,14 +312,14 @@ Cohort register/ peer outreach calendar reviewed and client not lost to follow u
 				<tr>
 					<td>Date</td>
 					<td>
-						<obs id="date-of-tracing-attempt" conceptId="160753"/>
+						<obs id="second_date-of-tracing-attempt" conceptId="160753"/>
 
 					</td>
 				</tr>
 				<tr>
 					<td>Tracing type</td>
 					<td>
-						<obs id="tracing-type" conceptId="164966"
+						<obs id="second_tracing-type" conceptId="164966"
 							 answerConceptIds="1650,164965"
 							 answerLabels="Phone,Physical"
 							 style="radio" />
@@ -324,7 +328,7 @@ Cohort register/ peer outreach calendar reviewed and client not lost to follow u
 				<tr>
 					<td>Tracing outcome</td>
 					<td>
-						<obs id="secon_tracing_outcome" conceptId="164929"
+						<obs id="second_tracing_outcome" conceptId="164929"
 							 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 							 answerLabels="KP reached,KP not reached but other informant reached,KP not reached"
 							 style="radio" />
@@ -340,7 +344,7 @@ Cohort register/ peer outreach calendar reviewed and client not lost to follow u
 				<tr>
 					<td>Date</td>
 					<td>
-						<obs id="date-of-tracing-attempt" conceptId="160753"/>
+						<obs id="third_date-of-tracing-attempt" conceptId="160753"/>
 
 					</td>
 				</tr>
@@ -356,7 +360,7 @@ Cohort register/ peer outreach calendar reviewed and client not lost to follow u
 				<tr>
 					<td>Tracing outcome</td>
 					<td>
-						<obs id="tracing-outcome" conceptId="164929"
+						<obs id="third_tracing-outcome" conceptId="164929"
 							 answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 							 answerLabels="KP reached,KP not reached but other informant reached,KP not reached"
 							 style="radio" />
