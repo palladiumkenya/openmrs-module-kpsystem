@@ -18,11 +18,12 @@
     <script type="text/javascript">
 
         var KEY_POP_TYPE = "<lookup expression="fn.latestObs(160581).getValueCoded()"/>";
-
+        var gender = "<lookup expression="patient.gender" />";
         function onHistoricalStatusDateChange() {
 
             var today = new Date()//.getTime();        //get current date
             var patientId = <lookup expression="patient.patientId"/>;
+
 
 
             /*this data should not be in Future */
@@ -181,6 +182,9 @@
             jq('#willing-tester :input[type=radio]').change(willingToTest);
             jq('#share-test-tr :input[type=radio]').change(hivStatusDisclosure);
 
+
+
+
             if(KEY_POP_TYPE == 105 || KEY_POP_TYPE == 165085){
                 jq("#yearStartedDrugs").show();
             }
@@ -196,7 +200,14 @@
                 jq("#yearStartedSexWithMen").show();
                 jq("#yearStartedDrugs").show();
             }
+            if (gender == 'F') {
+                jq("#yearStartedSexWithMen").hide();
 
+            }
+            if (gender == 'M') {
+                jq("#yearStartedSexWithMen").show();
+
+            }
             $('input').on('click',function () {
 
                 var year_startSex_work = getField('startSex.value').val();
