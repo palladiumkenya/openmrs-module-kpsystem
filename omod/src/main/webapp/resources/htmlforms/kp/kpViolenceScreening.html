@@ -62,21 +62,22 @@
             //TODO:Date validations using momentjs
             var incident_date = getValue('incident-date.value');
             var first_response_date = getValue('first-response-date.value');
-            var finaly_resolved_date= getValue('final-resolution-date.value');
+            var  finally_resolved_date= getValue('final_date.value');
 
 
            console.log("Incident date ==>"+incident_date);
            console.log("First response date ==>"+first_response_date);
+           console.log("Finally resolved  date ==>"+finally_resolved_date);
 
-            var isFinalyResolvedDateBeforeIncident= moment(moment(moment(finaly_resolved_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(incident_date, 'DD-MMM-YYYY').toDate()).format('YYYY-MM-DD'));
+            var isFirstResponseDateBeforeIncident= moment(moment(moment(first_response_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(incident_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD'));
+            var isFinalyResolvedDateBeforeIncident= moment(moment(moment(finally_resolved_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(incident_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD'));
 
-           var isFirstResponseDateBeforeIncident= moment(moment(moment(first_response_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(incident_date, 'DD-MMM-YYYY').toDate()).format('YYYY-MM-DD'));
-           if (isFirstResponseDateBeforeIncident) {
+            if (isFirstResponseDateBeforeIncident==true) {
                getField('first-response-date.error').html('First response date should not be earlier than incident date.').show();
                return false;
            }
-           else if(isFinalyResolvedDateBeforeIncident){
-               getField('final-resolution-date.error').html('Date the issue was resolved can not be earlier than incident date.').show();
+           else if(isFinalyResolvedDateBeforeIncident ==true){
+               getField('final_date.error').html('Date the issue was resolved can not be earlier than incident date.').show();
                return false;
            }
            else{
@@ -507,7 +508,7 @@
                         Date issue was completely addressed:
                     </td>
                     <td>
-                        <obs id="final-resolution-date" conceptId="165224" allowFutureDates="false" showTime="true" />
+                        <obs id="final_date" conceptId="165224" allowFutureDates="false" />
                     </td>
                 </tr>
             </table>

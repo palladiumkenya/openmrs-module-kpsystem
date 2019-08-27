@@ -230,9 +230,15 @@
         var expiryDateSelected  = function () {
             var encounterDate = getValue('encounter-date.value');
             var testKitExpiryDate = getValue('expiry-date.value');
+            var determineExpiryDate = getValue('expiry-date2.value');
             var isTestKitExpiryBeforeEncounterDate = moment(moment(moment(testKitExpiryDate, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(encounterDate, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD'));
+            var isDetermineKitExpiryBeforeEncounterDate = moment(moment(moment(determineExpiryDate, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(encounterDate, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD'));
             if (isTestKitExpiryBeforeEncounterDate) {
-                getField('expiry-date.error').html('HIV Test Kit expiry date should not be later than encounter Date').show();
+                getField('expiry-date.error').html('HIV Test Kit expiry date should be later than encounter Date').show();
+            }
+
+            if (isDetermineKitExpiryBeforeEncounterDate) {
+                getField('expiry-date2.error').html('HIV Test Kit expiry date should be later than encounter Date').show();
             }
         }
 
@@ -289,6 +295,7 @@
             //jq("#hiv-final-result select").change(finalTestSelected);
             //test kit expiry
             jq("#expiry-date input").change(expiryDateSelected);
+            jq("#expiry-date2 input").change(expiryDateSelected);
             //jq('#ccc-no :input').prop('readonly', true);
             //On Load defaults
             var everTested = getField("hiv-test1-result.value").val();

@@ -836,6 +836,8 @@
             }
             else if(pep==1066){
                 jq("#pep_type input").prop("disabled", true);
+                jq("#type_of_exposure input").prop("disabled", true);
+
             }else {
                 jq("#pep_type input").prop("disabled", true);
             }
@@ -864,6 +866,12 @@
             }
 
         }
+
+        var numberOfMaleCondoms  = function () {
+
+
+        }
+
 
 
 
@@ -978,6 +986,8 @@
             jq("#test_results input").change(test_resultsChanged);
             jq("#linked_to_art input").change(linkTo_ART);
             jq("#eligible_for_viral input").change(eligible_for_viral_load);
+
+            jq("#malecondoms input").change(numberOfMaleCondoms);
 
 
 
@@ -1678,7 +1688,7 @@
                 </tr>
                 <tr id="pepandprep">
                     <td > PEP :  &#160;&#160;  <obs id="pep_selected" conceptId="164845" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio"  /></td>
-                    <td >Type of exposure :<br/>
+                    <td id="type_of_exposure">Type of exposure :<br/>
                         <obs conceptId="165060" answerConceptId="127910" style="checkbox" /><br />
                         <obs conceptId="165060" answerConceptId="165059" style="checkbox" /><br />
                         <obs id="exposure_other" conceptId="165060" answerConceptId="5622" style="checkbox" /><br />
