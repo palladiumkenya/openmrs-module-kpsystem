@@ -356,7 +356,7 @@
         <property name="order" value="201022" />
     </bean>
     <!-- ===================== Reports ===================== -->
-    <bean id="kenyaemr.etl.common.report.moh731b" class="org.openmrs.module.kenyacore.report.IndicatorReportDescriptor">
+        <bean id="kenyaemr.etl.common.report.moh731b" class="org.openmrs.module.kenyacore.report.IndicatorReportDescriptor">
         <property name="targetUuid" value="f8109c53-93bb-4561-b397-bb22ea317577" />
         <property name="name" value="MOH 731B Report" />
         <property name="description" value="MOH 731B Report based" />
@@ -364,8 +364,7 @@
             <set>
                 <ref bean="kenyaemr.app.reports" />
             </set></property>
-        <!--<property name="template" value="kenyaemr:moh731_greencard_template.xls" />-->
-        <property name="template" value="" />
+        <property name="template" value="kenyaemr:kp/MOH_731Plus_Template.xls" />
     </bean>
 
     <bean id="kenyaemr.etl.common.report.outreachWorkerSummary" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
@@ -376,8 +375,8 @@
             <set>
                 <ref bean="kenyaemr.app.reports" />
             </set></property>
-        <!--<property name="template" value="kenyaemr:moh731_greencard_template.xls" />-->
-        <property name="template" value="" />
+        <property name="template" value="kenyaemr:kp/Outreach_Workers_summary_Template.xls" />
+        <property name="repeatingSection" value="sheet:1,row:8,dataset:OutreachWorkerSummary" />
     </bean>
 
 </beans>

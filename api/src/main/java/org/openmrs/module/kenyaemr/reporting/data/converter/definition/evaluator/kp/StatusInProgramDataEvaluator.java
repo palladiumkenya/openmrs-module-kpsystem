@@ -21,6 +21,7 @@ import org.openmrs.module.reporting.evaluation.querybuilder.SqlQueryBuilder;
 import org.openmrs.module.reporting.evaluation.service.EvaluationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -35,9 +36,18 @@ public class StatusInProgramDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select r.client_id,1 from kp_etl.etl_client_registration r;";
+        String qry = "select r.client_id,\n" +
+                "       (case r.dead when 0 then (coalesce(IFNULL((case when timestampdiff(Month,max(date(p.visit_date)),date(:endDate))<=3  then \"A\" when timestampdiff(Month,max(date(p.visit_date)),date(:endDate)) between 4 and 9 then \"DT\"\n" +
+                "                                                       when timestampdiff(Month,max(date(p.visit_date)),date(:endDate)) > 9 then \"LTFU\" else null end),(case when timestampdiff(Month,max(date(v.visit_date)),date(:endDate))<=3  then \"A\" when timestampdiff(Month,max(date(v.visit_date)),date(:endDate)) between 4 and 9 then \"DT\"\n" +
+                "                when timestampdiff(Month,max(date(v.visit_date)),date(:endDate)) > 9 then \"LTFU\" else \"\" end)))) when 1 then \"D\" else null end) as status_in_program from kp_etl.etl_client_registration r left join kp_etl.etl_peer_calendar p on r.client_id = p.client_id\n" +
+                "                left join kp_etl.etl_clinical_visit v\n" +
+                "                on r.client_id = v.client_id where p.client_id is not null or v.client_id is not null group by r.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
+        Date startDate = (Date)context.getParameterValue("startDate");
+        Date endDate = (Date)context.getParameterValue("endDate");
+        queryBuilder.addParameter("endDate", endDate);
+        queryBuilder.addParameter("startDate", startDate);
         queryBuilder.append(qry);
         Map<Integer, Object> data = evaluationService.evaluateToMap(queryBuilder, Integer.class, Object.class, context);
         c.setData(data);

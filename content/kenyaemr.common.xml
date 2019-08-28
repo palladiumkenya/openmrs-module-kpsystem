@@ -36,6 +36,7 @@
                 <ref bean="kenyaemr.common.form.kpPeerOverdoseReporting"/>
                 <ref bean="kenyaemr.common.form.kpHealthWorkerOverdoseReporting"/>
                 <ref bean="kenyaemr.common.form.kpViolenceScreening"/>
+                <ref bean="kenyaemr.common.form.kpContact"/>
                 <ref bean="kenyaemr.common.form.kpAlcoholScreening"/>
                 <ref bean="kenyaemr.common.form.kpClinicalVisitForm" />
             </set>
@@ -240,7 +241,20 @@
         <property name="order" value="201016" />
     </bean>
 
-
+    <!-- kp contact registration form -->
+    <bean id="kenyaemr.common.form.kpContact" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="185dec84-df6f-4fc7-a370-15aa8be531ec" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.registration" />
+                <ref bean="kenyaemr.app.clinician" />
+                <ref bean="kenyaemr.app.chart" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/kpContact.html" />
+        <property name="order" value="201017" />
+    </bean>
     <!-- kp client Health Education -->
     <bean id="kenyaemr.common.form.kpHealthEducation" class="org.openmrs.module.kenyacore.form.FormDescriptor">
         <property name="targetUuid" value="67a224a5-907c-49e0-a1ea-e7c38b7a489d" />
@@ -322,8 +336,7 @@
             <set>
                 <ref bean="kenyaemr.app.reports" />
             </set></property>
-        <!--<property name="template" value="kenyaemr:moh731_greencard_template.xls" />-->
-        <property name="template" value="" />
+        <property name="template" value="kenyaemr:MOH_731Plus_Template.xls" />
     </bean>
 
     <bean id="kenyaemr.etl.common.report.outreachWorkerSummary" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
@@ -334,7 +347,7 @@
             <set>
                 <ref bean="kenyaemr.app.reports" />
             </set></property>
-        <!--<property name="template" value="kenyaemr:moh731_greencard_template.xls" />-->
-        <property name="template" value="" />
+        <property name="template" value="kenyaemr:Outreach_Workers_summary_Template.xls" />
+        <property name="repeatingSection" value="sheet:1,row:8,dataset:OutreachWorkerSummary" />
     </bean>
 </beans>
