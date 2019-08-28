@@ -37,24 +37,20 @@
             text-shadow: 1px 1px 1px #fff;
         }
     </style>
-
+    <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
     <script type="text/javascript">
         jQuery(function ($) {
             jq("#other-drugs-specify").hide();
             jq("#referred-specify").hide();
             onReferredSelected;
 
-//            jq('#other-risk-factors :input[type=checkbox]').click(onOtherRiskFactorsSelected);
             jq('#other-drugs :input[type=checkbox]').click(onOtherDrugsSelected);
             jq('#referred :input[type=radio]').change(onReferredSelected);
-
-            beforeSubmit.push(function () {
-            });
 
         })
 
 
-   function onOtherDrugsSelected() {
+        function onOtherDrugsSelected() {
             var val = jq(this).val();
             var otherDrugsChecked = jq("#other-drugs input:checkbox:checked");
             if(val == 5622 &amp;&amp; otherDrugsChecked.length &gt; 0 ){
@@ -65,7 +61,7 @@
                 jq("#other-drugs-specify").hide();
             }
         }
-    function onReferredSelected() {
+        function onReferredSelected() {
             var val = jq(this).val();
            if(val == 1272){
                 jq("#referred-specify").show();
@@ -76,6 +72,33 @@
 
             }
         }
+
+        beforeSubmit.push(function() {
+
+            var incident_date = getValue('incident_date.value');
+            var Reported_date = getValue('reported_date.value');
+            var Witness_date= getValue('witness_date.value');
+
+            console.log("Reported Date  ==>"+Reported_date);
+            console.log("Witness Date ==>"+Witness_date);
+
+            var WitnessReported= moment(moment(moment(Witness_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(incident_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD'));
+            var ReportedDate= moment(moment(moment(Reported_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(incident_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD'));
+            if (ReportedDate==true) {
+                getField('reported_date.error').html('Reported date can not be earlier than incident date.').show();
+                return false;
+            }
+            else if(WitnessReported == true){
+                getField('witness_date.error').html('Reported date can not be earlier than incident date.').show();
+                return false;
+            }
+            else{
+                getField('reported_date.error').html('First response date should not be earlier than incident date.').hide();
+                getField('witness_date.error').html('First response date should not be earlier than incident date.').hide();
+            }
+
+            return true;
+        });
 
     </script>
 
@@ -120,7 +143,7 @@
                                 <obs conceptId="162725AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" size="20" />
                                 &#160;&#160;&#160;&#160;&#160;
                                 <b>Date </b>
-                                <obs conceptId="165146" allowFutureDates="false" />
+                                <obs id="incident_date" conceptId="165146" allowFutureDates="false" required="true" />
                             </td>
                         </tr>
                         <tr>
@@ -132,7 +155,7 @@
                                      answerConceptIds="165134,165135"
                                      style="radio"
                                      answerLabels="New,Recurrent"
-                                     answerSeparator="&lt;br /&gt;"/>
+                                     answerSeparator="&lt;br /&gt;" required="true"/>
 
                             </td>
                         </tr>
@@ -220,8 +243,8 @@
                         <td>
                             <obs conceptId="165141" id="referred"
                                  answerConceptIds="160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                 answerLabels="Died,Referred (Specify)" style="radio"/>
-                            <obs conceptId="161562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="referred-specify" />
+                                 answerLabels="Died,Referred (Specify)" style="radio" required="true"/>
+                            <obs conceptId="161562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="referred-specify"  />
                         </td>
                     </tr>
                     <tr>
@@ -232,7 +255,7 @@
                             <obs conceptId="1473AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
                             &#160;&#160;&#160;&#160;&#160;
                             <b>Date </b>
-                            <obs conceptId="165144" allowFutureDates="true" />
+                            <obs id="reported_date" conceptId="165144" allowFutureDates="false" />
                         </td>
                     </tr>
                     <tr>
@@ -243,7 +266,7 @@
                             <obs conceptId="165143" />
                             &#160;&#160;&#160;&#160;&#160;
                             <b>Date </b>
-                            <obs conceptId="160753" allowFutureDates="false"  />
+                            <obs id="witness_date" conceptId="160753" allowFutureDates="false"  />
                         </td>
                     </tr>
                 </table>

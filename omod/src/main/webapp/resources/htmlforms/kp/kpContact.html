@@ -85,10 +85,16 @@
                 jq("#key_pop_type input[value=165084]").prop("checked", false);
                 jq("#key_pop_type input[value=160578]").prop("disabled", true);
                 jq("#key_pop_type input[value=165084]").prop("disabled", true);
+                jq("#key_pop_type input[value=165108]").prop("disabled", false);
+                jq("#key_pop_type input[value=165107]").prop("disabled", true);
+
+
             }
             if (pgender == 'M') {
                 jq("#key_pop_type input[value=165083]").prop("checked", false);
                 jq("#key_pop_type input[value=165083]").prop("disabled", true);
+                jq("#key_pop_type input[value=165108]").prop("disabled", true);
+                jq("#key_pop_type input[value=165107]").prop("disabled", false);
             }
 
             $('input').on('click',function () {
@@ -114,10 +120,16 @@
                 var year_startSex_work = getField('startSex.value').val();
                 var year_start_having_sex_with_men = getField('sexWithMen.value').val();
                 var year_stared_using_drugs = getField('usingDrugs.value').val();
+                var number_of_sex_act = getField('sex_act.value').val();
+                var number_of_anal_act = getField('anal_act.value').val();
+                var number_of_drugs = getField('number_of_Drugs.value').val();
 
                 yearValidation(year_startSex_work, 'startSex')
                 yearValidation(year_start_having_sex_with_men,  'sexWithMen')
                 yearValidation(year_stared_using_drugs, 'usingDrugs')
+                sexAct(number_of_sex_act, 'sex_act')
+                sexAct(number_of_anal_act, 'anal_act')
+                sexAct(number_of_drugs, 'number_of_Drugs')
 
 
             });
@@ -147,6 +159,21 @@
                 }
 
             });
+
+            function sexAct(number, textfield) {
+                if(!number==""){
+                    if (Number(number) > Number(0) &amp;&amp; Number(number) &lt; Number(200))
+                    {
+                        getField(textfield+'.error').html('Please enter valid number. can not be zero and more than 200.').hide();
+                    }
+                    else{
+                        getField(textfield+'.value').val("");
+                        getField(textfield+'.error').html('Please enter valid number. can not be zero and more than 200.').show();
+                    }
+                }
+
+
+            }
 
             function yearValidation(year, textfield) {
 
@@ -197,6 +224,18 @@
             var start_sex = getField("startSex.value").val();
             var sex_with_men = getField("sexWithMen.value").val();
             var using_drugs = getField("usingDrugs.value").val();
+            var number_of_drugs = getField('number_of_Drugs.value').val();
+            if(number_of_drugs!=""){
+                if (Number(number_of_drugs) > Number(0) &amp;&amp; Number(number_of_drugs) &lt; Number(200))
+                {
+                    getField('number_of_Drugs.error').html('Please enter valid number. can not be zero and more than 200.').hide();
+                }
+                else{
+
+                    getField('number_of_Drugs.error').html('Please enter valid number. can not be zero and more than 200.').show();
+                    return false;
+                }
+            }
 
             if (!$("input[name=w8]:checked").val()) {
                 getField('key_pop_type.error').html('Please provide key population type.').show();
@@ -353,7 +392,7 @@
                 <tr>
                     <td width="550" valign="top">On average, how many sex acts do you have per week</td>
                     <td width="550" valign="top">
-                        <obs id="usingDrugs" conceptId="165007"/>
+                        <obs id="sex_act" conceptId="165007"/>
 
                     </td>
                 </tr>
@@ -361,7 +400,7 @@
                 <tr>
                     <td width="550" valign="top">On average, how many anal sex acts do you have per week</td>
                     <td width="550" valign="top">
-                        <obs id="usingDrugs" conceptId="165008"/>
+                        <obs id="anal_act" conceptId="165008"/>
 
                     </td>
                 </tr>
@@ -369,7 +408,7 @@
                 <tr id="people_inject_drugs">
                     <td width="550" valign="top">On average, how many times do you inject drugs per day(only PWID)</td>
                     <td width="550" valign="top">
-                        <obs id="usingDrugs" conceptId="165009"/>
+                        <obs id="number_of_Drugs" conceptId="165009"/>
 
                     </td>
                 </tr>
