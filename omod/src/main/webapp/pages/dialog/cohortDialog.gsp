@@ -17,8 +17,7 @@
 				<th>Age</th>
 				<th>Sex</th>
 				<th>Unique Patient Number</th>
-                <th>Enrollment Date (HIV Program)</th>
-                <th>ART Initiation Date</th>
+                <th>Enrollment Date (KP Program)</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,8 +38,6 @@
 				<td>${ patient.identifiers[0].identifier }</td>
 			    <td>${ enrollmentDates.get(patient.id) != null? (enrollmentDates.get(patient.id).value != null ?
 						dateFormat.format(enrollmentDates.get(patient.id).value) : "") : ""  }</td>
-                <td>${ artInitializationDates.get(patient.id) != null ?
-						dateFormat.format(artInitializationDates.get(patient.id).value) : "" }</td>
 			</tr>
 			<% } %>
 		</tbody>
