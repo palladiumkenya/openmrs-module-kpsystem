@@ -138,7 +138,7 @@
         <property name="name" value="KP Cohort Register" />
         <property name="description" value="KP Cohort Register" />
         <property name="apps"><set><ref bean="kenyaemr.app.reports" /></set></property>
-        <property name="template" value="kenyaemr:kp/KP_Cohort_Register.xls" />
+        <property name="template" value="kenyaemr:kp/KP_Cohort_Register_Template.xls" />
         <property name="repeatingSection" value="sheet:1,row:7,dataset:KPRegister" />
     </bean>
 

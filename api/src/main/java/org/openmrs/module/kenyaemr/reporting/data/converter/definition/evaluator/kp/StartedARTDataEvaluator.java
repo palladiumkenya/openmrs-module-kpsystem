@@ -21,6 +21,7 @@ import org.openmrs.module.reporting.evaluation.querybuilder.SqlQueryBuilder;
 import org.openmrs.module.reporting.evaluation.service.EvaluationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -41,11 +42,15 @@ public class StartedARTDataEvaluator implements PersonDataEvaluator {
                 "          when max(v.hiv_care_facility)=\"Provided elsewhere\" then (case when timestampdiff(Month,mid(max(concat(v.initiated_art_this_month,v.visit_date)),11),date(:endDate))=1 then 6\n" +
                 "                                                                        when max(v.initiated_art_this_month) = \"Yes\" then 2 else \"\" end)\n" +
                 "          when max(active_art) = \"No\" then 3 else \"\" end) when \"Negative\" then 4 else \"\" end as started_art\n" +
-                "from kp_etl.etl_client_registration r left outer join etl_hts_test t on r.client_id = t.client_id  left outer join kp_etl.etl_clinical_visit v on r.client_id = v.client_id\n" +
+                "from kp_etl.etl_client_registration r left outer join kp_etl.etl_hts_test t on r.client_id = t.client_id  left outer join kp_etl.etl_clinical_visit v on r.client_id = v.client_id\n" +
                 "where v.client_id is not null or t.client_id is not null\n" +
                 "group by r.client_id;";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
+        Date startDate = (Date)context.getParameterValue("startDate");
+        Date endDate = (Date)context.getParameterValue("endDate");
+        queryBuilder.addParameter("endDate", endDate);
+        queryBuilder.addParameter("startDate", startDate);
         queryBuilder.append(qry);
         Map<Integer, Object> data = evaluationService.evaluateToMap(queryBuilder, Integer.class, Object.class, context);
         c.setData(data);
