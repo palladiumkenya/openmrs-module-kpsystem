@@ -45,13 +45,26 @@
             jq("#service-referred select").prop('disabled', true);
             jq("#contact-person").prop('disabled', true);
             jq("#referral-outcome select").prop('disabled', true);
-
+            jq("#other_specify").hide();
             jq('#referrals-ordered :input[type=radio]').change(referralsOrderedSelected);
+
+            jq("#service-referred select").change(OtherSelected);
 
             beforeSubmit.push(function () {
             });
 
         })
+
+        function OtherSelected() {
+            var val = getValue("service-referred.value");
+            if(val == 5622){
+                jq("#other_specify").show();
+
+            }
+            else{
+                jq("#other_specify").hide();
+            }
+        }
 
         function referralsOrderedSelected() {
             var val = jq(this).val();
@@ -122,11 +135,23 @@
                     <td>
                         <!-- INSTITUTION REFERRED -->
                         <obs conceptId="160478AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="service-referred"
-                             answerConceptIds="164849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160546AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                             answerConceptIds="164849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160546AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5622"
                              answerLabels="Care and treatment,STI treatment,Other"
                              style="dropdown"/>
 
+
+
                     </td>
+                </tr>
+
+                <tr id="other_specify">
+                <td>
+                 <b>Other specify</b>
+                </td>
+                    <td>
+                 <obs conceptId="161011"  size="30" id="other"/>
+                </td>
+
                 </tr>
                 <tr>
                     <td>

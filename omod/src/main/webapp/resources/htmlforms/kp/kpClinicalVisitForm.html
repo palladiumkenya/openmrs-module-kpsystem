@@ -32,10 +32,15 @@
                 jq("#sti_treated input").prop('checked', false);
                 jq("#sti_results input").prop('checked', false);
                 jq("#sti_referred input").prop('checked', false);
+                jq("#sti_results input").attr("required","false");
                 jq("#sti_txt input").val('');
             }
             else{
                 jq("#sti_results input").prop("disabled", false);
+                jq("#sti_results input").prop('required', true);
+                jq("#sti_results input").attr('required', true);
+                $('#sti_results').attr('required');​​​​
+
 
             }
         }
@@ -868,8 +873,18 @@
         }
 
         var numberOfMaleCondoms  = function () {
+            var maleCondom = getField('malecondoms.value').val();
+            if (maleCondom !== "") {
 
+                var validated = /^([1-9]|[1-9][0-9]|[1-9][0-9][0-9])$/;
+                if (maleCondom.match(validated)) {
+                    getField('malecondoms.error').html('Should be between 0 and 200.').hide();
+                } else {
 
+                    getField('malecondoms.value').val("")
+                    getField('malecondoms.error').html('Should be between 0 and 200.').show();
+                }
+            }
         }
 
 
@@ -908,7 +923,10 @@
         $(document).ready(function () {
             // sti forms
             var pgender = "<lookup expression="patient.gender" />";
-            if(pgender=="M"){jq("#cervical_cancer").hide();}else{jq("#cervical_cancer").show()}
+            if(pgender=="M"){jq("#cervical_cancer").hide();
+                jq("#post_abortal").hide();
+            }else{jq("#cervical_cancer").show();
+                jq("#post_abortal").show();}
             jq('#sti_screened').click(StiScreened);
             jq('#sti_results').click(StiResults);
             jq('#sti_referred').click(StiReferred);
@@ -967,30 +985,22 @@
             //Mental validations
             jq('#men_screened').click(menScreened);
             jq('#men_results').click(menResults);
-
             jq('#men_referred').click(menReferred);
-
             jq("#hiv_selfreported input").change(hivTesting);
             jq("#hiv_tested input").change(hivTested);
             //jq("#hiv_selftest input").change(numberOfSelfTest);
             jq("#self_tested input").change(SelfTested);
             jq("#selftestResults input").change(selfTestedResults);
             jq("#confirm_test input").change(confirmTest);
-
             jq("#facility input").change(confirmFacility);
             jq("#linktoart input").change(linkToart);
             jq("#care_provided input").change(providedElseWhere);
             jq("#pep_selected input").change(onPEPSelected);
             jq("#exposure_other input").change(onOtherExposureTypeSelected);
-
             jq("#test_results input").change(test_resultsChanged);
             jq("#linked_to_art input").change(linkTo_ART);
             jq("#eligible_for_viral input").change(eligible_for_viral_load);
-
             jq("#malecondoms input").change(numberOfMaleCondoms);
-
-
-
 
             $("INPUT[type=text],TEXTAREA").attr("disabled", "disabled");
             jq("#Client_visit input:radio").attr('disabled',true);
@@ -1005,7 +1015,6 @@
             jq("#encounter-date input").prop("disabled", false);
             jq("#ConName input").prop("disabled", false);
             jq("#ConDate input").prop("disabled", false);
-
             jq("#sti_screened input").prop("disabled", false);
             jq("#tb_screened input").prop("disabled", false);
             jq("#hepb_screened input").prop("disabled", false);
@@ -1024,10 +1033,6 @@
             jq("#selftxt input").prop("disabled", false);
             jq("#disttxt input").prop("disabled", false);
             jq("#partner input").prop("disabled", false);
-
-
-
-
             jq("#care_provided input").prop("disabled", false);
 
 
@@ -1193,7 +1198,7 @@
                     <td width="300"><p>  <obs conceptId="165199"
                                               answerConceptIds="664,
                                                             703"  answerLabels="Negative,Positive"
-                                              style="radio" id="sti_results" />
+                                              style="radio" id="sti_results" required="false" />
                     </p></td>
                     <td ><p>  <obs id="sti_treated" conceptId="165200"
                                    style="radio" answerConceptIds="1065,1066" /></p></td>
@@ -1635,7 +1640,7 @@
                                     <obs conceptId="165247" answerConceptIds="1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerLabels="Yes,No" style="radio" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr id="post_abortal">
                                 <td>
                                     Post Abortal Care provided
                                 </td>
