@@ -34,9 +34,6 @@
 	<span class="ke-field-content">
 		<input name="startDate" id="startDate" class="date-picker"  />
 	</span>
-	<span>
-		<div id="error" ng-show="errorMsg">{{ errorMsg }}</div>
-	</span>
 	<label  class="ke-field-label">Which peer Educators</label>
 
 	<label class="ke-field-label">ID or name (3 chars min)</label>

@@ -113,14 +113,13 @@ public class EditRelationshipFragmentController {
 
 			Date today = new Date();
 			try{
-				if(startDate.after(today) || startDate == null) {
+				if( startDate == null || startDate.after(today)) {
 					errors.rejectValue("startDate", "Relationship start date can't be in the future");
 				}
 			}
 			catch(Exception e){
-				System.out.println("tested start date =" +startDate);
+				e.printStackTrace();
 			}
-
 
 			if(endDate != null && endDate.before(startDate)) {
 				errors.rejectValue("endDate", "Relationship end date can't be before start date");
