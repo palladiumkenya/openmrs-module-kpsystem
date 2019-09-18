@@ -48,7 +48,6 @@ kenyaemrApp.controller('PatientSearchForm', ['$scope', 'PatientService', functio
 kenyaemrApp.controller('PeerSearchForm', ['$scope', 'PatientService', function($scope, patientService) {
 
 	$scope.query = '';
-
 	$scope.init = function() {
 		$scope.which = "";
 		$scope.$evalAsync($scope.updateSearch); // initiate an initial search
@@ -155,19 +154,25 @@ kenyaemrApp.controller('PeerSearchResults', ['$scope', '$http','$q','$timeout', 
 	$scope.onPeerEducatorResultClick = function(peer) {
         $scope.effectiveDate = angular.element('#startDate').val();
 		$scope.datecopy = angular.copy( $scope.effectiveDate);
-		var date = getMonthDays($scope.datecopy);
-		$scope.effectiveDate = date +'-'+ $scope.effectiveDate;
-		var dateFormat = "yy-mm-dd";
-		var currentDate = $.datepicker.formatDate(dateFormat, new Date($scope.effectiveDate));
+		if($scope.effectiveDate == undefined || $scope.effectiveDate == null || $scope.effectiveDate == "" ){
+			alert("Please select date to continue");
 
-		var finalDate ='';
-		if(currentDate.charAt(0)   === "-"){
-			finalDate = currentDate.substring(1);
-		}else {
-			finalDate = currentDate
+			return ;
 		}
-		 ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: peer.id ,effectiveDate:finalDate});
+		else{
+			var date = getMonthDays($scope.datecopy);
+			$scope.effectiveDate = date +'-'+ $scope.effectiveDate;
+			var dateFormat = "yy-mm-dd";
+			var currentDate = $.datepicker.formatDate(dateFormat, new Date($scope.effectiveDate));
 
+			var finalDate ='';
+			if(currentDate.charAt(0)   === "-"){
+				finalDate = currentDate.substring(1);
+			}else {
+				finalDate = currentDate
+			}
+			ui.navigate('kenyaemr', 'peerCalender/peerViewClients', { patientId: peer.id ,effectiveDate:finalDate});
+		}
 	};
 
 

@@ -25,7 +25,15 @@
 
 		${ ui.includeFragment("kenyaemr", "visitMenu", [ patient: currentPatient, visit: activeVisit ])}
 
-
+		<ul class="float-left">
+			<h3>General Actions</h3>
+			<li class="float-left" style="margin-top: 7px">
+				<a href="${ ui.pageLink("registrationapp", "registerPatient", [appId:"referenceapplication.registrationapp.registerPatient"]) }" class="float-left">
+					<i class="fa fa-user"></i>
+					Register Client
+				</a>
+			</li>
+		</ul>
 		<ul>
 			<h3>Visit Actions</h3>
 
@@ -60,7 +68,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: communityOutreachForms, onFormClick: onCOFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: communityOutreachForms, onFormClick: onCOFormClick ]) }
 
 			</a>
 			</li>
@@ -78,7 +86,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: clinicalForms, onFormClick: onCFFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: clinicalForms, onFormClick: onCFFormClick ]) }
 
 			</a>
 			</li>
@@ -96,7 +104,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: programLevelForms, onFormClick: onPLFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: programLevelForms, onFormClick: onPLFormClick ]) }
 
 			</a>
 			</li>
@@ -115,7 +123,7 @@
 					}
 				%>
 
-				${ ui.includeFragment("kenyaui", "widget/formStack", [ forms: otherForms, onFormClick: onOtherFormClick ]) }
+				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: otherForms, onFormClick: onOtherFormClick ]) }
 
 			</a>
 			</li>

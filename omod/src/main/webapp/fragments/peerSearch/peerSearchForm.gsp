@@ -20,6 +20,8 @@
 				}
 			});
 		});
+
+
 </script>
 <style>
 .ui-datepicker-calendar {
@@ -30,7 +32,10 @@
 <form id="${ id }" ng-controller="PeerSearchForm" ng-init="init()">
 	<label  class="ke-field-label">Select Date</label>
 	<span class="ke-field-content">
-		<input name="startDate" id="startDate" class="date-picker" />
+		<input name="startDate" id="startDate" class="date-picker"  />
+	</span>
+	<span>
+		<div id="error" ng-show="errorMsg">{{ errorMsg }}</div>
 	</span>
 	<label  class="ke-field-label">Which peer Educators</label>
 
