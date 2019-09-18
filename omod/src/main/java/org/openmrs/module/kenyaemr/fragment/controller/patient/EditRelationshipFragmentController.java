@@ -26,6 +26,8 @@ import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +36,7 @@ import java.util.List;
  * Controller for editing patient relationships in the registration app
  */
 public class EditRelationshipFragmentController {
+	static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
 	public void controller(@FragmentParam(value = "relationship", required = false) Relationship relationship,
 						   @FragmentParam("returnUrl") String returnUrl,
@@ -109,13 +112,36 @@ public class EditRelationshipFragmentController {
 			}
 
 			Date today = new Date();
-			if(startDate.after(today)) {
-				errors.rejectValue("startDate", "Relationship start date can't be in the future");
+			try{
+				if(startDate != null && startDate.after(today)) {
+					errors.rejectValue("startDate", "Relationship start date can't be in the future");
+				}
+			}
+			catch(Exception e){
+				e.printStackTrace();
 			}
 
-			if(endDate.before(startDate)) {
+
+			if(endDate != null && endDate.before(startDate)) {
 				errors.rejectValue("endDate", "Relationship end date can't be before start date");
 			}
+
+			if(startDate == null ) {
+				errors.rejectValue("startDate", "Relationship start date can't be empty");
+			}
+
+			for (Relationship relationship : Context.getPersonService().getRelationshipsByPerson(patient)) {
+				try {
+					if( relationship.getEndDate() ==null){
+						errors.rejectValue("endDate", "This client already have an active peer educator, Please end the current one first. ");
+						return;
+					}
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
 		}
 
 		/**
