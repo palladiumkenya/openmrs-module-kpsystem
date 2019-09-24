@@ -79,7 +79,9 @@
             });
             jq("#other-hotspots-specify").hide();
             jq('#hotspot-type select').click(onOtherHotspotSelected);
-      //Gender validations
+            jq("#mobile input").change(validateContactNumber);
+
+            //Gender validations
             if (pgender == 'F') {
                 jq("#key_pop_type input[value=160578]").prop("checked", false);
                 jq("#key_pop_type input[value=165084]").prop("checked", false);
@@ -96,24 +98,6 @@
                 jq("#key_pop_type input[value=165108]").prop("disabled", true);
                 jq("#key_pop_type input[value=165107]").prop("disabled", false);
             }
-
-            $('input').on('click',function () {
-
-                var mobileNumber = getField('mobile.value').val();
-                if (mobileNumber !== "") {
-
-                    var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-                    if (mobileNumber.match(phoneNum)) {
-                        getField('mobile.error').html('Please enter valid phone number.').hide();
-                    } else {
-                        getField('mobile.error').html('Please enter valid phone number.').show();
-                        $('#w55').val('');
-                        return false;
-                    }
-                }
-            });
-
-
 
             $('input').on('click',function () {
 
@@ -217,6 +201,17 @@
             }
             else{
                 jq("#other-hotspots-specify").hide();
+            }
+        }
+        function validateContactNumber() {
+            var mobile_number = getField('mobile.value').val();
+            var regex = /^(?:\+254|0|254)(\d{9})$/
+            if(!regex.test(mobile_number)){
+                getField('mobile.value').val('');
+                getField('mobile.error').html('Please enter valid phone number.').show();
+            }
+            else{
+                getField('mobile.error').html('Please enter valid phone number.').hide();
             }
         }
         beforeSubmit.push(function() {

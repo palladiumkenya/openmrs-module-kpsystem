@@ -48,9 +48,17 @@
             jq("#other_specify").hide();
             jq('#referrals-ordered :input[type=radio]').change(referralsOrderedSelected);
 
+            jq("#referral-date input").change(DateReffered);
             jq("#service-referred select").change(OtherSelected);
 
             beforeSubmit.push(function () {
+                var datereferred = getField('referral-date.value').val();
+                var reffer = getValue('referrals-ordered.value');
+
+                if (reffer==1065 &amp;&amp;datereferred =="") {
+                    getField('referral-date.error').html('Select referral date .').show();
+                    return false;
+                }
             });
 
         })
@@ -63,6 +71,23 @@
             }
             else{
                 jq("#other_specify").hide();
+            }
+        }
+
+
+        function DateReffered() {
+
+            var Referred_date = getValue('referral-date.value');
+            var Encounter_date= getValue('encounter-date.value')
+            var DateReferred= moment(moment(moment(Referred_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(Encounter_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD'));
+            if (DateReferred==true) {
+                getField('referral-date.error').html('Referral date can not be before encounter date .').show();
+                jq("#referral-date input").val('');
+                return false;
+            }
+
+            else{
+                getField('referral-date.error').html('Referral date can not be before encounter date .').hide();
             }
         }
 
@@ -115,7 +140,7 @@
                              style="radio"/>
                            &#160;&#160;&#160;&#160;&#160;
                         <b>Date </b>
-                        <obs conceptId="161561AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true" id="referral-date" />
+                        <obs conceptId="161561AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="false" id="referral-date" />
                     </td>
                 </tr>
                 <tr>

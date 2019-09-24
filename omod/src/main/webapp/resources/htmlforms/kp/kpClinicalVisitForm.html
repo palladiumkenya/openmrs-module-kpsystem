@@ -868,20 +868,6 @@
 
         }
 
-        var numberOfMaleCondoms  = function () {
-            var maleCondom = getField('malecondoms.value').val();
-            if (maleCondom !== "") {
-
-                var validated = /^([1-9]|[1-9][0-9]|[1-9][0-9][0-9])$/;
-                if (maleCondom.match(validated)) {
-                    getField('malecondoms.error').html('Should be between 0 and 200.').hide();
-                } else {
-
-                    getField('malecondoms.value').val("")
-                    getField('malecondoms.error').html('Should be between 0 and 200.').show();
-                }
-            }
-        }
 
         var test_resultsChanged  = function () {
             $('#pep_prep').find('*').prop('disabled',false);
@@ -907,6 +893,10 @@
                 $('#care_and_treatment').find('input:text').val('');
                 $('#care_and_treatment').find("select").prop("selectedIndex",0).addClass('disabled');
                 jq("#linkedFacility input").prop("disabled", true).addClass('disabled');
+
+                $('#pepandprep').find('*').prop('disabled',false);
+                $('#pepandprep').find('select').prop('disabled',false);
+                $('#pepandprep').find("select").prop("selectedIndex",0).removeClass('disabled');
             }
 
         }
@@ -992,7 +982,7 @@
             jq("#test_results input").change(test_resultsChanged);
             jq("#linked_to_art input").change(linkTo_ART);
             jq("#eligible_for_viral input").change(eligible_for_viral_load);
-            jq("#malecondoms input").change(numberOfMaleCondoms);
+
 
             $("INPUT[type=text],TEXTAREA").attr("disabled", "disabled");
             jq("#Client_visit input:radio").attr('disabled',true);
@@ -1033,6 +1023,7 @@
         });
         //Before Submit
         beforeSubmit.push(function() {
+            var validated = /^([1-9]|[1-9][0-9]|[1-9][0-9][0-9])$/;
             var sti_screened = getValue('sti_screened.value');
             var tb_screened = getValue('tb_screened.value');
             var hepb_screened = getValue('hepb_screened.value');
@@ -1057,6 +1048,11 @@
             var alcohol_results = getValue('alcohol_results.value');
             var cerv_results = getValue('cerv_results.value');
             var prep_results = getValue('prep_results.value');
+
+            var NumberOfMaleCondomGiven = getField('malecondoms.value').val();
+            var NumberOfFemaleCondomsGiven = getField('femalecondoms.value').val();
+            var NumberOfSyringesGiven = getField('needles.value').val();
+            var NumberOfLubesGiven = getField('lubes.value').val();
 
            // var violence_results  = getField('violence_results.value').val();
             var risk_reduction_results = getValue('risk_results.value');
@@ -1113,6 +1109,25 @@
                 return false;
             }
 
+            if (!NumberOfLubesGiven.match(validated)) {
+                getField('lubes.error').html('Should be between 1 and 200.').show();
+                return false;
+            }
+
+            if (!NumberOfMaleCondomGiven.match(validated)) {
+                getField('malecondoms.error').html('Should be between 1 and 200.').show();
+                return false;
+            }
+
+            if (!NumberOfFemaleCondomsGiven.match(validated)) {
+                getField('femalecondoms.error').html('Should be between 1 and 200.').show();
+                return false;
+            }
+
+            if (!NumberOfSyringesGiven.match(validated)) {
+                getField('needles.error').html('Should be between 1 and 200.').show();
+                return false;
+            }
 
 
         });
@@ -1760,7 +1775,7 @@
                                     Number of needles and syringes given:
                                 </td>
                                 <td>
-                                    <obs id="lubes" conceptId="165058"/>
+                                    <obs id="needles" conceptId="165058"/>
                                 </td>
                             </tr>
                         </table>
