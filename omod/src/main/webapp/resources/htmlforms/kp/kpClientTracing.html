@@ -53,6 +53,9 @@
 			}
 		}
 
+		var KEY_POP_TYPE = "<lookup expression="fn.latestObs(164929).getValueCoded()"/>";
+		var gender = "<lookup expression="patient.gender" />";
+
 		jQuery(function ($) {
 			jq("#true-status-other").hide();
 			jq("#other-informant").hide();
@@ -166,7 +169,16 @@
 
 			jq('#first_tracing-outcome').click(kpReached);
 			jq('#second_tracing_outcome').click(Seecond_atempt_kpReached);
-			//jq('#sti_screened').click(StiScreened);
+
+
+			if(KEY_POP_TYPE == 105 ){
+				$('#w34_3').prop("disabled", true);
+
+			}
+			else {
+				jq("#134236 input").prop("disabled", false);
+			}
+
 
 
 		});

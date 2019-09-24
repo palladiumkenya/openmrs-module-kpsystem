@@ -56,14 +56,16 @@
             jq("#incident-date input").change(dateValidations);
             jq("#first-response-date input").change(dateValidations);
             jq("#final_date input").change(dateValidations);
+            jq("#sexual_abuse input").change(SexualAbuse);
 
         });
+
+
         var dateValidations  = function () {
             var incident_date = getValue('incident-date.value');
             var first_response_date = getValue('first-response-date.value');
             var  finally_resolved_date= getValue('final_date.value');
             var today = moment().format('YYYY-MM-DD');
-
 
             var isIncidentInFuture= moment(moment(moment(today, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(incident_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD'));
             var isFirstResponseDateBeforeIncident= moment(moment(moment(first_response_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD')).isBefore(moment(moment(incident_date, 'YYYY-MM-DD').toDate()).format('YYYY-MM-DD'));
@@ -100,6 +102,19 @@
             else{
                 jq('#other-perpetrator-specify :input').prop('disabled', true);
                 jq('#other-perpetrator-specify input').val('');
+            }
+        }
+        function SexualAbuse() {
+            var sexauly_abused = getValue("sexual_abuse.value");
+            if(sexauly_abused==152370){
+
+                $("#sexual_related :input").attr("disabled", true);
+                $('#sexual_related').find('input:text').val('');
+                $('#sexual_related').find("select").prop("selectedIndex",0).addClass('disabled');
+            }
+            else{
+                $('#sexual_related').find('*').prop('disabled',false);
+                $('#sexual_related').find("select").prop("selectedIndex",0).removeClass('disabled');
             }
         }
         beforeSubmit.push(function() {
@@ -160,7 +175,7 @@
                         <td>
                         The form of incident:
                         </td>
-                        <td>
+                        <td id="form_of_incident">
                             <div style="float: left; padding-right: 50px">
                             <obs conceptId="165228" answerConceptId="123007" answerLabel="Verbal Abuse" style="checkbox" /><br />
                             <obs conceptId="165228" answerConceptId="152292" answerLabel="Assault/physical abuse" style="checkbox" /><br />
@@ -168,7 +183,7 @@
                             </div>
 
                           <div style="float: left;padding-right: 50px">
-                            <obs conceptId="165228" answerConceptId="152370" answerLabel="Rape/Sexual Abuse" style="checkbox" /><br />
+                            <obs id="sexual_abuse" conceptId="165228" answerConceptId="152370" answerLabel="Rape/Sexual Abuse" style="checkbox" /><br />
                             <obs conceptId="165228" answerConceptId="156761" answerLabel="Illegal arrest" style="checkbox" /><br />
                             <obs conceptId="165228" answerConceptId="165161"  answerLabel="Harassment" style="checkbox" /><br />
 
@@ -354,11 +369,10 @@
         </fieldset>
         <fieldset>
             <legend>Services</legend>
-            <table class="simple-table">
+            <table class="simple-table" id="sexual_related">
                 <tr>
                     <td><b>Select the applicable post rape care service provided:</b></td>
                 </tr>
-
                 <tr>
                     <td>
                         a) HIV testing service
@@ -459,6 +473,11 @@
                         <obs class="other-support-services" conceptId="163108"  rows="2" cols="50"/>
                     </td>
                 </tr>
+
+            </table>
+            <table class="simple-table">
+
+
                 <tr>
                     <td width="156" valign="top" colspan="2"><p> <b>Non sexual violence</b>:</p></td>
                 </tr>
@@ -529,6 +548,7 @@
                         <obs id="final_date" conceptId="165224" allowFutureDates="false" />
                     </td>
                 </tr>
+
             </table>
 
         </fieldset>

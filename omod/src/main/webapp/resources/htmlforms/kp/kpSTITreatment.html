@@ -37,7 +37,6 @@
             jq('#given-lubricants :input[type=radio]').change(lubesGiven);
             jq("#returnVisitDate input").change(nextAppointmentDate);
 
-
             $('input').on('click',function () {
                 $('#infected').find(':checkbox').each(function(){
 
@@ -177,13 +176,15 @@
         }
 
         beforeSubmit.push(function () {
-
+            var validated = /^([1-9]|[1-9][0-9]|[1-9][0-9][0-9])$/;
             var nameOfReferredFacility = getField('referred-facility-name.value').val();
             var numberOfLubesGiven = getField('lubricants-number.value').val();
             var numberOfCondomsGiven = getField('condoms-number.value').val();
             var referredToFacility = getValue('referred-facility.value');
             var lubesGiven = getValue('given-lubricants.value');
             var condomsGiven = getValue('given-condoms.value');
+            var NumberOfCondomsGiven = getField('condoms-number.value').val();
+            var NumberOfLubesGiven = getField('lubricants-number.value').val();
 
 
             if (referredToFacility == 1065 &amp;&amp; nameOfReferredFacility == "") {
@@ -200,6 +201,20 @@
                 getField('condoms-number.error').html('Number of condoms given is required').show();
                 return false;
             }
+
+            if (!NumberOfLubesGiven.match(validated)) {
+                getField('lubricants-number.error').html('Should be between 1 and 200.').show();
+                return false;
+            }
+
+            if (!NumberOfCondomsGiven.match(validated)) {
+                    getField('condoms-number.error').html('Should be between 1 and 200.').show();
+                return false;
+            }
+
+
+
+
         });
 
     </script>
