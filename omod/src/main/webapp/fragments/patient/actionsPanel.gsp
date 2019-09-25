@@ -25,15 +25,6 @@
 
 		${ ui.includeFragment("kenyaemr", "visitMenu", [ patient: currentPatient, visit: activeVisit ])}
 
-		<ul class="float-left">
-			<h3>General Actions</h3>
-			<li class="float-left" style="margin-top: 7px">
-				<a href="${ ui.pageLink("registrationapp", "registerPatient", [appId:"referenceapplication.registrationapp.registerPatient"]) }" class="float-left">
-					<i class="fa fa-user"></i>
-					Register Client
-				</a>
-			</li>
-		</ul>
 		<ul>
 			<h3>Visit Actions</h3>
 
