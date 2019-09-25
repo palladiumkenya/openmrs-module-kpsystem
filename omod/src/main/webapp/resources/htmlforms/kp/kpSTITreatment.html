@@ -16,7 +16,7 @@
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
     <script type="text/javascript">
 
-
+        var pgender = "<lookup expression="patient.gender" />";
         jQuery(function ($) {
             jq(".other-syndrome").hide();
             jq(".other-drug").hide();
@@ -36,6 +36,25 @@
             jq('#given-condoms :input[type=radio]').change(condomsGiven);
             jq('#given-lubricants :input[type=radio]').change(lubesGiven);
             jq("#returnVisitDate input").change(nextAppointmentDate);
+
+
+            if (pgender == 'F') {
+                jq('#orchitis input').prop('disabled', true).addClass('disabled');
+                jq('#virginitis input').prop('disabled', false).removeClass('disabled');
+                jq('#cervicitis input').prop('disabled', false).removeClass('disabled');
+                jq('#pelvic input').prop('disabled', false).removeClass('disabled');
+
+            }
+            if (pgender == 'M') {
+                jq('#orchitis input').prop('disabled', false).removeClass('disabled');
+                jq('#virginitis input').prop('disabled', true).addClass('disabled');
+                jq('#cervicitis input').prop('disabled', true).addClass('disabled');
+                jq('#pelvic input').prop('disabled', true).addClass('disabled');
+
+            }
+
+
+
 
             $('input').on('click',function () {
                 $('#infected').find(':checkbox').each(function(){
@@ -340,7 +359,7 @@
                              answerLabel="Genital Ulcer Disease" style="checkbox"
                         />
                         <br />
-                        <obs conceptId="165098"
+                        <obs conceptId="165098" id="pelvic"
                              answerConceptId="130644AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Pelvic Inflammation Disease" style="checkbox"/>
                         <br />
@@ -356,7 +375,7 @@
                              answerConceptId="139505AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Genital Warts" style="checkbox"/>
                         <br />
-                        <obs conceptId="165098"
+                        <obs conceptId="165098" id="cervicitis"
                              answerConceptId="116995AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                              answerLabel="Cervicitis" style="checkbox"/>
                         <br />
@@ -376,7 +395,7 @@
                          answerConceptId="130309AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Pharyngeal Discharge" style="checkbox"/>
                     <br />
-                    <obs conceptId="165098"
+                    <obs conceptId="165098" id="virginitis"
                          answerConceptId="121809AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Vaginitis" style="checkbox"/>
                     <br />
@@ -396,7 +415,7 @@
                          answerConceptId="110172AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Pharyngeal Ulcer" style="checkbox"/>
                     <br />
-                    <obs conceptId="165098"
+                    <obs conceptId="165098" id="orchitis"
                          answerConceptId="114732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                          answerLabel="Orchitis" style="checkbox"/>
                     <br />
