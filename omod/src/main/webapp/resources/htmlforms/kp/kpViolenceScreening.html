@@ -42,6 +42,8 @@
     <script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+
+
             var pgender = "<lookup expression="patient.gender" />";
             if(pgender=="M"){jq("#cotraceptive").hide();
 
@@ -50,6 +52,8 @@
                 {jq("#cotraceptive").show();
 
             }
+            $("#sexual_related :input").attr("disabled", true);
+            $('#sexual_related').find("select").prop("selectedIndex",0).addClass('disabled');
 
             jq('#other-perpetrator-specify :input').prop('disabled', true);
             jq('#other-perpetrator :input[type=checkbox]').click(onOtherPerpetratorSelected);
@@ -108,13 +112,14 @@
             var sexauly_abused = getValue("sexual_abuse.value");
             if(sexauly_abused==152370){
 
+                $('#sexual_related').find('*').prop('disabled',false);
+                $('#sexual_related').find("select").prop("selectedIndex",0).removeClass('disabled');
+            }
+            else{
+
                 $("#sexual_related :input").attr("disabled", true);
                 $('#sexual_related').find('input:text').val('');
                 $('#sexual_related').find("select").prop("selectedIndex",0).addClass('disabled');
-            }
-            else{
-                $('#sexual_related').find('*').prop('disabled',false);
-                $('#sexual_related').find("select").prop("selectedIndex",0).removeClass('disabled');
             }
         }
         beforeSubmit.push(function() {
