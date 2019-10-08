@@ -13,12 +13,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
 import org.openmrs.Patient;
+import org.openmrs.PatientIdentifierType;
 import org.openmrs.Relationship;
 import org.openmrs.Visit;
+import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.context.ContextAuthenticationException;
 import org.openmrs.module.kenyaemr.EmrConstants;
 import org.openmrs.module.kenyaemr.api.KenyaEmrService;
+import org.openmrs.module.kenyaemr.metadata.KpMetadata;
 import org.openmrs.module.kenyaemr.regimen.RegimenChange;
 import org.openmrs.module.kenyaemr.regimen.RegimenChangeHistory;
 import org.openmrs.module.kenyaemr.regimen.RegimenManager;
@@ -26,14 +29,17 @@ import org.openmrs.module.kenyaemr.util.EmrUiUtils;
 import org.openmrs.module.kenyaui.KenyaUiUtils;
 import org.openmrs.module.kenyaui.annotation.AppAction;
 import org.openmrs.module.kenyaui.annotation.PublicAction;
+import org.openmrs.module.metadatadeploy.MetadataUtils;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.fragment.action.SuccessResult;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Fragment actions generally useful for KenyaEMR
@@ -91,6 +97,25 @@ public class EmrUtilsFragmentController {
 	public SuccessResult voidRelationship(@RequestParam("relationshipId") Relationship relationship, @RequestParam("reason") String reason) {
 		Context.getPersonService().voidRelationship(relationship, reason);
 		return new SuccessResult("Relationship voided");
+	}
+
+	/**
+	 * Checks whether provided identifier(s) is already assigned
+	 * @return simple object with statuses for the different identifiers
+	 */
+	public SimpleObject identifierExists(@RequestParam(value = "upn", required = false) String upn) {
+		boolean upnExists = false;
+		PatientService patientService = Context.getPatientService();
+
+		if (upn != null && upn != "") {
+			List<Patient> patientsFound = patientService.getPatients(null, upn.trim(), Arrays.asList(MetadataUtils.existing(PatientIdentifierType.class, KpMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER)), true );
+			if (patientsFound.size() > 0)
+				upnExists = true;
+		}
+
+		return SimpleObject.create(
+				"upnExists",upnExists
+				);
 	}
 
 	/**
