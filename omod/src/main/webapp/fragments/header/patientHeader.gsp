@@ -27,8 +27,7 @@
 		<div ng-repeat="identifier in patient.identifiers">
 			<span class="ke-identifier-type">{{ identifier.identifierType }}</span>
 			<span class="ke-identifier-value">{{ identifier.identifier }}</span>
-		</div>
-		<div>
+
 			<img style="cursor: pointer" src="${ ui.resourceLink("kenyaui", "images/glyphs/edit.png") }" onclick="ui.navigate('${ ui.pageLink("registrationapp", "editSection", [ patientId: patient.id,sectionId: "patient-identification-section", appId:"referenceapplication.registrationapp.registerPatient", returnUrl: ui.thisUrl() ]) }')" />
 		</div>
 	</div>
