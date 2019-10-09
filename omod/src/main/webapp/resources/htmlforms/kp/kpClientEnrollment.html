@@ -382,8 +382,8 @@
             }
             if (ccc_number != "") {
 
-                var regex = /^(?:\+254|0|254)(\d{9})$/
-                if(!regex.test(ccc_number)){
+              //  var regex = /^(?:\+254|0|254)(\d{9})$/
+                if(/^[0-9]{10}$/.test(ccc_number) === false) {
                     getField('ccc-number.value').val('');
                     getField('ccc-number.error').html('CCC number can not be less than 10 digits.').show();
                     return false;

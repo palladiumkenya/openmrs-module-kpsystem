@@ -29,7 +29,7 @@ import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.kenyaemr.EmrConstants;
-import org.openmrs.module.kenyaemr.Metadata;
+import org.openmrs.module.kenyaemr.metadata.KpMetadata;
 import org.openmrs.module.kenyaui.KenyaUiUtils;
 import org.openmrs.module.kenyaui.annotation.SharedPage;
 import org.openmrs.ui.framework.Link;
@@ -162,7 +162,7 @@ public class FamilyAndPartnerTestingPageController {
 			String genderCode = person.getGender().toLowerCase();
 			String linkUrl, linkIcon;
 			age = new StringBuilder().append(person.getAge()).append(" Years").toString();
-			PatientIdentifierType pit = patientService.getPatientIdentifierTypeByUuid(Metadata.IdentifierType.UNIQUE_PATIENT_NUMBER);
+			PatientIdentifierType pit = patientService.getPatientIdentifierTypeByUuid(KpMetadata._PatientIdentifierType.UNIQUE_PATIENT_NUMBER);
 			List<PatientIdentifier> identifierList = patientService.getPatientIdentifiers(null, Arrays.asList(pit), null, Arrays.asList(patientService.getPatient(person.getId())),null);
 			if (identifierList.size() > 0) {
 				UPN = identifierList.get(0);
