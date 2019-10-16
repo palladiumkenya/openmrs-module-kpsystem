@@ -70,7 +70,8 @@ public class SecurityMetadata extends AbstractMetadataBundle {
 				EmrConstants.APP_ADMIN,
 				DqConstants.APP_DATAQUALITY,
 				DqConstants.APP_DATAMANAGER,
-				EmrConstants.APP_FACILITY_DASHBOARD
+				EmrConstants.APP_FACILITY_DASHBOARD,
+				EmrConstants.APP_PEER_CALENDER
 		};
 
 		// Ensure a privilege exists for each app. App framework does create these but not always before this
@@ -100,7 +101,9 @@ public class SecurityMetadata extends AbstractMetadataBundle {
 						app(EmrConstants.APP_REGISTRATION),
 						app(EmrConstants.APP_DIRECTORY),
 						app(EmrConstants.APP_FACILITIES),
-						app(EmrConstants.APP_FACILITY_DASHBOARD)
+						app(EmrConstants.APP_FACILITY_DASHBOARD),
+						app(EmrConstants.APP_PEER_CALENDER)
+
 				)
 		));
 
@@ -111,7 +114,20 @@ public class SecurityMetadata extends AbstractMetadataBundle {
 						app(EmrConstants.APP_INTAKE),
 						app(EmrConstants.APP_DIRECTORY),
 						app(EmrConstants.APP_FACILITIES),
-						app(EmrConstants.APP_FACILITY_DASHBOARD)
+						app(EmrConstants.APP_FACILITY_DASHBOARD),
+						app(EmrConstants.APP_PEER_CALENDER)
+				)
+		));
+
+		install(role(_Role.PEER_EDUCATOR, "Can access peer calendar",
+				idSet(_Role.API_PRIVILEGES_VIEW_AND_EDIT),
+				idSet(
+						app(EmrConstants.APP_REGISTRATION),
+						app(EmrConstants.APP_INTAKE),
+						app(EmrConstants.APP_DIRECTORY),
+						app(EmrConstants.APP_FACILITIES),
+						app(EmrConstants.APP_FACILITY_DASHBOARD),
+						app(EmrConstants.APP_PEER_CALENDER)
 				)
 		));
 
@@ -128,6 +144,7 @@ public class SecurityMetadata extends AbstractMetadataBundle {
 						app(DqConstants.APP_DATAQUALITY),
 						app(DqConstants.APP_DATAMANAGER),
 						app(EmrConstants.APP_FACILITY_DASHBOARD),
+						app(EmrConstants.APP_PEER_CALENDER),
 						_Privilege.MANAGE_DRUG_ORDERS
 				)
 		));
@@ -143,6 +160,7 @@ public class SecurityMetadata extends AbstractMetadataBundle {
 						app(EmrConstants.APP_DIRECTORY),
 						app(EmrConstants.APP_FACILITIES),
 						app(EmrConstants.APP_FACILITY_DASHBOARD),
+						app(EmrConstants.APP_PEER_CALENDER),
 						_Privilege.MANAGE_DRUG_ORDERS
 				)
 		));
@@ -155,7 +173,8 @@ public class SecurityMetadata extends AbstractMetadataBundle {
 						app(EmrConstants.APP_DIRECTORY),
 						app(EmrConstants.APP_FACILITIES),
 						app(DqConstants.APP_DATAQUALITY),
-						app(EmrConstants.APP_FACILITY_DASHBOARD)
+						app(EmrConstants.APP_FACILITY_DASHBOARD),
+						app(EmrConstants.APP_PEER_CALENDER)
 				)
 		));
 
@@ -165,7 +184,8 @@ public class SecurityMetadata extends AbstractMetadataBundle {
 						app(EmrConstants.APP_ADMIN),
 						app(EmrConstants.APP_DIRECTORY),
 						app(EmrConstants.APP_FACILITIES),
-						app(EmrConstants.APP_FACILITY_DASHBOARD)
+						app(EmrConstants.APP_FACILITY_DASHBOARD),
+						app(EmrConstants.APP_PEER_CALENDER)
 				)
 		));
 

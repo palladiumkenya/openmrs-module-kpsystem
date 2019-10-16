@@ -81,6 +81,11 @@
             jq("#other-hotspots-specify").hide();
             jq('#hotspot-type select').click(onOtherHotspotSelected);
             jq("#mobile input").change(validateContactNumber);
+            jq("#kp-id input").change(validateUpnNumber);
+
+
+
+
 
             jq('#upnError').hide();
             jq("#hiv-id input[type=text]").blur(checkForExistingPatientIdentifiers);
@@ -218,6 +223,25 @@
                 getField('mobile.error').html('Please enter valid phone number.').hide();
             }
         }
+
+
+        function validateUpnNumber() {
+
+            var upn = jq('#kp-id input[type=text]').val();
+            if (upn != "") {
+                if(upn.length  &gt; 29 &amp;&amp;  upn.length &lt; 33) {
+                    $("input[name='w9'].error").html("Invalid Unique Identifier Code(accepts between 29 and 33 characters for existing UIC)").hide();
+
+                }
+                else{
+                    jq('#kp-id input[type=text].error').html("Invalid Unique Identifier Code(accepts between 29 and 33 characters for existing UIC)").show();
+                    jq('#kp-id input[type=text]').val('');
+                }
+            }
+
+        }
+
+
         beforeSubmit.push(function() {
             var hotspot_frequented = getField('hotspot_frequented.value').val();
             var start_sex = getField("startSex.value").val();
@@ -306,6 +330,7 @@
                 <td>
                     <span id="kp-id"><patient id="upn" field="identifier" identifierTypeId="b7bfefd0-239b-11e9-ab14-d663bd873d93" /></span>
                     <span id="upnError" class="error"></span>
+
                 </td>
                 <tr>
                     <td>Alternative Contact Person</td>
