@@ -45,7 +45,8 @@ import java.util.List;
 @Component
 @Builds({"kenyaemr.etl.common.report.outreachWorkerSummary"})
 public class OutreachWorkerSummaryReportBuilder extends AbstractHybridReportBuilder {
-    public static final String DATE_FORMAT = "dd/MM/yyyy";
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
+
 
     @Override
     protected Mapped<CohortDefinition> buildCohort(HybridReportDescriptor descriptor, PatientDataSetDefinition dsd) {

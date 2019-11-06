@@ -229,12 +229,12 @@
 
             var upn = jq('#kp-id input[type=text]').val();
             if (upn != "") {
-                if(upn.length  &gt; 29 &amp;&amp;  upn.length &lt; 33) {
-                    $("input[name='w9'].error").html("Invalid Unique Identifier Code(accepts between 29 and 33 characters for existing UIC)").hide();
+                if(upn.length  &gt; 28 &amp;&amp;  upn.length &lt; 33) {
+                    jq("#upnError").text("Invalid Unique Identifier Code(accepts between 29 and 33 characters for existing UIC)").hide();
 
                 }
                 else{
-                    jq('#kp-id input[type=text].error').html("Invalid Unique Identifier Code(accepts between 29 and 33 characters for existing UIC)").show();
+                    jq("#upnError").text("Invalid Unique Identifier Code(accepts between 29 and 33 characters for existing UIC)").show();
                     jq('#kp-id input[type=text]').val('');
                 }
             }
@@ -249,12 +249,7 @@
             var using_drugs = getField("usingDrugs.value").val();
             var number_of_drugs = getField('number_of_Drugs.value').val();
             var upn = jq('#kp-id input[type=text]').val();
-            if (PATIENT_HAS_UPN) {
-                if(upn.length &gt; 33) {
-                    jq("#upnError").text("Invalid Unique Identifier Code(accepts maximum 33 digits for existing UIC)").show();
-                    return false;
-                }
-            }
+
 
             if(number_of_drugs!=""){
                 if (Number(number_of_drugs) > Number(0) &amp;&amp; Number(number_of_drugs) &lt; Number(200))

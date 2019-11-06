@@ -183,7 +183,7 @@
     <h2>Diagnosis:</h2>
     <table>
          <tr>
-             <td width="30%">
+             <td width="30%" height="50%">
         <encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>
 
              </td>
