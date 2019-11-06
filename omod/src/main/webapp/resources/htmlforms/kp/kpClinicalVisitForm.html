@@ -1109,27 +1109,23 @@
                 return false;
             }
 
-            if (!NumberOfLubesGiven.match(validated)) {
-                getField('lubes.error').html('Should be between 1 and 200.').show();
-                return false;
-            }
-
-            if (!NumberOfMaleCondomGiven.match(validated)) {
+            if (NumberOfMaleCondomGiven != "" &amp;&amp; !NumberOfMaleCondomGiven.match(validated)) {
                 getField('malecondoms.error').html('Should be between 1 and 200.').show();
                 return false;
             }
 
-            if (!NumberOfFemaleCondomsGiven.match(validated)) {
+            if (NumberOfFemaleCondomsGiven != "" &amp;&amp; !NumberOfFemaleCondomsGiven.match(validated)) {
                 getField('femalecondoms.error').html('Should be between 1 and 200.').show();
                 return false;
             }
-
-            if (!NumberOfSyringesGiven.match(validated)) {
+            if (NumberOfLubesGiven != "" &amp;&amp; !NumberOfLubesGiven.match(validated)) {
+                getField('lubes.error').html('Should be between 1 and 200.').show();
+                return false;
+            }
+            if (NumberOfSyringesGiven!= "" &amp;&amp; !NumberOfSyringesGiven.match(validated)) {
                 getField('needles.error').html('Should be between 1 and 200.').show();
                 return false;
             }
-
-
         });
         clearHiddenSections = function(parentObj) {
 
@@ -1808,6 +1804,31 @@
                 </tr>
             </table>
         </fieldset>
+
+        <!--        =============================Clinician sign off===========-->
+        <div>
+
+            <fieldset>
+                <legend>Clinician sign off and Date</legend>
+                <table class="simple-table">
+                    <tr>
+                        <td ><p><b>clinician name</b></p></td>
+
+                        <td ><p><b> Sign off date</b></p></td>
+                    </tr>
+                    <tr>
+
+                        <td ><p>  <obs id="ConName" conceptId="160632" class="remarks" answerConceptIds="162591"   answerSeparator="&lt;br /&gt;"/>
+                        </p></td>
+
+                        <td ><p>  <obs id="ConDate" conceptId="163526" class="remarks" answerConceptIds="162591"   answerSeparator="&lt;br /&gt;"/>
+                        </p></td>
+                    </tr>
+
+                </table>
+
+            </fieldset>
+        </div>
     </div>
     <div class="ke-form-footer">
         <submit/>

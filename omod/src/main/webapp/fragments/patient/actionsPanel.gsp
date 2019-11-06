@@ -29,13 +29,13 @@
 			<h3>Visit Actions</h3>
 
 			<li class="float-left" style="margin-top: 7px">
-				<a href="${ ui.pageLink("kenyaemrorderentry", "drugOrders", [patient: currentPatient]) }" class="float-left">
+				<a href="${ ui.pageLink("kenyaemrorderentry", "drugOrders", [patientId: currentPatient]) }" class="float-left">
 					<i class="fa fa-medkit fa-2x"></i>
 					Drug Orders
 				</a>
 			</li>
 			<li class="float-left" style="margin-top: 7px">
-				<a href="${ ui.pageLink("kenyaemrorderentry", "labOrders", [patient: currentPatient]) }" class="float-left">
+				<a href="${ ui.pageLink("kenyaemrorderentry", "labOrders", [patientId: currentPatient]) }" class="float-left">
 					<i class="fa fa-flask fa-2x"></i>
 					Lab Orders
 				</a>

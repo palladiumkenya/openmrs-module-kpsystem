@@ -34,7 +34,7 @@ public class KenyaEMRMaritalStatusDataEvaluator implements PersonDataEvaluator {
     public EvaluatedPersonData evaluate(PersonDataDefinition definition, EvaluationContext context) throws EvaluationException {
         EvaluatedPersonData c = new EvaluatedPersonData(definition, context);
 
-        String qry = "select patient_id, marital_status from kenyaemr_etl.etl_patient_demographics group by patient_id";
+        String qry = "select client_id, marital_status from kp_etl.etl_client_registration group by client_id";
 
         SqlQueryBuilder queryBuilder = new SqlQueryBuilder();
         queryBuilder.append(qry);
