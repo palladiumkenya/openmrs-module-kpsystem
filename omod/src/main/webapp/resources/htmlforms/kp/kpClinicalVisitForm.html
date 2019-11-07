@@ -403,6 +403,24 @@
                 jq("#vio_treated input").prop("disabled", true);
                 jq("#vio_referred input").prop("disabled", true);
                 jq("#viotext input").prop("disabled", true);
+                jq("#vio_exists input").prop("disabled", true);
+            }
+            else{
+
+                jq("#vio_exists input").prop("disabled", false);
+
+
+            }
+
+        }
+        var vilenceExists  = function () {
+            var VioScreened = getValue("vio_exists.value");
+            if(VioScreened ==1066) {
+
+                jq("#vio_results input").prop("disabled", true);
+                jq("#vio_treated input").prop("disabled", true);
+                jq("#vio_referred input").prop("disabled", true);
+                jq("#viotext input").prop("disabled", true);
             }
             else{
 
@@ -412,8 +430,9 @@
 
             }
 
-
         }
+
+
         var violenceResults  = function () {
             var VioResults = getValue("vio_results.value");
 
@@ -951,6 +970,8 @@
 
             //Violence validations
             jq('#vio_screened').click(vilenceScreened);
+            jq('#vio_exists').click(vilenceExists);
+
             jq('#vio_results').click(violenceResults);
             jq('#vio_referred').click(violenceReferred);
 
@@ -985,6 +1006,7 @@
 
 
             $("INPUT[type=text],TEXTAREA").attr("disabled", "disabled");
+            jq("#vio_results input").prop("disabled", true);
             jq("#Client_visit input:radio").attr('disabled',true);
             jq("#malecondoms input").prop("disabled", false);
             jq("#femalecondoms input").prop("disabled", false);
@@ -1454,6 +1476,9 @@
                                    style="radio" answerConceptIds="1065,1066" /></p></td>
 
                     <td id="violence_results" >
+                    <obs id="vio_exists" conceptId="160658"
+                                   style="radio" answerConceptIds="1065,1066" />
+
                         <div id="vio_results" style="float: left; padding-right: 50px">
 
                             <obs conceptId="165205" answerConceptId="165206" style="checkbox" /><br />

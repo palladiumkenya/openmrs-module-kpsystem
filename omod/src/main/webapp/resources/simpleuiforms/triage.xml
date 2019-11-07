@@ -268,6 +268,19 @@
                      unitsCssClass="append-to-value"/>
             </p>
         </fieldset>
+        <fieldset>
+            <legend>
+                <lookup expression="fn.getConcept('CIEL:1427').name"/>
+            </legend>
+            <h3>
+                <lookup expression="fn.getConcept('CIEL:1427').name"/>
+            </h3>
+
+            <p>
+                <obs conceptId="CIEL:1427" id="o2_sat"
+                     unitsCssClass="append-to-value"/>
+            </p>
+        </fieldset>
 
 
         <!-- only show BMI if patient is less than 13 years old (on the encounterDate) -->
