@@ -13,6 +13,7 @@
                                         <td>Weight</td>
                                         <td>${vitals.weight}</td>
                                     </tr>
+    
                                     <tr>
                                         <td>Height</td>
                                         <td>${vitals.height}</td>

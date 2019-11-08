@@ -42,6 +42,7 @@
             #encounter-diagnoses-target {
             display: inline-block;
             width: 40%;
+            height:40%;
             vertical-align: top;
             }
 

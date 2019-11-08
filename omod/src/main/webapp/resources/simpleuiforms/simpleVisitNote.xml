@@ -132,59 +132,145 @@
     <ifMode mode="VIEW" include="false">
         <h2>Systemic examination:</h2>
         <table class="visit-edit-table">
-            <tr>
-                <th>Visit Date</th>
-                <td><encounterDate id="visitDate" size="20" default="today" /></td>
-            </tr>
-            <tr>
-                <th>Body systems</th>
-                <td>  <obs conceptId="$systems" id="systems"
-                           answerConceptIds="1120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               163309AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               164936,
-                                               1123AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               1124AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               1125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                               164937,
-                                               1126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                           answerLabel="Skin,Eyes,ENT,Chest,CVS,Abdomen,CNS,Genitourinary"
-                           style="dropdown"/>
-                </td>
-            </tr>
-            <tr>
-                <th>Findings</th>
-                <td> <obs conceptId="$findings"
-                          answerConceptIds="150555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,125201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135591AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,507AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1249AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5244AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                              123074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140940AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127777AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140827AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139100AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                              148517AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,106AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,147230AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135841AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117698AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,138554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,507AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,152228AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,128055AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160285AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,110099AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,126423AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,126318AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,158843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5244AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5334AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123588AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,124601AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123919AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,111525AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                              146893AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127640AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,145712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164440AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5209AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                              140147AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,130560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                              150915AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5008AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5103AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5009AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5105AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                              118872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1836AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,150817AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120345AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,157498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,
-                                              147241AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,154311AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123529AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,124087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                          answerLabels="Abscess,Swelling/Growth,Hair Loss,Itching,Kaposi Sarcoma,Skin eruptions/Rashes,Oral sores,
-                                           Visual Disturbance,Excessive tearing,Eye pain,Eye redness,Light sensitive,Itchy eyes,
-                                           Apnea,Hearing disorder,Dental caries,Erythema,Frequent colds,Gingival bleeding,Hairy cell leukoplakia,Hearing loss,Hoarseness,Kaposi Sarcoma,Masses,Nasal discharge,Nosebleed,Pain,Post nasal discharge,Sinus problems,Snoring,Sore thoat,Oral sores,Thrush,Tinnitus,Toothache,Ulcers,Vertigo,
-                                           Bronchial breathing,Crackles,Dullness,Reduced breathing,Respiratory distress,Wheezing,
-                                           Elevated blood pressure,Irregular heartbeat,Cardiac murmur,Cardiac rub,
-                                           Abdominal distension,Hepatomegaly,Abdominal mass,Splenomegaly,Abdominal tenderness,
-                                           Altered sensations,Bulging fontenelle,Abnormal reflexes,Confusion,Limb weakness,Stiff neck,Kernicterus,
-                                           Bleeding,Rectal discharge,Urethral discharge,Vaginal discharge,Ulceration"
-                          style="dropdown" id="findings"/>
+            <fieldset class="patient-details">
+                <legend>System Examination</legend>
+                <table>
+                    <tr>
+                        <td>
+                            Finding(s) on systems review?  &#160;&#160;&#160;&#160;
+                        </td>
+                        <td><obs
+                                conceptId="159615AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                answerLabels="Normal,Abnormal"
+                                style="radio" id="systems-review"/>
+                            <span style="color:red;"><strong>*</strong></span>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table style="width: 70%;" border="0" id="tbl-systems-review">
+                    <tr>
+                        <th align="left">No. </th>
+                        <th align="left">System Review</th>
+                        <th align="left">Findings</th>
+                        <th align="left">Findings Notes</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>Skin</td>
+                        <td><obs class="skin-findings"
+                                 conceptId="1120AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerConceptIds="150555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,125201AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135591AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136455AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,507AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1249AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5244AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Abscess,Swelling/Growth,Hair Loss,Itching,Kaposi Sarcoma,Skin eruptions/Rashes,Oral sores"
+                                 style="dropdowm"
+                        /></td>
+                        <td><obs class="skin-notes" conceptId="160981AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="1" cols="50"
+                        />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>Eyes</td>
+                        <td><obs class="eye-findings"
+                                 conceptId="163309AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerConceptIds="123074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140940AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,131040AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127777AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,140827AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139100AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Visual Disturbance,Excessive tearing,Eye pain,Eye redness,Light sensitive,Itchy eyes"
+                                 style="dropdowm"
+                        /></td>
 
-                </td>
-            </tr>
-            <tr>
-                <th>Findings notes</th>
-                <td><obs conceptId="$remarks" id="remarks_input" /></td>
-            </tr>
+                        <td><obs class="eye-notes" conceptId="164938" rows="1" cols="50"
+                        />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>ENT</td>
+                        <td><obs class="ent-findings"
+                                 conceptId="164936"
+                                 answerConceptIds="148517AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,139075AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,119558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,118536AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,106AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,147230AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,135841AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,117698AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,138554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,507AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,152228AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,128055AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,133499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,160285AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,110099AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,126423AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,126318AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,158843AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5244AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5334AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123588AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,124601AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123919AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,111525AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Apnea,Hearing disorder,Dental caries,Erythema,Frequent colds,Gingival bleeding,Hairy cell leukoplakia,Hearing loss,Hoarseness,Kaposi Sarcoma,Masses,Nasal discharge,Nosebleed,Pain,Post nasal discharge,Sinus problems,Snoring,Sore thoat,Oral sores,Thrush,Tinnitus,Toothache,Ulcers,Vertigo"
+                                 style="dropdowm"
+                        /></td>
+                        <td><obs class="ent-notes" conceptId="164939" rows="1" cols="50"
+                        />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>Chest</td>
+                        <td><obs class="chest-findings"
+                                 conceptId="1123AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerConceptIds="146893AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127640AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,145712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,164440AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,127639AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5209AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Bronchial breathing,Crackles,Dullness,Reduced breathing,Respiratory distress,Wheezing"
+                                 style="dropdowm"
+                        /></td>
+                        <td><obs class="chest-notes" conceptId="163042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="1" cols="50"
+                        />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td>CVS</td>
+                        <td><obs class="cvs-findings"
+                                 conceptId="1124AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerConceptIds="140147AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,562AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,130560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Elevated blood pressure,Irregular heartbeat,Cardiac murmur,Cardiac rub"
+                                 style="dropdowm"
+                        /></td>
+                        <td><obs class="cvs-notes" conceptId="163046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="1" cols="50"
+                        />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6.</td>
+                        <td>Abdomen</td>
+                        <td><obs class="abdomen-findings"
+                                 conceptId="1125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerConceptIds="150915AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5008AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5103AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5009AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,5105AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Abdominal distension,Hepatomegaly,Abdominal mass,Splenomegaly,Abdominal tenderness"
+                                 style="dropdowm "
+                        /></td>
+                        <td><obs class="abdomen-notes" conceptId="160948AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="1" cols="50"
+                        />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7.</td>
+                        <td>CNS</td>
+                        <td><obs class="cns-findings"
+                                 conceptId="164937"
+                                 answerConceptIds="118872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1836AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,150817AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,120345AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,157498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,112721AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,136282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Altered sensations,Bulging fontenelle,Abnormal reflexes,Confusion,Limb weakness,Stiff neck,Kernicterus"
+                                 style="dropdowm"
+                        /></td>
+                        <td><obs class="cns-notes" conceptId="160994AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="1" cols="50"
+                        />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>8.</td>
+                        <td>Genitourinary </td>
+                        <td><obs class="gus-findings"
+                                 conceptId="1126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerConceptIds="147241AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,154311AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123529AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,123396AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,124087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                 answerLabels="Bleeding,Rectal discharge,Urethral discharge,Vaginal discharge,Ulceration "
+                                 style="dropdowm"
+                        /></td>
+                        <td><obs class="gus-notes" conceptId="163047AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="1" cols="50"
+                        />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
         </table>
     <br />
     <h2>Diagnosis:</h2>
     <table>
          <tr>
-             <td width="30%" height="50%">
-        <encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target"/>
+             <td width="30%" height="150%">
+
+        <encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target" type="autocomplete"/>
 
              </td>
             <td id="encounter-diagnoses-target">
