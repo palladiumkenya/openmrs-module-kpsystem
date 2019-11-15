@@ -40,6 +40,7 @@
                 <ref bean="kenyaemr.common.form.kpReferral"/>
                 <ref bean="kenyaemr.common.form.kpAlcoholScreening"/>
                 <ref bean="kenyaemr.common.form.kpClinicalVisitForm" />
+                <ref bean="kenyaemr.common.form.kpDiagnosis" />
             </set>
         </property>
     </bean>
@@ -339,6 +340,19 @@
         </property>
         <property name="icon" value="kenyaui:forms/generic.png" />
         <property name="htmlform" value="kenyaemr:kp/kpPeerCalendar.html" />
+        <property name="order" value="201022" />
+    </bean>
+
+    <!--    kp Diagnosis-->
+    <bean id="kenyaemr.common.form.kpDiagnosis" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+        <property name="targetUuid" value="119214e8-06d6-11ea-8d71-362b9e155667" />
+        <property name="apps">
+            <set>
+                <ref bean="kenyaemr.app.clinician" />
+            </set>
+        </property>
+        <property name="icon" value="kenyaui:forms/generic.png" />
+        <property name="htmlform" value="kenyaemr:kp/kpDiagnosis.html" />
         <property name="order" value="201022" />
     </bean>
     <!-- ===================== Reports ===================== -->

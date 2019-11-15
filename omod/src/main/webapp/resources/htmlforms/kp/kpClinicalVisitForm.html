@@ -214,18 +214,29 @@
             }
 
         }
+        var OverdoseTtreateddSelected = function (){
+            var overdoseTreated= getValue("overdose_treated.value");
+
+            if(overdoseTreated==1066){
+                jq("#naloxane input").prop("disabled", true);
+            }else{
+                jq("#naloxane input").prop("disabled", false);
+            }
+
+        }
+
+
         var OverdoseResultsSelected = function (){
             var overdoseResults= getValue("overdose_results.value");
             if(overdoseResults==703 ){
                 jq("#overdose_treated input").prop("disabled", false);
-                jq("#naloxane input").prop("disabled", false);
                 jq("#overdose_referred input").prop("disabled", false);
             }
             else{
                 jq("#overdose_treated input").prop("disabled", true);
                 jq("#overdose_referred input").prop("disabled", true);
                 jq("#overdosetxt input").prop("disabled", true);
-                jq("#naloxane input").prop("disabled", true);
+
             }
         }
 
@@ -945,6 +956,7 @@
             jq('#hepb_referred').click(HepatitisbReferred);
             //Overdose validations
             jq('#overdose_screened').click(OverdoseScreenedSelected);
+            jq('#overdose_treated').click(OverdoseTtreateddSelected);
             jq('#overdose_results').click(OverdoseResultsSelected);
             jq('#overdose_referred').click(OverdoseRefferredSelected);
 

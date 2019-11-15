@@ -43,12 +43,14 @@
             #data-collection {
             display: inline-block;
             width: 58%;
+            height: 20%;
             vertical-align: top;
             }
 
             #encounter-diagnoses-target {
             display: inline-block;
             width: 40%;
+            height: 20%;
             vertical-align: top;
             }
 
@@ -132,23 +134,6 @@
     <ifMode mode="VIEW" include="false">
         <h2>Systemic examination:</h2>
         <table class="visit-edit-table">
-            <fieldset class="patient-details">
-                <legend>System Examination</legend>
-                <table>
-                    <tr>
-                        <td>
-                            Finding(s) on systems review?  &#160;&#160;&#160;&#160;
-                        </td>
-                        <td><obs
-                                conceptId="159615AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                answerConceptIds="1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1116AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                                answerLabels="Normal,Abnormal"
-                                style="radio" id="systems-review"/>
-                            <span style="color:red;"><strong>*</strong></span>
-                        </td>
-                    </tr>
-                </table>
-                <br />
                 <table style="width: 70%;" border="0" id="tbl-systems-review">
                     <tr>
                         <th align="left">No. </th>
@@ -262,21 +247,49 @@
                         </td>
                     </tr>
                 </table>
-            </fieldset>
         </table>
     <br />
     <h2>Diagnosis:</h2>
     <table>
-         <tr>
-             <td width="30%" height="150%">
+        <fieldset class="patient-details">
+            <legend>Treatment/Management Plan</legend>
+            <table style="width: 70%;" border="0">
+                <tr>
+                    <th align="left">Diagnosis</th>
+                    <th align="left">Treatment Plan</th>
+                </tr>
+                <repeat>
+                    <template>
+                        <obsgroup groupingConceptId="159947AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+                            <tr>
+                                <td>
+                                    <obs conceptId="6042AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" answerClasses="Diagnosis" id="diagnosis-type" style="autocomplete"/>
+                                </td>
+                                <td>
+                                    <obs conceptId="163104AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rows="1" cols="80" id="treatment-plan"/>
+                                </td>
+                            </tr>
+                        </obsgroup>
+                    </template>
+                    <render n="11" concept="Diagnosis"/>
+                    <render n="12" concept="Diagnosis"/>
+                    <render n="13" concept="Diagnosis"/>
+                    <render n="14" concept="Diagnosis"/>
+                    <render n="15" concept="Diagnosis"/>
+                </repeat>
+            </table>
+        </fieldset>
 
-        <encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target" type="autocomplete"/>
+<!--         <tr>-->
+<!--             <td width="30%" height="150%">-->
 
-             </td>
-            <td id="encounter-diagnoses-target">
+<!--        <encounterDiagnoses required="true" selectedDiagnosesTarget="#encounter-diagnoses-target" type="autocomplete"/>-->
 
-            </td>
-        </tr>
+<!--             </td>-->
+<!--            <td id="encounter-diagnoses-target">-->
+
+<!--            </td>-->
+<!--        </tr>-->
     </table>
     <table>
         <h2>Notes:</h2>
