@@ -180,5 +180,33 @@
 			<prepend value="SELECT setval('encounter_role_encounter_role_id_seq', (SELECT MAX(encounter_role_id) FROM encounter_role)+1);"/>
 		</modifySql>
 	</changeSet>
+	<changeSet id="${Primary_Identifier}-20191114" author="Bernard">
+		<comment>
+			EMR PRIMARY IDENTIFIER TYPE
+		</comment>
+		<sqlFile path="AddressTemplate.sql" />
 
+	</changeSet>
+	<changeSet id="${primaryIdentifierType}-20191114" author="Bernard">
+		<comment>
+			Update Address template
+		</comment>
+		<sqlFile path="AddressTemplate.sql" />
+
+	</changeSet>
+	<changeSet id="${Add_Address_Hierarchies}-20191113" author="Bernard">
+		<comment>
+			Add address hierarchy
+		</comment>
+		<sqlFile path="address_hierarchy_entry.sql" />
+		<sqlFile path="address_hierarchy_address_to_entry_map.sql"  />
+		<sqlFile path="address_hierarchy_level.sql"  />
+	</changeSet>
+
+	<changeSet id="${Update_concepts_on_loading}-20191114" author="Bernard">
+		<comment>
+			Add address hierarchy
+		</comment>
+		<sqlFile path="kp_concepts_dump.sql" />
+	</changeSet>
 </databaseChangeLog>
