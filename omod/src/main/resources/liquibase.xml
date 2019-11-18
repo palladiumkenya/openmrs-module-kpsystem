@@ -32,7 +32,7 @@
 		</comment>
 		<sql>
 			INSERT INTO encounter_type (`name`, `description`, `creator`, `date_created`, `retired`, `uuid`)
-				VALUES ('TB Screening', 'Screening of patient for TB', '1', '2013-03-06 10:04:31', '0', 'ed6dacc9-0827-4c82-86be-53c0d8c449be');
+			VALUES ('TB Screening', 'Screening of patient for TB', '1', '2013-03-06 10:04:31', '0', 'ed6dacc9-0827-4c82-86be-53c0d8c449be');
 		</sql>
 	</changeSet>
 
@@ -57,7 +57,7 @@
 		</comment>
 		<sql>
 			INSERT INTO encounter_type (`name`, `description`, `creator`, `date_created`, `retired`, `uuid`)
-				VALUES ('HIV Discontinuation', 'Discontinuation from the HIV program', '1', '2013-03-06 10:04:31', '0', '2bdada65-4c72-4a48-8730-859890e25cee');
+			VALUES ('HIV Discontinuation', 'Discontinuation from the HIV program', '1', '2013-03-06 10:04:31', '0', '2bdada65-4c72-4a48-8730-859890e25cee');
 		</sql>
 	</changeSet>
 
@@ -116,7 +116,7 @@
 			INSERT INTO role VALUES('Clinician', 'Can access all apps except admin, and provide encounters', '57d56d58-54f7-4539-b558-b0cfab5f03ea');
 
 			INSERT INTO user_role SELECT u.user_id, 'Clinician' FROM (
-				SELECT DISTINCT ur.user_id FROM user_role ur WHERE ur.role = 'Provider' OR ur.role = 'Provider App'
+			SELECT DISTINCT ur.user_id FROM user_role ur WHERE ur.role = 'Provider' OR ur.role = 'Provider App'
 			) u;
 
 			DELETE FROM user_role WHERE role = 'Provider' OR role = 'Provider App';
@@ -180,14 +180,8 @@
 			<prepend value="SELECT setval('encounter_role_encounter_role_id_seq', (SELECT MAX(encounter_role_id) FROM encounter_role)+1);"/>
 		</modifySql>
 	</changeSet>
-	<changeSet id="${Primary_Identifier}-20191114" author="Bernard">
-		<comment>
-			EMR PRIMARY IDENTIFIER TYPE
-		</comment>
-		<sqlFile path="AddressTemplate.sql" />
 
-	</changeSet>
-	<changeSet id="${primaryIdentifierType}-20191114" author="Bernard">
+	<changeSet id="${AddressTemplate}-20191114" author="Bernard">
 		<comment>
 			Update Address template
 		</comment>
@@ -208,5 +202,17 @@
 			Add address hierarchy
 		</comment>
 		<sqlFile path="kp_concepts_dump.sql" />
+	</changeSet>
+
+	<changeSet id="${project.parent.artifactId}-20130319-0911" author="rowanseymour">
+		<preConditions onFail="MARK_RAN" onError="WARN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM global_property WHERE property= 'emr.primaryIdentifierType';</sqlCheck>
+		</preConditions>
+		<comment>
+			insert property emr.primaryIdentifierType
+		</comment>
+		<sql>
+			INSERT INTO 'global_property' VALUES ('emr.primaryIdentifierType','49af6cdc-7968-4abb-bf46-de10d7f4859f', 'Primary identifier type for looking up patients, generating barcodes, etc', 'f0e4456a-53fd-4491-a493-50f2d92c8659', NULL, NULL, NULL, NULL);
+		</sql>
 	</changeSet>
 </databaseChangeLog>
