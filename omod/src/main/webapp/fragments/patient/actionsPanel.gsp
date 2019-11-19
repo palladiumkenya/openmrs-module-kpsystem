@@ -60,6 +60,24 @@
 			</li>
 
 		</ul>
+		<ul id="other-tools">
+
+			<h3>Other Tools</h3>
+			<li class="float-left" style="margin-top: 7px">
+				<%
+					def onOtherFormClick = { form ->
+						def visitId = currentVisit ? currentVisit.id : activeVisit.id
+						def opts = [ appId: currentApp.id, visitId: visitId, formUuid: form.formUuid, returnUrl: ui.thisUrl() ]
+						"""ui.navigate('${ ui.pageLink('kenyaemr', 'enterForm', opts) }');"""
+					}
+				%>
+
+				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: otherForms, onFormClick: onOtherFormClick ]) }
+
+			</a>
+			</li>
+
+		</ul>
 		<ul id = "clinical-tools">
 
 			<h3>Clinical Tools</h3>
@@ -97,24 +115,7 @@
 
 		</ul>
 
-		<ul id="other-tools">
 
-			<h3>Other Tools</h3>
-			<li class="float-left" style="margin-top: 7px">
-				<%
-					def onOtherFormClick = { form ->
-						def visitId = currentVisit ? currentVisit.id : activeVisit.id
-						def opts = [ appId: currentApp.id, visitId: visitId, formUuid: form.formUuid, returnUrl: ui.thisUrl() ]
-						"""ui.navigate('${ ui.pageLink('kenyaemr', 'enterForm', opts) }');"""
-					}
-				%>
-
-				${ ui.includeFragment("kenyaui", "widget/formLightStack", [ forms: otherForms, onFormClick: onOtherFormClick ]) }
-
-			</a>
-			</li>
-
-		</ul>
 
 		<ul>
 			<h3>Completed Forms</h3>
