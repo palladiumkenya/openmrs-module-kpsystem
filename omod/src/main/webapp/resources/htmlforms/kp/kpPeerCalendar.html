@@ -42,6 +42,8 @@
     <script type="text/javascript">
 
         var pgender = "<lookup expression="patient.gender" />";
+        var patientAge = "<lookup expression="patient.age" />";
+
         jQuery(function ($) {
 
             jq("#other-hotspots-specify").hide();
@@ -49,6 +51,8 @@
             getField('weekly-condom-requirements.value').change(onWeeklyCondomRequirementsChange);
             getField('weekly-lubes-requirements.value').change(onWeeklyLubesRequirementsChange);
             getField('daily-syringes-requirements.value').change(onDailySyringeRequirementsChange);
+
+
             jq('#calculated-monthly-CR input[type=text]').attr("disabled","true");
             jq('#calculated-monthly-LR input[type=text]').attr("disabled","true");
             jq('#calculated-monthly-SR input[type=text]').attr("disabled","true");
@@ -116,14 +120,6 @@
                 });
 
             });
-
-
-
-
-
-            beforeSubmit.push(function () {
-            });
-
         });
 
         function MonthlySNdistributed() {
@@ -192,6 +188,9 @@
 
                 $('#referred input').val(['1065']);
             }
+            else{
+                $('#referred input').val(['1066']);
+            }
 
 
         }
@@ -205,9 +204,7 @@
 
             var TotalHIVselftestGiven = 0;
             TotalHIVselftestGiven= +week1HIVtestGiven + +week2HIVtestGiven + +week3HIVtestGiven + +week4HIVtestGiven;
-
             $('#totaltestGiven input').val(TotalHIVselftestGiven);
-
         }
 
         function MonthlyReceivedClinicalService() {
@@ -219,6 +216,9 @@
             if(week1ReceivedClinicalService==1065 || week2ReceivedClinicalService == 1065 || week3ReceivedClinicalService ==1065  || week4ReceivedClinicalService==1065){
                 $('#received_service input').val(['1065']);
             }
+            else{
+                $('#received_service input').val(['1066']);
+            }
         }
         function MonthlyCrisisReported() {
             var week1CrisisReported = getField('reported-violence.value').val();
@@ -226,7 +226,12 @@
             var week3CrisisReported = getField('reported-violencewk3.value').val();
             var week4CrisisReported = getField('reported-violencewk4.value').val();
 
-            if(week1CrisisReported == 1065 || week2CrisisReported==1065 || week3CrisisReported==1065||week4CrisisReported==1065){$('#violence_reported input').val(['1065']);}
+            if(week1CrisisReported == 1065 || week2CrisisReported==1065 || week3CrisisReported==1065||week4CrisisReported==1065){
+                $('#violence_reported input').val(['1065']);
+            }
+            else{
+                $('#violence_reported input').val(['1066']);
+            }
 
         }
         function onWeeklyCondomRequirementsChange() {
@@ -253,6 +258,7 @@
                 getField('calculated-monthly-SR.value').val(monthlySR);
             }
         }
+
         function onOtherHotspotSelected() {
             var val = jq(this).val();
             if(val == 5622 ){
@@ -263,7 +269,19 @@
             }
         }
 
+        beforeSubmit.push(function () {
+            var durationOfSexWork = getValue('duration.value');
+            if (!isNaN(durationOfSexWork)) {
+                var kpAgeMinus15Years = (+patientAge - 15)
+                if(durationOfSexWork >= kpAgeMinus15Years){
+                    getField('duration.error').html('Client should have been at least 15 years old when they started').show();
+                    jq("#duration input").val('');
+                    return false;
+                }
 
+
+            }
+        });
 
 
 
@@ -427,7 +445,7 @@
                             <b>9. Duration in sex work / injecting drugs</b>
                         </td>
                         <td>
-                            <obs conceptId="165301"  /> <i>Number of year(s)</i>
+                            <obs id="duration" conceptId="165301"  /> <i>Number of year(s)</i>
 
                         </td>
                     </tr>
