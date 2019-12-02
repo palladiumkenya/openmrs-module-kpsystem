@@ -539,6 +539,8 @@
                 jq("#fam_treated input").prop("disabled", true);
                 jq("#fam_referred input").prop("disabled", true);
                 jq("#famtxt input").prop("disabled", true);
+                jq("#famMethod select").attr('disabled', 'disabled');
+
             }
 
         }
@@ -549,6 +551,16 @@
                 jq("#famtxt input").prop("disabled", false);
             }else{
                 jq("#famtxt input").prop("disabled", true);
+            }
+
+        }
+        var familyTreated  = function () {
+            var famReferred = getValue("fam_treated.value");
+            if(famReferred==1065){
+                jq("#famMethod select").attr('disabled', false);
+            }else{
+                jq("#famMethod select").attr('disabled', 'disabled');
+                jq("#famMethod select").val("Select");
             }
 
         }
@@ -995,6 +1007,7 @@
             //Family validations
             jq('#fam_screened').click(familyScreened);
             jq('#fam_results').click(familyResults);
+            jq('#fam_treated').click(familyTreated);
             jq('#fam_referred').click(familyReferred);
 
             //Mental validations
@@ -1050,6 +1063,7 @@
             jq("#disttxt input").prop("disabled", false);
             jq("#partner input").prop("disabled", false);
             jq("#care_provided input").prop("disabled", false);
+            jq("#famMethod select").attr('disabled', 'disabled');
 
 
             jq("#self-test-demo input").prop("disabled" ,false);
@@ -1465,7 +1479,9 @@
                 <tr>
                     <td ><p>PrEP</p></td>
                     <td ><p>  <obs id="prep_screened" conceptId="165076" required="true"
-                                   style="radio" answerConceptIds="1065,1066" /></p></td>
+                                   style="radio" answerConceptIds="1065,1066, 165080" answerLabels="Yes,No, Ongoing"
+
+                    /></p></td>
                     <td ><p>  <obs id="prep_results" conceptId="165202"
                                    answerConceptIds="165087,
                                                             165078"
@@ -1549,7 +1565,10 @@
                                    answerConceptIds="1065,
                                                             1066"  answerLabels="yes,No"
                                    style="radio" />
-                    </p></td>
+                    </p>
+                        <p> Given Method <obs id="famMethod" conceptId="160576"
+                        /></p>
+                    </td>
                     <td ><p>  <obs id="fam_referred" conceptId="165279"
                                    style="radio" answerConceptIds="1065,1066"/></p></td>
                     <td ><p>  <obs id="famtxt" class="remarks" conceptId="165280"
