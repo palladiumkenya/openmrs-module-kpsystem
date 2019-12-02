@@ -274,7 +274,7 @@
             if (!isNaN(durationOfSexWork)) {
                 var kpAgeMinus15Years = (+patientAge - 15)
                 if(durationOfSexWork >= kpAgeMinus15Years){
-                    getField('duration.error').html('Client should have been at least 15 years old when they started').show();
+                    getField('duration.error').html('Client should have been at least 15 years old when they started sex work / injecting drugs').show();
                     jq("#duration input").val('');
                     return false;
                 }
