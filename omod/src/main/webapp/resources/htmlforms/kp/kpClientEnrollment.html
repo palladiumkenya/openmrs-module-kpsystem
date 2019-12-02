@@ -68,7 +68,7 @@
                 jq("#vl-test-done input").prop('checked', false);
                 getField('vl-date.value').val("");
                 getField('ccc-number.value').val("");
-                getField('facility-name.value').val("");
+                getField('care_provided_txt.value').val("");
                 getField('receiving-care.value').val("");
             }
         }
@@ -76,13 +76,17 @@
             var val = jq(this).val();
             if(val == 1065){
                 jq("#ccc-number :input").prop('disabled', false);
-                jq("#facility-name :input").prop('disabled', false);
+                jq("#care_provided_txt :input").prop('disabled', false);
+                jq("#care_provided :input").prop('disabled', false);
             }
             if(val == 1066){
                 getField('ccc-number.value').val("");
-                getField('facility-name.value').val("");
+                getField('care_provided_txt.value').val("");
                 jq("#ccc-number :input").prop('disabled', true);
-                jq("#facility-name :input").prop('disabled', true);
+                jq("#care_provided_txt :input").prop('disabled', true);
+                jq('#care_provided :input').prop('checked', false);
+                jq("#care_provided :input").prop('disabled', true);
+
 
             }
         }
@@ -494,7 +498,7 @@
                         jq('#vl-date').val('');
                         jq('#vl-test-done').val('');
                         jq('#ccc-number').val('');
-                        jq('#facility-name').val('');
+                        jq('#care_provided_txt').val('');
                         jq('#receiving-care').val('');
                     }
 

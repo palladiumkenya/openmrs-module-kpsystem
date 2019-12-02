@@ -53,9 +53,6 @@
 
             }
 
-
-
-
             $('input').on('click',function () {
                 $('#infected').find(':checkbox').each(function(){
 
@@ -221,12 +218,12 @@
                 return false;
             }
 
-            if (!NumberOfLubesGiven.match(validated)) {
+            if (lubesGiven ==1065 &amp;&amp; !NumberOfLubesGiven.match(validated)) {
                 getField('lubricants-number.error').html('Should be between 1 and 200.').show();
                 return false;
             }
 
-            if (!NumberOfCondomsGiven.match(validated)) {
+            if (condomsGiven ==1065 &amp;&amp;  !NumberOfCondomsGiven.match(validated)) {
                     getField('condoms-number.error').html('Should be between 1 and 200.').show();
                 return false;
             }
@@ -343,6 +340,11 @@
                                                 160523AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                      answerLabels="Symptomatic,Asymptomatic,Quartely Screening,Follow up"
                      style="radio"/>
+                <p>
+                    New client in programme? : <obs id ="new_client" conceptId="164144"
+
+                         style="radio"/>
+                </p>
 
             </table>
         </fieldset>
