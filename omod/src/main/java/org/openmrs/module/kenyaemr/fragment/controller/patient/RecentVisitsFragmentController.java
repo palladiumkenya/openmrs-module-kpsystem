@@ -21,11 +21,9 @@ import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.annotation.FragmentParam;
 import org.openmrs.ui.framework.fragment.FragmentModel;
 
-import javax.xml.ws.Service;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static org.openmrs.module.kenyaemr.metadata.CommonMetadata._EncounterType.HTS;
 
 /**
  * Visit summary fragment
